@@ -1,13 +1,18 @@
 title: 从“主机搬家、第五次个人主站更新、第三次博客技术架构迁移”说起
 date: 2015-4-2 23:30:09
+
 tags:
+
 - Node.js
 - Hexo
 - Blog
-categories:
 - 个人故事
-- Web开发日记
+
+categories:
+
 - 原创博文
+- Web开发日记
+
 
 ---
 
