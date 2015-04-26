@@ -33,6 +33,23 @@ categories:
 
 
 #第五次更新_个人Blog
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这次改动比较大，也就是目前大家看到的这个站点：[http://daijiale.github.io/](http://daijiale.github.io/)（域名换了，因为托管原因，把原来的[www.daijiale.cn](http://www.daijiale.cn)改成了简历页和入口页，其实也挺不错，性质不一样，刚好趁着这次技术整改实现了分布式控制），整个技术体系和空间都搬家+大改了，这次的技术架构没有采用市面上被大家广泛使用的常见技术，没有服务器脚本语言的参合，没有数据库，没有进行数据存储优化，简而言之就是，妈的！这逼网站**居然没有后台**（其实我心里一开始是拒绝的）。是的，你没听错，这特么就是个伪静态Blog，但是...这丝毫不影响ta的逼格大增
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这次改动比较大，也就是目前大家看到的这个站点：[http://daijiale.github.io/](http://daijiale.github.io/)（域名换了，因为托管原因，把原来的[www.daijiale.cn](http://www.daijiale.cn)改成了简历页和入口页，其实也挺不错，性质不一样，刚好趁着这次技术整改实现了分布式控制），整个技术体系和空间都搬家+大改了，这次的技术架构没有采用市面上被大家广泛使用的常见技术，__没有服务器脚本语言的参合，没有数据库，没有进行数据存储优化__，简而言之就是，妈的！这逼网站**居然没有后台**（其实我心里一开始是拒绝的）。是的，你没听错，这特么就是个伪静态Blog，但是...这丝毫不影响ta的逼格大增,so let’s see it：
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**预知后续介绍，请持续关注**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;技术框架选用的是Hexo+Node.js+ejs+bootstrap+markdown+GithubPage，为什么会采用这套剑走偏锋的框架？其实，是受到了周围小伙伴的影响，越来越多的朋友为了解决成本和增加B格，将Blog结合GithubPage托管在[github](https://github.com/)（程序猿的facebook，我也是从2014年才开始玩的）上，具体这套架构的**优点**和**搭建教程**请参考如下博文：
+
+ - [Blog搭建之Hexo+Node.js+ejs+bootstrap+markdown+GithubPage](http://note.youdao.com/share/?id=0dc251a2004362d10d7ce520fecdcbff&type=note)
+
+   这里主要提一下**Hexo**和**Jacman**：
+
+ - Hexo：
+  -  风一般的速度：Hexo基于Node.js，支持多进程，几百篇文章也可以秒生成。
+  -  流畅的撰写：支持GitHub Flavored Markdown和所有Octopress的插件。
+  -  扩展性：Hexo支持EJS、Swig和Stylus。通过插件支持Haml、Jade和Less.
+  -  More：[请参见官网](http://hexo.io/)
+ 
+
+ - Jacman：Hexo的一个ejs模版主题，来源于民间大神__WuChong__（[更多详细用法传送门](http://note.youdao.com/share/?id=d93d060ce27c0d085021c9c0192c9e08&type=note)），在所有Hexo官网主题中个人比较倾向于他的风格，但是对于这个主题，我还是不太满意，挺多瑕疵需要我自己慢慢修改，后面我的Blog主题也会自己改成一个新的原创主题，到时候再开源出来，给更多的hexo开发者使用。现在正在往Low Poly Style发展。
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**持续更新中**
