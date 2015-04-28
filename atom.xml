@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[DaiJiale's Blog]]></title>
+  <subtitle><![CDATA[只有汗水不会欺骗你 || Only sweat will not fail you]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://daijiale.github.io/"/>
+  <updated>2015-04-28T08:42:25.000Z</updated>
+  <id>http://daijiale.github.io/</id>
+  
+  <author>
+    <name><![CDATA[Jiale Dai]]></name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[我的一点看法关于市面上流行的Git托管服务社区]]></title>
+    <link href="http://daijiale.github.io/2015/04/27/%E6%88%91%E7%9A%84%E4%B8%80%E7%82%B9%E7%9C%8B%E6%B3%95%E5%85%B3%E4%BA%8E%E7%9B%AE%E5%89%8D%E5%B8%82%E9%9D%A2%E4%B8%8A%E6%B5%81%E8%A1%8C%E7%9A%84Git%E6%89%98%E7%AE%A1%E6%9C%8D%E5%8A%A1%E7%A4%BE%E5%8C%BA/"/>
+    <id>http://daijiale.github.io/2015/04/27/我的一点看法关于目前市面上流行的Git托管服务社区/</id>
+    <published>2015-04-27T03:39:09.000Z</published>
+    <updated>2015-04-28T08:42:25.000Z</updated>
+    <content type="html"><![CDATA[<p><code>git</code> 服务社区越来越多，无论是国外的还是国内的，免费公益的还是按需收费的，我们该如何选择呢？</p>
+<p>这里整理了一些我自己接触过的，给大家参考一下：</p>
+<a id="more"></a>
+<h1 id="市面上流行的Git服务社区：">市面上流行的Git服务社区：</h1><ul>
+<li>1、<code>Github</code>：不解释。</li>
+<li><p>2、<code>GitLab</code>：在github上全开源，CE私有库免费，现在很多新生git社区的内核，后面提到的Git@OSC就是基于它做的。<br>两个版本 ：GitLab 社区版（CE）是可用而不下MIT许可证的任何费用。<br>GitLab企业版（EE） ，包括额外的功能，这对于拥有超过100个用户的组织最有用的。要访问的EE和支持，请成为用户。</p>
+</li>
+<li><p>3、<code>GitCafe</code>：私有库收费，企业版还TM未开放。。。唯一的优点可能就是国内优秀的合作伙伴（等等）比较多！</p>
+</li>
+<li><p>4、<code>Git@OSC</code>：每人可以1000个库，无论是私有还是公有，和Team@OSC，Sonar@OSC，PaaS@OSC可以配套使用，形成闭环，整个生态基本全部免费，专业化集成度最高！<br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicgitosc.PNG" alt=""></p>
+</li>
+<li><p>5、<code>Gogs</code>：新生力量，前段时间在好友<a href="http://blog.paincompiler.us/" target="_blank" rel="external">NastyLeoc</a>的SinaWeiBlog上看到的，基于go语言的超轻量级平台，在github上全开源，支持fork pull协作，私有库免费，听说性能也很不错，前景比较大，膜拜一下四位缔造者：<br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicgogs.PNG" alt=""></p>
+</li>
+</ul>
+<ul>
+<li>6、<code>Bitbucket</code>：性质和github差不多，元老级社区，但是。。。被github完虐！</li>
+<li>7、<code>coding</code>：我个人最喜欢的一个协作环境，支持复用开发环境是其最大的亮点，同时也可以体验云端编程的快感，移动端的支持也很给力，目前Android和IOS的两个客户端都很稳定，码农社交圈也在慢慢扩大。自己目前正有把私有项目全都搬过去的打算(私有仓库还TM是免费的）。</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><code>git</code> 服务社区越来越多，无论是国外的还是国内的，免费公益的还是按需收费的，我们该如何选择呢？</p>
+<p>这里整理了一些我自己接触过的，给大家参考一下：</p>]]>
+    
+    </summary>
+    
+      <category term="git" scheme="http://daijiale.github.io/tags/git/"/>
+    
+      <category term="代码托管" scheme="http://daijiale.github.io/tags/%E4%BB%A3%E7%A0%81%E6%89%98%E7%AE%A1/"/>
+    
+      <category term="工具神器" scheme="http://daijiale.github.io/tags/%E5%B7%A5%E5%85%B7%E7%A5%9E%E5%99%A8/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[单反自学笔记]]></title>
+    <link href="http://daijiale.github.io/2015/04/26/%E5%8D%95%E5%8F%8D%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/"/>
+    <id>http://daijiale.github.io/2015/04/26/单反自学笔记/</id>
+    <published>2015-04-26T13:26:09.000Z</published>
+    <updated>2015-04-28T08:40:11.000Z</updated>
+    <content type="html"><![CDATA[<p><strong>PS：</strong>2015年4月在<a href="http://mp.weixin.qq.com/s?__biz=MzAxMDM5MTIwMw==&amp;mid=204127766&amp;idx=1&amp;sn=7c6a4b87110f472a1ced270b6daafc10&amp;scene=5#rd" target="_blank" rel="external">胖哥（Axl、隔壁老王）</a>的唆使下，我入手了人身第一台<a href="http://baike.baidu.com/link?url=lUwpC5ksAq3Sh_zqGsNAZ4NmcxmiPul3P6SV-QXO5vdWItnvlm7GjvBreNyqoFYWoj-bbozDnDd0yU6lnqsKy7tsVn5qpNJ7BrEFqh_-k1Ml32XcaLvK0FlHUbbrL_eifzZoMYNglLhc-aX8K1XCd_" target="_blank" rel="external">单反</a>…（迈入继耳机之后的又一深坑）这篇Blog是最近学习新技能时做的笔记：</p>
+<h1 id="单反自学笔记_新人篇">单反自学笔记_新人篇</h1><ul>
+<li><a href="http://note.youdao.com/share/?id=48a8f388b8f5cb21ab3cd50d169a665f&amp;type=note" target="_blank" rel="external">新人第一课：井字构图法</a></li>
+<li><a href="http://note.youdao.com/share/?id=a6ec10c8127835dc4bd08ab923c7708f&amp;type=note" target="_blank" rel="external">新人第二课：如何把照片拍得更为清晰</a></li>
+</ul>
+<a id="more"></a>
+<h1 id="我的相机">我的相机</h1><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/小枫摄影danfan2.jpg" alt=""></p>
+<p> <img src="http://7xi6qz.com1.z0.glb.clouddn.com/小枫摄影danfan1.jpg" alt=""></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这里简单介绍下我的第一款相机：</p>
+<ul>
+<li><a href="http://baike.baidu.com/link?url=8wdswo_z6JsR1FqR-6-FWvETzJBPEZKDB4aZGss_ZDonkqxxdMAB-wfLZgpAbdwJBzuV-pR9TuC-CZ3nsF2QTa" target="_blank" rel="external">机身：Canon EOS 700D</a></li>
+<li><a href="http://lens.zol.com.cn/316/3166968.html" target="_blank" rel="external">镜头：24-105-F4</a></li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其实对于入门级小白来讲，这个机身还是挺适合的，不过镜头……呵呵，胖哥直接带我上了<strong>红圈</strong>（他说一步到位，5年之内不用换了），大出血了一回，在朋友圈里也是被骂惨了。不过拍出来的照片真的很逆天，回头会持续更新我自己的实战使用心得…</p>
+<h1 id="作品集">作品集</h1><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/小枫摄影小枫摄影_xs1.jpg" alt=""></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>持续更新中</strong></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><strong>PS：</strong>2015年4月在<a href="http://mp.weixin.qq.com/s?__biz=MzAxMDM5MTIwMw==&amp;mid=204127766&amp;idx=1&amp;sn=7c6a4b87110f472a1ced270b6daafc10&amp;scene=5#rd">胖哥（Axl、隔壁老王）</a>的唆使下，我入手了人身第一台<a href="http://baike.baidu.com/link?url=lUwpC5ksAq3Sh_zqGsNAZ4NmcxmiPul3P6SV-QXO5vdWItnvlm7GjvBreNyqoFYWoj-bbozDnDd0yU6lnqsKy7tsVn5qpNJ7BrEFqh_-k1Ml32XcaLvK0FlHUbbrL_eifzZoMYNglLhc-aX8K1XCd_">单反</a>…（迈入继耳机之后的又一深坑）这篇Blog是最近学习新技能时做的笔记：</p>
+<h1 id="单反自学笔记_新人篇">单反自学笔记_新人篇</h1><ul>
+<li><a href="http://note.youdao.com/share/?id=48a8f388b8f5cb21ab3cd50d169a665f&amp;type=note">新人第一课：井字构图法</a></li>
+<li><a href="http://note.youdao.com/share/?id=a6ec10c8127835dc4bd08ab923c7708f&amp;type=note">新人第二课：如何把照片拍得更为清晰</a></li>
+</ul>]]>
+    
+    </summary>
+    
+      <category term="个人故事" scheme="http://daijiale.github.io/tags/%E4%B8%AA%E4%BA%BA%E6%95%85%E4%BA%8B/"/>
+    
+      <category term="拍照摄影" scheme="http://daijiale.github.io/tags/%E6%8B%8D%E7%85%A7%E6%91%84%E5%BD%B1/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+      <category term="单反自学笔记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/%E5%8D%95%E5%8F%8D%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[AjaxReview]]></title>
+    <link href="http://daijiale.github.io/2015/04/09/AjaxReview/"/>
+    <id>http://daijiale.github.io/2015/04/09/AjaxReview/</id>
+    <published>2015-04-09T10:30:09.000Z</published>
+    <updated>2015-04-28T08:39:35.000Z</updated>
+    <content type="html"><![CDATA[<p><strong>PS：</strong>写这篇Blog主要有两个三个动机：</p>
+<ul>
+<li>对以前自己所学知识的一个系统化review</li>
+<li>刚好给徒弟漫漫制作一份比较全面的Ajax教程</li>
+<li>帮助更多的，对此知识有需要的童鞋<a id="more"></a>
+<h1 id="概念介绍">概念介绍</h1>在介绍<code>Ajax</code>的概念之前，我觉得有必要先说明一下<strong>“同步”和“异步”</strong>的问题：</li>
+</ul>
+<h2 id="同步：">同步：</h2><p>举个例子——“在以前，我们填写100个字段的网页表单(需要联系人，密码，姓名，用户名等等)最后，我们点击提交，结果发现等了5分钟，服务器告诉你邮箱字段填写错误，然后很自然的提交失败，打回重新写过…”（来回三次以上我估计你差不多就疯了）</p>
+<p>这就是一个<strong>同步流程</strong>：</p>
+<blockquote>
+<p><strong>p1-pn:客户端浏览器请求-&gt;等待服务器端处理-&gt;之后响应-&gt;页面才能载入更新状态</strong></p>
+</blockquote>
+<p>无疑这种机制对于现实来说很扯蛋。所以有了下面的<strong>异步机制</strong>。</p>
+<h2 id="异步：">异步：</h2><p>还是上面的例子：在填写表单的过程中，每填写一个字段就同时像服务器提交一次请求，在你编辑其他内容的同时，也会同步你的请求，随时得到服务器端反馈的结果，可以实时保存你填写的字段内容，也可以及时得到填写错误的反馈。</p>
+<p><strong>异步流程：</strong></p>
+<blockquote>
+<p><strong>p1:客户端-&gt;请求-&gt;服务端处理-&gt;响应-&gt;页面载入</strong></p>
+<p><strong>p2:客户端-&gt;请求-&gt;服务端处理-&gt;响应-&gt;页面载入</strong></p>
+<p><strong>p3:客户端-&gt;请求-&gt;服务端处理-&gt;响应-&gt;页面载入</strong></p>
+<p><strong>……</strong></p>
+<p><strong>pn:客户端-&gt;请求-&gt;服务端处理-&gt;响应-&gt;页面载入</strong></p>
+</blockquote>
+<p>这种异步方式起源于<code>XMLHttpRequest</code>对象的诞生，具体信息请戳链接<a href="http://baike.baidu.com/link?url=URNRyvoOrqtF_qSUI2iiYgpkhs2_N5aFFwjdRnwJ9ReioxiBvdkERVP3Uvb6QXYziaSHv28GLklZ0VXolav0J_" target="_blank" rel="external">百度百科——XMLHTTPRequest</a>，这里就不重点介绍了…</p>
+<h2 id="Ajax的概念：">Ajax的概念：</h2><p>即<strong>Asyn-Javascript-XML</strong>，通过在后台与服务器进行少量数据交换，这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。（即实现异步机制）</p>
+<h1 id="Ajax学习前需要具备的基础">Ajax学习前需要具备的基础</h1><ul>
+<li>运用HTML和CSS来实现页面，表达信息</li>
+<li>运用XMLHttpRequest和Web服务器进行数据的异步交互</li>
+<li>运用JS操作DOM，实现动态局部刷新</li>
+</ul>
+<p><strong>PS</strong>：（这些都不会就可以不用往下看了）</p>
+<h1 id="XHR的使用">XHR的使用</h1><p>首先声明XHR对象</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> request = <span class="keyword">new</span> XMLHttpRequest<span class="comment">//不支持IE5 IE6</span></span><br></pre></td></tr></table></figure>
+<p><code>珍爱生命，远离IE</code>（虽然嘴上是这样说）</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> request;</span><br><span class="line"><span class="keyword">if</span>（windowXMLHttpRequest）&#123;</span><br><span class="line"> 	request = <span class="keyword">new</span> XMLHttpRequest();<span class="comment">//IE7+;Firefox;Chrome,Opera,Safari...</span></span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		request=<span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);<span class="comment">//IE5,IE6</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="这里再简单介绍下HTTP：">这里再简单介绍下HTTP：</h2><p>其实就是一群 <code>叫兽</code> 研究出来的一套计算机通信规则。</p>
+<p>它的特点需要我们注意：</p>
+<ul>
+<li>不建立持久连接，</li>
+<li>无状态，</li>
+<li>不稳定，</li>
+<li>无记忆</li>
+</ul>
+<p>因此，我们一般都只用 <code>http</code> 来充当 <code>请求</code> 操作，通过 <code>TCP</code> 连接来建立持久化的网络通信。</p>
+<p><strong>一个完整的HTTP请求过程7步骤</strong>：</p>
+<ul>
+<li>1.建立 <code>TCP</code> 连接</li>
+<li>2.Web浏览器向服务器发送 <code>请求</code> 命令</li>
+<li>3.Web浏览器发送请求头信息</li>
+<li>4.Web浏览器应答</li>
+<li>5.Web服务器发送应答头信息</li>
+<li>6.Web服务器向浏览器发送数据</li>
+<li>7.Web服务器关闭 <code>TCP</code> 连接</li>
+</ul>
+<p><strong>HTTP请求结构</strong>：</p>
+<ul>
+<li>1.HTTP请求的动作：<code>GET</code> or <code>POST</code> <ul>
+<li><code>GET</code><ul>
+<li>一般用于信息获取</li>
+<li>使用URL传递参数</li>
+<li>对所发信息的数量有限制（2000个字符左右）</li>
+</ul>
+</li>
+<li><code>POST</code><ul>
+<li>一般用于修改服务器上的资源。</li>
+<li>对所发信息的数量无限制</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2.正在请求的 <code>URL</code> ，总得知道请求地址吧</li>
+<li>3.请求头，包含一些客户端环境信息，身份验证信息等</li>
+<li>4.请求体，也就是请求正文，可以包含客户提交的查询字符串信息，表单信息等等</li>
+</ul>
+<p><strong>HTTP响应组成</strong>：</p>
+<ul>
+<li>1.一个<strong>数字和文字</strong>组成的<strong>状态码</strong>，用来显示成功还是失败<ul>
+<li>状态码：<ul>
+<li>1xx：信息类，表示收到web浏览器请求，正在进一步处理中</li>
+<li>2xx：成功，200 ok</li>
+<li>3xx：重定向，表示请求没有成功，客户必须采取进一步动作</li>
+<li>4xx：客户端错误，表示客户端提交的请求有错误，如 404 Not Found</li>
+<li>5xx：服务器错误，不能完成对请求的处理，如 500</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2.响应头，包含服务器类型，日期时间，内容类型和长度等</li>
+<li>3.响应体，也就是响应正文</li>
+</ul>
+<h2 id="XHR发送请求">XHR发送请求</h2><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">request.open(<span class="keyword">method</span>,url,async);</span><br><span class="line">request.send(<span class="type">string</span>);</span><br></pre></td></tr></table></figure>
+<p><strong>eg:</strong><br><figure class="highlight vbscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">request</span>.open(<span class="string">"POST"</span>,<span class="string">"127.0.0.1/post.php"</span>,<span class="literal">true</span>);</span><br><span class="line"><span class="built_in">request</span>.setRequestHeader(<span class="string">"Content-type"</span>,<span class="string">"application/x-www-form-urlencoded"</span>);</span><br><span class="line"><span class="built_in">request</span>.send(<span class="string">"name=daijiale&amp;sex=man"</span>);</span><br></pre></td></tr></table></figure></p>
+<h2 id="XHR取得响应">XHR取得响应</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">responseText<span class="comment">//获得字符串形式的响应数据</span></span><br><span class="line">responseXML<span class="comment">//获得XML形式的响应数据</span></span><br><span class="line">status<span class="comment">//以数字形式返回HTTP状态码</span></span><br><span class="line">statusText<span class="comment">//以文本形式返回HTTP状态码</span></span><br><span class="line"><span class="function"><span class="title">getALLResponseHeader</span><span class="params">()</span></span><span class="comment">//获取所有响应报头</span></span><br><span class="line"><span class="function"><span class="title">getResponseHeader</span><span class="params">()</span></span><span class="comment">//查询响应中的某个字段的值</span></span><br></pre></td></tr></table></figure>
+<p>这里重点需要关注下 <code>readyState</code> 属性</p>
+<ul>
+<li>0：请求未初始化，open还没有调用</li>
+<li>1：服务器连接已建立，open已经调用</li>
+<li>2：请求已接受，也就是收到了头信息</li>
+<li>3：请求处理中，也就是接收到响应主体了</li>
+<li>4：请求已完成，且响应已就绪，也就是响应完成了</li>
+</ul>
+<p>因此，通过监听此属性的值，可以得到对应响应结果。方法如下：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> request = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">request.open(<span class="string">"GET"</span>,<span class="string">"127.0.0.1/get.php"</span>,<span class="literal">true</span>);</span><br><span class="line">request.send();</span><br><span class="line">request.onreadystatechange = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">if</span>(request.readyState===<span class="number">4</span> &amp;&amp; request.status===<span class="number">200</span>）｛</span><br><span class="line"><span class="comment">//do some thing here </span></span><br><span class="line"><span class="comment">//request.responseText</span></span><br><span class="line">	&#125;</span><br><span class="line">｝</span><br></pre></td></tr></table></figure></p>
+<h1 id="Ajax_Demo">Ajax Demo</h1><ul>
+<li><a href="http://www.w3school.com.cn/tiy/t.asp?f=ajax_httprequest_js" target="_blank" rel="external">Ajax加载XML</a></li>
+<li><a href="http://www.w3school.com.cn/ajax/ajax_example_suggest.asp" target="_blank" rel="external">Ajax实现Web通信 </a></li>
+<li><a href="http://www.w3school.com.cn/tiy/t.asp?f=ajax_httprequest_js_4" target="_blank" rel="external">Ajax加载html表格元素</a></li>
+<li><a href="http://www.w3school.com.cn/php/php_ajax_database.asp" target="_blank" rel="external">PHP-MySQL使用Ajax进行数据交互</a></li>
+</ul>
+<h1 id="JQuery_Ajax">JQuery Ajax</h1><p>很多初学者，很容易把这 <code>Jquery Ajax</code> 和 <code>Ajax</code>搞混，这里单独给大家区分一下。<br>首先，我们先了解下: </p>
+<h2 id="JQuery_和_ajax_的关系：">JQuery 和 ajax 的关系：</h2><ul>
+<li><code>jQuery</code> 提供多个与 <code>AJAX</code> 有关的方法。</li>
+<li>通过 <code>jQuery AJAX</code> 方法，您能够使用 <code>HTTP Get</code> 和 <code>HTTP Post</code> 从远程服务器上请求 <code>文本</code>、<code>HTML</code>、<code>XML</code> 或 <code>JSON</code></li>
+<li>同时能够把这些外部数据直接载入网页的被选元素中。</li>
+<li>如果没有 <code>jQuery</code>，<code>AJAX</code> 编程还是有些难度的。</li>
+<li>编写常规的 <code>AJAX</code> 代码并不容易，因为不同的浏览器对 <code>AJAX</code> 的实现并不相同。这意味着您必须编写额外的代码对浏览器进行测试。不过，<code>jQuery 团队</code>为我们解决了这个难题，我们只需要一行简单的代码，就可以实现 <code>AJAX</code> 功能。</li>
+<li><strong>综上： <code>jQuery</code> 对 <code>Ajax</code> 进行了又一次的封装，使得其主体功能用起来更为方便，简单，现在大部分开发者都很少直接用js写原生ajax，都是引入了jquery ajax方法。但是由于依赖于<code>jQuery</code>，导致不灵活，有其局限性。</strong></li>
+</ul>
+<h2 id="JQuery_Ajax的使用方法">JQuery Ajax的使用方法</h2><p>基本语法格式：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">  $(<span class="string">"#button_name"</span>).click(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">   $.ajax(&#123;</span><br><span class="line">		type:<span class="string">"POST"</span>,</span><br><span class="line">		url:<span class="string">"127.0.0.1/get.php"</span>,</span><br><span class="line">        data:&#123;</span><br><span class="line">		    name:$(<span class="string">"#staffname"</span>).val(),</span><br><span class="line">			password:$(<span class="string">"#staffpassword"</span>).val(),</span><br><span class="line">		&#125;,</span><br><span class="line">        dataType:<span class="string">"json"</span>,</span><br><span class="line">		success:<span class="function"><span class="keyword">function</span><span class="params">(data)</span></span>&#123;</span><br><span class="line">			<span class="keyword">if</span>(data.success)&#123;</span><br><span class="line">				$(<span class="string">"#button_click_result"</span>).html(data.msg);</span><br><span class="line">				&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				$(<span class="string">"#button_click_result"</span>).html(<span class="string">"error"</span>+data.msg);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;,</span><br><span class="line">		error:<span class="function"><span class="keyword">function</span><span class="params">(jqXHR)</span></span>&#123;</span><br><span class="line">			alert(<span class="string">"error："</span>+jqXHR.status);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>jQuery load()//简单而强大</p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$<span class="comment">(selector)</span>.load<span class="comment">(URL,data,callback)</span>;</span><br></pre></td></tr></table></figure>
+<p>load()方法直接从服务器加载数据，并把返回的数据放入被选元素中</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"/jquery/jquery-1.11.1.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript"></span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">  $(<span class="string">"button"</span>).click(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">$(<span class="string">"#div1"</span>).load(<span class="string">"/example/jquery/demo_test.txt"</span>,<span class="function"><span class="keyword">function</span><span class="params">(responseTxt,statusTxt,xhr)</span></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(statusTxt==<span class="string">"success"</span>)</span><br><span class="line">alert(<span class="string">"外部内容加载成功！"</span>);</span><br><span class="line">  <span class="keyword">if</span>(statusTxt==<span class="string">"error"</span>)</span><br><span class="line">alert(<span class="string">"Error: "</span>+xhr.status+<span class="string">": "</span>+xhr.statusText);</span><br><span class="line">&#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"div1"</span>&gt;</span><span class="tag">&lt;<span class="title">h2</span>&gt;</span>使用 jQuery AJAX 来改变文本<span class="tag">&lt;/<span class="title">h2</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">button</span>&gt;</span>获得外部内容<span class="tag">&lt;/<span class="title">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>本例<a href="http://www.w3school.com.cn/tiy/t.asp?f=jquery_ajax_load_callback" target="_blank" rel="external">Demo效果</a></p>
+<p>更多请参见 <a href="http://www.w3school.com.cn/jquery/jquery_ref_ajax.asp" target="_blank" rel="external">jQuery Ajax操作函数表</a></p>
+<h1 id="JSON">JSON</h1><p> 这里补充一下这个知识，和xml一样，经常在ajax数据传输中用到，没什么难的，看看就会了：</p>
+<ul>
+<li>概念：javascript对象表示法</li>
+<li>JSON是存储和交换文本信息的语法，类似XML。采用键值对的方式来组织，易于人们阅读和编写，同时也易于机器解析和生成。</li>
+<li>JSON是独立于语言的，也就是说不管什么语言，都可以解析json，只需要按照json的规则来就行。</li>
+</ul>
+<h2 id="与XML进行对比：">与XML进行对比：</h2><ul>
+<li>json的长度和xml格式比起来很短小</li>
+<li>json读写的速度更快</li>
+<li>json可以使用JavaScript内建的方法直接进行解析，转换成Javascript对象，非常方便。</li>
+</ul>
+<h2 id="书写类型：">书写类型：</h2><p><strong>eg：</strong>“name”:”戴嘉乐”</p>
+<h2 id="JSON解析：">JSON解析：</h2><p>不要使用 <code>eval</code> 来解析，<code>eval</code>会解析内置函数，造成安全隐患.尽量用 <code>JSON.parse</code>.</p>
+<h2 id="JSON校验工具：">JSON校验工具：</h2><ul>
+<li><a href="http://jsonlint.com/" target="_blank" rel="external">JSONLint</a></li>
+</ul>
+<p> <code>json</code> 更多教材：<a href="http://www.w3school.com.cn/json/" target="_blank" rel="external">传送门</a></p>
+<h1 id="跨域问题">跨域问题</h1><p>之前在长虹实习的时候，和海阳遇到了这样的问题，这里也拎出来提一下。</p>
+<h2 id="什么是跨域？">什么是跨域？</h2><ul>
+<li>一个域名地址的组成：<ul>
+<li><code>http://</code> 协议</li>
+<li><code>www.</code> 子域名</li>
+<li><code>abc.com</code> 主域名</li>
+<li><code>:8080</code> 端口号</li>
+<li><code>script/jquery.js</code> 请求资源地址</li>
+</ul>
+</li>
+<li>当协议、子域名、主域名、端口号中任意一个不相同时，都算作不同域。</li>
+<li>不同域之间相互请求资源，就算做<strong>“跨域”</strong><ul>
+<li>eg：<a href="http://www.daijiale.cn/index.html请求http://daijiale.github.io/service.php" target="_blank" rel="external">http://www.daijiale.cn/index.html请求http://daijiale.github.io/service.php</a></li>
+</ul>
+</li>
+</ul>
+<p><strong>PS:</strong></p>
+<p>Javascript处出去安全方面的考虑，不允许跨域调用其他页面的对象（这不废话，肯定不允许啊）</p>
+<p>所以很多新手在本机调试程序的时候容易乱写 <code>127.0.0.1</code> 和 <code>localhost:8080</code> ，这也算作跨域</p>
+<p>协议不同（<code>http</code> 和  <code>https</code> 也算作跨域)</p>
+<h2 id="处理跨越访问的方法">处理跨越访问的方法</h2><h3 id="一、代理">一、代理</h3><ul>
+<li>通过在同域名的web服务器端创建一个代理：</li>
+<li>北京服务器www.beijing.com 上海服务器www.shanghai.com</li>
+<li>通过北京web服务器后台（www.beijing.com/proxy-shanghaiservice.php)来调用上海服务器（www.shanghai.com/service.php)的服务，然后再把响应结果返回给前端，这样前端调用北京同域名的服务就和调用上海的服务效果相同了。</li>
+</ul>
+<h3 id="二、JSONP">二、JSONP</h3><p><code>JSONP</code> 可用于解决<strong>主流</strong>浏览器的跨域数据访问的问题。</p>
+<p><strong>eg：</strong></p>
+<p>在www.aaa.com页面中：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="actionscript"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jsonp</span><span class="params">(json)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	alert(json[<span class="string">"name"</span>]):</span><br><span class="line">&#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"http://www.bbb.com/jsonp.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在www.bbb.com页面中：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jsonp(&#123;<span class="string">'name'</span>:<span class="string">'洪七'</span>,<span class="string">'age'</span>:<span class="number">24</span>&#125;);</span><br></pre></td></tr></table></figure>
+<p>JSONP只支持 <code>GET</code> 请求，存在局限性：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">  $(<span class="string">"#button_name"</span>).click(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">   $.ajax(&#123;</span><br><span class="line">		type:<span class="string">"GET"</span>,<span class="comment">//JSONP只支持GET,存在局限性</span></span><br><span class="line">		url:<span class="string">"127.0.0.1/get.php"</span>,</span><br><span class="line">        dataType:<span class="string">"jsonp"</span>,<span class="comment">//主要修改这</span></span><br><span class="line">		jsonp:<span class="string">"callback"</span>,<span class="comment">//前端脚本语言需要新建变量对象来获取名为“callback”的jsonp</span></span><br><span class="line">		success:<span class="function"><span class="keyword">function</span><span class="params">(data)</span></span>&#123;</span><br><span class="line">			<span class="keyword">if</span>(data.success)&#123;</span><br><span class="line">				$(<span class="string">"#button_click_result"</span>).html(data.msg);</span><br><span class="line">				&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				$(<span class="string">"#button_click_result"</span>).html(<span class="string">"error"</span>+data.msg);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;,</span><br><span class="line">		error:<span class="function"><span class="keyword">function</span><span class="params">(jqXHR)</span></span>&#123;</span><br><span class="line">			alert(<span class="string">"error："</span>+jqXHR.status);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="三、XHR2">三、XHR2</h3><ul>
+<li>html5提供的XMLHttpRequest Level2 已经实现了跨域访问以及其他的一些新功能</li>
+<li>IE10以下版本不支持</li>
+<li>在服务器端做一些小小的改造即可：<ul>
+<li>header(‘Access-Control-Allow-Origin:*’);</li>
+<li>header(‘Access-Control-Allow-Methods:POST,GET’);</li>
+</ul>
+</li>
+</ul>
+<p>还是那句话 <code>珍爱生命，远离IE</code>，强烈推荐第三种方法解决跨域，低成本。</p>
+<h1 id="反向Ajax技术">反向Ajax技术</h1><p>关于 <code>Reverse Ajax</code> 我会单独另起一篇博文对该技术进行介绍，之前在自己的“Web远程控制系统”中用到了该技术，觉得很有必要提及一下：<br><a href="">传送门正在更新中</a></p>
+<h1 id="总结">总结</h1><p>Ajax在web前端开发中的地位不言而喻，高频的使用率以及其不可替代的定位是每个前端工程师都无法质疑的。现在，类似于Jquery Ajax的快速开发框架也层出不穷，对于我们来说无疑是福音，但是理解其内涵和工作原理，我们才能在以后的实践项目中应用得当。下面是一些Ajax的常用场景：</p>
+<h3 id="场景1-_用Ajax进行数据验证">场景1. 用Ajax进行数据验证</h3><p>在填写表单内容时，需要保证数据的唯一性（例如新用户注册填写的用户名），因此必须对用户输入的内容进行数据验证。</p>
+<p>数据验证通常有两种方式：</p>
+<p>一种是直接填写，然后提交表单，这种方式需要将这个页面提交到服务器端进行验证，整个过程不仅时间长而且造成了服务器不必要的负担；</p>
+<p>第二种方式是改进了的验证过程，用户可以通过点击相应的验证按钮，打开新窗口查看验证结果，但是这样需要新开一个浏览器窗口或者对话框，还需要专门编写验证的页面，比较耗费系统资源。</p>
+<p>而使用Ajax技术，可以由XMLHttpRequest对象发出验证请求，根据返回的HTTP响应判断验证是否成功，整个过程不需要弹出新窗口，也不需要将整个页面提交到服务器，快速而又不加重服务器负担。</p>
+<h3 id="场景2-按需取数据">场景2.按需取数据</h3><p>分类树或者树形结构在web应用系统中使用得非常广泛，例如部门结构，文档得分类结构常常使用树形空间呈现。</p>
+<p>以前每次对分类树得操作都会引起页面重载，为了避免这种情况出现，一般不采用每次调用后台得方式，而是一次性将分类结果中得数据一次性读取出来并写入数组，然后根据用户的操作，用JavaScript来控制节点的呈现，这样虽然解决了操作响应速度，不重复载入页面以及避免向服务器频繁发送请求的问题，但是如果用户不对分类进行操作或者只对分类树中的一部分数据进行操作的话（这种情况很普遍的），那么读取的数据中就会有相当大的冗余，浪费了用户的资源。特别是在分类结构复杂，数据庞大的情况下，这种弊端就更加明显了。</p>
+<p>现在应用Ajax改进分类树的实现机制。在初始化页面时，只获取第一级子分类的数据并且显示；当用户点开一级分类的第一节点时，页面会通过Ajax向服务器请求当前分类所属的二级子分类的所有数据；如果再请求已经呈现的二级分类的某一节点时，再次向服务器请求当前分类所属的三级子分类的所有数据，以此类推。页面会根据用户的操作向服务器请求它所需要的数据，这样就不会存在数据的冗余，减少了数据下载总量。同时，更新页面时不需要重载所有内容，只更新需要更新的那部分内容即可，相对于以前后台处理并且重载的方式，大大缩短了用户的等待时间。</p>
+<h3 id="场景3-自动更新页面">场景3.自动更新页面</h3><p>在web应用中有很多数据的变化时十分迅速的，例如最新的热点新闻，天气预报以及聊天室内容等。在Ajax出现之前，用户为了即使了解相应的内容必须不断刷新页面，查看是否有新的内容变化，或者页面本身实现定时刷新的功能（大多数聊天室页面就是这样做的）。</p>
+<p>有可能会发生这种情况；有一段时间网页的内容没有发生任何变化，但是用户并不知道，仍然不断的刷新页面；或者用户失去了耐心，放弃了刷新页面，却很有可能在此有新的消息出现，这样就错过了第一时间得到消息的机会。</p>
+<p>应用Ajax可以改善这种这种情况，页面加载以后，会通过Ajax引擎在后台进行定时的轮询，向服务器发送请求，查看是否有最新的消息。如果有则将新的数据（而不是所有数据）下载并且在页面上进行动态的更新，通过一定的方式通知用户（实现这样的功能正是JavaScript的强项）。</p>
+<p>这样即避免了用户不断手工刷新页面的不便，也不会因为重复刷新页面造成资源浪费。</p>
+<p>既然你己经对Ajax产生了兴趣，还要知道重要的一点，即什么时候应该使用Ajax技术，而什么时候不该用。首先，不要害怕在应用中尝试新的方法。我们相信.几乎每个web应用都能从Ajax技术中获益，只不过不要矫杠过正，过于离谱就行了。从验证开始就很合适，但是不要限制你的主动性。你当然可以使用Ajax提交数据，但也许不能把它作为提交数据的主要方法。</p>
+<p>其次，惟一会影响你应用Ajax的就是浏览器问题。如果大量用户(或者特别重要的用户)还在使用比较旧的浏览器，如IE 5 , Safari 1.2或Mozilla 1.0之前的版本，Ajax技术就不能奏效。如果这是一些很重要的用户，你就要使用针对目标用户的跨浏览器的方法，而放弃Ajax，或者开发一个可以妥善降级的网站。浏览器支持可能不是一个重要因素，因为netscape Navigaxar 4在市场上的份额很小。不过，还是应该查看Web日志，看看你的应用适用什么技术。</p>
+<p>如前所述，验证和表单填写就非常适合采用Ajax实现。还可以使用DOM的“拖”技术建立真正动态的网站，如google的个性化主页.</p>
+<p>可以看到，Ajax为Web应用开发提供了新的机会。你不会再因为以往的专用技术或技术折中方案而受到妨碍。利用Ajax，胖客户与瘦客户之间的界限不再分明，真正的赢家则是你的用户。</p>
+<blockquote>
+<p>更多Ajax与PHP与json跨域交互的Demo源码，请参考我的github项目:<a href="https://github.com/daijiale/DaiJiale-Front-End/tree/master/ajax_demo" target="_blank" rel="external">DaiJiale’s Ajax Demo</a></p>
+<p>原创博文</p>
+<p>作者：戴嘉乐 </p>
+<p>转载请注明出处，谢谢！</p>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><strong>PS：</strong>写这篇Blog主要有两个三个动机：</p>
+<ul>
+<li>对以前自己所学知识的一个系统化review</li>
+<li>刚好给徒弟漫漫制作一份比较全面的Ajax教程</li>
+<li>帮助更多的，对此知识有需要的童鞋]]>
+    
+    </summary>
+    
+      <category term="Ajax" scheme="http://daijiale.github.io/tags/Ajax/"/>
+    
+      <category term="Javascript" scheme="http://daijiale.github.io/tags/Javascript/"/>
+    
+      <category term="Json" scheme="http://daijiale.github.io/tags/Json/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+      <category term="Web开发日记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[记我的高中——南昌二中]]></title>
+    <link href="http://daijiale.github.io/2015/04/03/%E8%AE%B0%E5%8D%97%E6%98%8C%E4%BA%8C%E4%B8%AD/"/>
+    <id>http://daijiale.github.io/2015/04/03/记南昌二中/</id>
+    <published>2015-04-03T05:20:09.000Z</published>
+    <updated>2015-04-28T08:40:28.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="硬件">硬件</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中在硬件上最大的特点就是壕！第一次来二中参加考试时便被壕气外露的红砖绿叶迷住了。还有人造草皮的足球场，三年一遇的游泳馆（三年就上过一次课），堆满了电脑随便用的图书馆。学校里四处都是花花草草，校门的花坛一月一换，班上的一体机切水果什么的信手拈来。就是任性就是壕！<br><a id="more"></a></p>
+<h1 id="师资">师资</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中的老师阵容十分强大，但随着这几年扩招老师资源也变得有些吃紧了。重点班尚能保证豪华阵容，在江西可以说不会逊色于任何学校的重点班，但平行班就会有很多刚进校不久的年轻老师了。当然不是说年轻老师一定不好，但是在高中尤其是高三，老师的经验与鼓舞对班级的提高是很有用的。所以二中这几年也在拼命招揽人才，目前一大批年轻老师已经走上一线，师资整体实力依然很强大。<br>3.理念：二中多年来一直重视综合素质教育，社团和各种活动巨多！学校也给很大的支持，每一届都会产生许多交际花。不过由于近年高考成绩不理想，15届开始进行了一些改革，加大了学业方面的侧重。所以未来二中也许会少一些交际花多一批学霸。</p>
+<h1 id="总结">总结</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中是一个神奇的地方，不论是在晨会上考试中挥斥方遒碾压众人的大神，还是走廊上树林旁对老师阿鲁巴时杀伐果断的凌厉，或是操场边天台上情侣基友看西山日落时的静谧，又抑或是顶楼学霸们在下课铃响时冲下楼梯直奔食堂的气势，它们一起组成了二中独一无二的体验。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;它壕气却又不失秀气，三年中拍的二中风景随便拎出一张都能胜任南昌市旅游明信片。它庄重却又不失亲和，老师们一个个才高八斗学富五车，却又能和学生们打成一片课上开撕。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中就是这样一个地方，简约而不简单，无论你来自哪里，在这里你总会找到最浓重的归属感。</p>
+<p><strong>－－－－－－－－－－－－－－－－－－－－－－－华丽的分割线，多图预警－－－－－－－－－－－－－－－－－－－－</strong></p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicnanchang2zhong.jpg" alt=""></p>
+<p>－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="硬件">硬件</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中在硬件上最大的特点就是壕！第一次来二中参加考试时便被壕气外露的红砖绿叶迷住了。还有人造草皮的足球场，三年一遇的游泳馆（三年就上过一次课），堆满了电脑随便用的图书馆。学校里四处都是花花草草，校门的花坛一月一换，班上的一体机切水果什么的信手拈来。就是任性就是壕！<br>]]>
+    
+    </summary>
+    
+      <category term="个人故事" scheme="http://daijiale.github.io/tags/%E4%B8%AA%E4%BA%BA%E6%95%85%E4%BA%8B/"/>
+    
+      <category term="转载博文" scheme="http://daijiale.github.io/categories/%E8%BD%AC%E8%BD%BD%E5%8D%9A%E6%96%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[从“主机搬家、第五次个人主站更新、第三次博客技术架构迁移”说起]]></title>
+    <link href="http://daijiale.github.io/2015/04/02/Blog%E8%BF%81%E7%A7%BB%E6%97%A5%E8%AE%B0/"/>
+    <id>http://daijiale.github.io/2015/04/02/Blog迁移日记/</id>
+    <published>2015-04-02T15:30:09.000Z</published>
+    <updated>2015-04-28T09:04:51.000Z</updated>
+    <content type="html"><![CDATA[<p><strong>以下所指“更新”：均为Blog技术更新，非文章更新</strong></p>
+<h1 id="第一次更新_个人Blog">第一次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;说起自己的第一个Blog，要从小学刚开通QQ空间开始，具体几年级已经记不清了，那个时候刚甩掉纸质日记本，然后就迈入网络日志的深坑。以前倒是产出了不少优质日志，不过都是些多愁善感的随便，至今都已经封存进<em>私密日日记</em>中(如下图)：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpic_qqzonesec.PNG" alt=""><br><a id="more"></a></p>
+<h1 id="第二次更新_个人Blog">第二次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后面高中开始玩人人，Blog也顺势搬到人人。。。现在想来这搬迁史也很简单——围绕社交圈，毕竟Blog写出来是给人看的，而QQzone和人人都是一个很好的社交载体。当然，如今的人人，我早已放弃，一个月都不登一次的这种，blog数据也全部清除了，高中写的都是些没营养的东西，个人认为没有存在的价值。<br>最后留张图纪念一下曾经的人人帐号：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicrenren.PNG" alt=""></p>
+<h1 id="第三次更新_个人Blog">第三次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后面因为大学专业性质原因，再加上由于个人兴趣先接触的知识是Web开发，所以打算通过自己编写代码，建立带有自己专属域名的独立Blog全站（其实是不知道做什么内容。。。就以Blog为题材了，而且身为一个程序猿，Blog是撑脸面的东西）。正如很多刚入门的小白一样：最初选用的技术框架是 <code>PHP+MySQL</code>，边学边写，坚持了一段时间后发现根本没法拿出手，在人生导师 <code>@阔空晴云</code>（亦师亦友的关系，大学同学，年级传奇….我Blog友情链接有他的Blog..但是，为保留他的个人隐私，我就不透露<strong>林志豪</strong>的<strong>真名</strong>了）的建议下，<br>后来选用了知名度很大的 <code>wordpress</code> 框架去快速开发能拿得出手的Blog，那也是我第一次接触框架类的东西，在那之前都是直接C++和C做底层开发，js和html也都是从新建文件开始码起，—&gt;你懂得…从大众空间到自己独立虚拟主机空间，也算是第一次技术迁移了！网站是托管在人生导师的虚拟主机上，记得刚拍下<a href="http://www.daijiale.cn" target="_blank" rel="external">www.daijiale.cn</a>个人域名，挂到上线的时候是这样子的:<br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_daijialewebsiteworkshop.png" alt=""></p>
+<p>嗯，对于一个大一上刚学会做站点的小虾开发者来说，还是感觉Geek满满的。</p>
+<h1 id="第四次更新_个人Blog">第四次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;自上一次大更新以后的两年多里，都没有什么大的起伏（主要是太懒，或者忙其他项目去了），直到后面阴差阳错侥幸获得了这个证书：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/SAEDeveloper.jpg" alt="">,新浪每月给我SAE上打的云豆工单根本用都用不完了，so，我打算把Blog全部迁移到 <code>SAE上</code> （毕竟老放在人生导师那也不太好）。顺便更新了下Blog的界面和交互，增加了首页响应式效果（方便宣传嘛，嘿嘿）,自己设计和编码水平的提高也让每次迭代后的Blog页面颜值更高：<br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/daijialeweb_personalsite.png" alt=""></p>
+<h1 id="第五次更新_个人Blog">第五次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这次改动比较大，也就是目前大家看到的这个站点：<a href="http://daijiale.github.io/" target="_blank" rel="external">http://daijiale.github.io/</a>（域名换了，因为托管原因，把原来的<a href="http://www.daijiale.cn" target="_blank" rel="external">www.daijiale.cn</a>改成了简历页和入口页，其实也挺不错，性质不一样，刚好趁着这次技术整改实现了分布式控制），整个技术体系和空间都搬家+大改了，这次的技术架构没有采用市面上被大家广泛使用的常见技术，<strong>没有服务器脚本语言的参合，没有数据库，没有进行数据存储优化</strong>，简而言之就是，妈的！这逼网站<strong>居然没有后台</strong>（其实我心里一开始是拒绝的）。是的，你没听错，这特么就是个伪静态Blog，但是…这丝毫不影响ta的逼格大增,so let’s see it：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;技术框架选用的是 <code>Hexo+Node.js+ejs+bootstrap+markdown+GithubPage</code>，为什么会采用这套剑走偏锋的框架？其实，是受到了周围小伙伴的影响，越来越多的朋友为了解决成本和增加B格，将Blog结合 <code>GithubPage</code> 托管在 <a href="https://github.com/" target="_blank" rel="external"><code>github</code></a>（程序猿的facebook，我也是从2014年才开始玩的）上，具体这套架构的<strong>优点</strong>和<strong>搭建教程</strong>请参考如下博文：</p>
+<ul>
+<li><p><a href="http://note.youdao.com/share/?id=0dc251a2004362d10d7ce520fecdcbff&amp;type=note" target="_blank" rel="external">Blog搭建之Hexo+Node.js+ejs+bootstrap+markdown+GithubPage</a></p>
+<p>这里主要提一下 <code>Hexo</code> 和 <code>Jacman</code>：</p>
+</li>
+<li><p>Hexo：</p>
+<ul>
+<li>风一般的速度：<code>Hexo</code> 基于 <code>Node.js</code> ，支持多进程，几百篇文章也可以秒生成。</li>
+<li>流畅的撰写：支持 <code>GitHub</code> <code>Flavored</code> <code>Markdown</code> 和所有 <code>Octopress</code> 的插件。</li>
+<li>扩展性：<code>Hexo</code>支持 <code>EJS</code>、 <code>Swig</code>和 <code>Stylus</code>。通过插件支持 <code>Haml</code>、 <code>Jade</code>和 <code>Less</code>.</li>
+<li>More：<a href="http://hexo.io/" target="_blank" rel="external">请参见官网</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Jacman：<code>Hexo</code> 的一个 <code>ejs</code>模版主题，来源于民间大神<strong>WuChong</strong>（<a href="http://note.youdao.com/share/?id=d93d060ce27c0d085021c9c0192c9e08&amp;type=note" target="_blank" rel="external">更多详细用法传送门</a>），在所有Hexo官网主题中个人比较倾向于他的风格，但是对于这个主题，我还是不太满意，挺多瑕疵需要我自己慢慢修改，后面我的Blog主题也会自己改成一个新的原创主题，到时候再开源出来，给更多的 <code>hexo</code> 开发者使用。现在正在往 <code>Low Poly Style</code>发展。</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>持续更新中</strong></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><strong>以下所指“更新”：均为Blog技术更新，非文章更新</strong></p>
+<h1 id="第一次更新_个人Blog">第一次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;说起自己的第一个Blog，要从小学刚开通QQ空间开始，具体几年级已经记不清了，那个时候刚甩掉纸质日记本，然后就迈入网络日志的深坑。以前倒是产出了不少优质日志，不过都是些多愁善感的随便，至今都已经封存进<em>私密日日记</em>中(如下图)：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpic_qqzonesec.PNG" alt=""><br>]]>
+    
+    </summary>
+    
+      <category term="Blog" scheme="http://daijiale.github.io/tags/Blog/"/>
+    
+      <category term="Hexo" scheme="http://daijiale.github.io/tags/Hexo/"/>
+    
+      <category term="Node.js" scheme="http://daijiale.github.io/tags/Node-js/"/>
+    
+      <category term="个人故事" scheme="http://daijiale.github.io/tags/%E4%B8%AA%E4%BA%BA%E6%95%85%E4%BA%8B/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+      <category term="Web开发日记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
+  
+</feed>
