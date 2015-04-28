@@ -196,17 +196,49 @@ if(request.readyState===4 && request.status===200）｛
  - 同时能够把这些外部数据直接载入网页的被选元素中。
  - 如果没有 `jQuery`，`AJAX` 编程还是有些难度的。
  - 编写常规的 `AJAX` 代码并不容易，因为不同的浏览器对 `AJAX` 的实现并不相同。这意味着您必须编写额外的代码对浏览器进行测试。不过，`jQuery 团队`为我们解决了这个难题，我们只需要一行简单的代码，就可以实现 `AJAX` 功能。
- - **综上： `jQuery` 对 `Ajax` 进行了又一次的封装，使得其主体功能用起来更为方便，简单，但是由于依赖于`jQuery`，导致不灵活，有其局限性。**
+ - **综上： `jQuery` 对 `Ajax` 进行了又一次的封装，使得其主体功能用起来更为方便，简单，现在大部分开发者都很少直接用js写原生ajax，都是引入了jquery ajax方法。但是由于依赖于`jQuery`，导致不灵活，有其局限性。**
 
 
 ##JQuery Ajax的使用方法##
+基本语法格式：
+
+```
+
+$(document).ready(function(){
+  $("#button_name").click(function(){
+   $.ajax({
+		type:"POST",
+		url:"127.0.0.1/get.php",
+        data:{
+		    name:$("#staffname").val(),
+			password:$("#staffpassword").val(),
+		},
+        dataType:"json",
+		success:function(data){
+			if(data.success){
+				$("#button_click_result").html(data.msg);
+				}else{
+				$("#button_click_result").html("error"+data.msg);
+				}
+			},
+		error:function(jqXHR){
+			alert("error："+jqXHR.status);
+			}
+		})
+	})
+}
+
+```
+
+jQuery load()//简单而强大
 
 ```
 $(selector).load(URL,data,callback);
 ```
-jQuery load()//简单而强大
+
 
 load()方法直接从服务器加载数据，并把返回的数据放入被选元素中
+
 ```
 <!DOCTYPE html>
 <html>
@@ -237,7 +269,130 @@ alert("Error: "+xhr.status+": "+xhr.statusText);
 
 更多请参见 [jQuery Ajax操作函数表](http://www.w3school.com.cn/jquery/jquery_ref_ajax.asp)
 
+#JSON
+ 这里补充一下这个知识，和xml一样，经常在ajax数据传输中用到，没什么难的，看看就会了：
 
+ - 概念：javascript对象表示法
+ - JSON是存储和交换文本信息的语法，类似XML。采用键值对的方式来组织，易于人们阅读和编写，同时也易于机器解析和生成。
+ - JSON是独立于语言的，也就是说不管什么语言，都可以解析json，只需要按照json的规则来就行。
+
+
+##  与XML进行对比：  ##
+ 
+ - json的长度和xml格式比起来很短小
+ - json读写的速度更快
+ - json可以使用JavaScript内建的方法直接进行解析，转换成Javascript对象，非常方便。
+
+
+## 书写类型： ##
+**eg：**"name":"戴嘉乐"
+
+
+## JSON解析： ##
+不要使用 `eval` 来解析，`eval`会解析内置函数，造成安全隐患.尽量用 `JSON.parse`.
+
+
+## JSON校验工具： ##
+
+ - [JSONLint](http://jsonlint.com/)
+
+
+ `json` 更多教材：[传送门](http://www.w3school.com.cn/json/)
+
+
+#  跨域问题  #
+之前在长虹实习的时候，和海阳遇到了这样的问题，这里也拎出来提一下。
+## 什么是跨域？ ##
+ - 一个域名地址的组成：
+	- `http:// ` 协议
+	- `www.` 子域名
+	- `abc.com` 主域名
+	- `:8080` 端口号
+	- `script/jquery.js` 请求资源地址
+ - 当协议、子域名、主域名、端口号中任意一个不相同时，都算作不同域。
+ - 不同域之间相互请求资源，就算做**“跨域”**
+    - eg：http://www.daijiale.cn/index.html请求http://daijiale.github.io/service.php
+
+**PS:**
+
+Javascript处出去安全方面的考虑，不允许跨域调用其他页面的对象（这不废话，肯定不允许啊）
+
+所以很多新手在本机调试程序的时候容易乱写 `127.0.0.1` 和 `localhost:8080` ，这也算作跨域
+
+协议不同（`http` 和  `https` 也算作跨域)
+
+
+## 处理跨越访问的方法 ##
+
+### 一、代理 ###
+
+ - 通过在同域名的web服务器端创建一个代理：
+ - 北京服务器www.beijing.com 上海服务器www.shanghai.com
+ - 通过北京web服务器后台（www.beijing.com/proxy-shanghaiservice.php)来调用上海服务器（www.shanghai.com/service.php)的服务，然后再把响应结果返回给前端，这样前端调用北京同域名的服务就和调用上海的服务效果相同了。
+
+### 二、JSONP ###
+`JSONP` 可用于解决**主流**浏览器的跨域数据访问的问题。
+
+**eg：**
+
+在www.aaa.com页面中：
+
+```
+<script>
+function jsonp(json){
+
+	alert(json["name"]):
+}
+</script>
+<script src="http://www.bbb.com/jsonp.js"></script>
+
+```
+
+在www.bbb.com页面中：
+
+```
+jsonp({'name':'洪七','age':24});
+
+```
+
+JSONP只支持 `GET` 请求，存在局限性：
+
+```
+
+$(document).ready(function(){
+  $("#button_name").click(function(){
+   $.ajax({
+		type:"GET",//JSONP只支持GET,存在局限性
+		url:"127.0.0.1/get.php",
+        dataType:"jsonp",//主要修改这
+		jsonp:"callback",//前端脚本语言需要新建变量对象来获取名为“callback”的jsonp
+		success:function(data){
+			if(data.success){
+				$("#button_click_result").html(data.msg);
+				}else{
+				$("#button_click_result").html("error"+data.msg);
+				}
+			},
+		error:function(jqXHR){
+			alert("error："+jqXHR.status);
+			}
+		})
+	})
+}
+
+```
+
+
+### 三、XHR2 ###
+ 
+ - html5提供的XMLHttpRequest Level2 已经实现了跨域访问以及其他的一些新功能
+ - IE10以下版本不支持
+ - 在服务器端做一些小小的改造即可：
+    - header('Access-Control-Allow-Origin:*');
+    - header('Access-Control-Allow-Methods:POST,GET');
+
+
+还是那句话 `珍爱生命，远离IE`，强烈推荐第三种方法解决跨域，低成本。
 # 反向Ajax技术 #
 
 关于 `Reverse Ajax` 我会单独另起一篇博文对该技术进行介绍，之前在自己的“Web远程控制系统”中用到了该技术，觉得很有必要提及一下：
@@ -285,5 +440,15 @@ Ajax在web前端开发中的地位不言而喻，高频的使用率以及其不�
 
 可以看到，Ajax为Web应用开发提供了新的机会。你不会再因为以往的专用技术或技术折中方案而受到妨碍。利用Ajax，胖客户与瘦客户之间的界限不再分明，真正的赢家则是你的用户。
 
+
+
+
+> 更多Ajax与PHP与json跨域交互的Demo源码，请参考我的github项目:[DaiJiale's Ajax Demo](https://github.com/daijiale/DaiJiale-Front-End/tree/master/ajax_demo)
+
+>原创博文
+>
+>作者：戴嘉乐 
+>
+>转载请注明出处，谢谢！
 
 
