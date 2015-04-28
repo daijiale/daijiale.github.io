@@ -19,7 +19,7 @@ categories:
 **以下所指“更新”：均为Blog技术更新，非文章更新**
 #第一次更新_个人Blog
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;说起自己的第一个Blog，要从小学刚开通QQ空间开始，具体几年级已经记不清了，那个时候刚甩掉纸质日记本，然后就迈入网络日志的深坑。以前倒是产出了不少优质日志，不过都是些多愁善感的随便，至今都已经封存进_私密日日记_中(如下图)：![](http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpic_qqzonesec.PNG)
-
+<!--more-->
 #第二次更新_个人Blog
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后面高中开始玩人人，Blog也顺势搬到人人。。。现在想来这搬迁史也很简单——围绕社交圈，毕竟Blog写出来是给人看的，而QQzone和人人都是一个很好的社交载体。当然，如今的人人，我早已放弃，一个月都不登一次的这种，blog数据也全部清除了，高中写的都是些没营养的东西，个人认为没有存在的价值。
 最后留张图纪念一下曾经的人人帐号：![](http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicrenren.PNG)
