@@ -27,15 +27,16 @@ categories:
 
 百度 [DuWear](http://duwear.baidu.com) 团队成员
 
-
+>**摘要：** 本文是Jiale Dai 在学习Google官方视频、开发者文档和实践项目之后整理出来的心得笔记，是以一个个人开发者的角度给大家带来一些侧面对Android Wear开发的看法，不同于一些传统的Android Wear技术开发教程，但是博主希望能通过自己对这些知识的整理和资源的收集，给读者带了一份详尽的、多角度的Android Wear指南。无论你是程序员，设计师，产品经理，还是手表极客 ，Android Wear用户 or 小白，都能在这篇博文中找到你想要的Android Wear元素。
+> 博文会同时托管到Github上，欢迎更多承载着开源精神的有心人加入，分享你对Android Wear的见解。
+<!-- more -->
 
 #写在开头#
-> **对AndroidWear自己的看法：**
+> **自己对AndroidWear的看法：**
 > 
 > Android Wear的目标就是：不接触手机的前提下，在你需要的时候，它把对你有用的信息呈现给你，扫一眼就够了。ta是
 > 一种新的交互模型，有很多有利便捷新潮的交互体验是手机上无法实现的。将你自己置身于一个外部场景，在移动和忙碌中使用这项服务是什么样的体验，你就会发现ta的价值。
 
-<!-- more -->
 **下面我们来欣赏一段Android Wear的应用场景视频**（博主花了大精力才从鹅厂官网漏洞里抓取到的外链地址，**低调、低调**）：
 
 
@@ -58,7 +59,7 @@ categories:
  - Voice Actions
 
 
-下面我会举**四个例子**来说明基于这几个基础元素（Android Wear API）可以实现的强大的，精致的轻量级**wear app**：
+下面我会举**四个例子**来说明基于这几个基础元素（Android Wear API）可以实现什么样级别的**Wear App**：
  
 
 ### Gmail ###
@@ -345,7 +346,8 @@ public void onMessageReceived(
  - 1、首先，我们需要一款云服务来作为App的后端来进行数据推送和数据处理。
  - 2、其次，移动App会配合这项服务发出一个提醒，而你会在wear设备上看到，而且该提醒也会发送到任何相连的AndroidWear设备上。
  - 3、接着，当然就是AndroidWear App本身了，ta的特效是搭建在移动手机App之内，这样一旦手机App发出一条可以在手机上看见的提醒，这条信息也发给了Android Wear设备，现在的API也能够传送这些提醒，比如说触发回复行为，那么，我们是怎么实现ta们的呢？`Android Studio`实际上把你所需要的一切都给你了，包括用于搭建后端服务的工具包，当然还有Android手机App，现在你还可获得扩展包来操作Android Wear，云后端可以用一款外露的API来搭建，Android Studio工具包可以让你在Java下来进行此类操作，为你处理精细的细节把握，你可以写一段云端代码，通过使用属性，ta能够暴露出运行在你android app中的API，这些属性告诉Android客户端这些代码都是到底在干什么的，比如在执行一种叫quotesApi(引用API）时，并提供一种称为getQuote（获得引用）的方式，ok，一旦你现在搭建好了云服务，借助工具包，事实上你就可以自动创建客户端数据库来进入了，接下来，你要做的当然是搭建你的App了，那如何从你的App进入API呢？其实，这个分类已经自动帮你加载下来了，并且放入Maven库中了，这样你就可以直接在你搭建好的Gradle文件夹下涵盖它们了。
-  - 4、最后，现在我们如何把它拓展来用于Android Wear呢？ 其实很简单，跟google map中的例子一样，通过修改notification和卡片的代码，使用wear端的api，让消息提醒和前端信息视图同时展现在手机客户端和wear端，此时的**手机App**就**变成了wear连接云端**的**中间件**。
+
+ - 4、最后，我们如何把它拓展来用于Android Wear呢？ 其实很简单，跟google map中的例子一样，通过修改notification和卡片的代码，使用wear端的api，让消息提醒和前端信息视图同时展现在手机客户端和wear端，此时的**手机App**就**变成了wear连接云端**的**中间件**。
 
 
 # 写给设计师们：如何把握Android Wear下App的设计原则？ #
@@ -471,5 +473,12 @@ Android Wear刚好在正确的时间提供了正确的信息，让人们同时�
 #Android Wear相关产品宣传视频#
 
  - [Google：wear what you want](http://www.cgangs.com/article/3467?source=sinaweibo)
+ - [Moto360创意广告](http://www.tudou.com/programs/view/jKv0PSWHdCY/)
+ - [Moto360中文应用场景广告](http://baidu.fun.tv/watch/2542550633994583670.html)
  - [华为AndroidWear智能手表官方宣传片1](http://my.tv.sohu.com/us/243481507/79477160.shtml)
  - [华为AndroidWear智能手表官方宣传片2](http://my.tv.sohu.com/us/5747262/78630855.shtml)
+
+
+
+
+**转载**请注明**出处+原文链接+原文作者**，侵权必究，谢谢！
