@@ -38,13 +38,13 @@ categories:
 <!-- more -->
 **下面我们来欣赏一段Android Wear的应用场景视频**（博主花了大精力才从鹅厂官网漏洞里抓取到的外链地址，**低调、低调**）：
 
-<embed wmode="window" flashvars="vid=o0014kprxll&amp;history=52&amp;tpid=28&amp;showend=1&amp;showcfg=1&amp;searchbar=1&amp;shownext=1&amp;list=2&amp;autoplay=1&amp;ptag=tech_qq_com&amp;outhost=http%3A%2F%2Fv.qq.com%2Fpage%2Fo%2Fl%2Fl%2Fo0014kprxll.html%3Fstart%3D52&amp;refer=http%3A%2F%2Ftech.qq.com%2Fa%2F20140319%2F014370.htm&amp;openbc=0&amp;title=%E8%B0%B7%E6%AD%8CAndroid%20Wear%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90" src="http://imgcache.qq.com/tencentvideo_v1/player/TencentPlayer.swf?max_age=86400&amp;v=20140714" quality="high" name="tenvideo_flash_player_1430719674818" id="tenvideo_flash_player_1430719674818" bgcolor="#000000" width="650px" height="472px" align="middle" allowscriptaccess="always" allowfullscreen="true" type="application/x-shockwave-flash" pluginspage="http://get.adobe.com/cn/flashplayer/" style="width: 100%; height: 472px;">
+
 
 
 ##  核心元素： ##
 
  - Google Now：用户可以和AndroidWear“说话”（语音交互）。
- - Notifications:一个卡片，一个方块，实现你最想要的服务。具体分为stacks、 pages、 replies、三种性质。
+ - Notifications:一个卡片，一个提醒，实现你最想要的服务。具体分为stacks、 pages、 replies、三种性质。
  - WatchFace：表之所以称之为“表”。
  - Data Message：和手机的数据通信机制是重要的桥梁。
 
@@ -62,6 +62,9 @@ categories:
  
 
 ### Gmail ###
+
+![](http://7xi6qz.com1.z0.glb.clouddn.com/androidweargmail.PNG)
+
  - Gmail Base On
     - Notification Bundles
     - RemoteInput for Voice Response
@@ -70,9 +73,13 @@ categories:
 
 1、首先ta有两种邮件提醒类型：
 
-**单页通知卡片（图）**，
+**单页通知卡片（如下图）**
 
-**多页通知卡片（图）**，
+![](http://7xi6qz.com1.z0.glb.clouddn.com/androidwearsinglecard.PNG)
+
+**多页通知卡片（如下图）**
+
+![](http://7xi6qz.com1.z0.glb.clouddn.com/androidwearmuticard.PNG)
 
 2、你可以通过滑动卡片，进一步了解更多信息，而且伴随有 **“语音快速回复” “归档” “在手机端打开回复”**三种操作，这里我们重点谈一下**语音快速回复**这个**具有wear特性**的操作流程：
 
@@ -134,6 +141,10 @@ Notification summary =
 ```
 
 ### Hangouts ###
+
+![](http://7xi6qz.com1.z0.glb.clouddn.com/androidwearhangouts.PNG)
+
+
  - Hangouts Base On
     - Custom Wearable Actions
     - Notification Pages
@@ -159,6 +170,8 @@ firstPageNotification.extend(
 
 
 ###  Google Camera ###
+
+![](http://7xi6qz.com1.z0.glb.clouddn.com/androidwearcamera.PNG)
 
  - Google Camera Base On
     - Wearable DataApi 
@@ -225,6 +238,9 @@ Wearable.DataApi.putDataItem(
 );
 ```
 ### Google Maps ###
+
+![](http://7xi6qz.com1.z0.glb.clouddn.com/androidwearmaps.PNG)
+
 - Google Maps Base On
   - Voice Actions 
   - Custom Display Intent Notifications
@@ -399,13 +415,12 @@ Android Wear刚好在正确的时间提供了正确的信息，让人们同时�
 持续更新中
 
 # Android Wear表盘（WatchFace）开发 #
+不得不承认，Google在表盘方面上还是很鼓励第三方开发者去自由创作的，有别于
+[Apple Watch不允许接入第三方watch face应用](http://www.leikeji.com/article?2264)的做法。
 
 
-持续更新中
 
-
-
-# 更多系列教程： #
+# Android Wear更多系列教程： #
 
 > 博主认为，目前天朝的可穿戴社区仍处于起步阶段，很多资源还不丰富，但是天朝程序猿的力量是强大的，相信随着更多wear developers的加入，可穿戴的社区会愈来愈壮大，最后仅以自己微薄之力，为Android Wear开源做出一点贡献，希望能帮助到更多的人。
 
@@ -416,6 +431,7 @@ Android Wear刚好在正确的时间提供了正确的信息，让人们同时�
   - [Android Wear Google官方教程（请翻墙，或者自己搜镜像）](http://developer.android.com/wear/index.html)
   - [Android Wear Google官方教程 `穿戴猫`汉化版本](http://dev.seacat.cn/index.html)
   - [Android Wear `穿戴猫`社区原创基础教程](http://bbs.seacat.cn/forum-106-1.html)
+  - [benhero博客_Android Wear开发学习指南](http://www.cnblogs.com/benhero/p/4273800.html)
  - 设计类 
   - [Google 官方Android Wear设计教程（需要翻墙）](http://developer.android.com/design/wear/index.html) 
   - [Google 官方Android Wear表盘（WatchFace）设计教程（需要翻墙）](http://developer.android.com/design/wear/watchfaces.html)
@@ -444,8 +460,16 @@ Android Wear刚好在正确的时间提供了正确的信息，让人们同时�
   - [Ticwear](http://ticwear.com/)
   - [Tencent OS for Watch](http://watch.tos.cn/)
   - [手表控](http://www.watchkong.com/forum/forum.php)
+  - [雷科技](http://www.leikeji.com/)
   - [可穿戴设备](http://wearable.hqbpc.com/)
   - [控哪儿网](http://www.kongnar.com/)
   - [出行精灵](http://www.mapelf.com/)
  - 国外：
   - 由于天朝特殊原因，等以后更新
+
+
+#Android Wear相关产品宣传视频#
+
+ - [Google：wear what you want](http://www.cgangs.com/article/3467?source=sinaweibo)
+ - [华为AndroidWear智能手表官方宣传片1](http://my.tv.sohu.com/us/243481507/79477160.shtml)
+ - [华为AndroidWear智能手表官方宣传片2](http://my.tv.sohu.com/us/5747262/78630855.shtml)
