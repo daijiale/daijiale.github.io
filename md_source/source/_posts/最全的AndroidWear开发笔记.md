@@ -19,7 +19,7 @@ categories:
 
 ### [Jiale Dai](http://www.daijiale.cn) ###
 
-电子科技大学 本科生( 其实还没毕业，目前大三 ）
+成都 电子科技大学 本科生( 其实还没毕业，目前大三 ）
 
 从14年开始一直专研于AndroidWear开发
 
@@ -27,7 +27,7 @@ categories:
 
 百度 [DuWear](http://duwear.baidu.com) 团队成员
 
->**摘要：** 本文是Jiale Dai 在学习Google官方视频、开发者文档和实践项目之后整理出来的心得笔记，是以一个个人开发者的角度给大家带来一些侧面对Android Wear开发的看法，不同于一些传统的Android Wear技术开发教程，但是博主希望能通过自己对这些知识的整理和资源的收集，给读者带了一份详尽的、多角度的Android Wear指南。无论你是程序员，设计师，产品经理，还是手表极客 ，Android Wear用户 or 小白，都能在这篇博文中找到你想要的Android Wear元素。
+>**摘要：** 本文是Jiale Dai 在学习Google官方视频、开发者文档和实践项目之后整理出来的心得笔记，是以一个个人开发者的角度给大家带来一些侧面对Android Wear开发的看法，不同于一些传统的Android Wear技术开发教程，但是博主希望能通过自己对这些知识的整理和资源的收集，给读者带了一份详尽的、多角度的Android Wear指南。**无论你是程序员，设计师，产品经理，还是手表极客 ，Android Wear用户 or 小白，都能在这篇博文中找到你想要的Android Wear元素。**
 > 博文会同时托管到Github上，欢迎更多承载着开源精神的有心人加入，分享你对Android Wear的见解。
 <!-- more -->
 
@@ -393,14 +393,71 @@ Android Wear刚好在正确的时间提供了正确的信息，让人们同时�
 
 
 # Android Wear搭建更高级别的UI #
+可穿戴设备的App是Android的标准App，但遵循的是小屏幕的设计理念，它们全屏运行，没有系统UI或状态条，它们的开发过程与安卓App类似，不过在UI的开发理念上却稍有不同，最重要的就是要记住你的界面不必苛求小点触屏或精准的拖拽，举个例子，在可穿戴系统UI中，你会注意到对滑动操作的频繁使用，还有滚动条的运用，它之所以能够流畅运行，是因为它并不需要把注意力花在要去触摸屏幕某个精准的点上，为了帮助大家，Google提供了一个[可穿戴设备App的UI库](http://developer.android.com/training/wearables/ui/index.html)，它提供了异常丰富的元素来用于UI的设计。
 
-持续更新中
+
+![](http://7xi6qz.com1.z0.glb.clouddn.com/androidweargradpagerview.PNG)
+
+这里，我想重点讲一下 `GridViewPager(网格多面控件)` ,ta与主页流类似，大家可以用ta来设计界面，ta与多面控件相似，但是可以水平和垂直同时移动，第一步就是布局的规划，下面这几行代码就是你主行为所需要的全部内容：
+
+**res/layout/pager_example.xml**
+
+```
+<?xml version = "1.0" encoding = "utf-8"?>
+<android.support.wearable.views.GridViewPager
+	xmlns:android = "http://schemas.android.com"
+	android:id = "@+id/pager"
+	android:layout_width = "match_parent"
+	android:layout_height = "match_parent"
+/> 
+
+```
+
+在这里，配置多面控件的目的是用于扩展至整个屏幕的，下一步，我们需要一个衔接器（`Adapter`）
+
+**FragmentGridPagerAdapter**
+
+```
+int getRowCount()
+int getColumnCount(int row)
+Fragment getItem(int row , int column)
+
+int getCurrentColumnForRow(
+	int row,int currentColum)
+
+```
+而这几行代码则是在用户使用导航时为用户提供每张页面所呈现的内容，在这个例子中，我会从一个由片段支持的基本类来进行扩展，要创建一个运行的`Adapter`只需要这三个方法，前两种定义了内容行（`row`）与页的可用大小，注意 `column` 的数量取决与行参数`row`,原因就在于每行可能都有不同的列数量，它的特性就是其选项可以控制每行在页面哪个位置来放置，与固定好的网格布局相比，它给滚动条在平等滚动与垂直滚动间切换提供了可能，在这一布局中，为了实现这点，Google还想了一些办法，但结果看起来就是一个无缝对接，Google为什么要这么做？Google认为每行内容都是单独的存在，在主页流中，这些就成了提醒或Google Now卡片，用户要从一个行为页进入到目标页而进行上下滑动的操作时，如果有不同的项，那么用户在操作时就会迷惑，为了解决这个问题，上翻或下翻总会回到第一列，这个也是网格多面控件的默认模式，为了对此做出调整，你可以用另一种方式进行覆盖，这种方式称为：所想即所见（用户想了解某项信息时，该信息的页面就会呈现在当前页或下一页），它也会提供当前列的位置，为了返回固定的移动系统，你可以选择返回列，或许你还想保存该行上次浏览的那一列，以便下次选择改行时可以直接返回到那一列。最后，最重要的一点就是getItem了，这个就是你要在页面上呈现出片段的位置了，这里，你只需要返回到你的内容片段，然后剩下的事情就由多面控件来处理了。只要需要，内容片段可以长久存储，然后在合适的时候，要么删除，要么重新进入，在这种方式跟多面控件非常类似，只是加了一个垂直的维度而已。
+
+
+![](http://7xi6qz.com1.z0.glb.clouddn.com/androidwearcontentPage.PNG)
+
+为了帮助大家建立自己的页面内容，Google提供了卡片内容片段，它可以自动应用不同的风格,从而与系统卡片搭配一致，而你要做的只是提供内容就可以，这种内容片段也有许多附加特性，首先，如果你有超过一页的内容，它就会显示滚动条让你拖动到正确的位置，你也可以让它作为一个单独页面开始，这样就可以通过触按来放大到全屏了，在这个案例中，内容溢出会自动得到处理，在你代码样本和文档中会找到更多细节的，还有一些事情要记住：每个页面尽量只放一个单独的行为，如果可能的话，整张卡片应该做成一个触按目标，而需要运行的行为则应该清楚明白，现在，剩下需要做的就是把这些东西整合起来，转接类会处理所有内容片段操作,所以需要给片段管理来一个参数，把转接代码加入到页面代码中就行了。
+
+**SampleActivity.java**
+
+```
+
+public void onCreate(Bundle savedInstanceState){
+	 setContentView(R.layout.pager_example);
+	 mPager = findViewById(R.id.pager);
+	 mAdapter = new ExampleGridPagerAdapter(getFragmentManager());
+	 mPager.setAdapter(mAdapter);	
+	}
+
+```
+
 
 # Android Wear的提醒（Notification）新特性 #
 
+我们来看看wear设备提醒的三个新方面吧：
+ 
+ - 新的显示选项
+ - 新的提醒行为
+ - 高级自定义设置
 
-持续更新中
 
+
+这里有博主自己曾经写过的一个运行在Android手机上的Demo，用来展示Wear端的Notification新特性:[在Github上获取](https://github.com/AndroidWearDemo/AndroidWearNotification)
 
 # Android Wear下的全屏App设计理念 #
 
@@ -467,7 +524,7 @@ Android Wear刚好在正确的时间提供了正确的信息，让人们同时�
   - [控哪儿网](http://www.kongnar.com/)
   - [出行精灵](http://www.mapelf.com/)
  - 国外：
-  - 由于天朝特殊原因，等以后更新
+  - 由于天朝特殊原因，等以后更新。
 
 
 #Android Wear相关产品宣传视频#
@@ -477,6 +534,9 @@ Android Wear刚好在正确的时间提供了正确的信息，让人们同时�
  - [Moto360中文应用场景广告](http://baidu.fun.tv/watch/2542550633994583670.html)
  - [华为AndroidWear智能手表官方宣传片1](http://my.tv.sohu.com/us/243481507/79477160.shtml)
  - [华为AndroidWear智能手表官方宣传片2](http://my.tv.sohu.com/us/5747262/78630855.shtml)
+
+
+#加入我们#
 
 
 
