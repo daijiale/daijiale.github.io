@@ -461,9 +461,11 @@ public void onCreate(Bundle savedInstanceState){
 
 # Android Wear下的全屏App设计理念 #
 
+为Android Wear设计APP的许多技术因素，你们会觉得非常熟悉，因为它们跟普通的Android APP运行原理是一样的，不过呢，我今天主要讲的是**两大不同点**：
 
-持续更新中
-
+ - 让用户感受不到正在用WearApp像一个APP
+ - 如何设计和运用你的APP，让ta看起来在圆形屏幕上很不错。
+ - 
 # Android Wear 数据层API DevBytes #
 
 
@@ -496,6 +498,7 @@ public void onCreate(Bundle savedInstanceState){
   - [Google 官方Android Wear表盘（WatchFace）设计教程（需要翻墙）](http://developer.android.com/design/wear/watchfaces.html)
   - [Google Android Wear 设计规范学习心得 ](http://note.youdao.com/share/?id=1a46e80cb5ea07b5c755d38b65ff9576&type=note)
   - [TencentOS智能手表表盘设计大赛](http://tencentos.ui.cn/)
+  - [FaceRepo for WatchMaker/Facer表盘引擎收集网站](http://facerepo.com/app/)
 
 
 # Google Play 上热门的Android Wear应用 #
