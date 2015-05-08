@@ -1,4 +1,4 @@
-title: 进军可穿戴领域——最全面的AndroidWear开发笔记
+title: 下次人家问你怎么入门AndroidWear，你就甩这篇文章给ta
 date: 2015-5-4 16:23:09
 tags:
 
@@ -90,6 +90,7 @@ categories:
 下面是关键代码实现过程：
 
 **Add RemoteInput to Reply Action**
+
 ```
 Action replyAction = new NotificationCompat.Action.Builder(
 	R.drawble.ic_reply,getString(R.string.reply), 
@@ -187,6 +188,7 @@ firstPageNotification.extend(
 关键代码如下：
 
 **Setting a DataItem**
+
 ```
 PutDataMapRequest dataMapRequest =
 	PutDataMapRequest.create(DATA_ITEM_NAME);
@@ -198,6 +200,7 @@ Wearable.DataApi.putDataItem(
 );
 ```
 **WearableListenerService**
+
 ```
 public class CameraListennerService
 	extends WearableListennerService{
@@ -252,6 +255,7 @@ Wearable.DataApi.putDataItem(
 关键实现代码：
 
 **Custom Notification with Display Intent**
+
 ```
 Intent displayIntent = 
 	createUpdateIntent(data, maneuverBitmap);
@@ -274,6 +278,7 @@ Notification notification = builder.extend(
 
 3、google map通过语音指令来开启导航进程，为了实现这一点，可
 wear端的google map app会联手意图过滤器（ `Intent`）来为导航声音指令服务，然后需要在 `AndroidManifest.xml`中声明如下：
+
 ```
 <activity
 	android:name=".StarNavigationActivity"
@@ -287,6 +292,7 @@ wear端的google map app会联手意图过滤器（ `Intent`）来为导航声�
 	</intent-filter>
 </activity>
 ```
+
 声明之后，就会产生一个像这样的意图，可穿戴App接收到这个意图之后，就会给手机上的google map发送一条信息，信息包括目的地和导航模式，手机google map app接收到这条信息之后，然后开始导航到目的地，然后就可以出发了，具体通信代码如下:
 
 **Sending a Message**
@@ -463,9 +469,80 @@ public void onCreate(Bundle savedInstanceState){
 
 为Android Wear设计APP的许多技术因素，你们会觉得非常熟悉，因为它们跟普通的Android APP运行原理是一样的，不过呢，我今天主要讲的是**两大不同点**：
 
- - 让用户感受不到正在用WearApp像一个APP
+ - 让用户如何退出APP
+ 
+在手机或平板上，用户会使用返回或主页键来推出APP，但这些按钮在Android Wear设备上都不会出现，相反，在wear app上，用户离开你的APP会有如下两种办法：**一种是把页面朝左滑动至边缘退出，另一种是长按APP退出**：
+
+    - 滑动退出：
+       通过Android Wear我们引入了一种新的窗口属性：
+        
+```
+< style name ="AppTheme" parent = "Theme.DeviceDefault" >
+	< item name = "android.windowSwipeToDismiss">true< /item >
+< /style >
+```
+
+**即窗口滑动属性**，这种窗口属性可以运用在你具体的活动主题中，一旦窗口滑动退出属性设置为true，那么活动一旦从左滑动至右，它就会退出，这种滑动退出运行方式跟多面控件运行方式类似，如果活动中的内容本身就可以滚动，那么窗口就不会退出，除非用户滚动到该内容边缘后再次滑动，它可以让你创建一些非常出色、类似信息流的体验，这些体验也可以通过滑动来退出。所有的Android Wear APP要么使用设备默认主题，要么使用一个继承默认设备的主题，这样可以确保不同的主题风格都会在你的APP上正常运行，从而让它们在你的wear设备上看起来非常好，
+
+**You get it by default**
+
+```
+<activity
+	android:name=".ControlRobotsActivity"
+	android:theme="Theme.DeviceDefault"
+/>
+
+``` 
+当然，我们知道，有些APP没办法使用滑动退出的功能，比如，无限移动的地图应用时永远没有边缘的，如果你不想使用滑动手势，那么你可以通过吧滑动的退出属性设置为false，来在你的主题中禁用ta。对于无法通过滑动来退出的APP。我们可以使用第二个属性：即**长按退出功能。**
+    
+    - 长按退出
+     这就相当于是一个退出按钮的行为了，为了让用户知道你的APP可以长按退出，在APP首次运行时，你要给用户一个长按退出的提示。打开我们的wear设备，你会发现在屏幕任何地方出现长按行为，都会在APP上出现一个退出按钮。再按下那个按钮来退出活动，用户则会回到主页，为了让你的APP退出变得尽量容易，Google做了一个可以在大多数UI上运行的View,它叫退出覆盖视图（dismiss overlay view）
+     
+**activity_control_robots.xml**
+     
+```
+<android.support.wearable.view.DismissOverlayView
+	android:id="@+id/dismiss_overlay"
+	android:layout_height="match_parent"
+      android:layout_width＝"match_parent"
+     />    
+
+```
+为了把它集成到你的APP中，首先要把它添加进你的XML活动层中，确保它**增加的位置一定是在其他布局之上的**你还要确保该视图的尺寸能够覆盖整个屏幕，把它高度和宽度设置成与父框架相匹配，这样它就能够确保全屏，而且处于最顶层了，现在我们来看看java类里面怎么写：
+
+**ControlRobotsActivity.java**
+
+```
+public void onCreate(Bundle savedState){
+	super.onCreate(savedState);
+	setContentView(R.layout.activity_control_robots);
+	
+	mDismissOverlay = (DismissOverlayView)findViewById(R.id.dismiss_overlay);
+	mDismissOverlay.setIntroText(R.string.long_press_intro);
+	mDismissOverlay.showIntroIfNecessary();
+    
+     mDetector = new GestureDetector(this,new SimpleOnGestureListener(){
+       public void onLongPress(MotionEvent ev){
+       	mDismissOverlay.show();
+       }
+     
+     });
+    }
+    
+    
+...
+
+
+@Override
+public boolean onTouchEvent(MotionEvent ev){
+	return mDetector.onTouchEvent(ev) | | super.onTouchEvent(ev);	
+}    
+```
+
+在它的`onCreate`中把退出层从你的布局层中拉出来，然后设置为内省文本，这个文本会在第一次运行活动时显示出来，而且会显示在APP其他内容之上，用来告诉用户可以通过长按来返回主页，然后，使用`showIntroIfNecessary`(必要时显示内省文本)，它会，也只会在第一次运行该APP时显示这个内省层，，接下来，如果用户长按了你的app，我们就需要让它激活，使用`GestureDectector`(手势检测器）和`SimpleOnGestureListener`（简易手势接收器）,使用这些框架类会确保所有app感应到手势的时长，在你长按返回时，会激活布局层显示退出行为，会显示一个退出按钮，如果用户点击了该按钮，你的活动就会被结束，但如果你没有点击该按钮，那么这个退出层就会自行隐藏，等着下次出现的命令，最后，还是在你的活动中覆盖一层 `onTouchEvent` (触控事件)，然后让`reveiveTouchEvents` (接受触控事件)连通到`GestureDectector`（手势检测器）,如果 `GestureDetector` 返回为true，你也真的返回主页了，而且不用触动 `onTouchEvent` 方式的正常活动,相反如果为false，那就可以继续使用正常活动的触控。
+
  - 如何设计和运用你的APP，让ta看起来在圆形屏幕上很不错。
- - 
+ 
 # Android Wear 数据层API DevBytes #
 
 
