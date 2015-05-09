@@ -1,4 +1,4 @@
-title: 下次人家问再你怎么入门AndroidWear，你就甩这篇文章给ta
+title: 下次人家问你怎么入门AndroidWear，你就甩这篇文章给ta
 date: 2015-5-4 16:23:09
 tags:
 
@@ -38,7 +38,6 @@ categories:
 > 一种新的交互模型，有很多有利便捷新潮的交互体验是手机上无法实现的。将你自己置身于一个外部场景，在移动和忙碌中使用这项服务是什么样的体验，你就会发现ta的价值。
 
 **下面我们来欣赏一段Android Wear的应用场景视频**（博主花了大精力才从鹅厂官网漏洞里抓取到的外链地址，**低调、低调**）：
-
 
 <embed wmode="window" flashvars="vid=o0014kprxll&amp;tpid=28&amp;showend=1&amp;showcfg=1&amp;searchbar=1&amp;shownext=1&amp;list=2&amp;autoplay=1&amp;ptag=m_v_qq_com&amp;outhost=http%3A%2F%2Fv.qq.com%2Fpage%2Fo%2Fl%2Fl%2Fo0014kprxll.html&amp;refer=http%3A%2F%2Fm.v.qq.com%2Fpage%2Fo%2Fl%2Fl%2Fo0014kprxll.html%3Ffrom%3Dtimeline%26isappinstalled%3D0&amp;openbc=0&amp;title=%E8%B0%B7%E6%AD%8CAndroid%20Wear%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90" src="http://imgcache.qq.com/tencentvideo_v1/player/TencentPlayer.swf?max_age=86400&amp;v=20140714" quality="high" name="tenvideo_flash_player_1431178166025" id="tenvideo_flash_player_1431178166025" bgcolor="#000000" width="650px" height="472px" align="middle" allowscriptaccess="always" allowfullscreen="true" type="application/x-shockwave-flash" pluginspage="http://get.adobe.com/cn/flashplayer/">
 
