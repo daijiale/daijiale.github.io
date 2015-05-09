@@ -39,7 +39,7 @@ categories:
 
 **下面我们来欣赏一段Android Wear的应用场景视频**（博主花了大精力才从鹅厂官网漏洞里抓取到的外链地址，**低调、低调**）：
 
-
+<embed wmode="window" flashvars="vid=o0014kprxll&amp;tpid=28&amp;showend=1&amp;showcfg=1&amp;searchbar=1&amp;shownext=1&amp;list=2&amp;autoplay=1&amp;ptag=m_v_qq_com&amp;outhost=http%3A%2F%2Fv.qq.com%2Fpage%2Fo%2Fl%2Fl%2Fo0014kprxll.html&amp;refer=http%3A%2F%2Fm.v.qq.com%2Fpage%2Fo%2Fl%2Fl%2Fo0014kprxll.html%3Ffrom%3Dtimeline%26isappinstalled%3D0&amp;openbc=0&amp;title=%E8%B0%B7%E6%AD%8CAndroid%20Wear%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90" src="http://imgcache.qq.com/tencentvideo_v1/player/TencentPlayer.swf?max_age=86400&amp;v=20140714" quality="high" name="tenvideo_flash_player_1431178166025" id="tenvideo_flash_player_1431178166025" bgcolor="#000000" width="650px" height="472px" align="middle" allowscriptaccess="always" allowfullscreen="true" type="application/x-shockwave-flash" pluginspage="http://get.adobe.com/cn/flashplayer/">
 
 
 ##  核心元素： ##
@@ -469,12 +469,13 @@ public void onCreate(Bundle savedInstanceState){
 
 为Android Wear设计APP的许多技术因素，你们会觉得非常熟悉，因为它们跟普通的Android APP运行原理是一样的，不过呢，我今天主要讲的是**两大不同点**：
 
- - 让用户如何退出APP
+## 让用户如何退出APP ##
  
 在手机或平板上，用户会使用返回或主页键来推出APP，但这些按钮在Android Wear设备上都不会出现，相反，在wear app上，用户离开你的APP会有如下两种办法：**一种是把页面朝左滑动至边缘退出，另一种是长按APP退出**：
 
-    - 滑动退出：
-       通过Android Wear我们引入了一种新的窗口属性：
+   ### 滑动退出： ###
+
+通过Android Wear我们引入了一种新的窗口属性：
         
 ```
 < style name ="AppTheme" parent = "Theme.DeviceDefault" >
@@ -495,8 +496,8 @@ public void onCreate(Bundle savedInstanceState){
 ``` 
 当然，我们知道，有些APP没办法使用滑动退出的功能，比如，无限移动的地图应用时永远没有边缘的，如果你不想使用滑动手势，那么你可以通过吧滑动的退出属性设置为false，来在你的主题中禁用ta。对于无法通过滑动来退出的APP。我们可以使用第二个属性：即**长按退出功能。**
     
-    - 长按退出
-     这就相当于是一个退出按钮的行为了，为了让用户知道你的APP可以长按退出，在APP首次运行时，你要给用户一个长按退出的提示。打开我们的wear设备，你会发现在屏幕任何地方出现长按行为，都会在APP上出现一个退出按钮。再按下那个按钮来退出活动，用户则会回到主页，为了让你的APP退出变得尽量容易，Google做了一个可以在大多数UI上运行的View,它叫退出覆盖视图（dismiss overlay view）
+### 长按退出 ###
+这就相当于是一个退出按钮的行为了，为了让用户知道你的APP可以长按退出，在APP首次运行时，你要给用户一个长按退出的提示。打开我们的wear设备，你会发现在屏幕任何地方出现长按行为，都会在APP上出现一个退出按钮。再按下那个按钮来退出活动，用户则会回到主页，为了让你的APP退出变得尽量容易，Google做了一个可以在大多数UI上运行的View,它叫退出覆盖视图（dismiss overlay view）
      
 **activity_control_robots.xml**
      
@@ -541,7 +542,8 @@ public boolean onTouchEvent(MotionEvent ev){
 
 在它的`onCreate`中把退出层从你的布局层中拉出来，然后设置为内省文本，这个文本会在第一次运行活动时显示出来，而且会显示在APP其他内容之上，用来告诉用户可以通过长按来返回主页，然后，使用`showIntroIfNecessary`(必要时显示内省文本)，它会，也只会在第一次运行该APP时显示这个内省层，，接下来，如果用户长按了你的app，我们就需要让它激活，使用`GestureDectector`(手势检测器）和`SimpleOnGestureListener`（简易手势接收器）,使用这些框架类会确保所有app感应到手势的时长，在你长按返回时，会激活布局层显示退出行为，会显示一个退出按钮，如果用户点击了该按钮，你的活动就会被结束，但如果你没有点击该按钮，那么这个退出层就会自行隐藏，等着下次出现的命令，最后，还是在你的活动中覆盖一层 `onTouchEvent` (触控事件)，然后让`reveiveTouchEvents` (接受触控事件)连通到`GestureDectector`（手势检测器）,如果 `GestureDetector` 返回为true，你也真的返回主页了，而且不用触动 `onTouchEvent` 方式的正常活动,相反如果为false，那就可以继续使用正常活动的触控。
 
- - 如何设计和运用你的APP，让ta看起来在圆形屏幕上很不错。
+## 如何设计和运用你的APP，让ta看起来在圆形屏幕上很不错。 ##
+
  
 # Android Wear 数据层API DevBytes #
 
