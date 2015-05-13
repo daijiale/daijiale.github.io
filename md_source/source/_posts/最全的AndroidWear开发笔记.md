@@ -17,15 +17,13 @@ categories:
 
 ![](http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicslrme.jpg)
 
-### [Jiale Dai](http://www.daijiale.cn) ###
+## [Jiale Dai](http://www.daijiale.cn) ##
 
 成都 电子科技大学 本科生( 其实还没毕业，目前大三 ）
 
 从14年开始一直专研于AndroidWear开发
 
-百度 MBU RD Intern
 
-百度 [DuWear](http://duwear.baidu.com) 团队成员
 
 >**摘要：** 本文是Jiale Dai 在学习Google官方视频、开发者文档和实践项目之后整理出来的心得笔记，是以一个个人开发者的角度给大家带来一些侧面对Android Wear开发的看法，不同于一些传统的Android Wear技术开发教程，但是博主希望能通过自己对这些知识的整理和资源的收集，给读者带了一份详尽的、多角度的Android Wear指南。**无论你是程序员，设计师，产品经理，还是手表极客 ，Android Wear用户 or 小白，都能在这篇博文中找到你想要的Android Wear元素。**
 > 博文会同时托管到Github上，欢迎更多承载着开源精神的有心人加入，分享你对Android Wear的见解。
@@ -40,7 +38,7 @@ categories:
 **下面我们来欣赏一段Android Wear的应用场景视频**（博主花了大精力才从鹅厂官网漏洞里抓取到的外链地址，**低调、低调**）：
 
 
-<embed wmode="window" flashvars="vid=o0014kprxll&amp;tpid=28&amp;showend=1&amp;showcfg=1&amp;searchbar=1&amp;shownext=1&amp;list=2&amp;autoplay=1&amp;ptag=m_v_qq_com&amp;outhost=http%3A%2F%2Fv.qq.com%2Fpage%2Fo%2Fl%2Fl%2Fo0014kprxll.html&amp;refer=http%3A%2F%2Fm.v.qq.com%2Fpage%2Fo%2Fl%2Fl%2Fo0014kprxll.html%3Ffrom%3Dtimeline%26isappinstalled%3D0&amp;openbc=0&amp;title=%E8%B0%B7%E6%AD%8CAndroid%20Wear%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90" src="http://imgcache.qq.com/tencentvideo_v1/player/TencentPlayer.swf?max_age=86400&amp;v=20140714" quality="high" name="tenvideo_flash_player_1431178166025" id="tenvideo_flash_player_1431178166025" bgcolor="#000000" width="650px" height="472px" align="middle" allowscriptaccess="always" allowfullscreen="true" type="application/x-shockwave-flash" pluginspage="http://get.adobe.com/cn/flashplayer/">
+
 
 
 ##  核心元素： ##
@@ -466,6 +464,8 @@ public void onCreate(Bundle savedInstanceState){
 
 这里有博主自己曾经写过的一个运行在Android手机上的Demo，用来展示Wear端的Notification新特性:[在Github上获取](https://github.com/AndroidWearDemo/AndroidWearNotification)
 
+也可以参考国外大神的一个例子：[Enhanced and Wearable-Ready Notifications on Android](http://code.tutsplus.com/tutorials/enhanced-and-wearable-ready-notifications-on-android--cms-21868)
+
 # Android Wear下的全屏App设计理念 #
 
 为Android Wear设计APP的许多技术因素，你们会觉得非常熟悉，因为它们跟普通的Android APP运行原理是一样的，不过呢，我今天主要讲的是**两大不同点**：
@@ -560,7 +560,7 @@ public boolean onTouchEvent(MotionEvent ev){
 [Apple Watch不允许接入第三方watch face应用](http://www.leikeji.com/article?2264)的做法。
 
 
-
+[AndroidWear CanvasWatchFaceService](http://code.tutsplus.com/tutorials/creating-an-android-wear-watch-face--cms-23718)
 # Android Wear更多系列教程： #
 
 > 博主认为，目前天朝的可穿戴社区仍处于起步阶段，很多资源还不丰富，但是天朝程序猿的力量是强大的，相信随着更多wear developers的加入，可穿戴的社区会愈来愈壮大，最后仅以自己微薄之力，为Android Wear开源做出一点贡献，希望能帮助到更多的人。
@@ -573,6 +573,11 @@ public boolean onTouchEvent(MotionEvent ev){
   - [Android Wear Google官方教程 `穿戴猫`汉化版本](http://dev.seacat.cn/index.html)
   - [Android Wear `穿戴猫`社区原创基础教程](http://bbs.seacat.cn/forum-106-1.html)
   - [benhero博客_Android Wear开发学习指南](http://www.cnblogs.com/benhero/p/4273800.html)
+  - [Android Wear_Hands-On](http://code.tutsplus.com/tutorials/introduction-to-android-wear-hands-on--cms-22157)
+  - [AndroidWear CanvasWatchFaceService](http://code.tutsplus.com/tutorials/creating-an-android-wear-watch-face--cms-23718)
+  - [Introduction to Android Wear: The Basics](http://code.tutsplus.com/articles/introduction-to-android-wear-the-basics--cms-22042)
+  - [Enhanced and Wearable-Ready Notifications on Android](http://code.tutsplus.com/tutorials/enhanced-and-wearable-ready-notifications-on-android--cms-21868)
+ 
  - 设计类 
   - [Google 官方Android Wear设计教程（需要翻墙）](http://developer.android.com/design/wear/index.html) 
   - [Google 官方Android Wear表盘（WatchFace）设计教程（需要翻墙）](http://developer.android.com/design/wear/watchfaces.html)
