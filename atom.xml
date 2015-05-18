@@ -4,7 +4,7 @@
   <subtitle><![CDATA[只有汗水不会欺骗你 || Only sweat will not fail you]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://daijiale.github.io/"/>
-  <updated>2015-04-28T08:42:25.000Z</updated>
+  <updated>2015-05-16T16:25:13.000Z</updated>
   <id>http://daijiale.github.io/</id>
   
   <author>
@@ -15,11 +15,463 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[常用Adb Shell命令]]></title>
+    <link href="http://daijiale.github.io/2015/05/06/ADB%E5%B8%B8%E7%94%A8Shell%E5%91%BD%E4%BB%A4/"/>
+    <id>http://daijiale.github.io/2015/05/06/ADB常用Shell命令/</id>
+    <published>2015-05-06T08:23:09.000Z</published>
+    <updated>2015-05-16T16:25:13.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="实用Adb_Shell命令演示">实用Adb Shell命令演示</h1><blockquote>
+<p>一些灵巧方便的Adb Shell命令笔记</p>
+</blockquote>
+<h2 id="Adb命令的主要用途">Adb命令的主要用途</h2><ul>
+<li>运行Android设备的命令行。</li>
+<li>管理模拟器或Android设备的映射端口。</li>
+<li>安装和卸载应用程序。</li>
+<li>计算机和Android设备之间的上传和下载文件。</li>
+</ul>
+<a id="more"></a>
+<h2 id="Adb操作命令">Adb操作命令</h2><ol>
+<li>显示系统中全部Android平台：</li>
+<li><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android <span class="type">list</span> targets</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示系统中全部AVD（模拟器）：</p>
+ <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android <span class="type">list</span> avd</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建AVD（模拟器）：</p>
+<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">android</span> <span class="comment">create</span> <span class="comment">avd</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">name</span> <span class="comment">名称</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">target</span> <span class="comment">平台编号</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动模拟器：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">emulator -avd 名称 -sdcard ~/名称<span class="class">.img</span> (-skin <span class="number">1280</span>x800)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除AVD（模拟器）：</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android <span class="built_in">delete</span> avd <span class="comment">--name 名称</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建SDCard：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">mksdcard</span> <span class="number">1024M</span> ~/名称.img</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>AVD(模拟器)所在位置：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">Linux</span><span class="params">(~/.android/avd)</span></span>      </span><br><span class="line"><span class="function"><span class="title">Windows</span><span class="params">(C:\Documents and Settings\Administrator\.android\avd)</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动DDMS：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ddms</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示当前运行的全部模拟器：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">adb</span> devices</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对某一模拟器执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">abd <span class="operator">-s</span> 模拟器编号 命令</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装应用程序：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb <span class="keyword">install</span> -r 应用程序.apk</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取模拟器中的文件：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb pull <span class="tag">&lt;<span class="title">remote</span>&gt;</span> <span class="tag">&lt;<span class="title">local</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>向模拟器中写文件：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb push <span class="tag">&lt;<span class="title">local</span>&gt;</span> <span class="tag">&lt;<span class="title">remote</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进入模拟器的shell模式：</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb <span class="built_in">shell</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动SDK，文档，实例下载管理器：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>缷载apk包：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">adb <span class="keyword">shell</span></span><br><span class="line"><span class="keyword">cd</span> data/<span class="keyword">app</span></span><br><span class="line"><span class="keyword">rm</span> apk包</span><br><span class="line"><span class="keyword">exit</span></span><br><span class="line">adb uninstall apk包的主包名</span><br><span class="line">adb install -r apk包</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看adb命令帮助信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb <span class="built_in">help</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在命令行中查看LOG信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb logcat <span class="operator">-s</span> 标签名</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>adb shell后面跟的命令主要来自：<br>  源码\system\core\toolbox目录和源码\frameworks\base\cmds目录。</p>
+</li>
+<li><p>删除系统应用：</p>
+  <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">adb remount （重新挂载系统分区，使系统分区重新可写）。</span><br><span class="line">   adb <span class="keyword">shell</span></span><br><span class="line">   <span class="keyword">cd</span> system/<span class="keyword">app</span> </span><br><span class="line">   <span class="keyword">rm</span> *.apk</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取管理 员权限：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">adb</span> root</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动Activity：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb <span class="keyword">shell</span> am start -<span class="keyword">n</span> 包名/包名＋类名（-<span class="keyword">n</span> 类名,-a action,-<span class="keyword">d</span> date,-<span class="keyword">m</span> MIME-<span class="keyword">TYPE</span>,-c category,-<span class="keyword">e</span> 扩展数据,等）。</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>23、发布端口：<br>    你可以设置任意的端口号，做为主机向模拟器或设备的请求端口。如： </p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb forward <span class="string">tcp:</span><span class="number">5555</span> <span class="string">tcp:</span><span class="number">8000</span></span><br></pre></td></tr></table></figure>
+<p>24、复制文件：<br>    你可向一个设备或从一个设备中复制文件，<br>     复制一个文件或目录到设备或模拟器上： </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> adb push <span class="tag">&lt;<span class="title">source</span>&gt;</span> <span class="tag">&lt;<span class="title">destination</span>&gt;</span><span class="tag">&lt;/<span class="title">destination</span>&gt;</span><span class="tag">&lt;/<span class="title">source</span>&gt;</span> </span><br><span class="line">```      </span><br><span class="line">如：</span><br></pre></td></tr></table></figure>
+<p>adb push test.txt /tmp/test.txt<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">从设备或模拟器上复制一个文件或目录： </span><br><span class="line">```     </span><br><span class="line">adb pull <span class="tag">&lt;<span class="title">source</span>&gt;</span> <span class="tag">&lt;<span class="title">destination</span>&gt;</span><span class="tag">&lt;/<span class="title">destination</span>&gt;</span><span class="tag">&lt;/<span class="title">source</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>如：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb pull /addroid/lib/libwebcore<span class="class">.so</span> .</span><br></pre></td></tr></table></figure></p>
+<p>25、搜索模拟器/设备的实例：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> 取得当前运行的模拟器/设备的实例的列表及每个实例的状态：</span><br><span class="line">adb devices</span><br></pre></td></tr></table></figure>
+<p>26、查看bug报告： </p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">adb</span> bugreport</span><br></pre></td></tr></table></figure>
+<p>27、记录无线通讯日志：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">一般来说，无线通讯的日志非常多，在运行时没必要去记录，但我们还是可以通过命令，设置记录： </span><br><span class="line">adb shell </span><br><span class="line">logcat -<span class="tag">b</span> radio</span><br></pre></td></tr></table></figure>
+<p>28、获取设备的ID和序列号：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb <span class="keyword">get</span>-product </span><br><span class="line">adb <span class="keyword">get</span>-serialno</span><br></pre></td></tr></table></figure>
+<p>29、访问数据库SQLite3</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb <span class="built_in">shell</span> </span><br><span class="line">sqlite3</span><br></pre></td></tr></table></figure>
+<h2 id="Adb_高级命令">Adb 高级命令</h2><ul>
+<li>am – ActivityManager 命令</li>
+<li>pm – PackageManager命令</li>
+<li>wm – WindowManager 命令</li>
+<li>content – ContentProvider命令</li>
+</ul>
+<h3 id="am命令">am命令</h3><ul>
+<li>am 子命令</li>
+<li>可以启动Activity，Service</li>
+<li>可以停止一个应用</li>
+<li>可以发送broadcast</li>
+<li>可以监控activity的状态</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">am start –n <span class="tag">&lt;<span class="title">ComponentName</span>&gt;</span></span><br><span class="line">am start –a <span class="tag">&lt;<span class="title">Action</span>&gt;</span> -c <span class="tag">&lt;<span class="title">Category</span>&gt;</span> -e<span class="tag">&lt;<span class="title">Extra</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>例：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">am start –n com<span class="class">.android</span><span class="class">.settings</span> <span class="comment">//启动系统设置</span></span><br><span class="line"></span><br><span class="line">am start –<span class="tag">a</span> com<span class="class">.android</span><span class="class">.intent</span><span class="class">.action</span><span class="class">.MAIN</span> –c com<span class="class">.android</span><span class="class">.intent</span><span class="class">.category</span><span class="class">.HOME</span> <span class="comment">//启动Home页</span></span><br><span class="line"></span><br><span class="line">am force-stop &lt;package&gt;</span><br><span class="line"></span><br><span class="line">am start -<span class="tag">a</span> android<span class="class">.intent</span><span class="class">.action</span><span class="class">.VIEW</span> -d http:<span class="comment">//www.baidu.com</span></span><br><span class="line"></span><br><span class="line">am start -<span class="tag">a</span> android<span class="class">.intent</span><span class="class">.action</span><span class="class">.CALL</span> -d tel:<span class="number">12345</span></span><br><span class="line"></span><br><span class="line">am startservice –n &lt;ComponentName&gt;</span><br><span class="line"></span><br><span class="line">am broadcast …</span><br><span class="line"></span><br><span class="line">am force-stop &lt;package&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="pm命令">pm命令</h3><ul>
+<li>pm install  – 安装一个apk (可以用adb install)</li>
+<li>pm uninstall [-k] – 删除一个apk (可以用adb uninstall)</li>
+<li>pm list  — 列出一系列包，Feature或者permission等</li>
+<li>pm path <package>  — 获得某个包的apk文件路径</package></li>
+<li>pm clear <package>  — 清除某个应用的数据</package></li>
+<li>pm enable <component> —启用某个组件</component></li>
+<li>pm disable <component> — 禁用某个组件</component></li>
+</ul>
+<h3 id="wm命令">wm命令</h3><ul>
+<li>wm (WindowManager)命令，主要查看屏幕的信息</li>
+<li>wm size  — 获取屏幕尺寸</li>
+<li>wm density – 获取屏幕密度</li>
+<li>wm overscan – 过扫描</li>
+</ul>
+<h3 id="content命令">content命令</h3><ul>
+<li>操作ContentProvider的命令</li>
+<li>content insert – 向content provider中插入数据</li>
+<li>content query – 请求content provider中的数据</li>
+<li>content update – 更新content provider中的数据</li>
+<li>content delete – 删除 content provider中的数据</li>
+<li>*数据值之间用冒号(:)分隔</li>
+</ul>
+<h3 id="settings命令">settings命令</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">settings <span class="keyword">put</span> <span class="keyword">global</span> my_key “hello”</span><br><span class="line">settings <span class="keyword">get</span> <span class="keyword">global</span> my_key</span><br></pre></td></tr></table></figure>
+<h3 id="media媒体控制命令">media媒体控制命令</h3><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">media dispatch &lt;PLAY, <span class="keyword">PAUSE</span>, <span class="keyword">STOP</span> …&gt;</span><br></pre></td></tr></table></figure>
+<p>模拟一个媒体按键的发送</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="实用Adb_Shell命令演示">实用Adb Shell命令演示</h1><blockquote>
+<p>一些灵巧方便的Adb Shell命令笔记</p>
+</blockquote>
+<h2 id="Adb命令的主要用途">Adb命令的主要用途</h2><ul>
+<li>运行Android设备的命令行。</li>
+<li>管理模拟器或Android设备的映射端口。</li>
+<li>安装和卸载应用程序。</li>
+<li>计算机和Android设备之间的上传和下载文件。</li>
+</ul>]]>
+    
+    </summary>
+    
+      <category term="Android" scheme="http://daijiale.github.io/tags/Android/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+      <category term="Android开发笔记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Android%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[下次人家问再你怎么入门AndroidWear，你就甩这篇文章给ta]]></title>
+    <link href="http://daijiale.github.io/2015/05/04/%E6%9C%80%E5%85%A8%E7%9A%84AndroidWear%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
+    <id>http://daijiale.github.io/2015/05/04/最全的AndroidWear开发笔记/</id>
+    <published>2015-05-04T08:23:09.000Z</published>
+    <updated>2015-05-18T11:51:13.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="本文作者">本文作者</h1><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicslrme.jpg" alt=""></p>
+<h2 id="Jiale_Dai"><a href="http://www.daijiale.cn" target="_blank" rel="external">Jiale Dai</a></h2><p>成都 电子科技大学 本科生( 其实还没毕业，目前大三 ）</p>
+<p>从14年开始一直专研于AndroidWear开发</p>
+<blockquote>
+<p><strong>摘要：</strong> 本文是Jiale Dai 在学习Google官方视频、开发者文档和实践项目之后整理出来的心得笔记，是以一个个人开发者的角度给大家带来一些侧面对Android Wear开发的看法，不同于一些传统的Android Wear技术开发教程，但是博主希望能通过自己对这些知识的整理和资源的收集，给读者带了一份详尽的、多角度的Android Wear指南。<strong>无论你是程序员，设计师，产品经理，还是手表极客 ，Android Wear用户 or 小白，都能在这篇博文中找到你想要的Android Wear元素。</strong><br>博文会同时托管到Github上，欢迎更多承载着开源精神的有心人加入，分享你对Android Wear的见解。<br><a id="more"></a></p>
+</blockquote>
+<h1 id="写在开头">写在开头</h1><blockquote>
+<p><strong>自己对AndroidWear的看法：</strong></p>
+<p>Android Wear的目标就是：不接触手机的前提下，在你需要的时候，它把对你有用的信息呈现给你，扫一眼就够了。ta是<br>一种新的交互模型，有很多有利便捷新潮的交互体验是手机上无法实现的。将你自己置身于一个外部场景，在移动和忙碌中使用这项服务是什么样的体验，你就会发现ta的价值。</p>
+</blockquote>
+<p><strong>下面我们来欣赏一段Android Wear的应用场景视频</strong>（博主花了大精力才从鹅厂官网漏洞里抓取到的外链地址，<strong>低调、低调</strong>）：</p>
+<h2 id="核心元素：">核心元素：</h2><ul>
+<li>Google Now：用户可以和AndroidWear“说话”（语音交互）。</li>
+<li>Notifications:一个卡片，一个提醒，实现你最想要的服务。具体分为stacks、 pages、 replies、三种性质。</li>
+<li>WatchFace：表之所以称之为“表”。</li>
+<li>Data Message：和手机的数据通信机制是重要的桥梁。</li>
+</ul>
+<h2 id="构建一个Wear_Apps的基础（wear_app能做到什么？）：">构建一个Wear Apps的基础（wear app能做到什么？）：</h2><p><strong>基础API元素:</strong></p>
+<ul>
+<li>Custom UI</li>
+<li>Send Data</li>
+<li>Control Sensors</li>
+<li>Voice Actions</li>
+</ul>
+<p>下面我会举<strong>四个例子</strong>来说明基于这几个基础元素（Android Wear API）可以实现什么样级别的<strong>Wear App</strong>：</p>
+<h3 id="Gmail">Gmail</h3><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/androidweargmail.PNG" alt=""></p>
+<ul>
+<li>Gmail Base On<ul>
+<li>Notification Bundles</li>
+<li>RemoteInput for Voice Response</li>
+</ul>
+</li>
+</ul>
+<p>大家应该不会陌生Gmail，下面来看看其在wear端的app特性：</p>
+<p>1、首先ta有两种邮件提醒类型：</p>
+<p><strong>单页通知卡片（如下图）</strong></p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/androidwearsinglecard.PNG" alt=""></p>
+<p><strong>多页通知卡片（如下图）</strong></p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/androidwearmuticard.PNG" alt=""></p>
+<p>2、你可以通过滑动卡片，进一步了解更多信息，而且伴随有 <strong>“语音快速回复” “归档” “在手机端打开回复”</strong>三种操作，这里我们重点谈一下<strong>语音快速回复</strong>这个<strong>具有wear特性</strong>的操作流程：</p>
+<ul>
+<li><code>Android Notification API</code> 会让你通过远程输入给reply行为做一个注释,而远程输入则会告诉AndroidWear，在执行这个行为之前，你要把文本输入的方式改为语音，因此当Gmail建立一个notification连接时，wear端会给reply行为附加一个远程输入，AndroidWear会看到这条远程输入，然后不会立即发送一个行为，会首先启动一个wear UI界面来收集语音回复信息，然后把转换好的文本变成意图，再发送意图到你的手机上，手机得到意图后，就可以在不触动手机UI的情况下发送/回复邮件了。</li>
+</ul>
+<p>下面是关键代码实现过程：</p>
+<p><strong>Add RemoteInput to Reply Action</strong></p>
+<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Action</span> replyAction = <span class="keyword">new</span> <span class="type">NotificationCompat</span>.<span class="type">Action</span>.<span class="type">Builder</span>(</span><br><span class="line">	<span class="type">R</span>.drawble.ic_reply,getString(<span class="type">R</span>.<span class="built_in">string</span>.reply), </span><br><span class="line">	replyPendingIntent)</span><br><span class="line">    addRemoteInput(</span><br><span class="line">	  <span class="keyword">new</span> <span class="type">RemoteInput</span>.<span class="type">Builder</span>(<span class="type">EXTRA_REPLY_TEXT</span>)</span><br><span class="line">		.setLabel(getString(<span class="type">R</span>.<span class="built_in">string</span>.replyLabel))</span><br><span class="line">		.build<span class="literal">()</span>).build<span class="literal">()</span>;</span><br></pre></td></tr></table></figure>
+<p><strong>Modify Activity to Use Reply Text</strong></p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Bundle <span class="variable">results =</span></span><br><span class="line">	RemoteInput.getResultsFromIntent(intent);</span><br><span class="line">	<span class="keyword">if</span>(results!=<span class="constant">null</span>)&#123;</span><br><span class="line">	 String <span class="variable">message =</span> </span><br><span class="line">		results getString(EXTRA_REPLY_TEXT)</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>3、最后我再来详细介绍下“多卡片重叠式信息提醒”的实现原理，视觉设计上采用的是复线收件箱的风格，ta不再把多条信息压缩到单一的卡片中，我们想做的是每封邮件都有自己的卡片。而这些卡片又放入一个可扩大的堆栈中，这一堆提醒卡片，也叫提醒卡片堆栈，也是notification API的新特性，不会把所有邮件提醒都只能通过一个提醒显示出来，而是按类划分，表明有所关联，ta们在可穿戴设备上组合成一个卡片丛，而用户也可以通过卡片丛去逐个浏览，以提取某一封邮件，并对其回复或者进行其他操作。而卡片丛 即：notification group也有一个分类键，通过设置这个键来控制丛内卡片顺序，并且可以从中标记一个卡片作为组群的整体摘要描述，具体实现代码如下：</p>
+<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Notification</span> card1 = </span><br><span class="line">	<span class="keyword">new</span> <span class="type">NotificationCompat</span>.<span class="type">Builder</span>(context)</span><br><span class="line">		.setGroup(<span class="type">GROUP_KEY</span>)</span><br><span class="line">		.setSortKey(<span class="string">"0"</span>)</span><br><span class="line">		.build<span class="literal">()</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">Notification</span> card2 = </span><br><span class="line">	<span class="keyword">new</span> <span class="type">NotificationCompat</span>.<span class="type">Builder</span>(context)</span><br><span class="line">		.setGroup(<span class="type">GROUP_KEY</span>)</span><br><span class="line">		.setSortKey(<span class="string">"1"</span>)</span><br><span class="line">		.build<span class="literal">()</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">Notification</span> card3 = </span><br><span class="line">	<span class="keyword">new</span> <span class="type">NotificationCompat</span>.<span class="type">Builder</span>(context)</span><br><span class="line">		.setGroup(<span class="type">GROUP_KEY</span>)</span><br><span class="line">		.setSortKey(<span class="string">"2"</span>)</span><br><span class="line">		.build<span class="literal">()</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">Notification</span> summary = </span><br><span class="line">	<span class="keyword">new</span> <span class="type">NotificationCompat</span>.<span class="type">Builder</span>(context)</span><br><span class="line">		.setGroup(<span class="type">GROUP_KEY</span>)</span><br><span class="line">		.setGroupSummar;</span><br><span class="line">		.build<span class="literal">()</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="Hangouts">Hangouts</h3><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/androidwearhangouts.PNG" alt=""></p>
+<ul>
+<li>Hangouts Base On<ul>
+<li>Custom Wearable Actions</li>
+<li>Notification Pages</li>
+</ul>
+</li>
+</ul>
+<p>1、环聊信息也会自动桥接到可穿戴设备上，在Gmail上面，我们想要的是语音回复，但是环聊的提醒则稍微有点不同，ta并没有回复行为，只是一个内容意图，只需要打开App就可以键入回复了，所以环聊可以很好的不依赖手机而直接在可穿戴设备上进行体验，而且，android wear的 <code>Notification API</code>会让你在手机和可穿戴设备上细化不同的操作设置，即手机行为只在手机显示。wear行为只在wear端显示，这就使得我们可以添加一个仅限可穿戴设备使用的回复行为，这一行为涵盖了一个远程输入，却无需变动手机行为。</p>
+<p>2、环聊也增加了新的提醒特征：近期会话历史记录。因为在语音回复之前，多出现一些聊天记录总是好的，为了实现这个效果，我们在wear设备扩充器中采用了添加页面的办法：它可以让你为主要提醒内容增加额外的页面，我们把聊天记录放入一个次级大的文本式提醒，然后把它加入到主要提醒中的第二页，并且手机端的提醒体验同时保持不变。关键代码实现如下：</p>
+<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Notification</span> chatHistory =</span><br><span class="line">	<span class="keyword">new</span> <span class="type">NotificationCompat</span>.<span class="type">Builder</span><span class="literal">()</span></span><br><span class="line">		.setStyle(</span><br><span class="line">			<span class="keyword">new</span> <span class="type">NotificationCompat</span>.<span class="type">BigTextStyle</span><span class="literal">()</span></span><br><span class="line">				.bigText(getChatHistory<span class="literal">()</span>))</span><br><span class="line">		.build<span class="literal">()</span>;</span><br><span class="line"></span><br><span class="line">firstPageNotification.extend(</span><br><span class="line">	<span class="keyword">new</span> <span class="type">NotificationCompat</span>.<span class="type">WearableExtender</span><span class="literal">()</span></span><br><span class="line">		.addPage(chatHistory)</span><br><span class="line">		.build<span class="literal">()</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="Google_Camera">Google Camera</h3><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/androidwearcamera.PNG" alt=""></p>
+<ul>
+<li>Google Camera Base On<ul>
+<li>Wearable DataApi </li>
+<li>Wearable MessageAPI</li>
+<li>WatchActivity </li>
+</ul>
+</li>
+</ul>
+<p>1、wear端的google camera为相机App增加了好玩有趣的特性：<strong>通过手腕来按下快门</strong>，和很多具有远程遥控的高级相机原理类似，你把手机架在三脚架上或者靠在墙上又或者让其他人帮你拿着，然后你通过按住腕表的一个按键来捕捉一个画面<strong>（代替现在正在热卖而很多大男生却不好意思在大街上用的自拍杆，嘿嘿）</strong>。</p>
+<p>2、相比于前面提到的Gmail和环聊（ta们只是用了 <code>Notification API</code> 来对手机端的消息做一个整合），Google Camera是一个相对个性而又具有和手机交互的特点，而且对于wear来说，仅仅只需要将<strong>快门</strong>这个按键特殊处理就行，所以，在wear端，光快门按键就霸占整个屏幕这一点也是可以容忍的。</p>
+<p>3、通过 <code>Google Play Service</code>(以后简称 <code>GMS</code>)，实现相机的wear端和手机端通信，在相机手机app准备好拍摄时，手机端端会设置好数据项（意味着它已经做好了接受远程快门信息的准备），这种数据项由手表中wear app内置的服务读取，而wear端则会显示出快门按钮，按住按钮，把信息发回手机来激活手机端的快门键，最后，如何预览你刚才拍到的照片呢？很简单：手机端会创建一张缩略图，然后作为数据项中的一个asset发送回手表端，然后做为wear端全屏来预览。<br>关键代码如下：</p>
+<p><strong>Setting a DataItem</strong></p>
+<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">PutDataMapRequest</span> dataMapRequest =</span><br><span class="line">	<span class="type">PutDataMapRequest</span>.create(<span class="type">DATA_ITEM_NAME</span>);</span><br><span class="line">dataMapRequest.getDataMap<span class="literal">()</span>.putBoolean(</span><br><span class="line">	<span class="type">FIELD_READY</span>,cameraReady);</span><br><span class="line"><span class="type">Wearable</span>.<span class="type">DataApi</span>.putDataItem(</span><br><span class="line">	mGoogleApiClient,</span><br><span class="line">	dataMapRequest.asPutDataRequest<span class="literal">()</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p><strong>WearableListenerService</strong></p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CameraListennerService</span></span><br><span class="line">	<span class="keyword">extends</span> <span class="title">WearableListennerService</span>&#123;</span></span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="typename">void</span> onDataChanged(DataEventBuffer dataEvents)&#123;</span><br><span class="line">		<span class="keyword">for</span>(DataEvent <span class="string">dataEvent:</span>dataEvents)&#123;</span><br><span class="line">		    <span class="keyword">if</span>(dataEvent.getType()== 	DataEvent.TYPE_CHANGED)&#123;</span><br><span class="line">			DataMapItem mapDataItem = </span><br><span class="line">				DataMapItem.fromDataItem(</span><br><span class="line">					dataEvent.getDataItem());</span><br><span class="line">			<span class="keyword">if</span>(mapDataItem.getDataItem().getBoolean(FIELD_CAMERA_READY,<span class="literal">false</span>))&#123;</span><br><span class="line">			postNotification();</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		stopActivity();	</span><br><span class="line">	&#125;</span><br><span class="line">	)</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Sending an Asset</strong></p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">PutDataMapRequest dataMapRequest =</span><br><span class="line">	PutDataMapRequest.create(DATA_ITEM_NAME);</span><br><span class="line">dataMapRequest.getDataMap().putBoolean(</span><br><span class="line">	FIELD_READY,cameraReady);</span><br><span class="line"></span><br><span class="line"><span class="comment">//在DataItem数据项中插入一个判断</span></span><br><span class="line"><span class="keyword">if</span>(previewBitmap != <span class="literal">null</span>)&#123;</span><br><span class="line">	dataMapRequest.getDataMap().putAsset(</span><br><span class="line">	 FIELD_PREVIEW,preview);</span><br><span class="line">	)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Wearable.DataApi.putDataItem(</span><br><span class="line">	mGoogleApiClient,</span><br><span class="line">	dataMapRequest.asPutDataRequest()</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h3 id="Google_Maps">Google Maps</h3><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/androidwearmaps.PNG" alt=""></p>
+<ul>
+<li>Google Maps Base On<ul>
+<li>Voice Actions </li>
+<li>Custom Display Intent Notifications</li>
+</ul>
+</li>
+</ul>
+<p>1、在Google Maps导航期间，我们想要在手腕上提示导航，这个应用场景在走路的时候尤其有用，因为你要一直拿着你的手机走在大马路上会非常奇怪且占用你的双手，如果把手机放在你的口袋，转而看一下手表的描述来获知导航信息无疑更为便捷和实用。</p>
+<p>2、在wear端，google想实现对布局和导航呈现精细的把握，特地搭建了一款wear版本的google maps wear App，让个性抽取式卡片成为限于本地的提醒，通过修改google map手机app的数据项，增加了用于下一次操作的描述与图标以及用于解释导航状态的信息，同时wear端的google maps也增加了这样的数据项，每次变动发生后，ta都会读取新数据，然后更新wear的卡片，提取卡片时，wear app采用可穿戴扩充器的新显示意图特性，你可以指定一个活动来在提醒卡片中绘制内容，这样我们想在卡片上画什么都是可以的，而不是受限制于标准提醒样式。<br>关键实现代码：</p>
+<p><strong>Custom Notification with Display Intent</strong></p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Intent displayIntent = </span><br><span class="line">	createUpdateIntent(data, maneuverBitmap);</span><br><span class="line">displayIntent.setClass(</span><br><span class="line">	<span class="keyword">this</span>,NotificationDisplayActivity.<span class="keyword">class</span>);</span><br><span class="line"></span><br><span class="line">PendingIntent displayPendingIntent = PendingIntent.getActivity(</span><br><span class="line">	<span class="keyword">this</span>,<span class="number">0</span>,displayIntent,</span><br><span class="line">	PendingIntent.FLAG_CANCEL_CURRENT);</span><br><span class="line"></span><br><span class="line">Notification notification = builder.extend(</span><br><span class="line">	<span class="keyword">new</span> NotificationCompat.WearableExtender()</span><br><span class="line">		.setHintHideIcon(<span class="literal">true</span>)</span><br><span class="line">		.setDisplayIntent(displayPendingIntent)</span><br><span class="line">		.setBackground(background)</span><br><span class="line">		.addPage(secondPage)</span><br><span class="line">		.build();</span><br></pre></td></tr></table></figure>
+<p>3、google map通过语音指令来开启导航进程，为了实现这一点，可<br>wear端的google map app会联手意图过滤器（ <code>Intent</code>）来为导航声音指令服务，然后需要在 <code>AndroidManifest.xml</code>中声明如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">activity</span></span><br><span class="line">	<span class="attribute">android:name</span>=<span class="value">".StarNavigationActivity"</span></span><br><span class="line">	<span class="attribute">android:theme</span>=<span class="value">"@style/TranslucentTheme"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">intent-filter</span>&gt;</span></span><br><span class="line">	 <span class="tag">&lt;<span class="title">action</span></span><br><span class="line">		<span class="attribute">android:name</span>=<span class="value">"android.intent.action.VIEW"</span>/&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="title">category</span>			<span class="attribute">android:name</span>=<span class="value">"android.intent.category.DEFAULT"</span>/&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="title">data</span></span><br><span class="line">			<span class="attribute">android:scheme</span>=<span class="value">"google.navigation"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="title">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">activity</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>声明之后，就会产生一个像这样的意图，可穿戴App接收到这个意图之后，就会给手机上的google map发送一条信息，信息包括目的地和导航模式，手机google map app接收到这条信息之后，然后开始导航到目的地，然后就可以出发了，具体通信代码如下:</p>
+<p><strong>Sending a Message</strong></p>
+<figure class="highlight roboconf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="component">private void startNavigation(Intent intent)&#123;</span><br><span class="line">	</span><br><span class="line">	String uriString = intent<span class="string">.getDataString()</span>;</span><br><span class="line">	</span><br><span class="line">	mGoogleApiClient<span class="string">.blockingConnect(</span></span><br><span class="line">		Constants<span class="string">.TIMEOUT_MS</span>,</span><br><span class="line">		TimeUnit<span class="string">.MILLISECONDS)</span>;</span><br><span class="line"></span><br><span class="line">	DataMap dataMap = new DataMap();</span><br><span class="line">	dataMap<span class="string">.putString(FIELD_URI</span>,uriString）；</span><br><span class="line"></span><br><span class="line">	Wearable<span class="string">.MessageApi.sendMessage(</span></span><br><span class="line">	   mGoogleApiClient,</span><br><span class="line">	   mOtherNodeId,</span><br><span class="line">	   Constants<span class="string">.MESSAGE_PATH_START_NAVIGATION</span>,</span><br><span class="line">		dataMap<span class="string">.toByteArray()).await()</span>;</span><br><span class="line">	googleApiClient<span class="string">.diconnect()</span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p><strong>Receiving a Message</strong></p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="literal">void</span> onMessageReceived(</span><br><span class="line">	MessageEvent messageEvent)&#123;</span><br><span class="line">	<span class="keyword">if</span>(messageEvent<span class="built_in">.</span>getPath()<span class="built_in">.</span><span class="keyword">equals</span>(</span><br><span class="line">		MESSAGE_PATH_START_NAVIGATION))&#123;</span><br><span class="line">	  DataMap requestData <span class="subst">=</span></span><br><span class="line">			DataMap<span class="built_in">.</span>fromByteArray(</span><br><span class="line">				messageEvent<span class="built_in">.</span>getData());</span><br><span class="line">			<span class="built_in">String</span> uriString <span class="subst">=</span></span><br><span class="line">				requestData<span class="built_in">.</span>getString(FIELD_URI);</span><br><span class="line">			Intent navIntent <span class="subst">=</span> <span class="literal">new</span> Intent(</span><br><span class="line">				Intent<span class="built_in">.</span>ACTION_VIEW,</span><br><span class="line">				Uri<span class="built_in">.</span>parse(uriString));</span><br><span class="line">			startActivity(navIntent);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="搭建云驱动的Android_Wear_Apps">搭建云驱动的Android Wear Apps</h1><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblog_androidwear_cloud.JPG" alt=""></p>
+<p>如图：</p>
+<ul>
+<li>1、首先，我们需要一款云服务来作为App的后端来进行数据推送和数据处理。</li>
+<li>2、其次，移动App会配合这项服务发出一个提醒，而你会在wear设备上看到，而且该提醒也会发送到任何相连的AndroidWear设备上。</li>
+<li><p>3、接着，当然就是AndroidWear App本身了，ta的特效是搭建在移动手机App之内，这样一旦手机App发出一条可以在手机上看见的提醒，这条信息也发给了Android Wear设备，现在的API也能够传送这些提醒，比如说触发回复行为，那么，我们是怎么实现ta们的呢？<code>Android Studio</code>实际上把你所需要的一切都给你了，包括用于搭建后端服务的工具包，当然还有Android手机App，现在你还可获得扩展包来操作Android Wear，云后端可以用一款外露的API来搭建，Android Studio工具包可以让你在Java下来进行此类操作，为你处理精细的细节把握，你可以写一段云端代码，通过使用属性，ta能够暴露出运行在你android app中的API，这些属性告诉Android客户端这些代码都是到底在干什么的，比如在执行一种叫quotesApi(引用API）时，并提供一种称为getQuote（获得引用）的方式，ok，一旦你现在搭建好了云服务，借助工具包，事实上你就可以自动创建客户端数据库来进入了，接下来，你要做的当然是搭建你的App了，那如何从你的App进入API呢？其实，这个分类已经自动帮你加载下来了，并且放入Maven库中了，这样你就可以直接在你搭建好的Gradle文件夹下涵盖它们了。</p>
+</li>
+<li><p>4、最后，我们如何把它拓展来用于Android Wear呢？ 其实很简单，跟google map中的例子一样，通过修改notification和卡片的代码，使用wear端的api，让消息提醒和前端信息视图同时展现在手机客户端和wear端，此时的<strong>手机App</strong>就<strong>变成了wear连接云端</strong>的<strong>中间件</strong>。</p>
+</li>
+</ul>
+<h1 id="写给设计师们：如何把握Android_Wear下App的设计原则？">写给设计师们：如何把握Android Wear下App的设计原则？</h1><blockquote>
+<p>PS：自己在DuWear项目组除了做RD研发之外，也对设计比较感兴趣，记得研发表盘那段时期，经常和搭档（MUX-UE-大侯）一起交流wear端的设计理念和心得，这里分享一些给想进军wear端的设计师朋友们：</p>
+</blockquote>
+<p><strong>首先我们需要知道的是：</strong></p>
+<ul>
+<li>Android Wear可以在多种不同的设备上运行，甚至在方形或圆形屏幕上也能正常运行，ta的UI非常简单，而且显示的内容也做了优化以适应小屏幕。</li>
+<li>Android Wear的核心UI会自动排列卡片的优先级，非常简单，它整合了像Google Now，安卓手机提醒（Notification）和关联性App等资源，从而可以直接在wear端运行，开发师可以创建可以在这种流中正确显示的卡片，在任何点上，我都可以朝左滑动来查看每个项的更多信息，朝右滑动则会移除卡片，</li>
+<li>我们也给里面加入了向谷歌说话的能力，用户只需说一句：OK Google来搜索网络寻求答案，也可以进行我们称之为行为（actions）的语音指令，开发师可以深入开发这些语音行为。意味着用户可以直接对你的软件说话。</li>
+<li>可穿戴设备提供了一套前所未有的设计理念，<br>这即是机会，也是挑战，所以相对其他诸如手机或平板之类的设备，要清楚明白地搞懂它们之间的不同之处非常重要。<br>Android Wear刚好在正确的时间提供了正确的信息，让人们同时与虚拟和现实世界有更好的联系，信息内容会尽可能自动显示在信息流中，对于早已习惯打开App和退出App的我们来讲，这种对于模块的变化是相当巨大的。<h2 id="设计思路：">设计思路：</h2></li>
+<li><p><strong>Contextual：</strong>Android Wear会注意到周围环境，而且十分智能，这些设备会让人与计算机设备的亲密关系全新升级，Android Wear不要求用户的关注与输入，相反它会注意到用户所处的环境与状态，然后在正确的时间体贴地提供正确的信息，Android Wear会让人感觉信息及时，提议中肯，无微不至。</p>
+</li>
+<li><p><strong>Glanceable：</strong>这些App只需要一瞥的时间，不算是可穿戴设备处于我们的视线边缘，它们也可以整天使用，高效的App会用最小的嗡嗡声来提供更多的信息提醒，并在细碎的关联信息提醒上做进一步优化，从而在一整天的碎片时间里得以应用。</p>
+</li>
+<li><p><strong>Low Interaction：</strong>快速思考，一针见血，迅捷即时，而且几乎不用与设备互动，在保证小屏幕传送信息优势的同时，Android Wear着重与简单的互动，仅仅在非常必要的时候来需要用户来输入。而且绝大多数输入都是简单的点触、滑动和语音指令，而一般输入所需要的精细操控也得以避免。Android Wear手势简单，操作便捷而迅速</p>
+</li>
+<li><p><strong>Suggest&amp;Demand：</strong>最后，这些体验都与建议和指令相关，Android Wear就像一位出色的个人助理，它了解你，知道你的喜好，只有在绝对必要的时候才会打扰你，而且它总是近在手边，随时准备为你回答或完成任务。Android Wear贴心、礼貌、有问必答，它把周围世界与用户巧妙联系起来的同时，又极其尊重你的注意力，把你的焦距汇到重点项目上。</p>
+</li>
+<li><strong>Break It Down：</strong>这里所呈现的机会并不是想象中的那样——把智能手机的UI缩小一下就塞进来,相反，需要考虑的是在设计过程中出现的基础性的问题，遵循这些原则之后，要是用户在使用你的产品操作任务时，产品出问题了怎么办？</li>
+</ul>
+<p>接下来，我们来看一些<strong>出色的设计案例</strong>：</p>
+<ul>
+<li><strong>Stream Apps</strong></li>
+</ul>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/androidwearstreamapps.PNG" alt=""></p>
+<p> 如图，系统中众多App的展现体现在那些垂直的卡片流之中，让小小的屏幕可以为用户尽可能多得展现更多的Wear应用，也是用户界面的核心所在。</p>
+<ul>
+<li><strong>Main Interface</strong></li>
+</ul>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/androidwearcarddesigner.PNG" alt=""><br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/androidweargooglenowcard.PNG" alt=""></p>
+<p> 如图，这里我们看到主屏幕流中有一些卡片，像这种卡片就会在特定时刻，需要它们该出现的时候才出现。就像 <code>Google Now</code>一样，这些卡片无需启动或打开，相反，ta们会基于所在地、走路或者奔跑等活动、实际时间、用户的兴趣爱好以及其他因素来运行，你可以指定某项内容在合适的时候出现，这些卡片与环境息息相关，要注意看这些内容十分简洁，而且布局十分清楚，这些布局也经过了优化，让人能通过<strong>眼角一瞥就能一目了然</strong>。这些卡片也会遵循我们低互动（Low Interaction）的原则，它们没有大量的目录和按钮，用户可以直接滑动屏幕来进入另一页获取更多资料，事实上，通过Android Wear用户界面你应该使用像<strong>滑动和全屏挥动</strong>这样的大手势，不要在一个屏幕上放置多个需要点击的小按钮。</p>
+<ul>
+<li>更多Android Wear出色案例和设计资源请参考下文中的：<a href="">更多系列教程</a></li>
+</ul>
+<h1 id="Android_Wear搭建更高级别的UI">Android Wear搭建更高级别的UI</h1><p>可穿戴设备的App是Android的标准App，但遵循的是小屏幕的设计理念，它们全屏运行，没有系统UI或状态条，它们的开发过程与安卓App类似，不过在UI的开发理念上却稍有不同，最重要的就是要记住你的界面不必苛求小点触屏或精准的拖拽，举个例子，在可穿戴系统UI中，你会注意到对滑动操作的频繁使用，还有滚动条的运用，它之所以能够流畅运行，是因为它并不需要把注意力花在要去触摸屏幕某个精准的点上，为了帮助大家，Google提供了一个<a href="http://developer.android.com/training/wearables/ui/index.html" target="_blank" rel="external">可穿戴设备App的UI库</a>，它提供了异常丰富的元素来用于UI的设计。</p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/androidweargradpagerview.PNG" alt=""></p>
+<p>这里，我想重点讲一下 <code>GridViewPager(网格多面控件)</code> ,ta与主页流类似，大家可以用ta来设计界面，ta与多面控件相似，但是可以水平和垂直同时移动，第一步就是布局的规划，下面这几行代码就是你主行为所需要的全部内容：</p>
+<p><strong>res/layout/pager_example.xml</strong></p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml <span class="variable">version =</span> <span class="string">"1.0"</span> <span class="variable">encoding =</span> <span class="string">"utf-8"</span>?&gt;</span><br><span class="line">&lt;android.support.wearable.views.GridViewPager</span><br><span class="line">	xmlns:<span class="variable">android =</span> <span class="string">"http://schemas.android.com"</span></span><br><span class="line">	android:<span class="variable">id =</span> <span class="string">"@+id/pager"</span></span><br><span class="line">	android:<span class="variable">layout_width =</span> <span class="string">"match_parent"</span></span><br><span class="line">	android:<span class="variable">layout_height =</span> <span class="string">"match_parent"</span></span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure>
+<p>在这里，配置多面控件的目的是用于扩展至整个屏幕的，下一步，我们需要一个衔接器（<code>Adapter</code>）</p>
+<p><strong>FragmentGridPagerAdapter</strong></p>
+<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> getRowCount<span class="literal">()</span></span><br><span class="line"><span class="built_in">int</span> getColumnCount(<span class="built_in">int</span> row)</span><br><span class="line"><span class="type">Fragment</span> getItem(<span class="built_in">int</span> row , <span class="built_in">int</span> column)</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> getCurrentColumnForRow(</span><br><span class="line">	<span class="built_in">int</span> row,<span class="built_in">int</span> currentColum)</span><br></pre></td></tr></table></figure>
+<p>而这几行代码则是在用户使用导航时为用户提供每张页面所呈现的内容，在这个例子中，我会从一个由片段支持的基本类来进行扩展，要创建一个运行的<code>Adapter</code>只需要这三个方法，前两种定义了内容行（<code>row</code>）与页的可用大小，注意 <code>column</code> 的数量取决与行参数<code>row</code>,原因就在于每行可能都有不同的列数量，它的特性就是其选项可以控制每行在页面哪个位置来放置，与固定好的网格布局相比，它给滚动条在平等滚动与垂直滚动间切换提供了可能，在这一布局中，为了实现这点，Google还想了一些办法，但结果看起来就是一个无缝对接，Google为什么要这么做？Google认为每行内容都是单独的存在，在主页流中，这些就成了提醒或Google Now卡片，用户要从一个行为页进入到目标页而进行上下滑动的操作时，如果有不同的项，那么用户在操作时就会迷惑，为了解决这个问题，上翻或下翻总会回到第一列，这个也是网格多面控件的默认模式，为了对此做出调整，你可以用另一种方式进行覆盖，这种方式称为：所想即所见（用户想了解某项信息时，该信息的页面就会呈现在当前页或下一页），它也会提供当前列的位置，为了返回固定的移动系统，你可以选择返回列，或许你还想保存该行上次浏览的那一列，以便下次选择改行时可以直接返回到那一列。最后，最重要的一点就是getItem了，这个就是你要在页面上呈现出片段的位置了，这里，你只需要返回到你的内容片段，然后剩下的事情就由多面控件来处理了。只要需要，内容片段可以长久存储，然后在合适的时候，要么删除，要么重新进入，在这种方式跟多面控件非常类似，只是加了一个垂直的维度而已。</p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/androidwearcontentPage.PNG" alt=""></p>
+<p>为了帮助大家建立自己的页面内容，Google提供了卡片内容片段，它可以自动应用不同的风格,从而与系统卡片搭配一致，而你要做的只是提供内容就可以，这种内容片段也有许多附加特性，首先，如果你有超过一页的内容，它就会显示滚动条让你拖动到正确的位置，你也可以让它作为一个单独页面开始，这样就可以通过触按来放大到全屏了，在这个案例中，内容溢出会自动得到处理，在你代码样本和文档中会找到更多细节的，还有一些事情要记住：每个页面尽量只放一个单独的行为，如果可能的话，整张卡片应该做成一个触按目标，而需要运行的行为则应该清楚明白，现在，剩下需要做的就是把这些东西整合起来，转接类会处理所有内容片段操作,所以需要给片段管理来一个参数，把转接代码加入到页面代码中就行了。</p>
+<p><strong>SampleActivity.java</strong></p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span></span>&#123;</span><br><span class="line">	 setContentView(R.layout.pager_example);</span><br><span class="line">	 mPager = findViewById(R.id.pager);</span><br><span class="line">	 mAdapter = <span class="keyword">new</span> ExampleGridPagerAdapter(getFragmentManager());</span><br><span class="line">	 mPager.setAdapter(mAdapter);	</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Android_Wear_数据层API_DevBytes">Android Wear 数据层API DevBytes</h1><p>首先我们需要知道手机端和wear端的连接是基于Android Wear数据层API的，一旦出现任何变化，核心数据层API会让你的掌上设备，与可穿戴设备自动同步数据，这种进程能够让你的设备充当数据发送器或接收器，或兼而有之，发送器设备设置一些准备发送的数据，一旦这些数据发生变动，那么这些变动就会发送给接收器，接受数据的设备反过来会在检测变动之后，会启动一个反馈功能来告诉程序数据已更新，处于两种设备之间的核心对象被称为<strong>数据项</strong>，它能有效提供设备所需要的数据存储，从基础面来讲，数据项包含一个有效负载对象，它是用来负载实际的数据的，还有一个是路径对象，它为数据项提供唯一的标识符字符串，它在接收端很重要，来表明具体哪些数据得到了更新。</p>
+<p>数据项能在可穿戴设别与掌上设备间来回接受和发送小批量数据，例如使用可穿戴设备传感器来收集心率信息，并发送到用户的手机，与前14周的心率信息交叉想比较，并将结果图反映在手表上，因为电流限制的原因，数据项对象能承载小部分数据大约有100k，因此如果你希望数据项承载更大的数据量，你需要附加一个超大容量的对象，这样你就能发送大量的二进制数据到蓝牙传输，如图像，举个例子吧，用掌上设备应用软件下载一个图像，调整大小，然后发送到穿戴式设备上进行展示，掌上设备负责进程中所有的复杂的重量级操作，而穿戴式设备则呈现简单的结果，很不错的是，为了避免数据的重发，资产对象负责缓存数据和保存蓝牙带宽，这就意味着每个缓存的资产对象只能对应一种情况，如果你重复发送多次，也不会浪费带宽或者是电量，更简单的方面，数据有效载荷API也能提供信息API，这样就能完成普通任务，例如告知你的穿戴设备要执行<code>Activity</code>，或者是提醒手机切歌曲，在默认的情况下，这些信息可以通过远程过程调用，也就是说，一旦过程改变，则不能确保信息能被接收，但是如果你想要程序更复杂，可以将信息设置成提问（<code>request</code>）或回答（<code>response</code>）的形式，这样连接的另一方就会告知另外的设备，反过来，另外的设备会完成相关的工作，然后做出回答，相应地，提交答复。更多复杂的DataAPI细节可以到google android developer官网查看。</p>
+<h1 id="Android_Wear的提醒（Notification）新特性">Android Wear的提醒（Notification）新特性</h1><p>我们来看看wear设备提醒的三个新方面吧：</p>
+<ul>
+<li>新的显示选项</li>
+<li>新的提醒行为</li>
+<li>高级自定义设置</li>
+</ul>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_androidwear23.png" alt=""><br>这是一个提醒流，它能很好地获取信息并与用户交互，这里有不同外观不同尺寸的垂直提醒列表，获取信息时只需要向上滑动一下表盘就能办到，继续滑动的话就会显示出额外的卡片，信息流中的这些提醒会加入到安卓提醒API中去，如果你已经熟悉了这个API，你可能就会识别出它的一些特性了，比如在独立的屏幕上会出现正确的提醒行为，但跟平板对于手机类似的是，提醒是依然可以被取消的，只需要把提醒卡滑到边上然后释放即可，手机上的提醒会自动同步到你的手表上面，这可以让许多现有安卓APP来在可穿戴设备上发挥自己的价值，它们也可以增加行为和撤销，我们<strong>支持许多现有的提醒风格</strong>，比如<strong>收件箱式、大图式和长文本式</strong>，如果内容太长，用户可以按住提醒来扩展，为了让体验更加丰富，我们也增加了新API来自定义提醒，他们就成了AndroidSDK和libs库中可穿戴设备扩展类的一部分了。</p>
+<p>首先我们来看看，多页面提醒设计：</p>
+<p>这些页面</p>
+<p>这里有博主自己曾经写过的一个运行在Android手机上的Demo，用来展示Wear端的Notification新特性:<a href="https://github.com/AndroidWearDemo/AndroidWearNotification" target="_blank" rel="external">在Github上获取</a></p>
+<p>也可以参考国外大神的一个例子：<a href="http://code.tutsplus.com/tutorials/enhanced-and-wearable-ready-notifications-on-android--cms-21868" target="_blank" rel="external">Enhanced and Wearable-Ready Notifications on Android</a></p>
+<h1 id="Android_Wear下的全屏App设计理念">Android Wear下的全屏App设计理念</h1><p>为Android Wear设计APP的许多技术因素，你们会觉得非常熟悉，因为它们跟普通的Android APP运行原理是一样的，不过呢，我今天主要讲的是<strong>两大不同点</strong>：</p>
+<h2 id="让用户如何退出APP">让用户如何退出APP</h2><p>在手机或平板上，用户会使用返回或主页键来推出APP，但这些按钮在Android Wear设备上都不会出现，相反，在wear app上，用户离开你的APP会有如下两种办法：<strong>一种是把页面朝左滑动至边缘退出，另一种是长按APP退出</strong>：</p>
+<h3 id="滑动退出：">滑动退出：</h3><p>通过Android Wear我们引入了一种新的窗口属性：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt; style <span class="property">name</span> =<span class="string">"AppTheme"</span> parent = <span class="string">"Theme.DeviceDefault"</span> &gt;</span><br><span class="line">	&lt; <span class="property">item</span> <span class="property">name</span> = <span class="string">"android.windowSwipeToDismiss"</span>&gt;<span class="constant">true</span>&lt; /<span class="property">item</span> &gt;</span><br><span class="line">&lt; /style &gt;</span><br></pre></td></tr></table></figure>
+<p><strong>即窗口滑动属性</strong>，这种窗口属性可以运用在你具体的活动主题中，一旦窗口滑动退出属性设置为true，那么活动一旦从左滑动至右，它就会退出，这种滑动退出运行方式跟多面控件运行方式类似，如果活动中的内容本身就可以滚动，那么窗口就不会退出，除非用户滚动到该内容边缘后再次滑动，它可以让你创建一些非常出色、类似信息流的体验，这些体验也可以通过滑动来退出。所有的Android Wear APP要么使用设备默认主题，要么使用一个继承默认设备的主题，这样可以确保不同的主题风格都会在你的APP上正常运行，从而让它们在你的wear设备上看起来非常好，</p>
+<p><strong>You get it by default</strong></p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;activity</span><br><span class="line">	android:name=<span class="string">".ControlRobotsActivity"</span></span><br><span class="line">	android:theme=<span class="string">"Theme.DeviceDefault"</span></span><br><span class="line">/&gt;</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line">当然，我们知道，有些<span class="keyword">APP</span>没办法使用滑动退出的功能，比如，无限移动的地图应用时永远没有边缘的，如果你不想使用滑动手势，那么你可以通过吧滑动的退出属性设置为false，来在你的主题中禁用<span class="keyword">ta</span>。对于无法通过滑动来退出的<span class="keyword">APP</span>。我们可以使用第二个属性：即**长按退出功能。**</span><br><span class="line">    </span><br><span class="line">### 长按退出 ###</span><br><span class="line">这就相当于是一个退出按钮的行为了，为了让用户知道你的<span class="keyword">APP</span>可以长按退出，在<span class="keyword">APP</span>首次运行时，你要给用户一个长按退出的提示。打开我们的wear设备，你会发现在屏幕任何地方出现长按行为，都会在<span class="keyword">APP</span>上出现一个退出按钮。再按下那个按钮来退出活动，用户则会回到主页，为了让你的<span class="keyword">APP</span>退出变得尽量容易，Google做了一个可以在大多数UI上运行的<span class="keyword">View</span>,它叫退出覆盖视图（dismiss overlay <span class="keyword">view</span>）</span><br><span class="line">     </span><br><span class="line"><span class="comment">**activity_control_robots.xml**</span></span><br></pre></td></tr></table></figure>
+<android.support.wearable.view.dismissoverlayview android:id="@+id/dismiss_overlay" android:layout_height="match_parent" android:layout_width＝"match_parent"="">    
+
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">为了把它集成到你的APP中，首先要把它添加进你的XML活动层中，确保它<span class="keyword">*</span><span class="keyword">*</span>增加的位置一定是在其他布局之上的<span class="keyword">*</span><span class="keyword">*</span>你还要确保该视图的尺寸能够覆盖整个屏幕，把它高度和宽度设置成与父框架相匹配，这样它就能够确保全屏，而且处于最顶层了，现在我们来看看java类里面怎么写：</span><br><span class="line"></span><br><span class="line"><span class="keyword">*</span><span class="keyword">*</span>ControlRobotsActivity.java<span class="keyword">*</span><span class="keyword">*</span></span><br></pre></td></tr></table></figure>
+<p>public void onCreate(Bundle savedState){<br>    super.onCreate(savedState);<br>    setContentView(R.layout.activity_control_robots);</p>
+<pre><code>mDismissOverlay = (DismissOverlayView)findViewById(R.id.dismiss_overlay);
+mDismissOverlay.setIntroText(R.<span class="built_in">string</span>.long_press_intro);
+mDismissOverlay.showIntroIfNecessary();
+
+ mDetector = <span class="keyword">new</span> GestureDetector(<span class="keyword">this</span>,<span class="keyword">new</span> SimpleOnGestureListener(){
+   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLongPress</span><span class="params">(MotionEvent ev)</span></span>{
+       mDismissOverlay.show();
+   }
+
+ });
+}
+</code></pre><p>…</p>
+<p>@Override<br>public boolean onTouchEvent(MotionEvent ev){<br>    return mDetector.onTouchEvent(ev) | | super.onTouchEvent(ev);<br>}<br>```</p>
+<p>在它的<code>onCreate</code>中把退出层从你的布局层中拉出来，然后设置为内省文本，这个文本会在第一次运行活动时显示出来，而且会显示在APP其他内容之上，用来告诉用户可以通过长按来返回主页，然后，使用<code>showIntroIfNecessary</code>(必要时显示内省文本)，它会，也只会在第一次运行该APP时显示这个内省层，，接下来，如果用户长按了你的app，我们就需要让它激活，使用<code>GestureDectector</code>(手势检测器）和<code>SimpleOnGestureListener</code>（简易手势接收器）,使用这些框架类会确保所有app感应到手势的时长，在你长按返回时，会激活布局层显示退出行为，会显示一个退出按钮，如果用户点击了该按钮，你的活动就会被结束，但如果你没有点击该按钮，那么这个退出层就会自行隐藏，等着下次出现的命令，最后，还是在你的活动中覆盖一层 <code>onTouchEvent</code> (触控事件)，然后让<code>reveiveTouchEvents</code> (接受触控事件)连通到<code>GestureDectector</code>（手势检测器）,如果 <code>GestureDetector</code> 返回为true，你也真的返回主页了，而且不用触动 <code>onTouchEvent</code> 方式的正常活动,相反如果为false，那就可以继续使用正常活动的触控。</p>
+<h2 id="如何设计和运用你的APP，让ta看起来在圆形屏幕上很不错。">如何设计和运用你的APP，让ta看起来在圆形屏幕上很不错。</h2><h1 id="Android_Wear表盘（WatchFace）设计与开发">Android Wear表盘（WatchFace）设计与开发</h1><p>不得不承认，Google在表盘方面上还是很鼓励第三方开发者去自由创作的，有别于<br><a href="http://www.leikeji.com/article?2264" target="_blank" rel="external">Apple Watch不允许接入第三方watch face应用</a>的做法。</p>
+<p><a href="http://code.tutsplus.com/tutorials/creating-an-android-wear-watch-face--cms-23718" target="_blank" rel="external">AndroidWear CanvasWatchFaceService</a></p>
+<h1 id="Android_Wear更多系列教程：">Android Wear更多系列教程：</h1><blockquote>
+<p>博主认为，目前天朝的可穿戴社区仍处于起步阶段，很多资源还不丰富，但是天朝程序猿的力量是强大的，相信随着更多wear developers的加入，可穿戴的社区会愈来愈壮大，最后仅以自己微薄之力，为Android Wear开源做出一点贡献，希望能帮助到更多的人。</p>
+</blockquote>
+<p>下面汇总了目前国内比较好的一些Android Wear资源，请参考：</p>
+<ul>
+<li><p>开发类</p>
+<ul>
+<li><a href="http://developer.android.com/wear/index.html" target="_blank" rel="external">Android Wear Google官方教程（请翻墙，或者自己搜镜像）</a></li>
+<li><a href="http://dev.seacat.cn/index.html" target="_blank" rel="external">Android Wear Google官方教程 <code>穿戴猫</code>汉化版本</a></li>
+<li><a href="http://bbs.seacat.cn/forum-106-1.html" target="_blank" rel="external">Android Wear <code>穿戴猫</code>社区原创基础教程</a></li>
+<li><a href="http://www.cnblogs.com/benhero/p/4273800.html" target="_blank" rel="external">benhero博客_Android Wear开发学习指南</a></li>
+<li><a href="http://code.tutsplus.com/tutorials/introduction-to-android-wear-hands-on--cms-22157" target="_blank" rel="external">Android Wear_Hands-On</a></li>
+<li><a href="http://code.tutsplus.com/tutorials/creating-an-android-wear-watch-face--cms-23718" target="_blank" rel="external">AndroidWear CanvasWatchFaceService</a></li>
+<li><a href="http://code.tutsplus.com/articles/introduction-to-android-wear-the-basics--cms-22042" target="_blank" rel="external">Introduction to Android Wear: The Basics</a></li>
+<li><a href="http://code.tutsplus.com/tutorials/enhanced-and-wearable-ready-notifications-on-android--cms-21868" target="_blank" rel="external">Enhanced and Wearable-Ready Notifications on Android</a></li>
+</ul>
+</li>
+<li><p>设计类 </p>
+<ul>
+<li><a href="http://developer.android.com/design/wear/index.html" target="_blank" rel="external">Google 官方Android Wear设计教程（需要翻墙）</a> </li>
+<li><a href="http://developer.android.com/design/wear/watchfaces.html" target="_blank" rel="external">Google 官方Android Wear表盘（WatchFace）设计教程（需要翻墙）</a></li>
+<li><a href="http://note.youdao.com/share/?id=1a46e80cb5ea07b5c755d38b65ff9576&amp;type=note" target="_blank" rel="external">Google Android Wear 设计规范学习心得 </a></li>
+<li><a href="http://tencentos.ui.cn/" target="_blank" rel="external">TencentOS智能手表表盘设计大赛</a></li>
+<li><a href="http://facerepo.com/app/" target="_blank" rel="external">FaceRepo for WatchMaker/Facer表盘引擎收集网站</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="Google_Play_上热门的Android_Wear应用">Google Play 上热门的Android Wear应用</h1><blockquote>
+<p>博主收集了一些谷歌市场上比较热门的Android Wear应用，期待更多朋友的补充和意见，大家可以下载下来体验，翻不了墙的同学请默哀。</p>
+</blockquote>
+<ul>
+<li><p><a href="http://note.youdao.com/share/?id=ee853cdb7e4283bade26e485d6ca2c60&amp;type=note" target="_blank" rel="external">22款很棒的Android Wear表盘应用</a></p>
+</li>
+<li><p><a href="http://note.youdao.com/share/?id=0037856aa8e5e0c2476b9a9f4950baa5&amp;type=note" target="_blank" rel="external">31款很棒的Android Wear应用</a></p>
+</li>
+<li><p><a href="http://www.magicwatchface.com/zh_cn" target="_blank" rel="external">Magic WatchFace神奇表盘应用</a></p>
+</li>
+</ul>
+<h1 id="热门的可穿戴技术社区">热门的可穿戴技术社区</h1><blockquote>
+<p>收录了一些博主目前暂时所知的”可穿戴技术社区”，期待更多朋友的补充和意见！</p>
+</blockquote>
+<ul>
+<li>国内：<ul>
+<li><a href="http://www.seacat.cn/" target="_blank" rel="external">穿戴猫</a></li>
+<li><a href="http://duwear.baidu.com/" target="_blank" rel="external">DuWear</a></li>
+<li><a href="http://ticwear.com/" target="_blank" rel="external">Ticwear</a></li>
+<li><a href="http://watch.tos.cn/" target="_blank" rel="external">Tencent OS for Watch</a></li>
+<li><a href="http://www.watchkong.com/forum/forum.php" target="_blank" rel="external">手表控</a></li>
+<li><a href="http://www.leikeji.com/" target="_blank" rel="external">雷科技</a></li>
+<li><a href="http://wearable.hqbpc.com/" target="_blank" rel="external">可穿戴设备</a></li>
+<li><a href="http://www.kongnar.com/" target="_blank" rel="external">控哪儿网</a></li>
+<li><a href="http://www.mapelf.com/" target="_blank" rel="external">出行精灵</a></li>
+</ul>
+</li>
+<li>国外：<ul>
+<li>由于天朝特殊原因，等以后更新。 </li>
+</ul>
+</li>
+</ul>
+<h1 id="Android_Wear相关产品宣传视频">Android Wear相关产品宣传视频</h1><ul>
+<li><a href="http://www.cgangs.com/article/3467?source=sinaweibo" target="_blank" rel="external">Google：wear what you want</a></li>
+<li><a href="http://www.tudou.com/programs/view/jKv0PSWHdCY/" target="_blank" rel="external">Moto360创意广告</a></li>
+<li><a href="http://baidu.fun.tv/watch/2542550633994583670.html" target="_blank" rel="external">Moto360中文应用场景广告</a></li>
+<li><a href="http://my.tv.sohu.com/us/243481507/79477160.shtml" target="_blank" rel="external">华为AndroidWear智能手表官方宣传片1</a></li>
+<li><a href="http://my.tv.sohu.com/us/5747262/78630855.shtml" target="_blank" rel="external">华为AndroidWear智能手表官方宣传片2</a></li>
+</ul>
+<h1 id="加入我们">加入我们</h1><p><strong>转载</strong>请注明<strong>出处+原文链接+原文作者</strong>，侵权必究，谢谢！</p>
+</android.support.wearable.view.dismissoverlayview>]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="本文作者">本文作者</h1><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicslrme.jpg" alt=""></p>
+<h2 id="Jiale_Dai"><a href="http://www.daijiale.cn">Jiale Dai</a></h2><p>成都 电子科技大学 本科生( 其实还没毕业，目前大三 ）</p>
+<p>从14年开始一直专研于AndroidWear开发</p>
+<blockquote>
+<p><strong>摘要：</strong> 本文是Jiale Dai 在学习Google官方视频、开发者文档和实践项目之后整理出来的心得笔记，是以一个个人开发者的角度给大家带来一些侧面对Android Wear开发的看法，不同于一些传统的Android Wear技术开发教程，但是博主希望能通过自己对这些知识的整理和资源的收集，给读者带了一份详尽的、多角度的Android Wear指南。<strong>无论你是程序员，设计师，产品经理，还是手表极客 ，Android Wear用户 or 小白，都能在这篇博文中找到你想要的Android Wear元素。</strong><br>博文会同时托管到Github上，欢迎更多承载着开源精神的有心人加入，分享你对Android Wear的见解。<br>]]>
+    
+    </summary>
+    
+      <category term="Android" scheme="http://daijiale.github.io/tags/Android/"/>
+    
+      <category term="AndroidWear" scheme="http://daijiale.github.io/tags/AndroidWear/"/>
+    
+      <category term="智能可穿戴" scheme="http://daijiale.github.io/tags/%E6%99%BA%E8%83%BD%E5%8F%AF%E7%A9%BF%E6%88%B4/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+      <category term="Android开发笔记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Android%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[我的一点看法关于市面上流行的Git托管服务社区]]></title>
     <link href="http://daijiale.github.io/2015/04/27/%E6%88%91%E7%9A%84%E4%B8%80%E7%82%B9%E7%9C%8B%E6%B3%95%E5%85%B3%E4%BA%8E%E7%9B%AE%E5%89%8D%E5%B8%82%E9%9D%A2%E4%B8%8A%E6%B5%81%E8%A1%8C%E7%9A%84Git%E6%89%98%E7%AE%A1%E6%9C%8D%E5%8A%A1%E7%A4%BE%E5%8C%BA/"/>
     <id>http://daijiale.github.io/2015/04/27/我的一点看法关于目前市面上流行的Git托管服务社区/</id>
     <published>2015-04-27T03:39:09.000Z</published>
-    <updated>2015-04-28T08:42:25.000Z</updated>
+    <updated>2015-05-16T16:25:13.000Z</updated>
     <content type="html"><![CDATA[<p><code>git</code> 服务社区越来越多，无论是国外的还是国内的，免费公益的还是按需收费的，我们该如何选择呢？</p>
 <p>这里整理了一些我自己接触过的，给大家参考一下：</p>
 <a id="more"></a>
@@ -36,7 +488,7 @@
 </ul>
 <ul>
 <li>6、<code>Bitbucket</code>：性质和github差不多，元老级社区，但是。。。被github完虐！</li>
-<li>7、<code>coding</code>：我个人最喜欢的一个协作环境，支持复用开发环境是其最大的亮点，同时也可以体验云端编程的快感，移动端的支持也很给力，目前Android和IOS的两个客户端都很稳定，码农社交圈也在慢慢扩大。自己目前正有把私有项目全都搬过去的打算(私有仓库还TM是免费的）。</li>
+<li>7、<code>coding</code>：我个人最喜欢的一个协作环境，支持复用开发环境是其最大的亮点，同时也可以体验云端编程的快感，移动端的支持也很给力，目前Android和IOS的两个客户端都很稳定，码农社交圈也在慢慢扩大。自己目前正有把私有项目全都搬过去的打算(私有仓库还TM是免费的）。<a href="http://blog.coding.net/blog/why-coding-does-not-equals-github" target="_blank" rel="external">但coding绝对不是“中国的github”</a></li>
 </ul>
 ]]></content>
     <summary type="html">
@@ -60,7 +512,7 @@
     <link href="http://daijiale.github.io/2015/04/26/%E5%8D%95%E5%8F%8D%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/"/>
     <id>http://daijiale.github.io/2015/04/26/单反自学笔记/</id>
     <published>2015-04-26T13:26:09.000Z</published>
-    <updated>2015-04-28T08:40:11.000Z</updated>
+    <updated>2015-05-16T16:25:13.000Z</updated>
     <content type="html"><![CDATA[<p><strong>PS：</strong>2015年4月在<a href="http://mp.weixin.qq.com/s?__biz=MzAxMDM5MTIwMw==&amp;mid=204127766&amp;idx=1&amp;sn=7c6a4b87110f472a1ced270b6daafc10&amp;scene=5#rd" target="_blank" rel="external">胖哥（Axl、隔壁老王）</a>的唆使下，我入手了人身第一台<a href="http://baike.baidu.com/link?url=lUwpC5ksAq3Sh_zqGsNAZ4NmcxmiPul3P6SV-QXO5vdWItnvlm7GjvBreNyqoFYWoj-bbozDnDd0yU6lnqsKy7tsVn5qpNJ7BrEFqh_-k1Ml32XcaLvK0FlHUbbrL_eifzZoMYNglLhc-aX8K1XCd_" target="_blank" rel="external">单反</a>…（迈入继耳机之后的又一深坑）这篇Blog是最近学习新技能时做的笔记：</p>
 <h1 id="单反自学笔记_新人篇">单反自学笔记_新人篇</h1><ul>
 <li><a href="http://note.youdao.com/share/?id=48a8f388b8f5cb21ab3cd50d169a665f&amp;type=note" target="_blank" rel="external">新人第一课：井字构图法</a></li>
@@ -102,7 +554,7 @@
     <link href="http://daijiale.github.io/2015/04/09/AjaxReview/"/>
     <id>http://daijiale.github.io/2015/04/09/AjaxReview/</id>
     <published>2015-04-09T10:30:09.000Z</published>
-    <updated>2015-04-28T08:39:35.000Z</updated>
+    <updated>2015-05-16T16:25:13.000Z</updated>
     <content type="html"><![CDATA[<p><strong>PS：</strong>写这篇Blog主要有两个三个动机：</p>
 <ul>
 <li>对以前自己所学知识的一个系统化review</li>
@@ -338,7 +790,7 @@
     <link href="http://daijiale.github.io/2015/04/03/%E8%AE%B0%E5%8D%97%E6%98%8C%E4%BA%8C%E4%B8%AD/"/>
     <id>http://daijiale.github.io/2015/04/03/记南昌二中/</id>
     <published>2015-04-03T05:20:09.000Z</published>
-    <updated>2015-04-28T08:40:28.000Z</updated>
+    <updated>2015-05-16T16:25:13.000Z</updated>
     <content type="html"><![CDATA[<h1 id="硬件">硬件</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中在硬件上最大的特点就是壕！第一次来二中参加考试时便被壕气外露的红砖绿叶迷住了。还有人造草皮的足球场，三年一遇的游泳馆（三年就上过一次课），堆满了电脑随便用的图书馆。学校里四处都是花花草草，校门的花坛一月一换，班上的一体机切水果什么的信手拈来。就是任性就是壕！<br><a id="more"></a></p>
 <h1 id="师资">师资</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中的老师阵容十分强大，但随着这几年扩招老师资源也变得有些吃紧了。重点班尚能保证豪华阵容，在江西可以说不会逊色于任何学校的重点班，但平行班就会有很多刚进校不久的年轻老师了。当然不是说年轻老师一定不好，但是在高中尤其是高三，老师的经验与鼓舞对班级的提高是很有用的。所以二中这几年也在拼命招揽人才，目前一大批年轻老师已经走上一线，师资整体实力依然很强大。<br>3.理念：二中多年来一直重视综合素质教育，社团和各种活动巨多！学校也给很大的支持，每一届都会产生许多交际花。不过由于近年高考成绩不理想，15届开始进行了一些改革，加大了学业方面的侧重。所以未来二中也许会少一些交际花多一批学霸。</p>
 <h1 id="总结">总结</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中是一个神奇的地方，不论是在晨会上考试中挥斥方遒碾压众人的大神，还是走廊上树林旁对老师阿鲁巴时杀伐果断的凌厉，或是操场边天台上情侣基友看西山日落时的静谧，又抑或是顶楼学霸们在下课铃响时冲下楼梯直奔食堂的气势，它们一起组成了二中独一无二的体验。</p>
@@ -364,7 +816,7 @@
     <link href="http://daijiale.github.io/2015/04/02/Blog%E8%BF%81%E7%A7%BB%E6%97%A5%E8%AE%B0/"/>
     <id>http://daijiale.github.io/2015/04/02/Blog迁移日记/</id>
     <published>2015-04-02T15:30:09.000Z</published>
-    <updated>2015-04-28T09:04:51.000Z</updated>
+    <updated>2015-05-16T16:25:13.000Z</updated>
     <content type="html"><![CDATA[<p><strong>以下所指“更新”：均为Blog技术更新，非文章更新</strong></p>
 <h1 id="第一次更新_个人Blog">第一次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;说起自己的第一个Blog，要从小学刚开通QQ空间开始，具体几年级已经记不清了，那个时候刚甩掉纸质日记本，然后就迈入网络日志的深坑。以前倒是产出了不少优质日志，不过都是些多愁善感的随便，至今都已经封存进<em>私密日日记</em>中(如下图)：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpic_qqzonesec.PNG" alt=""><br><a id="more"></a></p>
 <h1 id="第二次更新_个人Blog">第二次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后面高中开始玩人人，Blog也顺势搬到人人。。。现在想来这搬迁史也很简单——围绕社交圈，毕竟Blog写出来是给人看的，而QQzone和人人都是一个很好的社交载体。当然，如今的人人，我早已放弃，一个月都不登一次的这种，blog数据也全部清除了，高中写的都是些没营养的东西，个人认为没有存在的价值。<br>最后留张图纪念一下曾经的人人帐号：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicrenren.PNG" alt=""></p>
