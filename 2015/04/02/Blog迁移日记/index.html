@@ -24,6 +24,7 @@
 <meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/github_daijialewebsiteworkshop.png">
 <meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/SAEDeveloper.jpg">
 <meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/daijialeweb_personalsite.png">
+<meta property="og:updated_time" content="2015-05-26T07:35:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从“主机搬家、第五次个人主站更新、第三次博客技术架构迁移”说起">
 <meta name="twitter:description" content="以下所指“更新”：均为Blog技术更新，非文章更新
@@ -113,7 +114,7 @@
 <h1 id="第三次更新_个人Blog">第三次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后面因为大学专业性质原因，再加上由于个人兴趣先接触的知识是Web开发，所以打算通过自己编写代码，建立带有自己专属域名的独立Blog全站（其实是不知道做什么内容。。。就以Blog为题材了，而且身为一个程序猿，Blog是撑脸面的东西）。正如很多刚入门的小白一样：最初选用的技术框架是 <code>PHP+MySQL</code>，边学边写，坚持了一段时间后发现根本没法拿出手，在人生导师 <code>@阔空晴云</code>（亦师亦友的关系，大学同学，年级传奇….我Blog友情链接有他的Blog..但是，为保留他的个人隐私，我就不透露<strong>林志豪</strong>的<strong>真名</strong>了）的建议下，<br>后来选用了知名度很大的 <code>wordpress</code> 框架去快速开发能拿得出手的Blog，那也是我第一次接触框架类的东西，在那之前都是直接C++和C做底层开发，js和html也都是从新建文件开始码起，—&gt;你懂得…从大众空间到自己独立虚拟主机空间，也算是第一次技术迁移了！网站是托管在人生导师的虚拟主机上，记得刚拍下<a href="http://www.daijiale.cn" target="_blank" rel="external">www.daijiale.cn</a>个人域名，挂到上线的时候是这样子的:<br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_daijialewebsiteworkshop.png" alt=""></p>
 <p>嗯，对于一个大一上刚学会做站点的小虾开发者来说，还是感觉Geek满满的。</p>
 <h1 id="第四次更新_个人Blog">第四次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;自上一次大更新以后的两年多里，都没有什么大的起伏（主要是太懒，或者忙其他项目去了），直到后面阴差阳错侥幸获得了这个证书：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/SAEDeveloper.jpg" alt="">,新浪每月给我SAE上打的云豆工单根本用都用不完了，so，我打算把Blog全部迁移到 <code>SAE上</code> （毕竟老放在人生导师那也不太好）。顺便更新了下Blog的界面和交互，增加了首页响应式效果（方便宣传嘛，嘿嘿）,自己设计和编码水平的提高也让每次迭代后的Blog页面颜值更高：<br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/daijialeweb_personalsite.png" alt=""></p>
-<h1 id="第五次更新_个人Blog">第五次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这次改动比较大，也就是目前大家看到的这个站点：<a href="http://daijiale.github.io/" target="_blank" rel="external">http://daijiale.github.io/</a>（域名换了，因为托管原因，把原来的<a href="http://www.daijiale.cn" target="_blank" rel="external">www.daijiale.cn</a>改成了简历页和入口页，其实也挺不错，性质不一样，刚好趁着这次技术整改实现了分布式控制），整个技术体系和空间都搬家+大改了，这次的技术架构没有采用市面上被大家广泛使用的常见技术，<strong>没有服务器脚本语言的参合，没有数据库，没有进行数据存储优化</strong>，简而言之就是，妈的！这逼网站<strong>居然没有后台</strong>（其实我心里一开始是拒绝的）。是的，你没听错，这特么就是个伪静态Blog，但是…这丝毫不影响ta的逼格大增,so let’s see it：</p>
+<h1 id="第五次更新_个人Blog">第五次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这次改动比较大，也就是目前大家看到的这个站点：<a href="http://daijiale.github.io/">http://daijiale.github.io/</a>（域名换了，因为托管原因，把原来的<a href="http://www.daijiale.cn" target="_blank" rel="external">www.daijiale.cn</a>改成了简历页和入口页，其实也挺不错，性质不一样，刚好趁着这次技术整改实现了分布式控制），整个技术体系和空间都搬家+大改了，这次的技术架构没有采用市面上被大家广泛使用的常见技术，<strong>没有服务器脚本语言的参合，没有数据库，没有进行数据存储优化</strong>，简而言之就是，妈的！这逼网站<strong>居然没有后台</strong>（其实我心里一开始是拒绝的）。是的，你没听错，这特么就是个伪静态Blog，但是…这丝毫不影响ta的逼格大增,so let’s see it：</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;技术框架选用的是 <code>Hexo+Node.js+ejs+bootstrap+markdown+GithubPage</code>，为什么会采用这套剑走偏锋的框架？其实，是受到了周围小伙伴的影响，越来越多的朋友为了解决成本和增加B格，将Blog结合 <code>GithubPage</code> 托管在 <a href="https://github.com/" target="_blank" rel="external"><code>github</code></a>（程序猿的facebook，我也是从2014年才开始玩的）上，具体这套架构的<strong>优点</strong>和<strong>搭建教程</strong>请参考如下博文：</p>
 <ul>
 <li><p><a href="http://note.youdao.com/share/?id=0dc251a2004362d10d7ce520fecdcbff&amp;type=note" target="_blank" rel="external">Blog搭建之Hexo+Node.js+ejs+bootstrap+markdown+GithubPage</a></p>
@@ -204,7 +205,7 @@
 		<ul>
 		
 		  
-			<li><a href="/categories/原创博文/Android开发笔记/" title="Android开发笔记">Android开发笔记<sup>2</sup></a></li>
+			<li><a href="/categories/原创博文/Android开发笔记/" title="Android开发笔记">Android开发笔记<sup>3</sup></a></li>
 		  
 		
 		  
@@ -216,7 +217,7 @@
 		  
 		
 		  
-			<li><a href="/categories/原创博文/" title="原创博文">原创博文<sup>6</sup></a></li>
+			<li><a href="/categories/原创博文/" title="原创博文">原创博文<sup>7</sup></a></li>
 		  
 		
 		  
@@ -233,11 +234,15 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/个人故事/" title="个人故事">个人故事<sup>3</sup></a></li>
+				<li><a href="/tags/个人故事/" title="个人故事">个人故事<sup>4</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
+				<li><a href="/tags/Android/" title="Android">Android<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hackathon/" title="Hackathon">Hackathon<sup>1</sup></a></li>
 			
 		
 			
@@ -257,11 +262,11 @@
 			
 		
 			
-				<li><a href="/tags/代码托管/" title="代码托管">代码托管<sup>1</sup></a></li>
+				<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>1</sup></a></li>
+				<li><a href="/tags/拍照摄影/" title="拍照摄影">拍照摄影<sup>1</sup></a></li>
 			
 		
 			
@@ -285,7 +290,7 @@
 			
 		
 			
-				<li><a href="/tags/拍照摄影/" title="拍照摄影">拍照摄影<sup>1</sup></a></li>
+				<li><a href="/tags/代码托管/" title="代码托管">代码托管<sup>1</sup></a></li>
 			
 		
 		</ul>

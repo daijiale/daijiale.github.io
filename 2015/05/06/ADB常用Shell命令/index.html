@@ -31,6 +31,7 @@ Adb命令的主要用途
 管理模拟器或Android设备的映射端口。
 安装和卸载应用程序。
 计算机和Android设备之间的上传和下载文件。">
+<meta property="og:updated_time" content="2015-05-26T07:35:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用Adb Shell命令">
 <meta name="twitter:description" content="实用Adb Shell命令演示
@@ -132,87 +133,87 @@ Adb命令的主要用途
 <a id="more"></a>
 <h2 id="Adb操作命令">Adb操作命令</h2><ol>
 <li>显示系统中全部Android平台：</li>
-<li><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android <span class="type">list</span> targets</span><br></pre></td></tr></table></figure>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android list targets</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>显示系统中全部AVD（模拟器）：</p>
- <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android <span class="type">list</span> avd</span><br></pre></td></tr></table></figure>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android list avd</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>创建AVD（模拟器）：</p>
-<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">android</span> <span class="comment">create</span> <span class="comment">avd</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">name</span> <span class="comment">名称</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">target</span> <span class="comment">平台编号</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android create avd --name &#21517;&#31216; --target &#24179;&#21488;&#32534;&#21495;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>启动模拟器：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">emulator -avd 名称 -sdcard ~/名称<span class="class">.img</span> (-skin <span class="number">1280</span>x800)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">emulator -avd &#21517;&#31216; -sdcard ~/&#21517;&#31216;.img (-skin 1280x800)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>删除AVD（模拟器）：</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android <span class="built_in">delete</span> avd <span class="comment">--name 名称</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android delete avd --name &#21517;&#31216;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>创建SDCard：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">mksdcard</span> <span class="number">1024M</span> ~/名称.img</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mksdcard 1024M ~/&#21517;&#31216;.img</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>AVD(模拟器)所在位置：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">Linux</span><span class="params">(~/.android/avd)</span></span>      </span><br><span class="line"><span class="function"><span class="title">Windows</span><span class="params">(C:\Documents and Settings\Administrator\.android\avd)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Linux(~/.android/avd)      &#10;Windows(C:\Documents and Settings\Administrator\.android\avd)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>启动DDMS：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ddms</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ddms</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>显示当前运行的全部模拟器：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">adb</span> devices</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb devices</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>对某一模拟器执行命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">abd <span class="operator">-s</span> 模拟器编号 命令</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">abd -s &#27169;&#25311;&#22120;&#32534;&#21495; &#21629;&#20196;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>安装应用程序：</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb <span class="keyword">install</span> -r 应用程序.apk</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb install -r &#24212;&#29992;&#31243;&#24207;.apk</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>获取模拟器中的文件：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb pull <span class="tag">&lt;<span class="title">remote</span>&gt;</span> <span class="tag">&lt;<span class="title">local</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb pull &#60;remote&#62; &#60;local&#62;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>向模拟器中写文件：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb push <span class="tag">&lt;<span class="title">local</span>&gt;</span> <span class="tag">&lt;<span class="title">remote</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb push &#60;local&#62; &#60;remote&#62;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>进入模拟器的shell模式：</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb <span class="built_in">shell</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>启动SDK，文档，实例下载管理器：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>缷载apk包：</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">adb <span class="keyword">shell</span></span><br><span class="line"><span class="keyword">cd</span> data/<span class="keyword">app</span></span><br><span class="line"><span class="keyword">rm</span> apk包</span><br><span class="line"><span class="keyword">exit</span></span><br><span class="line">adb uninstall apk包的主包名</span><br><span class="line">adb install -r apk包</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell&#10;cd data/app&#10;rm apk&#21253;&#10;exit&#10;adb uninstall apk&#21253;&#30340;&#20027;&#21253;&#21517;&#10;adb install -r apk&#21253;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>查看adb命令帮助信息：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb <span class="built_in">help</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb help</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>在命令行中查看LOG信息：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb logcat <span class="operator">-s</span> 标签名</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb logcat -s &#26631;&#31614;&#21517;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>adb shell后面跟的命令主要来自：<br>  源码\system\core\toolbox目录和源码\frameworks\base\cmds目录。</p>
 </li>
 <li><p>删除系统应用：</p>
-  <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">adb remount （重新挂载系统分区，使系统分区重新可写）。</span><br><span class="line">   adb <span class="keyword">shell</span></span><br><span class="line">   <span class="keyword">cd</span> system/<span class="keyword">app</span> </span><br><span class="line">   <span class="keyword">rm</span> *.apk</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb remount &#65288;&#37325;&#26032;&#25346;&#36733;&#31995;&#32479;&#20998;&#21306;&#65292;&#20351;&#31995;&#32479;&#20998;&#21306;&#37325;&#26032;&#21487;&#20889;&#65289;&#12290;&#10;   adb shell&#10;   cd system/app &#10;   rm *.apk</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>获取管理 员权限：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">adb</span> root</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb root</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>启动Activity：</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb <span class="keyword">shell</span> am start -<span class="keyword">n</span> 包名/包名＋类名（-<span class="keyword">n</span> 类名,-a action,-<span class="keyword">d</span> date,-<span class="keyword">m</span> MIME-<span class="keyword">TYPE</span>,-c category,-<span class="keyword">e</span> 扩展数据,等）。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am start -n &#21253;&#21517;/&#21253;&#21517;&#65291;&#31867;&#21517;&#65288;-n &#31867;&#21517;,-a action,-d date,-m MIME-TYPE,-c category,-e &#25193;&#23637;&#25968;&#25454;,&#31561;&#65289;&#12290;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>23、发布端口：<br>    你可以设置任意的端口号，做为主机向模拟器或设备的请求端口。如： </p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb forward <span class="string">tcp:</span><span class="number">5555</span> <span class="string">tcp:</span><span class="number">8000</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb forward tcp:5555 tcp:8000</span><br></pre></td></tr></table></figure>
 <p>24、复制文件：<br>    你可向一个设备或从一个设备中复制文件，<br>     复制一个文件或目录到设备或模拟器上： </p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> adb push <span class="tag">&lt;<span class="title">source</span>&gt;</span> <span class="tag">&lt;<span class="title">destination</span>&gt;</span><span class="tag">&lt;/<span class="title">destination</span>&gt;</span><span class="tag">&lt;/<span class="title">source</span>&gt;</span> </span><br><span class="line">```      </span><br><span class="line">如：</span><br></pre></td></tr></table></figure>
-<p>adb push test.txt /tmp/test.txt<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">从设备或模拟器上复制一个文件或目录： </span><br><span class="line">```     </span><br><span class="line">adb pull <span class="tag">&lt;<span class="title">source</span>&gt;</span> <span class="tag">&lt;<span class="title">destination</span>&gt;</span><span class="tag">&lt;/<span class="title">destination</span>&gt;</span><span class="tag">&lt;/<span class="title">source</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>如：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb pull /addroid/lib/libwebcore<span class="class">.so</span> .</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> adb push &#60;source&#62; &#60;destination&#62;&#60;/destination&#62;&#60;/source&#62; &#10;```      &#10;&#22914;&#65306;</span><br></pre></td></tr></table></figure>
+<p>adb push test.txt /tmp/test.txt<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#20174;&#35774;&#22791;&#25110;&#27169;&#25311;&#22120;&#19978;&#22797;&#21046;&#19968;&#20010;&#25991;&#20214;&#25110;&#30446;&#24405;&#65306; &#10;```     &#10;adb pull &#60;source&#62; &#60;destination&#62;&#60;/destination&#62;&#60;/source&#62;</span><br></pre></td></tr></table></figure></p>
+<p>如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb pull /addroid/lib/libwebcore.so .</span><br></pre></td></tr></table></figure></p>
 <p>25、搜索模拟器/设备的实例：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> 取得当前运行的模拟器/设备的实例的列表及每个实例的状态：</span><br><span class="line">adb devices</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> &#21462;&#24471;&#24403;&#21069;&#36816;&#34892;&#30340;&#27169;&#25311;&#22120;/&#35774;&#22791;&#30340;&#23454;&#20363;&#30340;&#21015;&#34920;&#21450;&#27599;&#20010;&#23454;&#20363;&#30340;&#29366;&#24577;&#65306;&#10;adb devices</span><br></pre></td></tr></table></figure>
 <p>26、查看bug报告： </p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">adb</span> bugreport</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb bugreport</span><br></pre></td></tr></table></figure>
 <p>27、记录无线通讯日志：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">一般来说，无线通讯的日志非常多，在运行时没必要去记录，但我们还是可以通过命令，设置记录： </span><br><span class="line">adb shell </span><br><span class="line">logcat -<span class="tag">b</span> radio</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#19968;&#33324;&#26469;&#35828;&#65292;&#26080;&#32447;&#36890;&#35759;&#30340;&#26085;&#24535;&#38750;&#24120;&#22810;&#65292;&#22312;&#36816;&#34892;&#26102;&#27809;&#24517;&#35201;&#21435;&#35760;&#24405;&#65292;&#20294;&#25105;&#20204;&#36824;&#26159;&#21487;&#20197;&#36890;&#36807;&#21629;&#20196;&#65292;&#35774;&#32622;&#35760;&#24405;&#65306; &#10;adb shell &#10;logcat -b radio</span><br></pre></td></tr></table></figure>
 <p>28、获取设备的ID和序列号：</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb <span class="keyword">get</span>-product </span><br><span class="line">adb <span class="keyword">get</span>-serialno</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb get-product &#10;adb get-serialno</span><br></pre></td></tr></table></figure>
 <p>29、访问数据库SQLite3</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb <span class="built_in">shell</span> </span><br><span class="line">sqlite3</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell &#10;sqlite3</span><br></pre></td></tr></table></figure>
 <h2 id="Adb_高级命令">Adb 高级命令</h2><ul>
 <li>am – ActivityManager 命令</li>
 <li>pm – PackageManager命令</li>
@@ -226,9 +227,9 @@ Adb命令的主要用途
 <li>可以发送broadcast</li>
 <li>可以监控activity的状态</li>
 </ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">am start –n <span class="tag">&lt;<span class="title">ComponentName</span>&gt;</span></span><br><span class="line">am start –a <span class="tag">&lt;<span class="title">Action</span>&gt;</span> -c <span class="tag">&lt;<span class="title">Category</span>&gt;</span> -e<span class="tag">&lt;<span class="title">Extra</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">am start &#8211;n &#60;ComponentName&#62;&#10;am start &#8211;a &#60;Action&#62; -c &#60;Category&#62; -e&#60;Extra&#62;</span><br></pre></td></tr></table></figure>
 <p>例：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">am start –n com<span class="class">.android</span><span class="class">.settings</span> <span class="comment">//启动系统设置</span></span><br><span class="line"></span><br><span class="line">am start –<span class="tag">a</span> com<span class="class">.android</span><span class="class">.intent</span><span class="class">.action</span><span class="class">.MAIN</span> –c com<span class="class">.android</span><span class="class">.intent</span><span class="class">.category</span><span class="class">.HOME</span> <span class="comment">//启动Home页</span></span><br><span class="line"></span><br><span class="line">am force-stop &lt;package&gt;</span><br><span class="line"></span><br><span class="line">am start -<span class="tag">a</span> android<span class="class">.intent</span><span class="class">.action</span><span class="class">.VIEW</span> -d http:<span class="comment">//www.baidu.com</span></span><br><span class="line"></span><br><span class="line">am start -<span class="tag">a</span> android<span class="class">.intent</span><span class="class">.action</span><span class="class">.CALL</span> -d tel:<span class="number">12345</span></span><br><span class="line"></span><br><span class="line">am startservice –n &lt;ComponentName&gt;</span><br><span class="line"></span><br><span class="line">am broadcast …</span><br><span class="line"></span><br><span class="line">am force-stop &lt;package&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;am start &#8211;n com.android.settings //&#21551;&#21160;&#31995;&#32479;&#35774;&#32622;&#10;&#10;am start &#8211;a com.android.intent.action.MAIN &#8211;c com.android.intent.category.HOME //&#21551;&#21160;Home&#39029;&#10;&#10;am force-stop &#60;package&#62;&#10;&#10;am start -a android.intent.action.VIEW -d http://www.baidu.com&#10;&#10;am start -a android.intent.action.CALL -d tel:12345&#10;&#10;am startservice &#8211;n &#60;ComponentName&#62;&#10;&#10;am broadcast &#8230;&#10;&#10;am force-stop &#60;package&#62;</span><br></pre></td></tr></table></figure>
 <h3 id="pm命令">pm命令</h3><ul>
 <li>pm install  – 安装一个apk (可以用adb install)</li>
 <li>pm uninstall [-k] – 删除一个apk (可以用adb uninstall)</li>
@@ -252,8 +253,8 @@ Adb命令的主要用途
 <li>content delete – 删除 content provider中的数据</li>
 <li>*数据值之间用冒号(:)分隔</li>
 </ul>
-<h3 id="settings命令">settings命令</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">settings <span class="keyword">put</span> <span class="keyword">global</span> my_key “hello”</span><br><span class="line">settings <span class="keyword">get</span> <span class="keyword">global</span> my_key</span><br></pre></td></tr></table></figure>
-<h3 id="media媒体控制命令">media媒体控制命令</h3><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">media dispatch &lt;PLAY, <span class="keyword">PAUSE</span>, <span class="keyword">STOP</span> …&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="settings命令">settings命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">settings put global my_key &#8220;hello&#8221;&#10;settings get global my_key</span><br></pre></td></tr></table></figure>
+<h3 id="media媒体控制命令">media媒体控制命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">media dispatch &#60;PLAY, PAUSE, STOP &#8230;&#62;</span><br></pre></td></tr></table></figure>
 <p>模拟一个媒体按键的发送</p>
   
 	</div>
@@ -327,7 +328,7 @@ Adb命令的主要用途
 		<ul>
 		
 		  
-			<li><a href="/categories/原创博文/Android开发笔记/" title="Android开发笔记">Android开发笔记<sup>2</sup></a></li>
+			<li><a href="/categories/原创博文/Android开发笔记/" title="Android开发笔记">Android开发笔记<sup>3</sup></a></li>
 		  
 		
 		  
@@ -339,7 +340,7 @@ Adb命令的主要用途
 		  
 		
 		  
-			<li><a href="/categories/原创博文/" title="原创博文">原创博文<sup>6</sup></a></li>
+			<li><a href="/categories/原创博文/" title="原创博文">原创博文<sup>7</sup></a></li>
 		  
 		
 		  
@@ -356,11 +357,15 @@ Adb命令的主要用途
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/个人故事/" title="个人故事">个人故事<sup>3</sup></a></li>
+				<li><a href="/tags/个人故事/" title="个人故事">个人故事<sup>4</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
+				<li><a href="/tags/Android/" title="Android">Android<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hackathon/" title="Hackathon">Hackathon<sup>1</sup></a></li>
 			
 		
 			
@@ -380,11 +385,11 @@ Adb命令的主要用途
 			
 		
 			
-				<li><a href="/tags/代码托管/" title="代码托管">代码托管<sup>1</sup></a></li>
+				<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>1</sup></a></li>
+				<li><a href="/tags/拍照摄影/" title="拍照摄影">拍照摄影<sup>1</sup></a></li>
 			
 		
 			
@@ -408,7 +413,7 @@ Adb命令的主要用途
 			
 		
 			
-				<li><a href="/tags/拍照摄影/" title="拍照摄影">拍照摄影<sup>1</sup></a></li>
+				<li><a href="/tags/代码托管/" title="代码托管">代码托管<sup>1</sup></a></li>
 			
 		
 		</ul>
