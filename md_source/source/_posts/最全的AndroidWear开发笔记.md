@@ -467,6 +467,7 @@ public void onCreate(Bundle savedInstanceState){
 
 
 ![](http://7xi6qz.com1.z0.glb.clouddn.com/github_androidwear23.png)
+
 这是一个提醒流，它能很好地获取信息并与用户交互，这里有不同外观不同尺寸的垂直提醒列表，获取信息时只需要向上滑动一下表盘就能办到，继续滑动的话就会显示出额外的卡片，信息流中的这些提醒会加入到安卓提醒API中去，如果你已经熟悉了这个API，你可能就会识别出它的一些特性了，比如在独立的屏幕上会出现正确的提醒行为，但跟平板对于手机类似的是，提醒是依然可以被取消的，只需要把提醒卡滑到边上然后释放即可，手机上的提醒会自动同步到你的手表上面，这可以让许多现有安卓APP来在可穿戴设备上发挥自己的价值，它们也可以增加行为和撤销，我们**支持许多现有的提醒风格**，比如**收件箱式、大图式和长文本式**，如果内容太长，用户可以按住提醒来扩展，为了让体验更加丰富，我们也增加了新API来自定义提醒，他们就成了AndroidSDK和libs库中可穿戴设备扩展类的一部分了。
 
 首先我们来看看，多页面提醒设计：
@@ -558,14 +559,46 @@ public boolean onTouchEvent(MotionEvent ev){
 
 在它的`onCreate`中把退出层从你的布局层中拉出来，然后设置为内省文本，这个文本会在第一次运行活动时显示出来，而且会显示在APP其他内容之上，用来告诉用户可以通过长按来返回主页，然后，使用`showIntroIfNecessary`(必要时显示内省文本)，它会，也只会在第一次运行该APP时显示这个内省层，，接下来，如果用户长按了你的app，我们就需要让它激活，使用`GestureDectector`(手势检测器）和`SimpleOnGestureListener`（简易手势接收器）,使用这些框架类会确保所有app感应到手势的时长，在你长按返回时，会激活布局层显示退出行为，会显示一个退出按钮，如果用户点击了该按钮，你的活动就会被结束，但如果你没有点击该按钮，那么这个退出层就会自行隐藏，等着下次出现的命令，最后，还是在你的活动中覆盖一层 `onTouchEvent` (触控事件)，然后让`reveiveTouchEvents` (接受触控事件)连通到`GestureDectector`（手势检测器）,如果 `GestureDetector` 返回为true，你也真的返回主页了，而且不用触动 `onTouchEvent` 方式的正常活动,相反如果为false，那就可以继续使用正常活动的触控。
 
-## 如何设计和运用你的APP，让ta看起来在圆形屏幕上很不错。 ##
+## 如何设计和运用你的APP，让ta看起来在圆形屏幕(Moto 360)上很不错。 ##
 
- 
+  
+![](http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogmoto360_size.PNG)
+
+首先，我们来看看360的屏幕维度吧，这是一个直径为320px的圆圈，下方有30px的`chin`，因此系统会认为它的尺寸为320x290px，在我们自己开发的过程中，我们意识到chin会将一些非计划中的结果导入到现有的布局中，比如我们来看一下信息流中的行为卡片，我们希望给屏幕中央放置一个行为图标，但我们给中央垂直点加了一个层重力机制之后，结果这个蓝圆偏移了15px，但我们还是希望中间的这个蓝圆最好能够处于整个屏幕的中央，在我们之前提到过的默认主题中，`windowOverscan`属性已经设置了，而且整个视图分级结构的源是320X320px，这就导致了你的APP顶级结构视图，依然认为是320X320，而非320X290，然后再把你的局布如预想般放在屏幕中央，如何检测你的活动是运行在圆形屏幕中的呢？你的视图会请求应用窗口插入`insets`,然后会返回一个窗口插入目标，它会告诉你屏幕的形状，在Moto360中，它会告诉你下方插入的窗口为30px，在任何地方只要你要围绕这个`chin`来布局，你就需要经常使用这个值，这里所使用的插入值，会确保你的APP在以后任何可穿戴设备上看起来都很漂亮，为了节省大家敲打这些通用代码的时间，Google增加了一个叫`WatchViewStub`的视图，它可以让你根据APP运行的不同屏幕来扩充一两种不同的布局，如果你想在屏幕上看起来与众不同，就可以使用`WatchViewStub`来作为任何视图分级就够的源，要使用的话，先在你的活动或者onCreate碎片中创建一个新的源，完成之后，你就需要给你的源加上两层布局（`Round、Rect`）,但是有一个问题需要注意：因为这些布局在视图在附加进结构分级前，并没有进行扩充，你就没办法进入子一级的视图，相反，附加一个OnLayoutInflatedListener(布局扩充收听器)，它可以在布局内层进行不合适的扩充时使用，退出布局视图和这个WatchViewStub都可以在可穿戴支持库`Wearable Library`中找到，如下：
 
 
+```
+public WindowInsets onApplyWindowInsets(View view,WindowInsets windowInsets){
+	if(windowInsets.isRound()){
+		Rect insets = windowInsets.getSystemWindowInsets();
+	//insets.bottom = 30
+	}
+}
 
 
+```
 
+ControlRobotsActivity.java
+
+```
+@Override
+public void onCreate(Bundle savedInstanceState){
+
+   WatchViewStub stub = new WatchViewStub(this);
+	stub.setRectLayout(R.layout.activity_control_robots_rect);
+	stub.setRoundLayout(R.layout.activity_control_robots_round);
+
+	stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener(){
+		@Override public void onLayoutInflated(WatchViewStub stub){
+			stub.findViewById(R.id.start_invasion).setOnClickListener(mClick);
+		}
+	});
+	setContentView(stub);
+}
+
+```
+
+该库同时也提供叫做`盒状插入布局的新布局管理器`，它拓展了框架布局，让开发师能够同时在方形与圆形屏幕上使用同一布局。
 
 
 # Android Wear表盘（WatchFace）设计与开发 #
@@ -585,7 +618,7 @@ public boolean onTouchEvent(MotionEvent ev){
   - [Android Wear Google官方教程（请翻墙，或者自己搜镜像）](http://developer.android.com/wear/index.html)
   - [Android Wear Google官方教程 `穿戴猫`汉化版本](http://dev.seacat.cn/index.html)
   - [Android Wear `穿戴猫`社区原创基础教程](http://bbs.seacat.cn/forum-106-1.html)
-  - [Android Wear - App Structure for Android Wear（应用结构](http://www.tuicool.com/articles/F7Z3Yj)
+  - [Android Wear - App Structure for Android Wear（应用结构)](http://www.tuicool.com/articles/F7Z3Yj)
   - [benhero博客_Android Wear开发学习指南](http://www.cnblogs.com/benhero/p/4273800.html)
   - [Android Wear_Hands-On](http://code.tutsplus.com/tutorials/introduction-to-android-wear-hands-on--cms-22157)
   - [AndroidWear CanvasWatchFaceService](http://code.tutsplus.com/tutorials/creating-an-android-wear-watch-face--cms-23718)
@@ -640,7 +673,14 @@ public boolean onTouchEvent(MotionEvent ev){
 
 #加入我们#
 
+组织在这里：[AndroidWear-CN](https://github.com/AndroidWearDemo)
+
+
+![](http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogAndroidWear-CN.png)
 
 
 
-**转载**请注明**出处+原文链接+原文作者**，侵权必究，谢谢！
+
+
+
+> **转载**请注明**出处+原文链接+原文作者**，侵权必究，谢谢！
