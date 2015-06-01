@@ -585,6 +585,7 @@ public boolean onTouchEvent(MotionEvent ev){
   - [Android Wear Google官方教程（请翻墙，或者自己搜镜像）](http://developer.android.com/wear/index.html)
   - [Android Wear Google官方教程 `穿戴猫`汉化版本](http://dev.seacat.cn/index.html)
   - [Android Wear `穿戴猫`社区原创基础教程](http://bbs.seacat.cn/forum-106-1.html)
+  - [Android Wear - App Structure for Android Wear（应用结构](http://www.tuicool.com/articles/F7Z3Yj)
   - [benhero博客_Android Wear开发学习指南](http://www.cnblogs.com/benhero/p/4273800.html)
   - [Android Wear_Hands-On](http://code.tutsplus.com/tutorials/introduction-to-android-wear-hands-on--cms-22157)
   - [AndroidWear CanvasWatchFaceService](http://code.tutsplus.com/tutorials/creating-an-android-wear-watch-face--cms-23718)
