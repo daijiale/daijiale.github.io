@@ -459,6 +459,9 @@ public void onCreate(Bundle savedInstanceState){
 
 # Android Wear的提醒（Notification）新特性 #
 
+![](http://7xi6qz.com1.z0.glb.clouddn.com/github_androidwear23.png)
+
+
 我们来看看wear设备提醒的三个新方面吧：
  
  - 新的显示选项
