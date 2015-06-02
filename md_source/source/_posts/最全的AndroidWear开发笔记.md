@@ -470,22 +470,84 @@ public void onCreate(Bundle savedInstanceState){
 
 
 
-这是一个提醒流，它能很好地获取信息并与用户交互，这里有不同外观不同尺寸的垂直提醒列表，获取信息时只需要向上滑动一下表盘就能办到，继续滑动的话就会显示出额外的卡片，信息流中的这些提醒会加入到安卓提醒API中去，如果你已经熟悉了这个API，你可能就会识别出它的一些特性了，比如在独立的屏幕上会出现正确的提醒行为，但跟平板对于手机类似的是，提醒是依然可以被取消的，只需要把提醒卡滑到边上然后释放即可，手机上的提醒会自动同步到你的手表上面，这可以让许多现有安卓APP来在可穿戴设备上发挥自己的价值，它们也可以增加行为和撤销，我们**支持许多现有的提醒风格**，比如**收件箱式、大图式和长文本式**，如果内容太长，用户可以按住提醒来扩展，为了让体验更加丰富，我们也增加了新API来自定义提醒，他们就成了AndroidSDK和libs库中可穿戴设备扩展类的一部分了。
+这是一个提醒流，它能很好地获取信息并与用户交互，这里有不同外观不同尺寸的垂直提醒列表，获取信息时只需要向上滑动一下表盘就能办到，继续滑动的话就会显示出额外的卡片，信息流中的这些提醒会加入到安卓提醒API中去，如果你已经熟悉了这个API，你可能就会识别出它的一些特性了，比如在独立的屏幕上会出现正确的提醒行为，但跟平板对于手机类似的是，提醒是依然可以被取消的，只需要把提醒卡滑到边上然后释放即可，手机上的提醒会自动同步到你的手表上面，这可以让许多现有安卓APP来在可穿戴设备上发挥自己的价值，它们也可以增加行为和撤销，我们**支持许多现有的提醒风格**，比如**收件箱式、大图式和长文本式**，如果内容太长，用户可以按住提醒来扩展，为了让体验更加丰富，我们也增加了新API来自定义提醒，TA们就成了AndroidSDK和libs库中可穿戴设备扩展类的一部分了。
 
-首先我们来看看，多页面提醒设计：
+首先我们来看看，多页面提醒设计`Multi-page notifications`：
 
-这些页面
+## 多页面提醒设计（Multi-page notifications） ##
+![](http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogmutinotifi.PNG)
+
+这些页面可以进一步为单条提醒增加详细信息，通过滑动就可以进入，屏幕下方的提示会让你知道TA们停留在哪个片面上，因为页面仅仅是提醒对象，所以他们可以使用任意的提醒风格，
+
+![](http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogmutinotifi2.PNG)
+
+要给一条提醒增加页面的话，使用可穿戴设计新拓展类来增加页面，如下代码段为内容增加了两页新页面：
+
+**Add pages to a notification**
+
+```
+
+Notification page2 = ...
+Notification page3 = ...
+
+NotificationCompat.Builder builder = ...
+builder.extend(
+   new NotificationCompat.WearableExtender(
+	.addPage(page2)
+	.addPage(page3)
+	.setBackground(bitmap)//设置位图
+	.setHintShowBackgroundOnly(true));//隐藏图片
+NotificationManagerCompat.from(ctx)
+	.notify(builder.build());
+
+)
+
+```
+
+总计就是三张卡片了，此外，你可以添加一张全屏图像作为页面，就用不着卡片了，这种办法对地图或照片之类的内容来说非常实用。
+
+## 提醒堆栈（Notification Stacks） ##
+
+![](http://7xi6qz.com1.z0.glb.clouddn.com/github_myblognotifistack.PNG)
+
+它可以把多条提醒归类成一组，用户可以与整个堆栈交互，也可以进入到单独的项中，堆栈本身及子提醒也可以增加行为，这个特性对信息型APP来说非常方便，因为用户可能会一次性查看所有信息，或只看其中的一条，为了创建提醒堆栈，推送一条或多条子提醒，然后把它们全打上组密钥的标签，你可以采用`NotificationCompat.Builder`中的`setGroupMethod`（设置组方式）来实现这一点。来自同一APP相同组密钥的提醒推送会被归类到同一堆栈中，你也可以使用setSortKey(设置类密钥)来处理项，如果你喜欢为一个丛（`bundle`）选择背景图片和行为，你可以推送一个可选择的组概要提醒，在下面代码中，用户会看到为丛设置的“全部归档”行为，取保为每个提醒选择一个唯一的提醒ID或标签，以免它们在推送时会相互覆盖。
+
+**Post group child notifications**
+
+```
+
+//for each child notification
+NotificationCompat.Builder builder = ...
+build.addAction(R.drawable.archive,
+	"Archive",pendingIntent)
+	.setGroup("my-group")
+	.setSortKey("sort-key");
+NotificationManagerCompat.from(ctx)
+	.notify(builder.build());
+
+```
+目前展示的提醒行为全部使用了默认设置，可以作为附加页面增加到相应卡片之中，下图左手的手表展示了这一设置
 
 
+```
 
+//Action Notification
+NotificationCompat.Builder builder = ...
+build.addAction(R.drawable.pause,"Pause",intent)
+build.extend(new NotificationCompat.WearableExtend)
+	.setContentAction()
 
-这里有博主自己曾经写过的一个运行在Android手机上的Demo，用来展示Wear端的Notification新特性:[在Github上获取](https://github.com/AndroidWearDemo/AndroidWearNotification)
+```
+
+## Remote Input ##
+
+PS：这里有博主自己曾经写过的一个运行在Android手机上的Demo，用来展示Wear端的Notification新特性:[在Github上获取](https://github.com/AndroidWearDemo/AndroidWearNotification)
 
 也可以参考国外大神的一个例子：[Enhanced and Wearable-Ready Notifications on Android](http://code.tutsplus.com/tutorials/enhanced-and-wearable-ready-notifications-on-android--cms-21868)
 
 # Android Wear下的全屏App设计理念 #
 
-为Android Wear设计APP的许多技术因素，你们会觉得非常熟悉，因为它们跟普通的Android APP运行原理是一样的，不过呢，我今天主要讲的是**两大不同点**：
+为Android Wear设计APP的许多技术因素，你们会觉得非常熟悉，因为它们跟普通的Android APP运行原理是一样的，不过呢，这里主要讲的是**两大不同点**：
 
 ## 让用户如何退出APP ##
  
@@ -579,7 +641,7 @@ public WindowInsets onApplyWindowInsets(View view,WindowInsets windowInsets){
 
 ```
 
-ControlRobotsActivity.java
+**ControlRobotsActivity.java**
 
 ```
 @Override
