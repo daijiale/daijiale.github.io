@@ -466,14 +466,12 @@ public void onCreate(Bundle savedInstanceState){
  - 高级自定义设置
 
 
-![](http://7xi6qz.com1.z0.glb.clouddn.com/github_androidwear23.png)
 
 这是一个提醒流，它能很好地获取信息并与用户交互，这里有不同外观不同尺寸的垂直提醒列表，获取信息时只需要向上滑动一下表盘就能办到，继续滑动的话就会显示出额外的卡片，信息流中的这些提醒会加入到安卓提醒API中去，如果你已经熟悉了这个API，你可能就会识别出它的一些特性了，比如在独立的屏幕上会出现正确的提醒行为，但跟平板对于手机类似的是，提醒是依然可以被取消的，只需要把提醒卡滑到边上然后释放即可，手机上的提醒会自动同步到你的手表上面，这可以让许多现有安卓APP来在可穿戴设备上发挥自己的价值，它们也可以增加行为和撤销，我们**支持许多现有的提醒风格**，比如**收件箱式、大图式和长文本式**，如果内容太长，用户可以按住提醒来扩展，为了让体验更加丰富，我们也增加了新API来自定义提醒，他们就成了AndroidSDK和libs库中可穿戴设备扩展类的一部分了。
 
 首先我们来看看，多页面提醒设计：
 
 这些页面
-
 
 
 
@@ -624,6 +622,7 @@ public void onCreate(Bundle savedInstanceState){
   - [AndroidWear CanvasWatchFaceService](http://code.tutsplus.com/tutorials/creating-an-android-wear-watch-face--cms-23718)
   - [Introduction to Android Wear: The Basics](http://code.tutsplus.com/articles/introduction-to-android-wear-the-basics--cms-22042)
   - [Enhanced and Wearable-Ready Notifications on Android](http://code.tutsplus.com/tutorials/enhanced-and-wearable-ready-notifications-on-android--cms-21868)
+  - [Ask AndroidStudio Wear问答社区](http://ask.android-studio.org/?/explore/category-wear)
  
  - 设计类 
   - [Google 官方Android Wear设计教程（需要翻墙）](http://developer.android.com/design/wear/index.html) 
@@ -673,7 +672,7 @@ public void onCreate(Bundle savedInstanceState){
 
 #加入我们#
 
-组织在这里：[AndroidWear-CN](https://github.com/AndroidWearDemo)
+组织在这里(请猛戳链接)：[AndroidWear-CN](https://github.com/AndroidWearDemo)
 
 
 ![](http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogAndroidWear-CN.png)
