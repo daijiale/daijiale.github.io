@@ -526,8 +526,8 @@ NotificationManagerCompat.from(ctx)
 	.notify(builder.build());
 
 ```
-目前展示的提醒行为全部使用了默认设置，可以作为附加页面增加到相应卡片之中，下图左手的手表展示了这一设置
 
+目前展示的提醒行为全部使用了默认设置，可以作为附加页面增加到相应卡片之中，下图左手的手表展示了这一设置,把主卡滑走就出现了“播放”行为，右手的手表则展示了直接把行为添加进当前卡片的行为，这样这张卡片就可以直接点击了，使用可穿戴扩展器中的setContentAction(设置内容行为)来为卡片添加行为。这些行为就不会作为单一页面来显示了。
 
 ```
 
@@ -539,7 +539,81 @@ build.extend(new NotificationCompat.WearableExtend)
 
 ```
 
-## Remote Input ##
+![](http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogmusicstatus.PNG)
+
+
+
+![](http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogmusicstatus0.PNG)
+
+## 远程输入（Remote Input）##
+
+远程输入则是提醒行为的另外一个新特性，在激活一个行为时，它可以让用户开启文本回复，设备会提供给用户一个短语或让用户从一些选项中进行选择，这种输入的结果就是将含有你意图的行为发送了出去，通过远程输入，AndroidWear与手机、平板或可穿戴设备的APP互动就变得非常简单了，下面的代码就显示出我们为回复行为增加了一个远程输入，用户在卡片流中点击这一行为时，系统就会在`Quick Reply`的标签下，提供给用户一个语音回复的行为，一旦文本回复转换完成而又得到了用户的同意，你的行为意图就会发出，而且目的已经包含在内了，
+
+```
+
+**Add RemoteInput to a notification action**
+String EXTRA_QUICK_REPLY = "quick_reply";
+
+NotificationCompat.Builder builder=...
+builder.addAction(
+	new NotificationCompat.Action.Builder(
+		R.drawable.reply,"Reply",pendingIntent
+	.addRemoteInput(
+		new RemoteInput.Builder(EXTRA_QUICK_REPLY)
+			.setLabel("Quick reply").build())
+		.build());
+
+...
+
+```
+
+你的意图接收器，可以是一个`Activity`，`Service`，`Broadcast`，就可以使用远程输入API意图功能中的`Get Results`，来重新恢复成目的文本了，在下面的代码中，quickReplyText变量会根据用户的输入来进行设置，在远程输入API中还有许多其他选项可以使用，支持的内容包括预设选择、允许或禁用、自由样式输入，还支持同一行为的多种输入等。
+
+
+**MyActivity.java**
+
+```
+protected void onCreate(Bundle savedInstanceState){
+	super.onCreate(savedInstanceState);
+	Bundle results = RemoteInput.getResultsFromIntent(
+		getIntent());
+	if(results != null){
+		CharSequence quickReplyText = 
+			results.getCharSequence(
+				EXTRE_QUICK_REPLY);
+		}
+
+}
+
+
+```
+
+## Custom Display Cards ##
+
+标准的提醒模版或许并不足以展示你想在卡片中出现的内容，所以我们增加了一个API：set Display Intent（设置显示意图），它可以让你使用安卓活动来实时绘制提醒内容，这一特性只对可穿戴设备上运行的APP可用，而且这些APP所用的API需要20以上的版本，定义内嵌到自定义显示卡片的活动时，你必须首先把它标记为exported（导出），这个可以通过在活动中设置导出属性为true，或增加一个意图过滤器来完成，接下来，把这一新属性的“是否潜入”设置为true，这样可以防止活动嵌入到不该嵌入的事件中去，最后，设置关联任务`task Affinity`为空字符串，虽然触控输入并不会在信息流中传播，但这些活动与其他活动一样，可以包含相同内容，这样像按钮那样的控制就可能不再适合了，你的活动写入之后，你可以将其嵌入到信息流中来创建一条提醒，然后使用可穿戴扩展器中的`setDisplayIntent`（设置显示意图）方式来选择该活动，你可以为显示意图增加附加内容来通过活动所需要的任何数据。
+
+**AndroidMainifest.xml**
+
+```
+<activity
+	android:name="com.example.MyDisplayActivity"
+	android:exported="true"
+	android:allowEmbeded="true"
+	android:taskAffinity="" />
+
+```
+下面就是自定义显示提醒的一些模版，信息流中的标准提醒会基于内容自动调整大小，但是自定义显示提醒则需要在不想要默认大尺寸的情况下提供一个尺寸，你可以使用可穿戴拓展器中的设置自定义尺寸预设，或是设置自定义内容高度等方式来选择尺寸，
+
+## Notification Bridging ##
+
+之前上面提到的提醒API
+
+```
+
+
+```
+
+![](http://7xi6qz.com1.z0.glb.clouddn.com/github_myblognotifiwearmoban.PNG)
 
 PS：这里有博主自己曾经写过的一个运行在Android手机上的Demo，用来展示Wear端的Notification新特性:[在Github上获取](https://github.com/AndroidWearDemo/AndroidWearNotification)
 
