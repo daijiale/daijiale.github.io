@@ -1,4 +1,4 @@
-title: 下次人家问再你怎么入门AndroidWear，你就甩这篇文章给ta
+title: 下次人家问再你怎么入门AndroidWear，你就甩这篇文章给TA
 date: 2015-5-4 16:23:09
 tags:
 
@@ -602,18 +602,45 @@ protected void onCreate(Bundle savedInstanceState){
 	android:taskAffinity="" />
 
 ```
-下面就是自定义显示提醒的一些模版，信息流中的标准提醒会基于内容自动调整大小，但是自定义显示提醒则需要在不想要默认大尺寸的情况下提供一个尺寸，你可以使用可穿戴拓展器中的设置自定义尺寸预设，或是设置自定义内容高度等方式来选择尺寸，
+
+下面就是自定义显示提醒的一些模版，信息流中的标准提醒会基于内容自动调整大小，但是自定义显示提醒则需要在不想要默认大尺寸的情况下提供一个尺寸，你可以使用可穿戴拓展器中的设置自定义尺寸预设，或是设置自定义内容高度等方式来选择尺寸。
+
+![](http://7xi6qz.com1.z0.glb.clouddn.com/github_myblognotifiwearmoban.PNG)
 
 ## Notification Bridging ##
 
-之前上面提到的提醒API
+![](http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogmobile_wear_noti.PNG)
+
+通过设置这些自定义卡片，之前上面提到的`Notification API`可以同时用在可穿戴设备的APP的提醒创建，以及来自手机或平板APP上的提醒桥接，桥接过程在可穿戴设备上是自动进行的，但是这里还有**几种新API是用来自定义桥接行为的**，如下代码所示：首先，你可以使用提醒兼容设置中的新`set Local Only`（设置仅本地）来完全禁用提醒桥接，如果一个提醒仅相关当前设备，那它就很有用处了，第二个特效，就是增加提醒仅可穿戴设备可用的行为，它可以让你为手机和可穿戴设备选择单独的行为设置，仅可穿戴可用行为在可穿戴扩展器的类中添加。
+
+
+**Disable bridging for a notification**
+
+```
+NotificationCompat.Builder builder = ...
+builder.setLocalOnly(false);
+
 
 ```
 
+**Add an action for phones,tablets,and wearables**
 
 ```
+NotificationCompat.Builder builder = ...
+builder.addAction(R.drawable.reply,"Archive",pendingIntent);
+	.addAction
+```
 
-![](http://7xi6qz.com1.z0.glb.clouddn.com/github_myblognotifiwearmoban.PNG)
+**Add an action for wearables only**
+
+```
+NotificationCompat.Builder builder = ...
+builder.extend(new NotificationCompat.WearableExtender()
+	.addAction(new NotificationCompat.Action(
+		R.drawable.reply,"Reply",pendingIntent)));
+```
+
+
 
 PS：这里有博主自己曾经写过的一个运行在Android手机上的Demo，用来展示Wear端的Notification新特性:[在Github上获取](https://github.com/AndroidWearDemo/AndroidWearNotification)
 
@@ -822,3 +849,4 @@ public void onCreate(Bundle savedInstanceState){
 
 
 > **转载**请注明**出处+原文链接+原文作者**，侵权必究，谢谢！
+> 持续更新中
