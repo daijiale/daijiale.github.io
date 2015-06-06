@@ -16,7 +16,7 @@ categories:
 
 ---
 
-<embed src="http://music.163.com/style/swf/widget.swf?sid=29561077&type=2&auto=1&width=320&height=66" width="340" height="86"  allowNetworking="all"></embed>
+
 
 **PS：**写这篇Blog主要有两个三个动机：
 
@@ -24,6 +24,8 @@ categories:
  - 刚好给徒弟漫漫制作一份比较全面的Ajax教程
  - 帮助更多的，对此知识有需要的童鞋
 <!--more-->
+
+<embed src="http://music.163.com/style/swf/widget.swf?sid=29561077&type=2&auto=1&width=320&height=66" width="340" height="86"  allowNetworking="all"></embed>
 # 概念介绍 #
    在介绍`Ajax`的概念之前，我觉得有必要先说明一下**“同步”和“异步”**的问题：
 

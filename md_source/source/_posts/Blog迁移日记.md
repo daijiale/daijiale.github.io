@@ -16,7 +16,7 @@ categories:
 
 ---
 
-<embed src="http://music.163.com/style/swf/widget.swf?sid=29717271&type=2&auto=1&width=320&height=66" width="340" height="86"  allowNetworking="all"></embed>
+
 
 **以下所指“更新”：均为Blog技术更新，非文章更新**
 #第一次更新_个人Blog
@@ -66,3 +66,6 @@ categories:
  - 视频床：自己Coding把。。。（博主暂时只找到[腾讯视频](http://v.qq.com/)的漏洞，亲测可用）
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**持续更新中**
+
+
+<embed src="http://music.163.com/style/swf/widget.swf?sid=29717271&type=2&auto=1&width=320&height=66" width="340" height="86"  allowNetworking="all"></embed>
