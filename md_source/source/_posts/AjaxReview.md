@@ -16,6 +16,8 @@ categories:
 
 ---
 
+<embed src="http://music.163.com/style/swf/widget.swf?sid=29561077&type=2&auto=1&width=320&height=66" width="340" height="86"  allowNetworking="all"></embed>
+
 **PS：**写这篇Blog主要有两个三个动机：
 
  - 对以前自己所学知识的一个系统化review

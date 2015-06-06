@@ -16,6 +16,8 @@ categories:
 
 ---
 
+<embed src="http://music.163.com/style/swf/widget.swf?sid=29717271&type=2&auto=1&width=320&height=66" width="340" height="86"  allowNetworking="all"></embed>
+
 **以下所指“更新”：均为Blog技术更新，非文章更新**
 #第一次更新_个人Blog
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;说起自己的第一个Blog，要从小学刚开通QQ空间开始，具体几年级已经记不清了，那个时候刚甩掉纸质日记本，然后就迈入网络日志的深坑。以前倒是产出了不少优质日志，不过都是些多愁善感的随便，至今都已经封存进_私密日日记_中(如下图)：![](http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpic_qqzonesec.PNG)
@@ -47,14 +49,20 @@ categories:
    这里主要提一下 `Hexo` 和 `Jacman`：
 
  - Hexo：
-  -  风一般的速度：`Hexo` 基于 `Node.js` ，支持多进程，几百篇文章也可以秒生成。
-  -  流畅的撰写：支持 `GitHub` ` Flavored ` ` Markdown ` 和所有 ` Octopress` 的插件。
-  -  扩展性：`Hexo`支持 `EJS `、 `Swig `和 `Stylus `。通过插件支持 `Haml`、 `Jade`和 `Less`.
-  -  More：[请参见官网](http://hexo.io/)
+   -  风一般的速度：`Hexo` 基于 `Node.js` ，支持多进程，几百篇文章也可以秒生成。
+   -  流畅的撰写：支持 `GitHub` ` Flavored ` ` Markdown ` 和所有 ` Octopress` 的插件。
+   -  扩展性：`Hexo`支持 `EJS `、 `Swig `和 `Stylus `。通过插件支持 `Haml`、 `Jade`和 `Less`.
+   -  More：[请参见官网](http://hexo.io/)
  
 
  - Jacman：`Hexo` 的一个 `ejs `模版主题，来源于民间大神__WuChong__（[更多详细用法传送门](http://note.youdao.com/share/?id=d93d060ce27c0d085021c9c0192c9e08&type=note)），在所有Hexo官网主题中个人比较倾向于他的风格，但是对于这个主题，我还是不太满意，挺多瑕疵需要我自己慢慢修改，后面我的Blog主题也会自己改成一个新的原创主题，到时候再开源出来，给更多的 `hexo` 开发者使用。现在正在往 `Low Poly Style`发展。
 
-
+ - 图床：
+   - [七牛云存储](http://www.qiniu.com/?utm_source=BAIDU&utm_medium=cpc&utm_term=%E4%BA%91%E5%AD%98%E5%82%A8&utm_content=chanpinlei&utm_campaign=qiniu-ceshi)（大图用七牛，加速给力）
+   - [TAE](http://baichuan.taobao.com/portal/doc?articleId=329)(小图用TAE，百川Hackathon接触到的，还不错)
+   
+ - 音床：[网易云音乐](http://music.163.com/#)（个人认为是目前市场上最好的全端音乐软件，不服来辩）
+ 
+ - 视频床：自己Coding把。。。（博主暂时只找到[腾讯视频](http://v.qq.com/)的漏洞，亲测可用）
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**持续更新中**

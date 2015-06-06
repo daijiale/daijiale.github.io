@@ -72,3 +72,6 @@ PS：上图和App下载链接：
 最终的现场展示没能去成（实在太累，在家补觉），有点可惜，但是我们的作品还是得到了Robin（李彦宏）和Estaff们的很多好评和建议。在高手纷纭的决赛中，我们遗憾无缘黑马奖，但通过1天的hackathon，我们`Do it , Be Cool, and Have Fun !`,我想，这，就足够了！
 
 PS：Hackathon这种竞赛模式对开发者的要求更高，可以很好的考量极速编程能力和团队协作能力，比以前我拿过奖的很多校园型开发者大赛更具挑战性，以后我会参加更多的hackathon，落地更多极具创意的思维，享受自己成长的过程，期待志同道合的朋友Join me！
+
+
+<embed src="http://music.163.com/style/swf/widget.swf?sid=28949412&type=2&auto=1&width=320&height=66" width="340" height="86"  allowNetworking="all"></embed>
