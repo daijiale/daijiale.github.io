@@ -1,8 +1,10 @@
 title: 基于百度ODP的Web前端开发
 date: 2015-6-10 11:03:09
 tags:
-
- - Php
+ 
+ - Amaze UI
+ - php
+ - html5
 
 categories:
 
@@ -136,8 +138,11 @@ ODP的做法：
 
 **前端主要区别：**
 
- - TP一般用的vo渲染前端页的数据。
- - ODP一般用Smarty渲染tpl文件生成前端。
+ - `TP`一般用的`vo`渲染前端页的数据。
+ - `ODP`一般用`Smarty`渲染`tpl`文件生成前端。
+
+
+（经`大卓`透露：`Smarty`对`ORM`——ODP封装了docker技术后的产物，兼容性不好，有大坑未解决，所以暂时不用，直接采取插入php变量进行数据交互）
 
 # H5+AmazeUI 实现移动端WebView#
 
@@ -157,8 +162,12 @@ ODP的做法：
 
 ### Demo演示 ###
 
-[H5+AmazeUI_Demo]()
+[H5+AmazeUI实现的“车生活_Demo”](http://2.daijialewebdesign.sinaapp.com/MapCar/BaiduMapCar.html)
 
+![](http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogBaiduMapCar1.png)
+![](http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogBaiduMapCar2.png)
+![](http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogBaiduMapCar3.png)
+![](http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogBaiduMapCar4.png)
 # 移动端内核兼容性分析 #
 
 ## Android WebView兼容性 ##
