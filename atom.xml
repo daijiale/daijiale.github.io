@@ -1,0 +1,1283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[DaiJiale's Blog]]></title>
+  <subtitle><![CDATA[只有汗水不会欺骗你 || Only sweat will not fail you]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://daijiale.github.io/"/>
+  <updated>2015-06-09T02:37:29.000Z</updated>
+  <id>http://daijiale.github.io/</id>
+  
+  <author>
+    <name><![CDATA[Jiale Dai]]></name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[在百度实习的那些日子]]></title>
+    <link href="http://daijiale.github.io/2015/06/18/%E5%9C%A8%E7%99%BE%E5%BA%A6%E5%AE%9E%E4%B9%A0%E7%9A%84%E9%82%A3%E4%BA%9B%E6%97%A5%E5%AD%90/"/>
+    <id>http://daijiale.github.io/2015/06/18/在百度实习的那些日子/</id>
+    <published>2015-06-18T08:13:09.000Z</published>
+    <updated>2015-06-09T02:37:29.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>时间：2014.11.19-2015.6.22</p>
+<p>地点：北京海淀区上地东路鹏寰国际大厦</p>
+<p>部门: 移动搜索事业部</p>
+</blockquote>
+<p>转眼之间，在百度移动搜索事业部创新业务项目组已经实习六个多月了，终于到了要说再见的日子。心里五味杂陈，特此写下这篇Blog，纪念这段特殊经历带给我的那些巨大成长…</p>
+<a id="more"></a>
+<p>我也不知道从哪起头比较好，就按时间顺序来吧。</p>
+<h1 id="2014年10月">2014年10月</h1><p>记得去年10月刚开始找实习的时候，直接就果断投了BAT，腾讯阿里那边可能由于是淡季的原因(没有校园通道)，社招实习生的简历基本不怎么看。。。只等到了百度HR姐姐的电话，紧接着就是长达半个月的一面、二面、三面、以及offer发放。还比较顺利，总共投了两份百度岗位，就都拿到了offer（也证明了大一大二自己那么拼是有价值的），拒绝了百度MUX视觉设计的职位，毅然选择了移动应用研发。唯一比较郁闷的就是那边立刻要求入职。。。所以只好11.19号就得奔赴北京（当时还是大三上。。。12月和1月还得回来期末考）。。。</p>
+<h1 id="2014年11月">2014年11月</h1>]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>时间：2014.11.19-2015.6.22</p>
+<p>地点：北京海淀区上地东路鹏寰国际大厦</p>
+<p>部门: 移动搜索事业部</p>
+</blockquote>
+<p>转眼之间，在百度移动搜索事业部创新业务项目组已经实习六个多月了，终于到了要说再见的日子。心里五味杂陈，特此写下这篇Blog，纪念这段特殊经历带给我的那些巨大成长…</p>]]>
+    
+    </summary>
+    
+      <category term="个人故事" scheme="http://daijiale.github.io/tags/%E4%B8%AA%E4%BA%BA%E6%95%85%E4%BA%8B/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[基于百度ODP的Web前端开发]]></title>
+    <link href="http://daijiale.github.io/2015/06/10/%E5%9F%BA%E4%BA%8E%E7%99%BE%E5%BA%A6ODP%E7%9A%84%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    <id>http://daijiale.github.io/2015/06/10/基于百度ODP的前端开发/</id>
+    <published>2015-06-10T03:03:09.000Z</published>
+    <updated>2015-06-11T09:29:54.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>ODP，即Online Develop Platform，是为百度Web业务提供完善且高度集成的基础环境、框架、基础库和工具，统一规范模式。</p>
+<p>个人认为，这套PHP开发框架和TP类似，但是安全性和效率性方便远胜于TP</p>
+<p>由于新业务的需求，转向FE的角色，这几天为此调研了一下基于ODP的Web前端开发。</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="ODP的安装和部署">ODP的安装和部署</h1><p><a href="http://man.baidu.com/inf/odp/tutorial/#ODP安装" target="_blank" rel="external">请参考内部文档</a></p>
+<h1 id="ODP文件环境">ODP文件环境</h1><p>直接切到odp文件夹下：</p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[chenyijie@cq01-ksarch-rdtest00.vm odp] $ pwd</span><br><span class="line">/home/chenyijie/odp</span><br><span class="line">[chenyijie@cq01-ksarch-rdtest00.vm odp] $ ls</span><br><span class="line">app conf data install log php <span class="keyword">template</span> webroot webserver</span><br></pre></td></tr></table></figure>
+<h2 id="app">app</h2><p>用于放置产品线业务<code>app</code>代码，类似于TP中的<code>application目录</code></p>
+<h2 id="conf">conf</h2><p><code>conf目录</code>中包含了四个文件夹，十个文件，为配置目录，用于存放组件和<code>app</code>的配置。类似于TP中的<code>config.yaml</code></p>
+<p>内含文件名称以及用途简介：</p>
+<ul>
+<li>app    文件夹，用于存放app相关的配置文件</li>
+<li>db    文件夹，存放数据库相关的配置文件：cluster.conf global.conf</li>
+<li>i18n    文件夹，存放国际化相关的配置文件：feature.conf locale.conf</li>
+<li>ral    文件夹，存放RAL（资源访问层）相关的配置文件，内容较复杂，见后续章节介绍</li>
+<li>idc.conf    Conf组件的分机房配置与RAL组件的配置相关</li>
+<li>init.conf    init组件的配置文件</li>
+<li>log.conf    配置log目录下的日志如何打印的配置文件</li>
+<li>saf.conf    SAF框架的配置文件</li>
+<li>smarty.conf    Smarty模板的配置文件</li>
+<li>passport.conf    Passport服务的配置文件</li>
+<li>pcheck.conf    pcheck静态代码检查工具的配置文件</li>
+<li>phptest.conf    phptest单元测试框架组件的配置文件</li>
+<li>layerproxy.conf    layerproxy组件的配置文件</li>
+</ul>
+<h2 id="data">data</h2><p>  本地数据目录，用来放置组件和app生成的本机数据、缓存，类似于TP的<code>data</code></p>
+<h2 id="install">install</h2><p>为组件安装信息存储目录，OCM命令读取的即为该目录信息。类似于TP中的钩子目录：<code>plugins</code></p>
+<h2 id="log">log</h2><p>生产日志目录，对调试信息的查找十分便捷。</p>
+<h2 id="php">php</h2><p>是ODP环境包含的php安装后所在的目录，可以在此目录中查看php安装的扩展、以及对php解析的开启与关闭操作。php目录中包含的phplib目录为公共库目录，存放ODP和产品线的公共库，bin目录为PHP程序目录，存放PHP和ODP的工具程序。</p>
+<h2 id="template">template</h2><p>用于存放php的页面模板，ODP环境支持火麒麟与smarty模板技术，因此template目录下可以存放以.tpl为后缀的文件。类似于TP中的<code>tpl</code></p>
+<h2 id="webroot">webroot</h2><p>webroot目录为默认的web文档目录，用于存放静态文件，以及每个app的index.php。</p>
+<h2 id="webserver">webserver</h2><p>webserver目录为webserver的安装目录，当前ODP支持lighttpd以及nginx两种服务器。</p>
+<h1 id="在Template下进行前端模版开发">在Template下进行前端模版开发</h1><p>研究了一下电视游戏的前端代码，发现和TP比较类似：</p>
+<p><strong>举例：</strong></p>
+<p>TP的做法：</p>
+<pre><code>Tpl
+-<span class="ruby"> uestc_club
+</span>    -<span class="ruby"> public
+</span>       -<span class="ruby"> <span class="constant">CSS</span>
+</span>       -<span class="ruby"> images
+</span>       -<span class="ruby"> js
+</span>       -<span class="ruby"> nav.html
+</span>       -<span class="ruby"> head.html
+</span>       -<span class="ruby"> footer.html
+</span>       -<span class="ruby"> scripts.html
+</span>    -<span class="ruby"> <span class="constant">User</span>
+</span>    -<span class="ruby"> portal
+</span>        -<span class="ruby">index.html
+</span>        -<span class="ruby"> list.html
+</span>        -<span class="ruby"> article.html
+</span>    -<span class="ruby"> config.html
+</span>    -<span class="ruby"> error.html
+</span>    -<span class="ruby"> success.html
+</span>    -<span class="ruby"> jump.html</span>
+</code></pre><p>ODP的做法：</p>
+<pre><code>template
+-<span class="ruby"> tvgame
+</span>     -<span class="ruby"> css
+</span>     -<span class="ruby"> download
+</span>     -<span class="ruby"> feedback
+</span>     -<span class="ruby"> file
+</span>         -<span class="ruby"> .apk
+</span>     -<span class="ruby"> home
+</span>         -<span class="ruby"> index.tpl
+</span>     -<span class="ruby"> images
+</span>     -<span class="ruby"> js
+</span>     -<span class="ruby"> mob
+</span>         -<span class="ruby"> about.tpl
+</span>         -<span class="ruby"> aboutNew.tpl
+</span>         -<span class="ruby"> help.tpl
+</span>     -<span class="ruby"> passport</span>
+</code></pre><p><strong>前端主要区别：</strong></p>
+<ul>
+<li><code>TP</code>一般用的<code>vo</code>渲染前端页的数据。</li>
+<li><code>ODP</code>一般用<code>Smarty</code>渲染<code>tpl</code>文件生成前端。</li>
+</ul>
+<p>（经<code>大卓</code>透露：<code>Smarty</code>对<code>ORM</code>——ODP封装了docker技术后的产物，兼容性不好，有大坑未解决，所以暂时不用，直接采取插入php变量进行数据交互）</p>
+<h1 id="H5+AmazeUI_实现移动端WebView">H5+AmazeUI 实现移动端WebView</h1><h2 id="html5表单标签新特性：">html5表单标签新特性：</h2><p><a href="http://www.w3school.com.cn/html5/html_5_form_input_types.asp" target="_blank" rel="external">Input 类型</a></p>
+<p><a href="http://www.w3school.com.cn/html5/html_5_form_attributes.asp" target="_blank" rel="external">表单元素</a></p>
+<h2 id="AmazeUI">AmazeUI</h2><h3 id="为什么不用bootstrap？">为什么不用bootstrap？</h3><ul>
+<li>bootstrap只是对HTML增加了CSS进行美化和响应式，而amaze ui则在bootstrap美化的基础上，主要增加了<a href="http://amazeui.org/javascript/slider" target="_blank" rel="external">常见的JS动态</a>，以及更多样式。</li>
+<li>支持国产吧</li>
+</ul>
+<h3 id="Demo演示">Demo演示</h3><p><a href="http://2.daijialewebdesign.sinaapp.com/MapCar/BaiduMapCar.html" target="_blank" rel="external">H5+AmazeUI实现的“车生活_Demo”</a></p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogBaiduMapCar1.png" alt=""><br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogBaiduMapCar2.png" alt=""><br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogBaiduMapCar3.png" alt=""><br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogBaiduMapCar4.png" alt=""></p>
+<h1 id="移动端内核兼容性分析">移动端内核兼容性分析</h1><h2 id="Android_WebView兼容性">Android WebView兼容性</h2><p><strong>Android WebView内核：</strong></p>
+<ul>
+<li>在Android 4.4以下(不包含4.4)系统WebView底层实现是采用<a href="http://www.webkit.org/" target="_blank" rel="external">WebKit</a>内核。</li>
+<li>在Android 4.4及其以上Google 采用了<a href="http://www.chromium.org/" target="_blank" rel="external">chromium</a>作为系统WebView的底层内核支持。</li>
+</ul>
+<p>WebKit for WebView VS Chromium for WebView性能比对（测试环境 小米2. CM Browser. Android 4.1.1 VS 4.4.3）：</p>
+<table border="1"><br><tr><br><td></td><br><td>Webkit for Webview</td><br><td>Chromium for Webview</td><br><td>备注</td><br></tr><br><tr><br><td>HTML5</td><br><td>278</td><br><td>434</td><br><td><a href="http://html5test.com/" target="_blank" rel="external">http://html5test.com/</a></td><br></tr><br><tr><br><td>远程调试</td><br><td>不支持</td><br><td>支持</td><br><td>不支持</td><br></tr><br><tr><br><td>内存占用</td><br><td>小</td><br><td>大</td><br><td>相差20-30M左右</td><br></tr><br><tr><br><td>WebAudio</td><br><td>不支持</td><br><td>支持</td><br><td>Android5.0以上支持</td><br></tr><br><tr><br><td>WebGL</td><br><td>不支持</td><br><td>支持</td><br><td>Android5.0以上支持</td><br></tr><br><tr><br><td>WebRTC</td><br><td>不支持</td><br><td>支持</td><br><td>Android5.0以上支持</td><br></tr><br></table>
+
+
+<p><strong>注意点：</strong></p>
+<ul>
+<li><p>通过webview调起本地服务的时候需要在<code>activity</code>的<code>onActivityResult</code>里做处理 ，<code>setWebViewClient</code>和<code>setWebChromeClient</code>去监听一下<code>WebView</code>的回调。</p>
+</li>
+<li><p>主流手机对HTML5的支持都是很不错的，webview一般也都是用的硬加速，不过Android和IOS相比还是比较卡。</p>
+</li>
+</ul>
+<h2 id="IOS_WebView兼容性">IOS WebView兼容性</h2><p> iOS 8拥有4个Web内核引擎，当然，也意味着兼容性和bug都是有差异的。 </p>
+<ul>
+<li><ol>
+<li>Safari</li>
+</ol>
+</li>
+<li><ol>
+<li>Web.app (使用full-screen 桌面应用)</li>
+</ol>
+</li>
+<li><ol>
+<li>UIWebView (老)</li>
+</ol>
+</li>
+<li><ol>
+<li>WKWebView（新）</li>
+</ol>
+</li>
+</ul>
+<p>这些都是支持HTML5的。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>ODP，即Online Develop Platform，是为百度Web业务提供完善且高度集成的基础环境、框架、基础库和工具，统一规范模式。</p>
+<p>个人认为，这套PHP开发框架和TP类似，但是安全性和效率性方便远胜于TP</p>
+<p>由于新业务的需求，转向FE的角色，这几天为此调研了一下基于ODP的Web前端开发。</p>
+</blockquote>]]>
+    
+    </summary>
+    
+      <category term="Amaze UI" scheme="http://daijiale.github.io/tags/Amaze-UI/"/>
+    
+      <category term="html5" scheme="http://daijiale.github.io/tags/html5/"/>
+    
+      <category term="php" scheme="http://daijiale.github.io/tags/php/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+      <category term="Web开发日记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[JavaScript经典设计模式总结]]></title>
+    <link href="http://daijiale.github.io/2015/06/09/JavaScript%E7%BB%8F%E5%85%B8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93/"/>
+    <id>http://daijiale.github.io/2015/06/09/JavaScript经典设计模式总结/</id>
+    <published>2015-06-09T03:29:31.000Z</published>
+    <updated>2015-06-11T09:32:46.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="前言">前言</h1><blockquote>
+<p>在百度即将离职的最后一个月里，我被派往新项目担任FE的角色，借此机会也重新review一下大一大二的老本行——Web前端开发。这篇Blog是对自己所学2年JS的一个设计模式总结，也是实际编码中经常用到的很多经典Case，希望能帮助到更多JS开发者，也给那些还活跃在 <code>JS API</code> 层的同学打开一个新的学习思路。<br>PS：本篇Blog侧重点在于JS的设计模式，如果只是期望了解JS语法，请直接戳<a href="http://www.w3school.com.cn/js/index.asp" target="_blank" rel="external">W3C传送门</a>！<br><a id="more"></a></p>
+</blockquote>
+<h1 id="一、JS基础">一、JS基础</h1><h2 id="动态类型语言和鸭子类型">动态类型语言和鸭子类型</h2>]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="前言">前言</h1><blockquote>
+<p>在百度即将离职的最后一个月里，我被派往新项目担任FE的角色，借此机会也重新review一下大一大二的老本行——Web前端开发。这篇Blog是对自己所学2年JS的一个设计模式总结，也是实际编码中经常用到的很多经典Case，希望能帮助到更多JS开发者，也给那些还活跃在 <code>JS API</code> 层的同学打开一个新的学习思路。<br>PS：本篇Blog侧重点在于JS的设计模式，如果只是期望了解JS语法，请直接戳<a href="http://www.w3school.com.cn/js/index.asp">W3C传送门</a>！<br>]]>
+    
+    </summary>
+    
+      <category term="Javascript" scheme="http://daijiale.github.io/tags/Javascript/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+      <category term="Web开发日记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[阿里百川Hackathon小记]]></title>
+    <link href="http://daijiale.github.io/2015/05/28/%E9%98%BF%E9%87%8C%E7%99%BE%E5%B7%9DHackathon/"/>
+    <id>http://daijiale.github.io/2015/05/28/阿里百川Hackathon/</id>
+    <published>2015-05-28T12:23:09.000Z</published>
+    <updated>2015-06-08T02:57:46.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>时间：2015.5.21-2015.5.24</p>
+<p>地点：杭州 阿里百川海创大厦</p>
+<p>Team Name: 夸克</p>
+<p>团队人员：小枫，Ceven，巡，TY，晨光</p>
+<p>What’s happened? : Hackathon Our Idea To A Android App and Server in 48 Hours!</p>
+</blockquote>
+<h1 id="题记">题记</h1><p>故事要从2015年4月说起，在OpenIM的技术论坛里Get到了这个Hackathon大赛新闻，觉得很符合自己现在的level阶段，而且自从上次参加完百度内部的Hackathon之后，很想再来试一次48小时一个APP的编程快感，再加上一直很想去杭州阿里巴巴看一看，毅然决定报名参加。<br><a id="more"></a></p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/alihackathon阿里百川-无线开放-梦想创业大赛.gif" alt=""></p>
+<p>很感谢<strong>UESTC腾讯俱乐部</strong>里Ceven、巡、晨光还有TY的响应，几乎是我在群里一说，就立马组队完成。</p>
+<p>为了<strong>低调</strong>，这里我就不对我们Team做过多介绍了：<br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/alihackathon数据可视化视图设计1.jpeg" alt=""></p>
+<h1 id="正文">正文</h1><p>没有太多波折，顺利杀入决赛，成为拿到前往杭州参加HackathonParty门票的30只团队之一…<br>组委会的安排很贴心，住宿（一到杭州发现居然是四星酒店）和来回车票（动车二等座）全报销，5月21号晚上就和成都上海（<strong>都在外地实习</strong>）的队友们集合了。真的是都在外地实习了大半年，许久不见，当晚就出去撸串吹水去了，还认识了Ceven介绍的来自上海交大的<strong>闵大荒</strong>团队（上交MDH），也是我很想在这着重提及的一个Team，很有自己的团队特色，很默契，也很有感染力（一路自拍），后面也夺得了这届比赛的冠军。<br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/alihackathondefault5.jpeg" alt=""></p>
+<h2 id="5月22号">5月22号</h2><p>参加了阿里巴巴的游园活动，和之前了解的差不多，阿里是园区型的企业，所有大楼都整合在一起，挺不错的。这点和百度不太一样，百度的大厦都分离的比较开，需要大量班车，虽然百度科技园一期和二期正在往园林化方向修建，但也不是近期能建成的。值得一提的是，阿里的企业文化很不错，可以清楚的感知到阿里员工内心的技术信仰和自豪感。当时在Logo下和Team一起拍了几张照片：</p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/alihackathondefault14.jpeg" alt=""></p>
+<p>晚上回酒店开搞，创意也是一直纠结到当晚才想出来的：<code>民族手工艺品定制APP（族宝）</code><br>（想到的很多更好的点子都有很成熟的竞品了，最后只好走极端了点，其实现在想想，当时我们顾虑太多了，不然结果肯定不一样）</p>
+<h2 id="5月23号">5月23号</h2><p>Hackathon正式启动，30组来自清华、浙大、上交、科大等各名校的研究生、本科生还有校内创业团队都进入了紧张而又兴奋的Coding、DesignParty中。</p>
+<p>16点：<code>族宝</code>Android客户端业务UI层搭建完成（赞一下晨光NB的极速编码能力）</p>
+<p>20点：<code>族宝</code>Web商户版前端完成（赞一下Ceven的Web技术）</p>
+<p>23点：<code>族宝</code>Android和Server数据通信完成（由我完成）</p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/alihackathondefault6.jpeg" alt=""></p>
+<h2 id="5月24号">5月24号</h2><p>凌晨2点：<code>族宝</code>数据动态解析成功（由我完成）</p>
+<p>8点：<code>族宝</code>视觉图全部出图（感谢巡和TY的设计支持）</p>
+<p>11点：<code>族宝</code>Android和Server代码全部整合完成（由我和晨光完成）</p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/alihackathondefault11.jpeg" alt=""></p>
+<p>12点：<code>族宝</code>Beta0.1版本(<a href="https://github.com/daijiale/Zuber/tree/APK/Zuber0.1" target="_blank" rel="external">APK体验地址</a>)接受组委会阿里工程师们的技术评审（技术评委感觉还不错，就技术层面来讲：48小时已经做出一个APP雏形，该有的端都有了，就产品创意方面对我们提出了一些局限性，确实也为后面下午的产品评审埋下了隐患）</p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/alihackathondefault12.jpeg" alt=""></p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/alihackathondefault.jpeg" alt=""></p>
+<p>14点：<code>族宝</code>接受最终的产品评审，由于用户人群特殊，以及与移动端特性痛点不兼容等原因，未能获得评委们的青睐。</p>
+<p>18点：比赛进入尾声，合照颁奖之后，大家各自散伙。夸克Team的杭州之旅却远没有结束，找了一家杭州有名的饭馆，好像叫<code>外婆家的菜</code>，大吃了一顿，真的让我想起了家乡南昌的口味。好满足！</p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/alihackathondefault15.jpeg" alt=""></p>
+<p>20点：在西湖旁边的青旅留宿一晚，大家找了间酒吧夜聊！很有feel！</p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/alihackathondefault9.jpeg" alt=""></p>
+<h2 id="5月25号">5月25号</h2><p>请伙伴们吃了几道精致的西湖小菜后，就奔赴杭州东站，搭动车回北京继续上班啦。<br>这次的杭州之旅到此也画上了句号。</p>
+<h1 id="文尾">文尾</h1><p>返程的路上，很多学弟学妹询问我这次的结果如何如何，其实很多时候过程真的比结果重要，我们Team并没有因为这次的比赛结果而忧愁满满，相反我们更加享受Hackathon给我们带来的快乐和成长，毕竟这是我们5人第一次合作，这次的经历也让我们磨合得更为默契，相信下学期实习完之后，我们回到成都，能重新聚在一起做出更惊人的产品，当然，下次一定要备好一个<code>自拍杆</code>和<code>无人机</code>，哈哈！</p>
+<blockquote>
+<p>今年继<code>百度十二季Hackathon</code>之后又一季重量级Hackathon比赛，感谢你们给我带来的成长和快乐！</p>
+<p>期待自己下一次的Hackathon表现，相信那天并不会太远……</p>
+</blockquote>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/alihackathondefault10.jpeg" alt=""></p>
+<embed src="http://music.163.com/style/swf/widget.swf?sid=29808787&type=2&auto=1&width=320&height=66" width="340" height="86" allownetworking="all">
+
+
+
+
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>时间：2015.5.21-2015.5.24</p>
+<p>地点：杭州 阿里百川海创大厦</p>
+<p>Team Name: 夸克</p>
+<p>团队人员：小枫，Ceven，巡，TY，晨光</p>
+<p>What’s happened? : Hackathon Our Idea To A Android App and Server in 48 Hours!</p>
+</blockquote>
+<h1 id="题记">题记</h1><p>故事要从2015年4月说起，在OpenIM的技术论坛里Get到了这个Hackathon大赛新闻，觉得很符合自己现在的level阶段，而且自从上次参加完百度内部的Hackathon之后，很想再来试一次48小时一个APP的编程快感，再加上一直很想去杭州阿里巴巴看一看，毅然决定报名参加。<br>]]>
+    
+    </summary>
+    
+      <category term="Android" scheme="http://daijiale.github.io/tags/Android/"/>
+    
+      <category term="Hackathon" scheme="http://daijiale.github.io/tags/Hackathon/"/>
+    
+      <category term="个人故事" scheme="http://daijiale.github.io/tags/%E4%B8%AA%E4%BA%BA%E6%95%85%E4%BA%8B/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+      <category term="Android开发笔记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Android%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[常用Adb Shell命令]]></title>
+    <link href="http://daijiale.github.io/2015/05/06/ADB%E5%B8%B8%E7%94%A8Shell%E5%91%BD%E4%BB%A4/"/>
+    <id>http://daijiale.github.io/2015/05/06/ADB常用Shell命令/</id>
+    <published>2015-05-06T08:23:09.000Z</published>
+    <updated>2015-06-02T02:07:10.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="实用Adb_Shell命令演示">实用Adb Shell命令演示</h1><blockquote>
+<p>一些灵巧方便的Adb Shell命令笔记</p>
+</blockquote>
+<h2 id="Adb命令的主要用途">Adb命令的主要用途</h2><ul>
+<li>运行Android设备的命令行。</li>
+<li>管理模拟器或Android设备的映射端口。</li>
+<li>安装和卸载应用程序。</li>
+<li>计算机和Android设备之间的上传和下载文件。</li>
+</ul>
+<a id="more"></a>
+<h2 id="Adb操作命令">Adb操作命令</h2><ol>
+<li>显示系统中全部Android平台：</li>
+<li><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android <span class="type">list</span> targets</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示系统中全部AVD（模拟器）：</p>
+ <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android <span class="type">list</span> avd</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建AVD（模拟器）：</p>
+<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">android</span> <span class="comment">create</span> <span class="comment">avd</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">name</span> <span class="comment">名称</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">target</span> <span class="comment">平台编号</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动模拟器：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">emulator -avd 名称 -sdcard ~/名称<span class="class">.img</span> (-skin <span class="number">1280</span>x800)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除AVD（模拟器）：</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android <span class="built_in">delete</span> avd <span class="comment">--name 名称</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建SDCard：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">mksdcard</span> <span class="number">1024M</span> ~/名称.img</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>AVD(模拟器)所在位置：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">Linux</span><span class="params">(~/.android/avd)</span></span>      </span><br><span class="line"><span class="function"><span class="title">Windows</span><span class="params">(C:\Documents and Settings\Administrator\.android\avd)</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动DDMS：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ddms</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示当前运行的全部模拟器：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">adb</span> devices</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对某一模拟器执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">abd <span class="operator">-s</span> 模拟器编号 命令</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装应用程序：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb <span class="keyword">install</span> -r 应用程序.apk</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取模拟器中的文件：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb pull <span class="tag">&lt;<span class="title">remote</span>&gt;</span> <span class="tag">&lt;<span class="title">local</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>向模拟器中写文件：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb push <span class="tag">&lt;<span class="title">local</span>&gt;</span> <span class="tag">&lt;<span class="title">remote</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进入模拟器的shell模式：</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb <span class="built_in">shell</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动SDK，文档，实例下载管理器：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>缷载apk包：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">adb <span class="keyword">shell</span></span><br><span class="line"><span class="keyword">cd</span> data/<span class="keyword">app</span></span><br><span class="line"><span class="keyword">rm</span> apk包</span><br><span class="line"><span class="keyword">exit</span></span><br><span class="line">adb uninstall apk包的主包名</span><br><span class="line">adb install -r apk包</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看adb命令帮助信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb <span class="built_in">help</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在命令行中查看LOG信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb logcat <span class="operator">-s</span> 标签名</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>adb shell后面跟的命令主要来自：<br>  源码\system\core\toolbox目录和源码\frameworks\base\cmds目录。</p>
+</li>
+<li><p>删除系统应用：</p>
+  <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">adb remount （重新挂载系统分区，使系统分区重新可写）。</span><br><span class="line">   adb <span class="keyword">shell</span></span><br><span class="line">   <span class="keyword">cd</span> system/<span class="keyword">app</span> </span><br><span class="line">   <span class="keyword">rm</span> *.apk</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取管理 员权限：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">adb</span> root</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动Activity：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb <span class="keyword">shell</span> am start -<span class="keyword">n</span> 包名/包名＋类名（-<span class="keyword">n</span> 类名,-a action,-<span class="keyword">d</span> date,-<span class="keyword">m</span> MIME-<span class="keyword">TYPE</span>,-c category,-<span class="keyword">e</span> 扩展数据,等）。</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>23、发布端口：<br>    你可以设置任意的端口号，做为主机向模拟器或设备的请求端口。如： </p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb forward <span class="string">tcp:</span><span class="number">5555</span> <span class="string">tcp:</span><span class="number">8000</span></span><br></pre></td></tr></table></figure>
+<p>24、复制文件：<br>    你可向一个设备或从一个设备中复制文件，<br>     复制一个文件或目录到设备或模拟器上： </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> adb push <span class="tag">&lt;<span class="title">source</span>&gt;</span> <span class="tag">&lt;<span class="title">destination</span>&gt;</span><span class="tag">&lt;/<span class="title">destination</span>&gt;</span><span class="tag">&lt;/<span class="title">source</span>&gt;</span> </span><br><span class="line">```      </span><br><span class="line">如：</span><br></pre></td></tr></table></figure>
+<p>adb push test.txt /tmp/test.txt<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">从设备或模拟器上复制一个文件或目录： </span><br><span class="line">```     </span><br><span class="line">adb pull <span class="tag">&lt;<span class="title">source</span>&gt;</span> <span class="tag">&lt;<span class="title">destination</span>&gt;</span><span class="tag">&lt;/<span class="title">destination</span>&gt;</span><span class="tag">&lt;/<span class="title">source</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>如：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb pull /addroid/lib/libwebcore<span class="class">.so</span> .</span><br></pre></td></tr></table></figure></p>
+<p>25、搜索模拟器/设备的实例：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> 取得当前运行的模拟器/设备的实例的列表及每个实例的状态：</span><br><span class="line">adb devices</span><br></pre></td></tr></table></figure>
+<p>26、查看bug报告： </p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">adb</span> bugreport</span><br></pre></td></tr></table></figure>
+<p>27、记录无线通讯日志：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">一般来说，无线通讯的日志非常多，在运行时没必要去记录，但我们还是可以通过命令，设置记录： </span><br><span class="line">adb shell </span><br><span class="line">logcat -<span class="tag">b</span> radio</span><br></pre></td></tr></table></figure>
+<p>28、获取设备的ID和序列号：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb <span class="keyword">get</span>-product </span><br><span class="line">adb <span class="keyword">get</span>-serialno</span><br></pre></td></tr></table></figure>
+<p>29、访问数据库SQLite3</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb <span class="built_in">shell</span> </span><br><span class="line">sqlite3</span><br></pre></td></tr></table></figure>
+<h2 id="Adb_高级命令">Adb 高级命令</h2><ul>
+<li>am – ActivityManager 命令</li>
+<li>pm – PackageManager命令</li>
+<li>wm – WindowManager 命令</li>
+<li>content – ContentProvider命令</li>
+</ul>
+<h3 id="am命令">am命令</h3><ul>
+<li>am 子命令</li>
+<li>可以启动Activity，Service</li>
+<li>可以停止一个应用</li>
+<li>可以发送broadcast</li>
+<li>可以监控activity的状态</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">am start –n <span class="tag">&lt;<span class="title">ComponentName</span>&gt;</span></span><br><span class="line">am start –a <span class="tag">&lt;<span class="title">Action</span>&gt;</span> -c <span class="tag">&lt;<span class="title">Category</span>&gt;</span> -e<span class="tag">&lt;<span class="title">Extra</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>例：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">am start –n com<span class="class">.android</span><span class="class">.settings</span> <span class="comment">//启动系统设置</span></span><br><span class="line"></span><br><span class="line">am start –<span class="tag">a</span> com<span class="class">.android</span><span class="class">.intent</span><span class="class">.action</span><span class="class">.MAIN</span> –c com<span class="class">.android</span><span class="class">.intent</span><span class="class">.category</span><span class="class">.HOME</span> <span class="comment">//启动Home页</span></span><br><span class="line"></span><br><span class="line">am force-stop &lt;package&gt;</span><br><span class="line"></span><br><span class="line">am start -<span class="tag">a</span> android<span class="class">.intent</span><span class="class">.action</span><span class="class">.VIEW</span> -d http:<span class="comment">//www.baidu.com</span></span><br><span class="line"></span><br><span class="line">am start -<span class="tag">a</span> android<span class="class">.intent</span><span class="class">.action</span><span class="class">.CALL</span> -d tel:<span class="number">12345</span></span><br><span class="line"></span><br><span class="line">am startservice –n &lt;ComponentName&gt;</span><br><span class="line"></span><br><span class="line">am broadcast …</span><br><span class="line"></span><br><span class="line">am force-stop &lt;package&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="pm命令">pm命令</h3><ul>
+<li>pm install  – 安装一个apk (可以用adb install)</li>
+<li>pm uninstall [-k] – 删除一个apk (可以用adb uninstall)</li>
+<li>pm list  — 列出一系列包，Feature或者permission等</li>
+<li>pm path <package>  — 获得某个包的apk文件路径</package></li>
+<li>pm clear <package>  — 清除某个应用的数据</package></li>
+<li>pm enable <component> —启用某个组件</component></li>
+<li>pm disable <component> — 禁用某个组件</component></li>
+</ul>
+<h3 id="wm命令">wm命令</h3><ul>
+<li>wm (WindowManager)命令，主要查看屏幕的信息</li>
+<li>wm size  — 获取屏幕尺寸</li>
+<li>wm density – 获取屏幕密度</li>
+<li>wm overscan – 过扫描</li>
+</ul>
+<h3 id="content命令">content命令</h3><ul>
+<li>操作ContentProvider的命令</li>
+<li>content insert – 向content provider中插入数据</li>
+<li>content query – 请求content provider中的数据</li>
+<li>content update – 更新content provider中的数据</li>
+<li>content delete – 删除 content provider中的数据</li>
+<li>*数据值之间用冒号(:)分隔</li>
+</ul>
+<h3 id="settings命令">settings命令</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">settings <span class="keyword">put</span> <span class="keyword">global</span> my_key “hello”</span><br><span class="line">settings <span class="keyword">get</span> <span class="keyword">global</span> my_key</span><br></pre></td></tr></table></figure>
+<h3 id="media媒体控制命令">media媒体控制命令</h3><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">media dispatch &lt;PLAY, <span class="keyword">PAUSE</span>, <span class="keyword">STOP</span> …&gt;</span><br></pre></td></tr></table></figure>
+<p>模拟一个媒体按键的发送</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="实用Adb_Shell命令演示">实用Adb Shell命令演示</h1><blockquote>
+<p>一些灵巧方便的Adb Shell命令笔记</p>
+</blockquote>
+<h2 id="Adb命令的主要用途">Adb命令的主要用途</h2><ul>
+<li>运行Android设备的命令行。</li>
+<li>管理模拟器或Android设备的映射端口。</li>
+<li>安装和卸载应用程序。</li>
+<li>计算机和Android设备之间的上传和下载文件。</li>
+</ul>]]>
+    
+    </summary>
+    
+      <category term="Android" scheme="http://daijiale.github.io/tags/Android/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+      <category term="Android开发笔记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Android%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[下次人家问再你怎么入门AndroidWear，你就甩这篇文章给TA]]></title>
+    <link href="http://daijiale.github.io/2015/05/04/%E6%9C%80%E5%85%A8%E7%9A%84AndroidWear%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
+    <id>http://daijiale.github.io/2015/05/04/最全的AndroidWear开发笔记/</id>
+    <published>2015-05-04T08:23:09.000Z</published>
+    <updated>2015-06-04T09:01:27.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="本文作者">本文作者</h1><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicslrme.jpg" alt=""></p>
+<h2 id="Jiale_Dai"><a href="http://www.daijiale.cn" target="_blank" rel="external">Jiale Dai</a></h2><p>成都 电子科技大学 本科生( 其实还没毕业，目前大三 ）</p>
+<p>从14年开始一直专研于AndroidWear开发</p>
+<blockquote>
+<p><strong>摘要：</strong> 本文是Jiale Dai 在学习Google官方视频、开发者文档和实践项目之后整理出来的心得笔记，是以一个个人开发者的角度给大家带来一些侧面对Android Wear开发的看法，不同于一些传统的Android Wear技术开发教程，但是博主希望能通过自己对这些知识的整理和资源的收集，给读者带了一份详尽的、多角度的Android Wear指南。<strong>无论你是程序员，设计师，产品经理，还是手表极客 ，Android Wear用户 or 小白，都能在这篇博文中找到你想要的Android Wear元素。</strong><br>博文会同时托管到Github上，欢迎更多承载着开源精神的有心人加入，分享你对Android Wear的见解。<br><a id="more"></a></p>
+</blockquote>
+<h1 id="写在开头">写在开头</h1><blockquote>
+<p><strong>自己对AndroidWear的看法：</strong></p>
+<p>Android Wear的目标就是：不接触手机的前提下，在你需要的时候，它把对你有用的信息呈现给你，扫一眼就够了。ta是<br>一种新的交互模型，有很多有利便捷新潮的交互体验是手机上无法实现的。将你自己置身于一个外部场景，在移动和忙碌中使用这项服务是什么样的体验，你就会发现ta的价值。</p>
+</blockquote>
+<p><strong>下面我们来欣赏一段Android Wear的应用场景视频</strong>（博主花了大精力才从鹅厂官网漏洞里抓取到的外链地址，<strong>低调、低调</strong>）：</p>
+<h2 id="核心元素：">核心元素：</h2><ul>
+<li>Google Now：用户可以和AndroidWear“说话”（语音交互）。</li>
+<li>Notifications:一个卡片，一个提醒，实现你最想要的服务。具体分为stacks、 pages、 replies、三种性质。</li>
+<li>WatchFace：表之所以称之为“表”。</li>
+<li>Data Message：和手机的数据通信机制是重要的桥梁。</li>
+</ul>
+<h2 id="构建一个Wear_Apps的基础（wear_app能做到什么？）：">构建一个Wear Apps的基础（wear app能做到什么？）：</h2><p><strong>基础API元素:</strong></p>
+<ul>
+<li>Custom UI</li>
+<li>Send Data</li>
+<li>Control Sensors</li>
+<li>Voice Actions</li>
+</ul>
+<p>下面我会举<strong>四个例子</strong>来说明基于这几个基础元素（Android Wear API）可以实现什么样级别的<strong>Wear App</strong>：</p>
+<h3 id="Gmail">Gmail</h3><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/androidweargmail.PNG" alt=""></p>
+<ul>
+<li>Gmail Base On<ul>
+<li>Notification Bundles</li>
+<li>RemoteInput for Voice Response</li>
+</ul>
+</li>
+</ul>
+<p>大家应该不会陌生Gmail，下面来看看其在wear端的app特性：</p>
+<p>1、首先ta有两种邮件提醒类型：</p>
+<p><strong>单页通知卡片（如下图）</strong></p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/androidwearsinglecard.PNG" alt=""></p>
+<p><strong>多页通知卡片（如下图）</strong></p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/androidwearmuticard.PNG" alt=""></p>
+<p>2、你可以通过滑动卡片，进一步了解更多信息，而且伴随有 <strong>“语音快速回复” “归档” “在手机端打开回复”</strong>三种操作，这里我们重点谈一下<strong>语音快速回复</strong>这个<strong>具有wear特性</strong>的操作流程：</p>
+<ul>
+<li><code>Android Notification API</code> 会让你通过远程输入给reply行为做一个注释,而远程输入则会告诉AndroidWear，在执行这个行为之前，你要把文本输入的方式改为语音，因此当Gmail建立一个notification连接时，wear端会给reply行为附加一个远程输入，AndroidWear会看到这条远程输入，然后不会立即发送一个行为，会首先启动一个wear UI界面来收集语音回复信息，然后把转换好的文本变成意图，再发送意图到你的手机上，手机得到意图后，就可以在不触动手机UI的情况下发送/回复邮件了。</li>
+</ul>
+<p>下面是关键代码实现过程：</p>
+<p><strong>Add RemoteInput to Reply Action</strong></p>
+<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Action</span> replyAction = <span class="keyword">new</span> <span class="type">NotificationCompat</span>.<span class="type">Action</span>.<span class="type">Builder</span>(</span><br><span class="line">	<span class="type">R</span>.drawble.ic_reply,getString(<span class="type">R</span>.<span class="built_in">string</span>.reply), </span><br><span class="line">	replyPendingIntent)</span><br><span class="line">    addRemoteInput(</span><br><span class="line">	  <span class="keyword">new</span> <span class="type">RemoteInput</span>.<span class="type">Builder</span>(<span class="type">EXTRA_REPLY_TEXT</span>)</span><br><span class="line">		.setLabel(getString(<span class="type">R</span>.<span class="built_in">string</span>.replyLabel))</span><br><span class="line">		.build<span class="literal">()</span>).build<span class="literal">()</span>;</span><br></pre></td></tr></table></figure>
+<p><strong>Modify Activity to Use Reply Text</strong></p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Bundle <span class="variable">results =</span></span><br><span class="line">	RemoteInput.getResultsFromIntent(intent);</span><br><span class="line">	<span class="keyword">if</span>(results!=<span class="constant">null</span>)&#123;</span><br><span class="line">	 String <span class="variable">message =</span> </span><br><span class="line">		results getString(EXTRA_REPLY_TEXT)</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>3、最后我再来详细介绍下“多卡片重叠式信息提醒”的实现原理，视觉设计上采用的是复线收件箱的风格，ta不再把多条信息压缩到单一的卡片中，我们想做的是每封邮件都有自己的卡片。而这些卡片又放入一个可扩大的堆栈中，这一堆提醒卡片，也叫提醒卡片堆栈，也是notification API的新特性，不会把所有邮件提醒都只能通过一个提醒显示出来，而是按类划分，表明有所关联，ta们在可穿戴设备上组合成一个卡片丛，而用户也可以通过卡片丛去逐个浏览，以提取某一封邮件，并对其回复或者进行其他操作。而卡片丛 即：notification group也有一个分类键，通过设置这个键来控制丛内卡片顺序，并且可以从中标记一个卡片作为组群的整体摘要描述，具体实现代码如下：</p>
+<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Notification</span> card1 = </span><br><span class="line">	<span class="keyword">new</span> <span class="type">NotificationCompat</span>.<span class="type">Builder</span>(context)</span><br><span class="line">		.setGroup(<span class="type">GROUP_KEY</span>)</span><br><span class="line">		.setSortKey(<span class="string">"0"</span>)</span><br><span class="line">		.build<span class="literal">()</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">Notification</span> card2 = </span><br><span class="line">	<span class="keyword">new</span> <span class="type">NotificationCompat</span>.<span class="type">Builder</span>(context)</span><br><span class="line">		.setGroup(<span class="type">GROUP_KEY</span>)</span><br><span class="line">		.setSortKey(<span class="string">"1"</span>)</span><br><span class="line">		.build<span class="literal">()</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">Notification</span> card3 = </span><br><span class="line">	<span class="keyword">new</span> <span class="type">NotificationCompat</span>.<span class="type">Builder</span>(context)</span><br><span class="line">		.setGroup(<span class="type">GROUP_KEY</span>)</span><br><span class="line">		.setSortKey(<span class="string">"2"</span>)</span><br><span class="line">		.build<span class="literal">()</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">Notification</span> summary = </span><br><span class="line">	<span class="keyword">new</span> <span class="type">NotificationCompat</span>.<span class="type">Builder</span>(context)</span><br><span class="line">		.setGroup(<span class="type">GROUP_KEY</span>)</span><br><span class="line">		.setGroupSummar;</span><br><span class="line">		.build<span class="literal">()</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="Hangouts">Hangouts</h3><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/androidwearhangouts.PNG" alt=""></p>
+<ul>
+<li>Hangouts Base On<ul>
+<li>Custom Wearable Actions</li>
+<li>Notification Pages</li>
+</ul>
+</li>
+</ul>
+<p>1、环聊信息也会自动桥接到可穿戴设备上，在Gmail上面，我们想要的是语音回复，但是环聊的提醒则稍微有点不同，ta并没有回复行为，只是一个内容意图，只需要打开App就可以键入回复了，所以环聊可以很好的不依赖手机而直接在可穿戴设备上进行体验，而且，android wear的 <code>Notification API</code>会让你在手机和可穿戴设备上细化不同的操作设置，即手机行为只在手机显示。wear行为只在wear端显示，这就使得我们可以添加一个仅限可穿戴设备使用的回复行为，这一行为涵盖了一个远程输入，却无需变动手机行为。</p>
+<p>2、环聊也增加了新的提醒特征：近期会话历史记录。因为在语音回复之前，多出现一些聊天记录总是好的，为了实现这个效果，我们在wear设备扩充器中采用了添加页面的办法：它可以让你为主要提醒内容增加额外的页面，我们把聊天记录放入一个次级大的文本式提醒，然后把它加入到主要提醒中的第二页，并且手机端的提醒体验同时保持不变。关键代码实现如下：</p>
+<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Notification</span> chatHistory =</span><br><span class="line">	<span class="keyword">new</span> <span class="type">NotificationCompat</span>.<span class="type">Builder</span><span class="literal">()</span></span><br><span class="line">		.setStyle(</span><br><span class="line">			<span class="keyword">new</span> <span class="type">NotificationCompat</span>.<span class="type">BigTextStyle</span><span class="literal">()</span></span><br><span class="line">				.bigText(getChatHistory<span class="literal">()</span>))</span><br><span class="line">		.build<span class="literal">()</span>;</span><br><span class="line"></span><br><span class="line">firstPageNotification.extend(</span><br><span class="line">	<span class="keyword">new</span> <span class="type">NotificationCompat</span>.<span class="type">WearableExtender</span><span class="literal">()</span></span><br><span class="line">		.addPage(chatHistory)</span><br><span class="line">		.build<span class="literal">()</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="Google_Camera">Google Camera</h3><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/androidwearcamera.PNG" alt=""></p>
+<ul>
+<li>Google Camera Base On<ul>
+<li>Wearable DataApi </li>
+<li>Wearable MessageAPI</li>
+<li>WatchActivity </li>
+</ul>
+</li>
+</ul>
+<p>1、wear端的google camera为相机App增加了好玩有趣的特性：<strong>通过手腕来按下快门</strong>，和很多具有远程遥控的高级相机原理类似，你把手机架在三脚架上或者靠在墙上又或者让其他人帮你拿着，然后你通过按住腕表的一个按键来捕捉一个画面<strong>（代替现在正在热卖而很多大男生却不好意思在大街上用的自拍杆，嘿嘿）</strong>。</p>
+<p>2、相比于前面提到的Gmail和环聊（ta们只是用了 <code>Notification API</code> 来对手机端的消息做一个整合），Google Camera是一个相对个性而又具有和手机交互的特点，而且对于wear来说，仅仅只需要将<strong>快门</strong>这个按键特殊处理就行，所以，在wear端，光快门按键就霸占整个屏幕这一点也是可以容忍的。</p>
+<p>3、通过 <code>Google Play Service</code>(以后简称 <code>GMS</code>)，实现相机的wear端和手机端通信，在相机手机app准备好拍摄时，手机端端会设置好数据项（意味着它已经做好了接受远程快门信息的准备），这种数据项由手表中wear app内置的服务读取，而wear端则会显示出快门按钮，按住按钮，把信息发回手机来激活手机端的快门键，最后，如何预览你刚才拍到的照片呢？很简单：手机端会创建一张缩略图，然后作为数据项中的一个asset发送回手表端，然后做为wear端全屏来预览。<br>关键代码如下：</p>
+<p><strong>Setting a DataItem</strong></p>
+<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">PutDataMapRequest</span> dataMapRequest =</span><br><span class="line">	<span class="type">PutDataMapRequest</span>.create(<span class="type">DATA_ITEM_NAME</span>);</span><br><span class="line">dataMapRequest.getDataMap<span class="literal">()</span>.putBoolean(</span><br><span class="line">	<span class="type">FIELD_READY</span>,cameraReady);</span><br><span class="line"><span class="type">Wearable</span>.<span class="type">DataApi</span>.putDataItem(</span><br><span class="line">	mGoogleApiClient,</span><br><span class="line">	dataMapRequest.asPutDataRequest<span class="literal">()</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p><strong>WearableListenerService</strong></p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CameraListennerService</span></span><br><span class="line">	<span class="keyword">extends</span> <span class="title">WearableListennerService</span>&#123;</span></span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="typename">void</span> onDataChanged(DataEventBuffer dataEvents)&#123;</span><br><span class="line">		<span class="keyword">for</span>(DataEvent <span class="string">dataEvent:</span>dataEvents)&#123;</span><br><span class="line">		    <span class="keyword">if</span>(dataEvent.getType()== 	DataEvent.TYPE_CHANGED)&#123;</span><br><span class="line">			DataMapItem mapDataItem = </span><br><span class="line">				DataMapItem.fromDataItem(</span><br><span class="line">					dataEvent.getDataItem());</span><br><span class="line">			<span class="keyword">if</span>(mapDataItem.getDataItem().getBoolean(FIELD_CAMERA_READY,<span class="literal">false</span>))&#123;</span><br><span class="line">			postNotification();</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		stopActivity();	</span><br><span class="line">	&#125;</span><br><span class="line">	)</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Sending an Asset</strong></p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">PutDataMapRequest dataMapRequest =</span><br><span class="line">	PutDataMapRequest.create(DATA_ITEM_NAME);</span><br><span class="line">dataMapRequest.getDataMap().putBoolean(</span><br><span class="line">	FIELD_READY,cameraReady);</span><br><span class="line"></span><br><span class="line"><span class="comment">//在DataItem数据项中插入一个判断</span></span><br><span class="line"><span class="keyword">if</span>(previewBitmap != <span class="literal">null</span>)&#123;</span><br><span class="line">	dataMapRequest.getDataMap().putAsset(</span><br><span class="line">	 FIELD_PREVIEW,preview);</span><br><span class="line">	)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Wearable.DataApi.putDataItem(</span><br><span class="line">	mGoogleApiClient,</span><br><span class="line">	dataMapRequest.asPutDataRequest()</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h3 id="Google_Maps">Google Maps</h3><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/androidwearmaps.PNG" alt=""></p>
+<ul>
+<li>Google Maps Base On<ul>
+<li>Voice Actions </li>
+<li>Custom Display Intent Notifications</li>
+</ul>
+</li>
+</ul>
+<p>1、在Google Maps导航期间，我们想要在手腕上提示导航，这个应用场景在走路的时候尤其有用，因为你要一直拿着你的手机走在大马路上会非常奇怪且占用你的双手，如果把手机放在你的口袋，转而看一下手表的描述来获知导航信息无疑更为便捷和实用。</p>
+<p>2、在wear端，google想实现对布局和导航呈现精细的把握，特地搭建了一款wear版本的google maps wear App，让个性抽取式卡片成为限于本地的提醒，通过修改google map手机app的数据项，增加了用于下一次操作的描述与图标以及用于解释导航状态的信息，同时wear端的google maps也增加了这样的数据项，每次变动发生后，ta都会读取新数据，然后更新wear的卡片，提取卡片时，wear app采用可穿戴扩充器的新显示意图特性，你可以指定一个活动来在提醒卡片中绘制内容，这样我们想在卡片上画什么都是可以的，而不是受限制于标准提醒样式。<br>关键实现代码：</p>
+<p><strong>Custom Notification with Display Intent</strong></p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Intent displayIntent = </span><br><span class="line">	createUpdateIntent(data, maneuverBitmap);</span><br><span class="line">displayIntent.setClass(</span><br><span class="line">	<span class="keyword">this</span>,NotificationDisplayActivity.<span class="keyword">class</span>);</span><br><span class="line"></span><br><span class="line">PendingIntent displayPendingIntent = PendingIntent.getActivity(</span><br><span class="line">	<span class="keyword">this</span>,<span class="number">0</span>,displayIntent,</span><br><span class="line">	PendingIntent.FLAG_CANCEL_CURRENT);</span><br><span class="line"></span><br><span class="line">Notification notification = builder.extend(</span><br><span class="line">	<span class="keyword">new</span> NotificationCompat.WearableExtender()</span><br><span class="line">		.setHintHideIcon(<span class="literal">true</span>)</span><br><span class="line">		.setDisplayIntent(displayPendingIntent)</span><br><span class="line">		.setBackground(background)</span><br><span class="line">		.addPage(secondPage)</span><br><span class="line">		.build();</span><br></pre></td></tr></table></figure>
+<p>3、google map通过语音指令来开启导航进程，为了实现这一点，可<br>wear端的google map app会联手意图过滤器（ <code>Intent</code>）来为导航声音指令服务，然后需要在 <code>AndroidManifest.xml</code>中声明如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">activity</span></span><br><span class="line">	<span class="attribute">android:name</span>=<span class="value">".StarNavigationActivity"</span></span><br><span class="line">	<span class="attribute">android:theme</span>=<span class="value">"@style/TranslucentTheme"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">intent-filter</span>&gt;</span></span><br><span class="line">	 <span class="tag">&lt;<span class="title">action</span></span><br><span class="line">		<span class="attribute">android:name</span>=<span class="value">"android.intent.action.VIEW"</span>/&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="title">category</span>			<span class="attribute">android:name</span>=<span class="value">"android.intent.category.DEFAULT"</span>/&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="title">data</span></span><br><span class="line">			<span class="attribute">android:scheme</span>=<span class="value">"google.navigation"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="title">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">activity</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>声明之后，就会产生一个像这样的意图，可穿戴App接收到这个意图之后，就会给手机上的google map发送一条信息，信息包括目的地和导航模式，手机google map app接收到这条信息之后，然后开始导航到目的地，然后就可以出发了，具体通信代码如下:</p>
+<p><strong>Sending a Message</strong></p>
+<figure class="highlight roboconf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="component">private void startNavigation(Intent intent)&#123;</span><br><span class="line">	</span><br><span class="line">	String uriString = intent<span class="string">.getDataString()</span>;</span><br><span class="line">	</span><br><span class="line">	mGoogleApiClient<span class="string">.blockingConnect(</span></span><br><span class="line">		Constants<span class="string">.TIMEOUT_MS</span>,</span><br><span class="line">		TimeUnit<span class="string">.MILLISECONDS)</span>;</span><br><span class="line"></span><br><span class="line">	DataMap dataMap = new DataMap();</span><br><span class="line">	dataMap<span class="string">.putString(FIELD_URI</span>,uriString）；</span><br><span class="line"></span><br><span class="line">	Wearable<span class="string">.MessageApi.sendMessage(</span></span><br><span class="line">	   mGoogleApiClient,</span><br><span class="line">	   mOtherNodeId,</span><br><span class="line">	   Constants<span class="string">.MESSAGE_PATH_START_NAVIGATION</span>,</span><br><span class="line">		dataMap<span class="string">.toByteArray()).await()</span>;</span><br><span class="line">	googleApiClient<span class="string">.diconnect()</span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p><strong>Receiving a Message</strong></p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="literal">void</span> onMessageReceived(</span><br><span class="line">	MessageEvent messageEvent)&#123;</span><br><span class="line">	<span class="keyword">if</span>(messageEvent<span class="built_in">.</span>getPath()<span class="built_in">.</span><span class="keyword">equals</span>(</span><br><span class="line">		MESSAGE_PATH_START_NAVIGATION))&#123;</span><br><span class="line">	  DataMap requestData <span class="subst">=</span></span><br><span class="line">			DataMap<span class="built_in">.</span>fromByteArray(</span><br><span class="line">				messageEvent<span class="built_in">.</span>getData());</span><br><span class="line">			<span class="built_in">String</span> uriString <span class="subst">=</span></span><br><span class="line">				requestData<span class="built_in">.</span>getString(FIELD_URI);</span><br><span class="line">			Intent navIntent <span class="subst">=</span> <span class="literal">new</span> Intent(</span><br><span class="line">				Intent<span class="built_in">.</span>ACTION_VIEW,</span><br><span class="line">				Uri<span class="built_in">.</span>parse(uriString));</span><br><span class="line">			startActivity(navIntent);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="搭建云驱动的Android_Wear_Apps">搭建云驱动的Android Wear Apps</h1><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblog_androidwear_cloud.JPG" alt=""></p>
+<p>如图：</p>
+<ul>
+<li>1、首先，我们需要一款云服务来作为App的后端来进行数据推送和数据处理。</li>
+<li>2、其次，移动App会配合这项服务发出一个提醒，而你会在wear设备上看到，而且该提醒也会发送到任何相连的AndroidWear设备上。</li>
+<li><p>3、接着，当然就是AndroidWear App本身了，ta的特效是搭建在移动手机App之内，这样一旦手机App发出一条可以在手机上看见的提醒，这条信息也发给了Android Wear设备，现在的API也能够传送这些提醒，比如说触发回复行为，那么，我们是怎么实现ta们的呢？<code>Android Studio</code>实际上把你所需要的一切都给你了，包括用于搭建后端服务的工具包，当然还有Android手机App，现在你还可获得扩展包来操作Android Wear，云后端可以用一款外露的API来搭建，Android Studio工具包可以让你在Java下来进行此类操作，为你处理精细的细节把握，你可以写一段云端代码，通过使用属性，ta能够暴露出运行在你android app中的API，这些属性告诉Android客户端这些代码都是到底在干什么的，比如在执行一种叫quotesApi(引用API）时，并提供一种称为getQuote（获得引用）的方式，ok，一旦你现在搭建好了云服务，借助工具包，事实上你就可以自动创建客户端数据库来进入了，接下来，你要做的当然是搭建你的App了，那如何从你的App进入API呢？其实，这个分类已经自动帮你加载下来了，并且放入Maven库中了，这样你就可以直接在你搭建好的Gradle文件夹下涵盖它们了。</p>
+</li>
+<li><p>4、最后，我们如何把它拓展来用于Android Wear呢？ 其实很简单，跟google map中的例子一样，通过修改notification和卡片的代码，使用wear端的api，让消息提醒和前端信息视图同时展现在手机客户端和wear端，此时的<strong>手机App</strong>就<strong>变成了wear连接云端</strong>的<strong>中间件</strong>。</p>
+</li>
+</ul>
+<h1 id="写给设计师们：如何把握Android_Wear下App的设计原则？">写给设计师们：如何把握Android Wear下App的设计原则？</h1><blockquote>
+<p>PS：自己在DuWear项目组除了做RD研发之外，也对设计比较感兴趣，记得研发表盘那段时期，经常和搭档（MUX-UE-大侯）一起交流wear端的设计理念和心得，这里分享一些给想进军wear端的设计师朋友们：</p>
+</blockquote>
+<p><strong>首先我们需要知道的是：</strong></p>
+<ul>
+<li>Android Wear可以在多种不同的设备上运行，甚至在方形或圆形屏幕上也能正常运行，ta的UI非常简单，而且显示的内容也做了优化以适应小屏幕。</li>
+<li>Android Wear的核心UI会自动排列卡片的优先级，非常简单，它整合了像Google Now，安卓手机提醒（Notification）和关联性App等资源，从而可以直接在wear端运行，开发师可以创建可以在这种流中正确显示的卡片，在任何点上，我都可以朝左滑动来查看每个项的更多信息，朝右滑动则会移除卡片，</li>
+<li>我们也给里面加入了向谷歌说话的能力，用户只需说一句：OK Google来搜索网络寻求答案，也可以进行我们称之为行为（actions）的语音指令，开发师可以深入开发这些语音行为。意味着用户可以直接对你的软件说话。</li>
+<li>可穿戴设备提供了一套前所未有的设计理念，<br>这即是机会，也是挑战，所以相对其他诸如手机或平板之类的设备，要清楚明白地搞懂它们之间的不同之处非常重要。<br>Android Wear刚好在正确的时间提供了正确的信息，让人们同时与虚拟和现实世界有更好的联系，信息内容会尽可能自动显示在信息流中，对于早已习惯打开App和退出App的我们来讲，这种对于模块的变化是相当巨大的。<h2 id="设计思路：">设计思路：</h2></li>
+<li><p><strong>Contextual：</strong>Android Wear会注意到周围环境，而且十分智能，这些设备会让人与计算机设备的亲密关系全新升级，Android Wear不要求用户的关注与输入，相反它会注意到用户所处的环境与状态，然后在正确的时间体贴地提供正确的信息，Android Wear会让人感觉信息及时，提议中肯，无微不至。</p>
+</li>
+<li><p><strong>Glanceable：</strong>这些App只需要一瞥的时间，不算是可穿戴设备处于我们的视线边缘，它们也可以整天使用，高效的App会用最小的嗡嗡声来提供更多的信息提醒，并在细碎的关联信息提醒上做进一步优化，从而在一整天的碎片时间里得以应用。</p>
+</li>
+<li><p><strong>Low Interaction：</strong>快速思考，一针见血，迅捷即时，而且几乎不用与设备互动，在保证小屏幕传送信息优势的同时，Android Wear着重与简单的互动，仅仅在非常必要的时候来需要用户来输入。而且绝大多数输入都是简单的点触、滑动和语音指令，而一般输入所需要的精细操控也得以避免。Android Wear手势简单，操作便捷而迅速</p>
+</li>
+<li><p><strong>Suggest&amp;Demand：</strong>最后，这些体验都与建议和指令相关，Android Wear就像一位出色的个人助理，它了解你，知道你的喜好，只有在绝对必要的时候才会打扰你，而且它总是近在手边，随时准备为你回答或完成任务。Android Wear贴心、礼貌、有问必答，它把周围世界与用户巧妙联系起来的同时，又极其尊重你的注意力，把你的焦距汇到重点项目上。</p>
+</li>
+<li><strong>Break It Down：</strong>这里所呈现的机会并不是想象中的那样——把智能手机的UI缩小一下就塞进来,相反，需要考虑的是在设计过程中出现的基础性的问题，遵循这些原则之后，要是用户在使用你的产品操作任务时，产品出问题了怎么办？</li>
+</ul>
+<p>接下来，我们来看一些<strong>出色的设计案例</strong>：</p>
+<ul>
+<li><strong>Stream Apps</strong></li>
+</ul>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/androidwearstreamapps.PNG" alt=""></p>
+<p> 如图，系统中众多App的展现体现在那些垂直的卡片流之中，让小小的屏幕可以为用户尽可能多得展现更多的Wear应用，也是用户界面的核心所在。</p>
+<ul>
+<li><strong>Main Interface</strong></li>
+</ul>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/androidwearcarddesigner.PNG" alt=""><br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/androidweargooglenowcard.PNG" alt=""></p>
+<p> 如图，这里我们看到主屏幕流中有一些卡片，像这种卡片就会在特定时刻，需要它们该出现的时候才出现。就像 <code>Google Now</code>一样，这些卡片无需启动或打开，相反，ta们会基于所在地、走路或者奔跑等活动、实际时间、用户的兴趣爱好以及其他因素来运行，你可以指定某项内容在合适的时候出现，这些卡片与环境息息相关，要注意看这些内容十分简洁，而且布局十分清楚，这些布局也经过了优化，让人能通过<strong>眼角一瞥就能一目了然</strong>。这些卡片也会遵循我们低互动（Low Interaction）的原则，它们没有大量的目录和按钮，用户可以直接滑动屏幕来进入另一页获取更多资料，事实上，通过Android Wear用户界面你应该使用像<strong>滑动和全屏挥动</strong>这样的大手势，不要在一个屏幕上放置多个需要点击的小按钮。</p>
+<ul>
+<li>更多Android Wear出色案例和设计资源请参考下文中的：<a href="">更多系列教程</a></li>
+</ul>
+<h1 id="Android_Wear搭建更高级别的UI">Android Wear搭建更高级别的UI</h1><p>可穿戴设备的App是Android的标准App，但遵循的是小屏幕的设计理念，它们全屏运行，没有系统UI或状态条，它们的开发过程与安卓App类似，不过在UI的开发理念上却稍有不同，最重要的就是要记住你的界面不必苛求小点触屏或精准的拖拽，举个例子，在可穿戴系统UI中，你会注意到对滑动操作的频繁使用，还有滚动条的运用，它之所以能够流畅运行，是因为它并不需要把注意力花在要去触摸屏幕某个精准的点上，为了帮助大家，Google提供了一个<a href="http://developer.android.com/training/wearables/ui/index.html" target="_blank" rel="external">可穿戴设备App的UI库</a>，它提供了异常丰富的元素来用于UI的设计。</p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/androidweargradpagerview.PNG" alt=""></p>
+<p>这里，我想重点讲一下 <code>GridViewPager(网格多面控件)</code> ,ta与主页流类似，大家可以用ta来设计界面，ta与多面控件相似，但是可以水平和垂直同时移动，第一步就是布局的规划，下面这几行代码就是你主行为所需要的全部内容：</p>
+<p><strong>res/layout/pager_example.xml</strong></p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml <span class="variable">version =</span> <span class="string">"1.0"</span> <span class="variable">encoding =</span> <span class="string">"utf-8"</span>?&gt;</span><br><span class="line">&lt;android.support.wearable.views.GridViewPager</span><br><span class="line">	xmlns:<span class="variable">android =</span> <span class="string">"http://schemas.android.com"</span></span><br><span class="line">	android:<span class="variable">id =</span> <span class="string">"@+id/pager"</span></span><br><span class="line">	android:<span class="variable">layout_width =</span> <span class="string">"match_parent"</span></span><br><span class="line">	android:<span class="variable">layout_height =</span> <span class="string">"match_parent"</span></span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure>
+<p>在这里，配置多面控件的目的是用于扩展至整个屏幕的，下一步，我们需要一个衔接器（<code>Adapter</code>）</p>
+<p><strong>FragmentGridPagerAdapter</strong></p>
+<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> getRowCount<span class="literal">()</span></span><br><span class="line"><span class="built_in">int</span> getColumnCount(<span class="built_in">int</span> row)</span><br><span class="line"><span class="type">Fragment</span> getItem(<span class="built_in">int</span> row , <span class="built_in">int</span> column)</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> getCurrentColumnForRow(</span><br><span class="line">	<span class="built_in">int</span> row,<span class="built_in">int</span> currentColum)</span><br></pre></td></tr></table></figure>
+<p>而这几行代码则是在用户使用导航时为用户提供每张页面所呈现的内容，在这个例子中，我会从一个由片段支持的基本类来进行扩展，要创建一个运行的<code>Adapter</code>只需要这三个方法，前两种定义了内容行（<code>row</code>）与页的可用大小，注意 <code>column</code> 的数量取决与行参数<code>row</code>,原因就在于每行可能都有不同的列数量，它的特性就是其选项可以控制每行在页面哪个位置来放置，与固定好的网格布局相比，它给滚动条在平等滚动与垂直滚动间切换提供了可能，在这一布局中，为了实现这点，Google还想了一些办法，但结果看起来就是一个无缝对接，Google为什么要这么做？Google认为每行内容都是单独的存在，在主页流中，这些就成了提醒或Google Now卡片，用户要从一个行为页进入到目标页而进行上下滑动的操作时，如果有不同的项，那么用户在操作时就会迷惑，为了解决这个问题，上翻或下翻总会回到第一列，这个也是网格多面控件的默认模式，为了对此做出调整，你可以用另一种方式进行覆盖，这种方式称为：所想即所见（用户想了解某项信息时，该信息的页面就会呈现在当前页或下一页），它也会提供当前列的位置，为了返回固定的移动系统，你可以选择返回列，或许你还想保存该行上次浏览的那一列，以便下次选择改行时可以直接返回到那一列。最后，最重要的一点就是getItem了，这个就是你要在页面上呈现出片段的位置了，这里，你只需要返回到你的内容片段，然后剩下的事情就由多面控件来处理了。只要需要，内容片段可以长久存储，然后在合适的时候，要么删除，要么重新进入，在这种方式跟多面控件非常类似，只是加了一个垂直的维度而已。</p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/androidwearcontentPage.PNG" alt=""></p>
+<p>为了帮助大家建立自己的页面内容，Google提供了卡片内容片段，它可以自动应用不同的风格,从而与系统卡片搭配一致，而你要做的只是提供内容就可以，这种内容片段也有许多附加特性，首先，如果你有超过一页的内容，它就会显示滚动条让你拖动到正确的位置，你也可以让它作为一个单独页面开始，这样就可以通过触按来放大到全屏了，在这个案例中，内容溢出会自动得到处理，在你代码样本和文档中会找到更多细节的，还有一些事情要记住：每个页面尽量只放一个单独的行为，如果可能的话，整张卡片应该做成一个触按目标，而需要运行的行为则应该清楚明白，现在，剩下需要做的就是把这些东西整合起来，转接类会处理所有内容片段操作,所以需要给片段管理来一个参数，把转接代码加入到页面代码中就行了。</p>
+<p><strong>SampleActivity.java</strong></p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span></span>&#123;</span><br><span class="line">	 setContentView(R.layout.pager_example);</span><br><span class="line">	 mPager = findViewById(R.id.pager);</span><br><span class="line">	 mAdapter = <span class="keyword">new</span> ExampleGridPagerAdapter(getFragmentManager());</span><br><span class="line">	 mPager.setAdapter(mAdapter);	</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Android_Wear_数据层API_DevBytes">Android Wear 数据层API DevBytes</h1><p>首先我们需要知道手机端和wear端的连接是基于Android Wear数据层API的，一旦出现任何变化，核心数据层API会让你的掌上设备，与可穿戴设备自动同步数据，这种进程能够让你的设备充当数据发送器或接收器，或兼而有之，发送器设备设置一些准备发送的数据，一旦这些数据发生变动，那么这些变动就会发送给接收器，接受数据的设备反过来会在检测变动之后，会启动一个反馈功能来告诉程序数据已更新，处于两种设备之间的核心对象被称为<strong>数据项</strong>，它能有效提供设备所需要的数据存储，从基础面来讲，数据项包含一个有效负载对象，它是用来负载实际的数据的，还有一个是路径对象，它为数据项提供唯一的标识符字符串，它在接收端很重要，来表明具体哪些数据得到了更新。</p>
+<p>数据项能在可穿戴设别与掌上设备间来回接受和发送小批量数据，例如使用可穿戴设备传感器来收集心率信息，并发送到用户的手机，与前14周的心率信息交叉想比较，并将结果图反映在手表上，因为电流限制的原因，数据项对象能承载小部分数据大约有100k，因此如果你希望数据项承载更大的数据量，你需要附加一个超大容量的对象，这样你就能发送大量的二进制数据到蓝牙传输，如图像，举个例子吧，用掌上设备应用软件下载一个图像，调整大小，然后发送到穿戴式设备上进行展示，掌上设备负责进程中所有的复杂的重量级操作，而穿戴式设备则呈现简单的结果，很不错的是，为了避免数据的重发，资产对象负责缓存数据和保存蓝牙带宽，这就意味着每个缓存的资产对象只能对应一种情况，如果你重复发送多次，也不会浪费带宽或者是电量，更简单的方面，数据有效载荷API也能提供信息API，这样就能完成普通任务，例如告知你的穿戴设备要执行<code>Activity</code>，或者是提醒手机切歌曲，在默认的情况下，这些信息可以通过远程过程调用，也就是说，一旦过程改变，则不能确保信息能被接收，但是如果你想要程序更复杂，可以将信息设置成提问（<code>request</code>）或回答（<code>response</code>）的形式，这样连接的另一方就会告知另外的设备，反过来，另外的设备会完成相关的工作，然后做出回答，相应地，提交答复。更多复杂的DataAPI细节可以到google android developer官网查看。</p>
+<h1 id="Android_Wear的提醒（Notification）新特性">Android Wear的提醒（Notification）新特性</h1><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_androidwear23.png" alt=""></p>
+<p>我们来看看wear设备提醒的三个新方面吧：</p>
+<ul>
+<li>新的显示选项</li>
+<li>新的提醒行为</li>
+<li>高级自定义设置</li>
+</ul>
+<p>这是一个提醒流，它能很好地获取信息并与用户交互，这里有不同外观不同尺寸的垂直提醒列表，获取信息时只需要向上滑动一下表盘就能办到，继续滑动的话就会显示出额外的卡片，信息流中的这些提醒会加入到安卓提醒API中去，如果你已经熟悉了这个API，你可能就会识别出它的一些特性了，比如在独立的屏幕上会出现正确的提醒行为，但跟平板对于手机类似的是，提醒是依然可以被取消的，只需要把提醒卡滑到边上然后释放即可，手机上的提醒会自动同步到你的手表上面，这可以让许多现有安卓APP来在可穿戴设备上发挥自己的价值，它们也可以增加行为和撤销，我们<strong>支持许多现有的提醒风格</strong>，比如<strong>收件箱式、大图式和长文本式</strong>，如果内容太长，用户可以按住提醒来扩展，为了让体验更加丰富，我们也增加了新API来自定义提醒，TA们就成了AndroidSDK和libs库中可穿戴设备扩展类的一部分了。</p>
+<p>首先我们来看看，多页面提醒设计<code>Multi-page notifications</code>：</p>
+<h2 id="多页面提醒设计（Multi-page_notifications）">多页面提醒设计（Multi-page notifications）</h2><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogmutinotifi.PNG" alt=""></p>
+<p>这些页面可以进一步为单条提醒增加详细信息，通过滑动就可以进入，屏幕下方的提示会让你知道TA们停留在哪个片面上，因为页面仅仅是提醒对象，所以他们可以使用任意的提醒风格，</p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogmutinotifi2.PNG" alt=""></p>
+<p>要给一条提醒增加页面的话，使用可穿戴设计新拓展类来增加页面，如下代码段为内容增加了两页新页面：</p>
+<p><strong>Add pages to a notification</strong></p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Notification page2 <span class="subst">=</span> <span class="attribute">...</span></span><br><span class="line">Notification page3 <span class="subst">=</span> <span class="attribute">...</span></span><br><span class="line"></span><br><span class="line">NotificationCompat<span class="built_in">.</span>Builder builder <span class="subst">=</span> <span class="attribute">...</span></span><br><span class="line">builder<span class="built_in">.</span>extend(</span><br><span class="line">   <span class="literal">new</span> NotificationCompat<span class="built_in">.</span>WearableExtender(</span><br><span class="line">	<span class="built_in">.</span>addPage(page2)</span><br><span class="line">	<span class="built_in">.</span>addPage(page3)</span><br><span class="line">	<span class="built_in">.</span>setBackground(bitmap)<span class="comment">//设置位图</span></span><br><span class="line">	<span class="built_in">.</span>setHintShowBackgroundOnly(<span class="literal">true</span>));<span class="comment">//隐藏图片</span></span><br><span class="line">NotificationManagerCompat<span class="built_in">.</span>from(ctx)</span><br><span class="line">	<span class="built_in">.</span>notify(builder<span class="built_in">.</span>build());</span><br><span class="line"></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>总计就是三张卡片了，此外，你可以添加一张全屏图像作为页面，就用不着卡片了，这种办法对地图或照片之类的内容来说非常实用。</p>
+<h2 id="提醒堆栈（Notification_Stacks）">提醒堆栈（Notification Stacks）</h2><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_myblognotifistack.PNG" alt=""></p>
+<p>它可以把多条提醒归类成一组，用户可以与整个堆栈交互，也可以进入到单独的项中，堆栈本身及子提醒也可以增加行为，这个特性对信息型APP来说非常方便，因为用户可能会一次性查看所有信息，或只看其中的一条，为了创建提醒堆栈，推送一条或多条子提醒，然后把它们全打上组密钥的标签，你可以采用<code>NotificationCompat.Builder</code>中的<code>setGroupMethod</code>（设置组方式）来实现这一点。来自同一APP相同组密钥的提醒推送会被归类到同一堆栈中，你也可以使用setSortKey(设置类密钥)来处理项，如果你喜欢为一个丛（<code>bundle</code>）选择背景图片和行为，你可以推送一个可选择的组概要提醒，在下面代码中，用户会看到为丛设置的“全部归档”行为，取保为每个提醒选择一个唯一的提醒ID或标签，以免它们在推送时会相互覆盖。</p>
+<p><strong>Post group child notifications</strong></p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//<span class="keyword">for</span> each child notification</span><br><span class="line">NotificationCompat.Builder builder = ...</span><br><span class="line">build.addAction(R.drawable.archive,</span><br><span class="line">	<span class="string">"Archive"</span>,pendingIntent)</span><br><span class="line">	.<span class="built_in">set</span>Group(<span class="string">"my-group"</span>)</span><br><span class="line">	.<span class="built_in">set</span>SortKey(<span class="string">"sort-key"</span>);</span><br><span class="line">NotificationManagerCompat.<span class="keyword">from</span>(ctx)</span><br><span class="line">	.notify(builder.build());</span><br></pre></td></tr></table></figure>
+<p>目前展示的提醒行为全部使用了默认设置，可以作为附加页面增加到相应卡片之中，下图左手的手表展示了这一设置,把主卡滑走就出现了“播放”行为，右手的手表则展示了直接把行为添加进当前卡片的行为，这样这张卡片就可以直接点击了，使用可穿戴扩展器中的setContentAction(设置内容行为)来为卡片添加行为。这些行为就不会作为单一页面来显示了。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//Action Notification</span></span><br><span class="line">NotificationCompat<span class="class">.Builder</span> builder = ...</span><br><span class="line">build.<span class="function"><span class="title">addAction</span><span class="params">(R.drawable.pause,<span class="string">"Pause"</span>,intent)</span></span></span><br><span class="line">build.<span class="function"><span class="title">extend</span><span class="params">(new NotificationCompat.WearableExtend)</span></span></span><br><span class="line">	.<span class="function"><span class="title">setContentAction</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogmusicstatus.PNG" alt=""></p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogmusicstatus0.PNG" alt=""></p>
+<h2 id="远程输入（Remote_Input）">远程输入（Remote Input）</h2><p>远程输入则是提醒行为的另外一个新特性，在激活一个行为时，它可以让用户开启文本回复，设备会提供给用户一个短语或让用户从一些选项中进行选择，这种输入的结果就是将含有你意图的行为发送了出去，通过远程输入，AndroidWear与手机、平板或可穿戴设备的APP互动就变得非常简单了，下面的代码就显示出我们为回复行为增加了一个远程输入，用户在卡片流中点击这一行为时，系统就会在<code>Quick Reply</code>的标签下，提供给用户一个语音回复的行为，一旦文本回复转换完成而又得到了用户的同意，你的行为意图就会发出，而且目的已经包含在内了，</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="subst">**</span>Add RemoteInput <span class="keyword">to</span> a notification action<span class="subst">**</span></span><br><span class="line"><span class="built_in">String</span> EXTRA_QUICK_REPLY <span class="subst">=</span> <span class="string">"quick_reply"</span>;</span><br><span class="line"></span><br><span class="line">NotificationCompat<span class="built_in">.</span>Builder builder<span class="subst">=</span><span class="attribute">...</span></span><br><span class="line">builder<span class="built_in">.</span>addAction(</span><br><span class="line">	<span class="literal">new</span> NotificationCompat<span class="built_in">.</span>Action<span class="built_in">.</span>Builder(</span><br><span class="line">		R<span class="built_in">.</span>drawable<span class="built_in">.</span>reply,<span class="string">"Reply"</span>,pendingIntent</span><br><span class="line">	<span class="built_in">.</span>addRemoteInput(</span><br><span class="line">		<span class="literal">new</span> RemoteInput<span class="built_in">.</span>Builder(EXTRA_QUICK_REPLY)</span><br><span class="line">			<span class="built_in">.</span>setLabel(<span class="string">"Quick reply"</span>)<span class="built_in">.</span>build())</span><br><span class="line">		<span class="built_in">.</span>build());</span><br><span class="line"></span><br><span class="line"><span class="attribute">...</span></span><br></pre></td></tr></table></figure>
+<p>你的意图接收器，可以是一个<code>Activity</code>，<code>Service</code>，<code>Broadcast</code>，就可以使用远程输入API意图功能中的<code>Get Results</code>，来重新恢复成目的文本了，在下面的代码中，quickReplyText变量会根据用户的输入来进行设置，在远程输入API中还有许多其他选项可以使用，支持的内容包括预设选择、允许或禁用、自由样式输入，还支持同一行为的多种输入等。</p>
+<p><strong>MyActivity.java</strong></p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span></span>&#123;</span><br><span class="line">	<span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">	Bundle results = RemoteInput.getResultsFromIntent(</span><br><span class="line">		getIntent());</span><br><span class="line">	<span class="keyword">if</span>(results != <span class="keyword">null</span>)&#123;</span><br><span class="line">		CharSequence quickReplyText = </span><br><span class="line">			results.getCharSequence(</span><br><span class="line">				EXTRE_QUICK_REPLY);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Custom_Display_Cards">Custom Display Cards</h2><p>标准的提醒模版或许并不足以展示你想在卡片中出现的内容，所以我们增加了一个API：set Display Intent（设置显示意图），它可以让你使用安卓活动来实时绘制提醒内容，这一特性只对可穿戴设备上运行的APP可用，而且这些APP所用的API需要20以上的版本，定义内嵌到自定义显示卡片的活动时，你必须首先把它标记为exported（导出），这个可以通过在活动中设置导出属性为true，或增加一个意图过滤器来完成，接下来，把这一新属性的“是否潜入”设置为true，这样可以防止活动嵌入到不该嵌入的事件中去，最后，设置关联任务<code>task Affinity</code>为空字符串，虽然触控输入并不会在信息流中传播，但这些活动与其他活动一样，可以包含相同内容，这样像按钮那样的控制就可能不再适合了，你的活动写入之后，你可以将其嵌入到信息流中来创建一条提醒，然后使用可穿戴扩展器中的<code>setDisplayIntent</code>（设置显示意图）方式来选择该活动，你可以为显示意图增加附加内容来通过活动所需要的任何数据。</p>
+<p><strong>AndroidMainifest.xml</strong></p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;activity</span><br><span class="line">	android:<span class="variable">name=</span><span class="string">"com.example.MyDisplayActivity"</span></span><br><span class="line">	android:<span class="variable">exported=</span><span class="string">"true"</span></span><br><span class="line">	android:<span class="variable">allowEmbeded=</span><span class="string">"true"</span></span><br><span class="line">	android:<span class="variable">taskAffinity=</span><span class="string">""</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>下面就是自定义显示提醒的一些模版，信息流中的标准提醒会基于内容自动调整大小，但是自定义显示提醒则需要在不想要默认大尺寸的情况下提供一个尺寸，你可以使用可穿戴拓展器中的设置自定义尺寸预设，或是设置自定义内容高度等方式来选择尺寸。</p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_myblognotifiwearmoban.PNG" alt=""></p>
+<h2 id="Notification_Bridging">Notification Bridging</h2><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogmobile_wear_noti.PNG" alt=""></p>
+<p>通过设置这些自定义卡片，之前上面提到的<code>Notification API</code>可以同时用在可穿戴设备的APP的提醒创建，以及来自手机或平板APP上的提醒桥接，桥接过程在可穿戴设备上是自动进行的，但是这里还有<strong>几种新API是用来自定义桥接行为的</strong>，如下代码所示：首先，你可以使用提醒兼容设置中的新<code>set Local Only</code>（设置仅本地）来完全禁用提醒桥接，如果一个提醒仅相关当前设备，那它就很有用处了，第二个特效，就是增加提醒仅可穿戴设备可用的行为，它可以让你为手机和可穿戴设备选择单独的行为设置，仅可穿戴可用行为在可穿戴扩展器的类中添加。</p>
+<p><strong>Disable bridging for a notification</strong></p>
+<figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">NotificationCompat</span>.<span class="variable">Builder</span> builder = ...</span><br><span class="line">builder.set<span class="variable">LocalOnly</span>(<span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+<p><strong>Add an action for phones,tablets,and wearables</strong></p>
+<figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">NotificationCompat</span>.<span class="variable">Builder</span> builder = ...</span><br><span class="line">builder.add<span class="variable">Action</span>(<span class="variable">R</span>.drawable.reply,<span class="string">"Archive"</span>,pending<span class="variable">Intent</span>);</span><br><span class="line">	.add<span class="variable">Action</span></span><br></pre></td></tr></table></figure>
+<p><strong>Add an action for wearables only</strong></p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NotificationCompat<span class="built_in">.</span>Builder builder <span class="subst">=</span> <span class="attribute">...</span></span><br><span class="line">builder<span class="built_in">.</span>extend(<span class="literal">new</span> NotificationCompat<span class="built_in">.</span>WearableExtender()</span><br><span class="line">	<span class="built_in">.</span>addAction(<span class="literal">new</span> NotificationCompat<span class="built_in">.</span>Action(</span><br><span class="line">		R<span class="built_in">.</span>drawable<span class="built_in">.</span>reply,<span class="string">"Reply"</span>,pendingIntent)));</span><br></pre></td></tr></table></figure>
+<p>PS：这里有博主自己曾经写过的一个运行在Android手机上的Demo，用来展示Wear端的Notification新特性:<a href="https://github.com/AndroidWearDemo/AndroidWearNotification" target="_blank" rel="external">在Github上获取</a></p>
+<p>也可以参考国外大神的一个例子：<a href="http://code.tutsplus.com/tutorials/enhanced-and-wearable-ready-notifications-on-android--cms-21868" target="_blank" rel="external">Enhanced and Wearable-Ready Notifications on Android</a></p>
+<h1 id="Android_Wear下的全屏App设计理念">Android Wear下的全屏App设计理念</h1><p>为Android Wear设计APP的许多技术因素，你们会觉得非常熟悉，因为它们跟普通的Android APP运行原理是一样的，不过呢，这里主要讲的是<strong>两大不同点</strong>：</p>
+<h2 id="让用户如何退出APP">让用户如何退出APP</h2><p>在手机或平板上，用户会使用返回或主页键来推出APP，但这些按钮在Android Wear设备上都不会出现，相反，在wear app上，用户离开你的APP会有如下两种办法：<strong>一种是把页面朝左滑动至边缘退出，另一种是长按APP退出</strong>：</p>
+<h3 id="滑动退出：">滑动退出：</h3><p>通过Android Wear我们引入了一种新的窗口属性：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt; style <span class="property">name</span> =<span class="string">"AppTheme"</span> parent = <span class="string">"Theme.DeviceDefault"</span> &gt;</span><br><span class="line">	&lt; <span class="property">item</span> <span class="property">name</span> = <span class="string">"android.windowSwipeToDismiss"</span>&gt;<span class="constant">true</span>&lt; /<span class="property">item</span> &gt;</span><br><span class="line">&lt; /style &gt;</span><br></pre></td></tr></table></figure>
+<p><strong>即窗口滑动属性</strong>，这种窗口属性可以运用在你具体的活动主题中，一旦窗口滑动退出属性设置为true，那么活动一旦从左滑动至右，它就会退出，这种滑动退出运行方式跟多面控件运行方式类似，如果活动中的内容本身就可以滚动，那么窗口就不会退出，除非用户滚动到该内容边缘后再次滑动，它可以让你创建一些非常出色、类似信息流的体验，这些体验也可以通过滑动来退出。所有的Android Wear APP要么使用设备默认主题，要么使用一个继承默认设备的主题，这样可以确保不同的主题风格都会在你的APP上正常运行，从而让它们在你的wear设备上看起来非常好，</p>
+<p><strong>You get it by default</strong></p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;activity</span><br><span class="line">	android:name=<span class="string">".ControlRobotsActivity"</span></span><br><span class="line">	android:theme=<span class="string">"Theme.DeviceDefault"</span></span><br><span class="line">/&gt;</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line">当然，我们知道，有些<span class="keyword">APP</span>没办法使用滑动退出的功能，比如，无限移动的地图应用时永远没有边缘的，如果你不想使用滑动手势，那么你可以通过吧滑动的退出属性设置为false，来在你的主题中禁用<span class="keyword">ta</span>。对于无法通过滑动来退出的<span class="keyword">APP</span>。我们可以使用第二个属性：即**长按退出功能。**</span><br><span class="line">    </span><br><span class="line">### 长按退出 ###</span><br><span class="line">这就相当于是一个退出按钮的行为了，为了让用户知道你的<span class="keyword">APP</span>可以长按退出，在<span class="keyword">APP</span>首次运行时，你要给用户一个长按退出的提示。打开我们的wear设备，你会发现在屏幕任何地方出现长按行为，都会在<span class="keyword">APP</span>上出现一个退出按钮。再按下那个按钮来退出活动，用户则会回到主页，为了让你的<span class="keyword">APP</span>退出变得尽量容易，Google做了一个可以在大多数UI上运行的<span class="keyword">View</span>,它叫退出覆盖视图（dismiss overlay <span class="keyword">view</span>）</span><br><span class="line">     </span><br><span class="line"><span class="comment">**activity_control_robots.xml**</span></span><br></pre></td></tr></table></figure>
+<android.support.wearable.view.dismissoverlayview android:id="@+id/dismiss_overlay" android:layout_height="match_parent" android:layout_width＝"match_parent"="">    
+
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">为了把它集成到你的APP中，首先要把它添加进你的XML活动层中，确保它<span class="keyword">*</span><span class="keyword">*</span>增加的位置一定是在其他布局之上的<span class="keyword">*</span><span class="keyword">*</span>你还要确保该视图的尺寸能够覆盖整个屏幕，把它高度和宽度设置成与父框架相匹配，这样它就能够确保全屏，而且处于最顶层了，现在我们来看看java类里面怎么写：</span><br><span class="line"></span><br><span class="line"><span class="keyword">*</span><span class="keyword">*</span>ControlRobotsActivity.java<span class="keyword">*</span><span class="keyword">*</span></span><br></pre></td></tr></table></figure>
+<p>public void onCreate(Bundle savedState){<br>    super.onCreate(savedState);<br>    setContentView(R.layout.activity_control_robots);</p>
+<pre><code>mDismissOverlay = (DismissOverlayView)findViewById(R.id.dismiss_overlay);
+mDismissOverlay.setIntroText(R.<span class="built_in">string</span>.long_press_intro);
+mDismissOverlay.showIntroIfNecessary();
+
+ mDetector = <span class="keyword">new</span> GestureDetector(<span class="keyword">this</span>,<span class="keyword">new</span> SimpleOnGestureListener(){
+   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLongPress</span><span class="params">(MotionEvent ev)</span></span>{
+       mDismissOverlay.show();
+   }
+
+ });
+}
+</code></pre><p>…</p>
+<p>@Override<br>public boolean onTouchEvent(MotionEvent ev){<br>    return mDetector.onTouchEvent(ev) | | super.onTouchEvent(ev);<br>}<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">在它的<span class="escape">`o</span>nCreate<span class="escape">`中</span>把退出层从你的布局层中拉出来，然后设置为内省文本，这个文本会在第一次运行活动时显示出来，而且会显示在APP其他内容之上，用来告诉用户可以通过长按来返回主页，然后，使用<span class="escape">`s</span>howIntroIfNecessary<span class="escape">`(</span>必要时显示内省文本)，它会，也只会在第一次运行该APP时显示这个内省层，，接下来，如果用户长按了你的app，我们就需要让它激活，使用<span class="escape">`G</span>estureDectector<span class="escape">`(</span>手势检测器）和<span class="escape">`S</span>impleOnGestureListener<span class="escape">`（</span>简易手势接收器）,使用这些框架类会确保所有app感应到手势的时长，在你长按返回时，会激活布局层显示退出行为，会显示一个退出按钮，如果用户点击了该按钮，你的活动就会被结束，但如果你没有点击该按钮，那么这个退出层就会自行隐藏，等着下次出现的命令，最后，还是在你的活动中覆盖一层 <span class="escape">`o</span>nTouchEvent<span class="escape">` </span>(触控事件)，然后让<span class="escape">`r</span>eveiveTouchEvents<span class="escape">` </span>(接受触控事件)连通到<span class="escape">`G</span>estureDectector<span class="escape">`（</span>手势检测器）,如果 <span class="escape">`G</span>estureDetector<span class="escape">` </span>返回为<span class="literal">true</span>，你也真的返回主页了，而且不用触动 <span class="escape">`o</span>nTouchEvent<span class="escape">` </span>方式的正常活动,相反如果为<span class="literal">false</span>，那就可以继续使用正常活动的触控。</span><br><span class="line"></span><br><span class="line">## 如何设计和运用你的APP，让ta看起来在圆形屏幕(Moto <span class="number">360</span>)上很不错。 ##</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"><span class="label">![](http:</span>//<span class="number">7</span>xi6qz.com1.z0.glb.clouddn.com/github_myblogmoto360_size.PNG)</span><br><span class="line"></span><br><span class="line">首先，我们来看看<span class="number">360</span>的屏幕维度吧，这是一个直径为<span class="number">320</span>px的圆圈，下方有<span class="number">30</span>px的<span class="escape">`c</span>hin<span class="escape">`，</span>因此系统会认为它的尺寸为<span class="number">320</span>x290px，在我们自己开发的过程中，我们意识到chin会将一些非计划中的结果导入到现有的布局中，比如我们来看一下信息流中的行为卡片，我们希望给屏幕中央放置一个行为图标，但我们给中央垂直点加了一个层重力机制之后，结果这个蓝圆偏移了<span class="number">15</span>px，但我们还是希望中间的这个蓝圆最好能够处于整个屏幕的中央，在我们之前提到过的默认主题中，<span class="escape">`w</span>indowOverscan<span class="escape">`属</span>性已经设置了，而且整个视图分级结构的源是<span class="number">320</span>X320px，这就导致了你的APP顶级结构视图，依然认为是<span class="number">320</span>X320，而非<span class="number">320</span>X290，然后再把你的局布如预想般放在屏幕中央，如何检测你的活动是运行在圆形屏幕中的呢？你的视图会请求应用窗口插入<span class="escape">`i</span>nsets<span class="escape">`,</span>然后会返回一个窗口插入目标，它会告诉你屏幕的形状，在Moto360中，它会告诉你下方插入的窗口为<span class="number">30</span>px，在任何地方只要你要围绕这个<span class="escape">`c</span>hin<span class="escape">`来</span>布局，你就需要经常使用这个值，这里所使用的插入值，会确保你的APP在以后任何可穿戴设备上看起来都很漂亮，为了节省大家敲打这些通用代码的时间，Google增加了一个叫<span class="escape">`W</span>atchViewStub<span class="escape">`的</span>视图，它可以让你根据APP运行的不同屏幕来扩充一两种不同的布局，如果你想在屏幕上看起来与众不同，就可以使用<span class="escape">`W</span>atchViewStub<span class="escape">`来</span>作为任何视图分级就够的源，要使用的话，先在你的活动或者onCreate碎片中创建一个新的源，完成之后，你就需要给你的源加上两层布局（<span class="escape">`R</span>ound、Rect<span class="escape">`）</span>,但是有一个问题需要注意：因为这些布局在视图在附加进结构分级前，并没有进行扩充，你就没办法进入子一级的视图，相反，附加一个OnLayoutInflatedListener(布局扩充收听器)，它可以在布局内层进行不合适的扩充时使用，退出布局视图和这个WatchViewStub都可以在可穿戴支持库<span class="escape">`W</span>earable Library<span class="escape">`中</span>找到，如下：</span><br></pre></td></tr></table></figure></p>
+<p>public WindowInsets onApplyWindowInsets(View view,WindowInsets windowInsets){<br>    if(windowInsets.isRound()){<br>        Rect insets = windowInsets.getSystemWindowInsets();<br>    //insets.bottom = 30<br>    }<br>}</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">*</span><span class="keyword">*</span>ControlRobotsActivity.java<span class="keyword">*</span><span class="keyword">*</span></span><br></pre></td></tr></table></figure>
+<p>@Override<br>public void onCreate(Bundle savedInstanceState){</p>
+<p>   WatchViewStub stub = new WatchViewStub(this);<br>    stub.setRectLayout(R.layout.activity_control_robots_rect);<br>    stub.setRoundLayout(R.layout.activity_control_robots_round);</p>
+<pre><code>stub.setOnLayoutInflatedListener(<span class="keyword">new</span> WatchViewStub.OnLayoutInflatedListener(){
+    <span class="annotation">@Override</span> <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onLayoutInflated</span><span class="params">(WatchViewStub stub)</span></span>{
+        stub.findViewById(R.id.start_invasion).setOnClickListener(mClick);
+    }
+});
+setContentView(stub);
+</code></pre><p>}</p>
+<p>```</p>
+<p>该库同时也提供叫做<code>盒状插入布局的新布局管理器</code>，它拓展了框架布局，让开发师能够同时在方形与圆形屏幕上使用同一布局。</p>
+<h1 id="Android_Wear表盘（WatchFace）设计与开发">Android Wear表盘（WatchFace）设计与开发</h1><p>不得不承认，Google在表盘方面上还是很鼓励第三方开发者去自由创作的，有别于<br><a href="http://www.leikeji.com/article?2264" target="_blank" rel="external">Apple Watch不允许接入第三方watch face应用</a>的做法。</p>
+<p><a href="http://code.tutsplus.com/tutorials/creating-an-android-wear-watch-face--cms-23718" target="_blank" rel="external">AndroidWear CanvasWatchFaceService</a></p>
+<h1 id="Android_Wear更多系列教程：">Android Wear更多系列教程：</h1><blockquote>
+<p>博主认为，目前天朝的可穿戴社区仍处于起步阶段，很多资源还不丰富，但是天朝程序猿的力量是强大的，相信随着更多wear developers的加入，可穿戴的社区会愈来愈壮大，最后仅以自己微薄之力，为Android Wear开源做出一点贡献，希望能帮助到更多的人。</p>
+</blockquote>
+<p>下面汇总了目前国内比较好的一些Android Wear资源，请参考：</p>
+<ul>
+<li><p>开发类</p>
+<ul>
+<li><a href="http://developer.android.com/wear/index.html" target="_blank" rel="external">Android Wear Google官方教程（请翻墙，或者自己搜镜像）</a></li>
+<li><a href="http://dev.seacat.cn/index.html" target="_blank" rel="external">Android Wear Google官方教程 <code>穿戴猫</code>汉化版本</a></li>
+<li><a href="http://bbs.seacat.cn/forum-106-1.html" target="_blank" rel="external">Android Wear <code>穿戴猫</code>社区原创基础教程</a></li>
+<li><a href="http://www.tuicool.com/articles/F7Z3Yj" target="_blank" rel="external">Android Wear - App Structure for Android Wear（应用结构)</a></li>
+<li><a href="http://www.cnblogs.com/benhero/p/4273800.html" target="_blank" rel="external">benhero博客_Android Wear开发学习指南</a></li>
+<li><a href="http://code.tutsplus.com/tutorials/introduction-to-android-wear-hands-on--cms-22157" target="_blank" rel="external">Android Wear_Hands-On</a></li>
+<li><a href="http://code.tutsplus.com/tutorials/creating-an-android-wear-watch-face--cms-23718" target="_blank" rel="external">AndroidWear CanvasWatchFaceService</a></li>
+<li><a href="http://code.tutsplus.com/articles/introduction-to-android-wear-the-basics--cms-22042" target="_blank" rel="external">Introduction to Android Wear: The Basics</a></li>
+<li><a href="http://code.tutsplus.com/tutorials/enhanced-and-wearable-ready-notifications-on-android--cms-21868" target="_blank" rel="external">Enhanced and Wearable-Ready Notifications on Android</a></li>
+<li><a href="http://ask.android-studio.org/?/explore/category-wear" target="_blank" rel="external">Ask AndroidStudio Wear问答社区</a></li>
+</ul>
+</li>
+<li><p>设计类 </p>
+<ul>
+<li><a href="http://developer.android.com/design/wear/index.html" target="_blank" rel="external">Google 官方Android Wear设计教程（需要翻墙）</a> </li>
+<li><a href="http://developer.android.com/design/wear/watchfaces.html" target="_blank" rel="external">Google 官方Android Wear表盘（WatchFace）设计教程（需要翻墙）</a></li>
+<li><a href="http://note.youdao.com/share/?id=1a46e80cb5ea07b5c755d38b65ff9576&amp;type=note" target="_blank" rel="external">Google Android Wear 设计规范学习心得 </a></li>
+<li><a href="http://tencentos.ui.cn/" target="_blank" rel="external">TencentOS智能手表表盘设计大赛</a></li>
+<li><a href="http://facerepo.com/app/" target="_blank" rel="external">FaceRepo for WatchMaker/Facer表盘引擎收集网站</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="Google_Play_上热门的Android_Wear应用">Google Play 上热门的Android Wear应用</h1><blockquote>
+<p>博主收集了一些谷歌市场上比较热门的Android Wear应用，期待更多朋友的补充和意见，大家可以下载下来体验，翻不了墙的同学请默哀。</p>
+</blockquote>
+<ul>
+<li><p><a href="http://note.youdao.com/share/?id=ee853cdb7e4283bade26e485d6ca2c60&amp;type=note" target="_blank" rel="external">22款很棒的Android Wear表盘应用</a></p>
+</li>
+<li><p><a href="http://note.youdao.com/share/?id=0037856aa8e5e0c2476b9a9f4950baa5&amp;type=note" target="_blank" rel="external">31款很棒的Android Wear应用</a></p>
+</li>
+<li><p><a href="http://www.magicwatchface.com/zh_cn" target="_blank" rel="external">Magic WatchFace神奇表盘应用</a></p>
+</li>
+</ul>
+<h1 id="热门的可穿戴技术社区">热门的可穿戴技术社区</h1><blockquote>
+<p>收录了一些博主目前暂时所知的”可穿戴技术社区”，期待更多朋友的补充和意见！</p>
+</blockquote>
+<ul>
+<li>国内：<ul>
+<li><a href="http://www.seacat.cn/" target="_blank" rel="external">穿戴猫</a></li>
+<li><a href="http://duwear.baidu.com/" target="_blank" rel="external">DuWear</a></li>
+<li><a href="http://ticwear.com/" target="_blank" rel="external">Ticwear</a></li>
+<li><a href="http://watch.tos.cn/" target="_blank" rel="external">Tencent OS for Watch</a></li>
+<li><a href="http://www.watchkong.com/forum/forum.php" target="_blank" rel="external">手表控</a></li>
+<li><a href="http://www.leikeji.com/" target="_blank" rel="external">雷科技</a></li>
+<li><a href="http://wearable.hqbpc.com/" target="_blank" rel="external">可穿戴设备</a></li>
+<li><a href="http://www.kongnar.com/" target="_blank" rel="external">控哪儿网</a></li>
+<li><a href="http://www.mapelf.com/" target="_blank" rel="external">出行精灵</a></li>
+</ul>
+</li>
+<li>国外：<ul>
+<li>由于天朝特殊原因，等以后更新。 </li>
+</ul>
+</li>
+</ul>
+<h1 id="Android_Wear相关产品宣传视频">Android Wear相关产品宣传视频</h1><ul>
+<li><a href="http://www.cgangs.com/article/3467?source=sinaweibo" target="_blank" rel="external">Google：wear what you want</a></li>
+<li><a href="http://www.tudou.com/programs/view/jKv0PSWHdCY/" target="_blank" rel="external">Moto360创意广告</a></li>
+<li><a href="http://baidu.fun.tv/watch/2542550633994583670.html" target="_blank" rel="external">Moto360中文应用场景广告</a></li>
+<li><a href="http://my.tv.sohu.com/us/243481507/79477160.shtml" target="_blank" rel="external">华为AndroidWear智能手表官方宣传片1</a></li>
+<li><a href="http://my.tv.sohu.com/us/5747262/78630855.shtml" target="_blank" rel="external">华为AndroidWear智能手表官方宣传片2</a></li>
+</ul>
+<h1 id="加入我们">加入我们</h1><p>组织在这里(请猛戳链接)：<a href="https://github.com/AndroidWearDemo" target="_blank" rel="external">AndroidWear-CN</a></p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogAndroidWear-CN.png" alt=""></p>
+<blockquote>
+<p><strong>转载</strong>请注明<strong>出处+原文链接+原文作者</strong>，侵权必究，谢谢！<br>持续更新中</p>
+</blockquote>
+</android.support.wearable.view.dismissoverlayview>]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="本文作者">本文作者</h1><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicslrme.jpg" alt=""></p>
+<h2 id="Jiale_Dai"><a href="http://www.daijiale.cn">Jiale Dai</a></h2><p>成都 电子科技大学 本科生( 其实还没毕业，目前大三 ）</p>
+<p>从14年开始一直专研于AndroidWear开发</p>
+<blockquote>
+<p><strong>摘要：</strong> 本文是Jiale Dai 在学习Google官方视频、开发者文档和实践项目之后整理出来的心得笔记，是以一个个人开发者的角度给大家带来一些侧面对Android Wear开发的看法，不同于一些传统的Android Wear技术开发教程，但是博主希望能通过自己对这些知识的整理和资源的收集，给读者带了一份详尽的、多角度的Android Wear指南。<strong>无论你是程序员，设计师，产品经理，还是手表极客 ，Android Wear用户 or 小白，都能在这篇博文中找到你想要的Android Wear元素。</strong><br>博文会同时托管到Github上，欢迎更多承载着开源精神的有心人加入，分享你对Android Wear的见解。<br>]]>
+    
+    </summary>
+    
+      <category term="Android" scheme="http://daijiale.github.io/tags/Android/"/>
+    
+      <category term="AndroidWear" scheme="http://daijiale.github.io/tags/AndroidWear/"/>
+    
+      <category term="智能可穿戴" scheme="http://daijiale.github.io/tags/%E6%99%BA%E8%83%BD%E5%8F%AF%E7%A9%BF%E6%88%B4/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+      <category term="Android开发笔记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Android%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[我的一点看法关于市面上流行的Git托管服务社区]]></title>
+    <link href="http://daijiale.github.io/2015/04/27/%E6%88%91%E7%9A%84%E4%B8%80%E7%82%B9%E7%9C%8B%E6%B3%95%E5%85%B3%E4%BA%8E%E7%9B%AE%E5%89%8D%E5%B8%82%E9%9D%A2%E4%B8%8A%E6%B5%81%E8%A1%8C%E7%9A%84Git%E6%89%98%E7%AE%A1%E6%9C%8D%E5%8A%A1%E7%A4%BE%E5%8C%BA/"/>
+    <id>http://daijiale.github.io/2015/04/27/我的一点看法关于目前市面上流行的Git托管服务社区/</id>
+    <published>2015-04-27T03:39:09.000Z</published>
+    <updated>2015-06-02T02:07:10.000Z</updated>
+    <content type="html"><![CDATA[<p><code>git</code> 服务社区越来越多，无论是国外的还是国内的，免费公益的还是按需收费的，我们该如何选择呢？</p>
+<p>这里整理了一些我自己接触过的，给大家参考一下：</p>
+<a id="more"></a>
+<h1 id="市面上流行的Git服务社区：">市面上流行的Git服务社区：</h1><ul>
+<li>1、<code>Github</code>：不解释。</li>
+<li><p>2、<code>GitLab</code>：在github上全开源，CE私有库免费，现在很多新生git社区的内核，后面提到的Git@OSC就是基于它做的。<br>两个版本 ：GitLab 社区版（CE）是可用而不下MIT许可证的任何费用。<br>GitLab企业版（EE） ，包括额外的功能，这对于拥有超过100个用户的组织最有用的。要访问的EE和支持，请成为用户。</p>
+</li>
+<li><p>3、<code>GitCafe</code>：私有库收费，企业版还TM未开放。。。唯一的优点可能就是国内优秀的合作伙伴（等等）比较多！</p>
+</li>
+<li><p>4、<code>Git@OSC</code>：每人可以1000个库，无论是私有还是公有，和Team@OSC，Sonar@OSC，PaaS@OSC可以配套使用，形成闭环，整个生态基本全部免费，专业化集成度最高！<br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicgitosc.PNG" alt=""></p>
+</li>
+<li><p>5、<code>Gogs</code>：新生力量，前段时间在好友<a href="http://blog.paincompiler.us/" target="_blank" rel="external">NastyLeoc</a>的SinaWeiBlog上看到的，基于go语言的超轻量级平台，在github上全开源，支持fork pull协作，私有库免费，听说性能也很不错，前景比较大，膜拜一下四位缔造者：<br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicgogs.PNG" alt=""></p>
+</li>
+</ul>
+<ul>
+<li>6、<code>Bitbucket</code>：性质和github差不多，元老级社区，但是。。。被github完虐！</li>
+<li>7、<code>coding</code>：我个人最喜欢的一个协作环境，支持复用开发环境是其最大的亮点，同时也可以体验云端编程的快感，移动端的支持也很给力，目前Android和IOS的两个客户端都很稳定，码农社交圈也在慢慢扩大。自己目前正有把私有项目全都搬过去的打算(私有仓库还TM是免费的）。<a href="http://blog.coding.net/blog/why-coding-does-not-equals-github" target="_blank" rel="external">但coding绝对不是“中国的github”</a></li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><code>git</code> 服务社区越来越多，无论是国外的还是国内的，免费公益的还是按需收费的，我们该如何选择呢？</p>
+<p>这里整理了一些我自己接触过的，给大家参考一下：</p>]]>
+    
+    </summary>
+    
+      <category term="git" scheme="http://daijiale.github.io/tags/git/"/>
+    
+      <category term="代码托管" scheme="http://daijiale.github.io/tags/%E4%BB%A3%E7%A0%81%E6%89%98%E7%AE%A1/"/>
+    
+      <category term="工具神器" scheme="http://daijiale.github.io/tags/%E5%B7%A5%E5%85%B7%E7%A5%9E%E5%99%A8/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[单反自学笔记]]></title>
+    <link href="http://daijiale.github.io/2015/04/26/%E5%8D%95%E5%8F%8D%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/"/>
+    <id>http://daijiale.github.io/2015/04/26/单反自学笔记/</id>
+    <published>2015-04-26T13:26:09.000Z</published>
+    <updated>2015-06-02T02:07:10.000Z</updated>
+    <content type="html"><![CDATA[<p><strong>PS：</strong>2015年4月在<a href="http://mp.weixin.qq.com/s?__biz=MzAxMDM5MTIwMw==&amp;mid=204127766&amp;idx=1&amp;sn=7c6a4b87110f472a1ced270b6daafc10&amp;scene=5#rd" target="_blank" rel="external">胖哥（Axl、隔壁老王）</a>的唆使下，我入手了人身第一台<a href="http://baike.baidu.com/link?url=lUwpC5ksAq3Sh_zqGsNAZ4NmcxmiPul3P6SV-QXO5vdWItnvlm7GjvBreNyqoFYWoj-bbozDnDd0yU6lnqsKy7tsVn5qpNJ7BrEFqh_-k1Ml32XcaLvK0FlHUbbrL_eifzZoMYNglLhc-aX8K1XCd_" target="_blank" rel="external">单反</a>…（迈入继耳机之后的又一深坑）这篇Blog是最近学习新技能时做的笔记：</p>
+<h1 id="单反自学笔记_新人篇">单反自学笔记_新人篇</h1><ul>
+<li><a href="http://note.youdao.com/share/?id=48a8f388b8f5cb21ab3cd50d169a665f&amp;type=note" target="_blank" rel="external">新人第一课：井字构图法</a></li>
+<li><a href="http://note.youdao.com/share/?id=a6ec10c8127835dc4bd08ab923c7708f&amp;type=note" target="_blank" rel="external">新人第二课：如何把照片拍得更为清晰</a></li>
+</ul>
+<a id="more"></a>
+<h1 id="我的相机">我的相机</h1><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/小枫摄影danfan2.jpg" alt=""></p>
+<p> <img src="http://7xi6qz.com1.z0.glb.clouddn.com/小枫摄影danfan1.jpg" alt=""></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这里简单介绍下我的第一款相机：</p>
+<ul>
+<li><a href="http://baike.baidu.com/link?url=8wdswo_z6JsR1FqR-6-FWvETzJBPEZKDB4aZGss_ZDonkqxxdMAB-wfLZgpAbdwJBzuV-pR9TuC-CZ3nsF2QTa" target="_blank" rel="external">机身：Canon EOS 700D</a></li>
+<li><a href="http://lens.zol.com.cn/316/3166968.html" target="_blank" rel="external">镜头：24-105-F4</a></li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其实对于入门级小白来讲，这个机身还是挺适合的，不过镜头……呵呵，胖哥直接带我上了<strong>红圈</strong>（他说一步到位，5年之内不用换了），大出血了一回，在朋友圈里也是被骂惨了。不过拍出来的照片真的很逆天，回头会持续更新我自己的实战使用心得…</p>
+<h1 id="作品集">作品集</h1><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/小枫摄影小枫摄影_xs1.jpg" alt=""></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>持续更新中</strong></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><strong>PS：</strong>2015年4月在<a href="http://mp.weixin.qq.com/s?__biz=MzAxMDM5MTIwMw==&amp;mid=204127766&amp;idx=1&amp;sn=7c6a4b87110f472a1ced270b6daafc10&amp;scene=5#rd">胖哥（Axl、隔壁老王）</a>的唆使下，我入手了人身第一台<a href="http://baike.baidu.com/link?url=lUwpC5ksAq3Sh_zqGsNAZ4NmcxmiPul3P6SV-QXO5vdWItnvlm7GjvBreNyqoFYWoj-bbozDnDd0yU6lnqsKy7tsVn5qpNJ7BrEFqh_-k1Ml32XcaLvK0FlHUbbrL_eifzZoMYNglLhc-aX8K1XCd_">单反</a>…（迈入继耳机之后的又一深坑）这篇Blog是最近学习新技能时做的笔记：</p>
+<h1 id="单反自学笔记_新人篇">单反自学笔记_新人篇</h1><ul>
+<li><a href="http://note.youdao.com/share/?id=48a8f388b8f5cb21ab3cd50d169a665f&amp;type=note">新人第一课：井字构图法</a></li>
+<li><a href="http://note.youdao.com/share/?id=a6ec10c8127835dc4bd08ab923c7708f&amp;type=note">新人第二课：如何把照片拍得更为清晰</a></li>
+</ul>]]>
+    
+    </summary>
+    
+      <category term="个人故事" scheme="http://daijiale.github.io/tags/%E4%B8%AA%E4%BA%BA%E6%95%85%E4%BA%8B/"/>
+    
+      <category term="拍照摄影" scheme="http://daijiale.github.io/tags/%E6%8B%8D%E7%85%A7%E6%91%84%E5%BD%B1/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+      <category term="单反自学笔记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/%E5%8D%95%E5%8F%8D%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[百度第十二届Hackathon Coding Party小记]]></title>
+    <link href="http://daijiale.github.io/2015/04/15/%E7%99%BE%E5%BA%A6%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8AHackathon%20Coding%20Party%E5%B0%8F%E8%AE%B0/"/>
+    <id>http://daijiale.github.io/2015/04/15/百度第十二届Hackathon Coding Party小记/</id>
+    <published>2015-04-15T12:23:09.000Z</published>
+    <updated>2015-06-08T02:57:46.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>时间：2015.4.11-2015.4.14</p>
+<p>地点：北京 百度大厦</p>
+<p>Team Name: Action</p>
+<p>团队人员：小枫，Axl胖哥，解鑫，王彬杨峰，潘灿，Eclipse，韶华无根</p>
+<p>What’s happened? : Do it , Be Cool, Have Fun !</p>
+</blockquote>
+<h1 id="题记">题记</h1><p>有幸在<code>大三实习期间</code>赶上了<code>百度的第十二届黑客马拉松</code>，“与直达号相关的移动o2o”为主题，和众多百度大牛们同台竞技，虽然结果soso，但是享受了过程，结交了很多好友，收获很多，特此撰写Blog一篇，以资鼓励自己！<br><a id="more"></a></p>
+<h1 id="正文">正文</h1><p>这是一个难忘的一天，连续20个小时的头脑风暴+极速编程，从早上9点到第二天凌晨4点。这之间的酸爽，真得是谁用谁知道了！<br>        被胖哥从睡梦中拉起来，意识清醒后已经是9点了（平常上班都是9点半起，何况那天才是周末）。打了个专车，来到百度大厦的五福（爱斯基摩人堡），和其他队友见面，阵容还是挺豪华的：4位RD+2位PM（兼职UE）。简单确定分工和需求强度之后，直接开干，咱们的Idea还是挺不错的—— <code>“基于百度地图的问答社区”</code>，下面简单介绍下：</p>
+<ul>
+<li><p><strong>简介：</strong>创意要解决的问题: 解决地图用户基于LBS的知识获取需求。 创意的亮点/创新点:基于地图用户，使用UGC的模式解决用户在出行以及O2O中遇到的各种问题。</p>
+</li>
+<li><p><strong>创意背景：</strong>地图用户在使用地图时，在陌生的地点总会遇到各种需求，而这些LBS的需求有些是我们现有搜索无法很好的满足的，例如最后一公里等问题，我们生活中最常见的方式I就是向周围熟悉的人问问题，从而解决自己的疑惑。本创意主要是想基于地图用户的UGC方式来解决这种需求的满足。</p>
+<ul>
+<li><p><strong>解决方案：</strong></p>
+<ul>
+<li>1 用户在进入地图后，搜索具体的POI点进入详情页，详情页提供提问入口，用户可以使用该入口语音或文字输入方式提出问题；</li>
+<li>2 问题提出后会及时根据问题类型以及距离远近扩散给周围的地图用户或者知道用户、贴吧用户，使得地图用户的问题能够及时得到答案，满足用户的需求。</li>
+</ul>
+</li>
+<li><p><strong>预期效果：</strong>基于该创意，如果地图用户可以在问题提出后得到很好的答案，地图用户会形成基于LBS的问答社区，一方面使得我们产生一种有别于大众点评的UGC生态数据，另一方面可以使得地图用户对于我们地图详情页更加依赖，增强用户的粘性，最终使得用户由“出门就查百度地图”的习惯进一步延伸为“出门就查百度地图，有问题就问百度地图”。        </p>
+</li>
+</ul>
+<p>个人刚接到P5解鑫的需求时的感觉的是：很适合hackathon的题目，符合连接人与服务的特性，2天差不多就可以技术落地，创新性很强。。。（当然我也没想到最后砍需求砍得只把TA做成了一个<code>基于百度地图的对讲机。</code>）<br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/baiduhackathondefault.jpeg" alt=""><br><strong>我们的分工：</strong></p>
+<ul>
+<li><code>我和王彬（T4）</code>主要负责<code>Android端</code>和<code>Server端</code>的<code>通信模块</code>，即<code>语音文件的上传与下发</code>，<code>Question和Answer的分类识别</code>，和<code>回答事件锁</code>的实现。</li>
+<li><code>胖哥</code>负责<code>地图LBS的Question</code>和<code>Answer的TAG扩散效果</code>和<code>Android端UI</code>模块。</li>
+<li>还有两位<code>北大的研究生</code>负责<code>用户语音的获取</code>，<code>语音文件SD Card存放</code>和<code>TAG绑定语音文件</code>的模块。</li>
+<li>至于几位PM就很好分工了：倒饮料，递零食，PPT，砍需求（全都写死）。。。<br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/baiduhackathondefault2.jpeg" alt=""><br>在当天下午，我就和胖哥他们LBS基础业务部的小伙伴们迅速打成一片（毕竟码农和程序猿之间对话永远那么简单），还认识了UESTC的一位电工学长（另外一组Hackathon），因为我对大厦旁边比较熟，就请大家在辉煌国际一起吃了餐湖南菜（虽然钱不是我付的）。之后，我们便进入了此次hackathon的高潮——CodingNight：<br>离开五福后，我们在百度大厦找了个高大上的会议室，CodingNight Start…….我已经不记得踩过多少的坑和写死过多少次Bug。。。总之直到晚饭后，我的模块才正式完成，瞅了一眼胖哥，扩散效果不错，但是和<code>事件锁功能</code>爆发出无限Bug和Crash，只能在一旁为他默哀了。之后优化了下程序，刚好对面的北大研究生也完成了他的模块，于是我俩开始了蛋疼的合代码过程……</li>
+</ul>
+</li>
+</ul>
+<p>午夜12点：外面开始下暴雨，可我们还点了麦当劳外卖（有点为难送餐小哥了）。。。代码整合完成，测试良好，我和北大研究生们终于解脱了，一身轻松。胖哥任务最艰巨了，主程序在他那，最后打整合也得在他那完成。。。所以稍作休息后，我们一起凑过去给他看代码。。。<br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/baiduhackathondefault1.jpeg" alt=""><br>凌晨2点：我撑不住了，找了间大厦的员工休息室睡觉去了（同时还发现休息室里，还真有在公司过夜的。。。）</p>
+<p>凌晨4点：楼上一阵欢呼，我被胖哥电话惊醒。。。睡眼朦胧的我被告知App成型，Bug全部Fix（我估计又是写死了），终于。。。我们在22小时之内做出了一款<code>基于百度地图的对讲机</code> 。。。（求亲喷）</p>
+<p>PS：上图和App下载链接：</p>
+<p><img src="" alt=""></p>
+<p>凌晨5点：自豪的宣布：“我见过凌晨5点的百度之后”，和胖哥和UESTC学长一起打了辆专车，回家，倒头就睡。。。</p>
+<p> <img src="http://7xi6qz.com1.z0.glb.clouddn.com/baiduhackathondefault3.jpeg" alt=""></p>
+<h1 id="文尾">文尾</h1><p>最终的现场展示没能去成（实在太累，在家补觉），有点可惜，但是我们的作品还是得到了Robin（李彦宏）和Estaff们的很多好评和建议。在高手纷纭的决赛中，我们遗憾无缘黑马奖，但通过1天的hackathon，我们<code>Do it , Be Cool, and Have Fun !</code>,我想，这，就足够了！</p>
+<p>PS：Hackathon这种竞赛模式对开发者的要求更高，可以很好的考量极速编程能力和团队协作能力，比以前我拿过奖的很多校园型开发者大赛更具挑战性，以后我会参加更多的hackathon，落地更多极具创意的思维，享受自己成长的过程，期待志同道合的朋友Join me！</p>
+<embed src="http://music.163.com/style/swf/widget.swf?sid=28949412&type=2&auto=1&width=320&height=66" width="340" height="86" allownetworking="all">]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>时间：2015.4.11-2015.4.14</p>
+<p>地点：北京 百度大厦</p>
+<p>Team Name: Action</p>
+<p>团队人员：小枫，Axl胖哥，解鑫，王彬杨峰，潘灿，Eclipse，韶华无根</p>
+<p>What’s happened? : Do it , Be Cool, Have Fun !</p>
+</blockquote>
+<h1 id="题记">题记</h1><p>有幸在<code>大三实习期间</code>赶上了<code>百度的第十二届黑客马拉松</code>，“与直达号相关的移动o2o”为主题，和众多百度大牛们同台竞技，虽然结果soso，但是享受了过程，结交了很多好友，收获很多，特此撰写Blog一篇，以资鼓励自己！<br>]]>
+    
+    </summary>
+    
+      <category term="Android" scheme="http://daijiale.github.io/tags/Android/"/>
+    
+      <category term="Hackathon" scheme="http://daijiale.github.io/tags/Hackathon/"/>
+    
+      <category term="个人故事" scheme="http://daijiale.github.io/tags/%E4%B8%AA%E4%BA%BA%E6%95%85%E4%BA%8B/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+      <category term="Android开发笔记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Android%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[AjaxReview]]></title>
+    <link href="http://daijiale.github.io/2015/04/09/AjaxReview/"/>
+    <id>http://daijiale.github.io/2015/04/09/AjaxReview/</id>
+    <published>2015-04-09T10:30:09.000Z</published>
+    <updated>2015-06-08T02:57:46.000Z</updated>
+    <content type="html"><![CDATA[<p><strong>PS：</strong>写这篇Blog主要有两个三个动机：</p>
+<ul>
+<li>对以前自己所学知识的一个系统化review</li>
+<li>刚好给徒弟漫漫制作一份比较全面的Ajax教程</li>
+<li>帮助更多的，对此知识有需要的童鞋<a id="more"></a>
+</li>
+</ul>
+<p><embed src="http://music.163.com/style/swf/widget.swf?sid=29561077&type=2&auto=1&width=320&height=66" width="340" height="86" allownetworking="all"></p>
+<h1 id="概念介绍">概念介绍</h1><p>   在介绍<code>Ajax</code>的概念之前，我觉得有必要先说明一下<strong>“同步”和“异步”</strong>的问题：</p>
+<h2 id="同步：">同步：</h2><p>举个例子——“在以前，我们填写100个字段的网页表单(需要联系人，密码，姓名，用户名等等)最后，我们点击提交，结果发现等了5分钟，服务器告诉你邮箱字段填写错误，然后很自然的提交失败，打回重新写过…”（来回三次以上我估计你差不多就疯了）</p>
+<p>这就是一个<strong>同步流程</strong>：</p>
+<blockquote>
+<p><strong>p1-pn:客户端浏览器请求-&gt;等待服务器端处理-&gt;之后响应-&gt;页面才能载入更新状态</strong></p>
+</blockquote>
+<p>无疑这种机制对于现实来说很扯蛋。所以有了下面的<strong>异步机制</strong>。</p>
+<h2 id="异步：">异步：</h2><p>还是上面的例子：在填写表单的过程中，每填写一个字段就同时像服务器提交一次请求，在你编辑其他内容的同时，也会同步你的请求，随时得到服务器端反馈的结果，可以实时保存你填写的字段内容，也可以及时得到填写错误的反馈。</p>
+<p><strong>异步流程：</strong></p>
+<blockquote>
+<p><strong>p1:客户端-&gt;请求-&gt;服务端处理-&gt;响应-&gt;页面载入</strong></p>
+<p><strong>p2:客户端-&gt;请求-&gt;服务端处理-&gt;响应-&gt;页面载入</strong></p>
+<p><strong>p3:客户端-&gt;请求-&gt;服务端处理-&gt;响应-&gt;页面载入</strong></p>
+<p><strong>……</strong></p>
+<p><strong>pn:客户端-&gt;请求-&gt;服务端处理-&gt;响应-&gt;页面载入</strong></p>
+</blockquote>
+<p>这种异步方式起源于<code>XMLHttpRequest</code>对象的诞生，具体信息请戳链接<a href="http://baike.baidu.com/link?url=URNRyvoOrqtF_qSUI2iiYgpkhs2_N5aFFwjdRnwJ9ReioxiBvdkERVP3Uvb6QXYziaSHv28GLklZ0VXolav0J_" target="_blank" rel="external">百度百科——XMLHTTPRequest</a>，这里就不重点介绍了…</p>
+<h2 id="Ajax的概念：">Ajax的概念：</h2><p>即<strong>Asyn-Javascript-XML</strong>，通过在后台与服务器进行少量数据交换，这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。（即实现异步机制）</p>
+<h1 id="Ajax学习前需要具备的基础">Ajax学习前需要具备的基础</h1><ul>
+<li>运用HTML和CSS来实现页面，表达信息</li>
+<li>运用XMLHttpRequest和Web服务器进行数据的异步交互</li>
+<li>运用JS操作DOM，实现动态局部刷新</li>
+</ul>
+<p><strong>PS</strong>：（这些都不会就可以不用往下看了）</p>
+<h1 id="XHR的使用">XHR的使用</h1><p>首先声明XHR对象</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> request = <span class="keyword">new</span> XMLHttpRequest<span class="comment">//不支持IE5 IE6</span></span><br></pre></td></tr></table></figure>
+<p><code>珍爱生命，远离IE</code>（虽然嘴上是这样说）</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> request;</span><br><span class="line"><span class="keyword">if</span>（windowXMLHttpRequest）&#123;</span><br><span class="line"> 	request = <span class="keyword">new</span> XMLHttpRequest();<span class="comment">//IE7+;Firefox;Chrome,Opera,Safari...</span></span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		request=<span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);<span class="comment">//IE5,IE6</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="这里再简单介绍下HTTP：">这里再简单介绍下HTTP：</h2><p>其实就是一群 <code>叫兽</code> 研究出来的一套计算机通信规则。</p>
+<p>它的特点需要我们注意：</p>
+<ul>
+<li>不建立持久连接，</li>
+<li>无状态，</li>
+<li>不稳定，</li>
+<li>无记忆</li>
+</ul>
+<p>因此，我们一般都只用 <code>http</code> 来充当 <code>请求</code> 操作，通过 <code>TCP</code> 连接来建立持久化的网络通信。</p>
+<p><strong>一个完整的HTTP请求过程7步骤</strong>：</p>
+<ul>
+<li>1.建立 <code>TCP</code> 连接</li>
+<li>2.Web浏览器向服务器发送 <code>请求</code> 命令</li>
+<li>3.Web浏览器发送请求头信息</li>
+<li>4.Web浏览器应答</li>
+<li>5.Web服务器发送应答头信息</li>
+<li>6.Web服务器向浏览器发送数据</li>
+<li>7.Web服务器关闭 <code>TCP</code> 连接</li>
+</ul>
+<p><strong>HTTP请求结构</strong>：</p>
+<ul>
+<li>1.HTTP请求的动作：<code>GET</code> or <code>POST</code> <ul>
+<li><code>GET</code><ul>
+<li>一般用于信息获取</li>
+<li>使用URL传递参数</li>
+<li>对所发信息的数量有限制（2000个字符左右）</li>
+</ul>
+</li>
+<li><code>POST</code><ul>
+<li>一般用于修改服务器上的资源。</li>
+<li>对所发信息的数量无限制</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2.正在请求的 <code>URL</code> ，总得知道请求地址吧</li>
+<li>3.请求头，包含一些客户端环境信息，身份验证信息等</li>
+<li>4.请求体，也就是请求正文，可以包含客户提交的查询字符串信息，表单信息等等</li>
+</ul>
+<p><strong>HTTP响应组成</strong>：</p>
+<ul>
+<li>1.一个<strong>数字和文字</strong>组成的<strong>状态码</strong>，用来显示成功还是失败<ul>
+<li>状态码：<ul>
+<li>1xx：信息类，表示收到web浏览器请求，正在进一步处理中</li>
+<li>2xx：成功，200 ok</li>
+<li>3xx：重定向，表示请求没有成功，客户必须采取进一步动作</li>
+<li>4xx：客户端错误，表示客户端提交的请求有错误，如 404 Not Found</li>
+<li>5xx：服务器错误，不能完成对请求的处理，如 500</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2.响应头，包含服务器类型，日期时间，内容类型和长度等</li>
+<li>3.响应体，也就是响应正文</li>
+</ul>
+<h2 id="XHR发送请求">XHR发送请求</h2><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">request.open(<span class="keyword">method</span>,url,async);</span><br><span class="line">request.send(<span class="type">string</span>);</span><br></pre></td></tr></table></figure>
+<p><strong>eg:</strong><br><figure class="highlight vbscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">request</span>.open(<span class="string">"POST"</span>,<span class="string">"127.0.0.1/post.php"</span>,<span class="literal">true</span>);</span><br><span class="line"><span class="built_in">request</span>.setRequestHeader(<span class="string">"Content-type"</span>,<span class="string">"application/x-www-form-urlencoded"</span>);</span><br><span class="line"><span class="built_in">request</span>.send(<span class="string">"name=daijiale&amp;sex=man"</span>);</span><br></pre></td></tr></table></figure></p>
+<h2 id="XHR取得响应">XHR取得响应</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">responseText<span class="comment">//获得字符串形式的响应数据</span></span><br><span class="line">responseXML<span class="comment">//获得XML形式的响应数据</span></span><br><span class="line">status<span class="comment">//以数字形式返回HTTP状态码</span></span><br><span class="line">statusText<span class="comment">//以文本形式返回HTTP状态码</span></span><br><span class="line"><span class="function"><span class="title">getALLResponseHeader</span><span class="params">()</span></span><span class="comment">//获取所有响应报头</span></span><br><span class="line"><span class="function"><span class="title">getResponseHeader</span><span class="params">()</span></span><span class="comment">//查询响应中的某个字段的值</span></span><br></pre></td></tr></table></figure>
+<p>这里重点需要关注下 <code>readyState</code> 属性</p>
+<ul>
+<li>0：请求未初始化，open还没有调用</li>
+<li>1：服务器连接已建立，open已经调用</li>
+<li>2：请求已接受，也就是收到了头信息</li>
+<li>3：请求处理中，也就是接收到响应主体了</li>
+<li>4：请求已完成，且响应已就绪，也就是响应完成了</li>
+</ul>
+<p>因此，通过监听此属性的值，可以得到对应响应结果。方法如下：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> request = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">request.open(<span class="string">"GET"</span>,<span class="string">"127.0.0.1/get.php"</span>,<span class="literal">true</span>);</span><br><span class="line">request.send();</span><br><span class="line">request.onreadystatechange = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">if</span>(request.readyState===<span class="number">4</span> &amp;&amp; request.status===<span class="number">200</span>）｛</span><br><span class="line"><span class="comment">//do some thing here </span></span><br><span class="line"><span class="comment">//request.responseText</span></span><br><span class="line">	&#125;</span><br><span class="line">｝</span><br></pre></td></tr></table></figure></p>
+<h1 id="Ajax_Demo">Ajax Demo</h1><ul>
+<li><a href="http://www.w3school.com.cn/tiy/t.asp?f=ajax_httprequest_js" target="_blank" rel="external">Ajax加载XML</a></li>
+<li><a href="http://www.w3school.com.cn/ajax/ajax_example_suggest.asp" target="_blank" rel="external">Ajax实现Web通信 </a></li>
+<li><a href="http://www.w3school.com.cn/tiy/t.asp?f=ajax_httprequest_js_4" target="_blank" rel="external">Ajax加载html表格元素</a></li>
+<li><a href="http://www.w3school.com.cn/php/php_ajax_database.asp" target="_blank" rel="external">PHP-MySQL使用Ajax进行数据交互</a></li>
+</ul>
+<h1 id="JQuery_Ajax">JQuery Ajax</h1><p>很多初学者，很容易把这 <code>Jquery Ajax</code> 和 <code>Ajax</code>搞混，这里单独给大家区分一下。<br>首先，我们先了解下: </p>
+<h2 id="JQuery_和_ajax_的关系：">JQuery 和 ajax 的关系：</h2><ul>
+<li><code>jQuery</code> 提供多个与 <code>AJAX</code> 有关的方法。</li>
+<li>通过 <code>jQuery AJAX</code> 方法，您能够使用 <code>HTTP Get</code> 和 <code>HTTP Post</code> 从远程服务器上请求 <code>文本</code>、<code>HTML</code>、<code>XML</code> 或 <code>JSON</code></li>
+<li>同时能够把这些外部数据直接载入网页的被选元素中。</li>
+<li>如果没有 <code>jQuery</code>，<code>AJAX</code> 编程还是有些难度的。</li>
+<li>编写常规的 <code>AJAX</code> 代码并不容易，因为不同的浏览器对 <code>AJAX</code> 的实现并不相同。这意味着您必须编写额外的代码对浏览器进行测试。不过，<code>jQuery 团队</code>为我们解决了这个难题，我们只需要一行简单的代码，就可以实现 <code>AJAX</code> 功能。</li>
+<li><strong>综上： <code>jQuery</code> 对 <code>Ajax</code> 进行了又一次的封装，使得其主体功能用起来更为方便，简单，现在大部分开发者都很少直接用js写原生ajax，都是引入了jquery ajax方法。但是由于依赖于<code>jQuery</code>，导致不灵活，有其局限性。</strong></li>
+</ul>
+<h2 id="JQuery_Ajax的使用方法">JQuery Ajax的使用方法</h2><p>基本语法格式：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">  $(<span class="string">"#button_name"</span>).click(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">   $.ajax(&#123;</span><br><span class="line">		type:<span class="string">"POST"</span>,</span><br><span class="line">		url:<span class="string">"127.0.0.1/get.php"</span>,</span><br><span class="line">        data:&#123;</span><br><span class="line">		    name:$(<span class="string">"#staffname"</span>).val(),</span><br><span class="line">			password:$(<span class="string">"#staffpassword"</span>).val(),</span><br><span class="line">		&#125;,</span><br><span class="line">        dataType:<span class="string">"json"</span>,</span><br><span class="line">		success:<span class="function"><span class="keyword">function</span><span class="params">(data)</span></span>&#123;</span><br><span class="line">			<span class="keyword">if</span>(data.success)&#123;</span><br><span class="line">				$(<span class="string">"#button_click_result"</span>).html(data.msg);</span><br><span class="line">				&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				$(<span class="string">"#button_click_result"</span>).html(<span class="string">"error"</span>+data.msg);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;,</span><br><span class="line">		error:<span class="function"><span class="keyword">function</span><span class="params">(jqXHR)</span></span>&#123;</span><br><span class="line">			alert(<span class="string">"error："</span>+jqXHR.status);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>jQuery load()//简单而强大</p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$<span class="comment">(selector)</span>.load<span class="comment">(URL,data,callback)</span>;</span><br></pre></td></tr></table></figure>
+<p>load()方法直接从服务器加载数据，并把返回的数据放入被选元素中</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"/jquery/jquery-1.11.1.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript"></span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">  $(<span class="string">"button"</span>).click(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">$(<span class="string">"#div1"</span>).load(<span class="string">"/example/jquery/demo_test.txt"</span>,<span class="function"><span class="keyword">function</span><span class="params">(responseTxt,statusTxt,xhr)</span></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(statusTxt==<span class="string">"success"</span>)</span><br><span class="line">alert(<span class="string">"外部内容加载成功！"</span>);</span><br><span class="line">  <span class="keyword">if</span>(statusTxt==<span class="string">"error"</span>)</span><br><span class="line">alert(<span class="string">"Error: "</span>+xhr.status+<span class="string">": "</span>+xhr.statusText);</span><br><span class="line">&#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"div1"</span>&gt;</span><span class="tag">&lt;<span class="title">h2</span>&gt;</span>使用 jQuery AJAX 来改变文本<span class="tag">&lt;/<span class="title">h2</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">button</span>&gt;</span>获得外部内容<span class="tag">&lt;/<span class="title">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>本例<a href="http://www.w3school.com.cn/tiy/t.asp?f=jquery_ajax_load_callback" target="_blank" rel="external">Demo效果</a></p>
+<p>更多请参见 <a href="http://www.w3school.com.cn/jquery/jquery_ref_ajax.asp" target="_blank" rel="external">jQuery Ajax操作函数表</a></p>
+<h1 id="JSON">JSON</h1><p> 这里补充一下这个知识，和xml一样，经常在ajax数据传输中用到，没什么难的，看看就会了：</p>
+<ul>
+<li>概念：javascript对象表示法</li>
+<li>JSON是存储和交换文本信息的语法，类似XML。采用键值对的方式来组织，易于人们阅读和编写，同时也易于机器解析和生成。</li>
+<li>JSON是独立于语言的，也就是说不管什么语言，都可以解析json，只需要按照json的规则来就行。</li>
+</ul>
+<h2 id="与XML进行对比：">与XML进行对比：</h2><ul>
+<li>json的长度和xml格式比起来很短小</li>
+<li>json读写的速度更快</li>
+<li>json可以使用JavaScript内建的方法直接进行解析，转换成Javascript对象，非常方便。</li>
+</ul>
+<h2 id="书写类型：">书写类型：</h2><p><strong>eg：</strong>“name”:”戴嘉乐”</p>
+<h2 id="JSON解析：">JSON解析：</h2><p>不要使用 <code>eval</code> 来解析，<code>eval</code>会解析内置函数，造成安全隐患.尽量用 <code>JSON.parse</code>.</p>
+<h2 id="JSON校验工具：">JSON校验工具：</h2><ul>
+<li><a href="http://jsonlint.com/" target="_blank" rel="external">JSONLint</a></li>
+</ul>
+<p> <code>json</code> 更多教材：<a href="http://www.w3school.com.cn/json/" target="_blank" rel="external">传送门</a></p>
+<h1 id="跨域问题">跨域问题</h1><p>之前在长虹实习的时候，和海阳遇到了这样的问题，这里也拎出来提一下。</p>
+<h2 id="什么是跨域？">什么是跨域？</h2><ul>
+<li>一个域名地址的组成：<ul>
+<li><code>http://</code> 协议</li>
+<li><code>www.</code> 子域名</li>
+<li><code>abc.com</code> 主域名</li>
+<li><code>:8080</code> 端口号</li>
+<li><code>script/jquery.js</code> 请求资源地址</li>
+</ul>
+</li>
+<li>当协议、子域名、主域名、端口号中任意一个不相同时，都算作不同域。</li>
+<li>不同域之间相互请求资源，就算做<strong>“跨域”</strong><ul>
+<li>eg：<a href="http://www.daijiale.cn/index.html请求http://daijiale.github.io/service.php" target="_blank" rel="external">http://www.daijiale.cn/index.html请求http://daijiale.github.io/service.php</a></li>
+</ul>
+</li>
+</ul>
+<p><strong>PS:</strong></p>
+<p>Javascript处出去安全方面的考虑，不允许跨域调用其他页面的对象（这不废话，肯定不允许啊）</p>
+<p>所以很多新手在本机调试程序的时候容易乱写 <code>127.0.0.1</code> 和 <code>localhost:8080</code> ，这也算作跨域</p>
+<p>协议不同（<code>http</code> 和  <code>https</code> 也算作跨域)</p>
+<h2 id="处理跨越访问的方法">处理跨越访问的方法</h2><h3 id="一、代理">一、代理</h3><ul>
+<li>通过在同域名的web服务器端创建一个代理：</li>
+<li>北京服务器www.beijing.com 上海服务器www.shanghai.com</li>
+<li>通过北京web服务器后台（www.beijing.com/proxy-shanghaiservice.php)来调用上海服务器（www.shanghai.com/service.php)的服务，然后再把响应结果返回给前端，这样前端调用北京同域名的服务就和调用上海的服务效果相同了。</li>
+</ul>
+<h3 id="二、JSONP">二、JSONP</h3><p><code>JSONP</code> 可用于解决<strong>主流</strong>浏览器的跨域数据访问的问题。</p>
+<p><strong>eg：</strong></p>
+<p>在www.aaa.com页面中：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="actionscript"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jsonp</span><span class="params">(json)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	alert(json[<span class="string">"name"</span>]):</span><br><span class="line">&#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"http://www.bbb.com/jsonp.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在www.bbb.com页面中：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jsonp(&#123;<span class="string">'name'</span>:<span class="string">'洪七'</span>,<span class="string">'age'</span>:<span class="number">24</span>&#125;);</span><br></pre></td></tr></table></figure>
+<p>JSONP只支持 <code>GET</code> 请求，存在局限性：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">  $(<span class="string">"#button_name"</span>).click(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">   $.ajax(&#123;</span><br><span class="line">		type:<span class="string">"GET"</span>,<span class="comment">//JSONP只支持GET,存在局限性</span></span><br><span class="line">		url:<span class="string">"127.0.0.1/get.php"</span>,</span><br><span class="line">        dataType:<span class="string">"jsonp"</span>,<span class="comment">//主要修改这</span></span><br><span class="line">		jsonp:<span class="string">"callback"</span>,<span class="comment">//前端脚本语言需要新建变量对象来获取名为“callback”的jsonp</span></span><br><span class="line">		success:<span class="function"><span class="keyword">function</span><span class="params">(data)</span></span>&#123;</span><br><span class="line">			<span class="keyword">if</span>(data.success)&#123;</span><br><span class="line">				$(<span class="string">"#button_click_result"</span>).html(data.msg);</span><br><span class="line">				&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				$(<span class="string">"#button_click_result"</span>).html(<span class="string">"error"</span>+data.msg);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;,</span><br><span class="line">		error:<span class="function"><span class="keyword">function</span><span class="params">(jqXHR)</span></span>&#123;</span><br><span class="line">			alert(<span class="string">"error："</span>+jqXHR.status);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="三、XHR2">三、XHR2</h3><ul>
+<li>html5提供的XMLHttpRequest Level2 已经实现了跨域访问以及其他的一些新功能</li>
+<li>IE10以下版本不支持</li>
+<li>在服务器端做一些小小的改造即可：<ul>
+<li>header(‘Access-Control-Allow-Origin:*’);</li>
+<li>header(‘Access-Control-Allow-Methods:POST,GET’);</li>
+</ul>
+</li>
+</ul>
+<p>还是那句话 <code>珍爱生命，远离IE</code>，强烈推荐第三种方法解决跨域，低成本。</p>
+<h1 id="反向Ajax技术">反向Ajax技术</h1><p>关于 <code>Reverse Ajax</code> 我会单独另起一篇博文对该技术进行介绍，之前在自己的“Web远程控制系统”中用到了该技术，觉得很有必要提及一下：<br><a href="">传送门正在更新中</a></p>
+<h1 id="总结">总结</h1><p>Ajax在web前端开发中的地位不言而喻，高频的使用率以及其不可替代的定位是每个前端工程师都无法质疑的。现在，类似于Jquery Ajax的快速开发框架也层出不穷，对于我们来说无疑是福音，但是理解其内涵和工作原理，我们才能在以后的实践项目中应用得当。下面是一些Ajax的常用场景：</p>
+<h3 id="场景1-_用Ajax进行数据验证">场景1. 用Ajax进行数据验证</h3><p>在填写表单内容时，需要保证数据的唯一性（例如新用户注册填写的用户名），因此必须对用户输入的内容进行数据验证。</p>
+<p>数据验证通常有两种方式：</p>
+<p>一种是直接填写，然后提交表单，这种方式需要将这个页面提交到服务器端进行验证，整个过程不仅时间长而且造成了服务器不必要的负担；</p>
+<p>第二种方式是改进了的验证过程，用户可以通过点击相应的验证按钮，打开新窗口查看验证结果，但是这样需要新开一个浏览器窗口或者对话框，还需要专门编写验证的页面，比较耗费系统资源。</p>
+<p>而使用Ajax技术，可以由XMLHttpRequest对象发出验证请求，根据返回的HTTP响应判断验证是否成功，整个过程不需要弹出新窗口，也不需要将整个页面提交到服务器，快速而又不加重服务器负担。</p>
+<h3 id="场景2-按需取数据">场景2.按需取数据</h3><p>分类树或者树形结构在web应用系统中使用得非常广泛，例如部门结构，文档得分类结构常常使用树形空间呈现。</p>
+<p>以前每次对分类树得操作都会引起页面重载，为了避免这种情况出现，一般不采用每次调用后台得方式，而是一次性将分类结果中得数据一次性读取出来并写入数组，然后根据用户的操作，用JavaScript来控制节点的呈现，这样虽然解决了操作响应速度，不重复载入页面以及避免向服务器频繁发送请求的问题，但是如果用户不对分类进行操作或者只对分类树中的一部分数据进行操作的话（这种情况很普遍的），那么读取的数据中就会有相当大的冗余，浪费了用户的资源。特别是在分类结构复杂，数据庞大的情况下，这种弊端就更加明显了。</p>
+<p>现在应用Ajax改进分类树的实现机制。在初始化页面时，只获取第一级子分类的数据并且显示；当用户点开一级分类的第一节点时，页面会通过Ajax向服务器请求当前分类所属的二级子分类的所有数据；如果再请求已经呈现的二级分类的某一节点时，再次向服务器请求当前分类所属的三级子分类的所有数据，以此类推。页面会根据用户的操作向服务器请求它所需要的数据，这样就不会存在数据的冗余，减少了数据下载总量。同时，更新页面时不需要重载所有内容，只更新需要更新的那部分内容即可，相对于以前后台处理并且重载的方式，大大缩短了用户的等待时间。</p>
+<h3 id="场景3-自动更新页面">场景3.自动更新页面</h3><p>在web应用中有很多数据的变化时十分迅速的，例如最新的热点新闻，天气预报以及聊天室内容等。在Ajax出现之前，用户为了即使了解相应的内容必须不断刷新页面，查看是否有新的内容变化，或者页面本身实现定时刷新的功能（大多数聊天室页面就是这样做的）。</p>
+<p>有可能会发生这种情况；有一段时间网页的内容没有发生任何变化，但是用户并不知道，仍然不断的刷新页面；或者用户失去了耐心，放弃了刷新页面，却很有可能在此有新的消息出现，这样就错过了第一时间得到消息的机会。</p>
+<p>应用Ajax可以改善这种这种情况，页面加载以后，会通过Ajax引擎在后台进行定时的轮询，向服务器发送请求，查看是否有最新的消息。如果有则将新的数据（而不是所有数据）下载并且在页面上进行动态的更新，通过一定的方式通知用户（实现这样的功能正是JavaScript的强项）。</p>
+<p>这样即避免了用户不断手工刷新页面的不便，也不会因为重复刷新页面造成资源浪费。</p>
+<p>既然你己经对Ajax产生了兴趣，还要知道重要的一点，即什么时候应该使用Ajax技术，而什么时候不该用。首先，不要害怕在应用中尝试新的方法。我们相信.几乎每个web应用都能从Ajax技术中获益，只不过不要矫杠过正，过于离谱就行了。从验证开始就很合适，但是不要限制你的主动性。你当然可以使用Ajax提交数据，但也许不能把它作为提交数据的主要方法。</p>
+<p>其次，惟一会影响你应用Ajax的就是浏览器问题。如果大量用户(或者特别重要的用户)还在使用比较旧的浏览器，如IE 5 , Safari 1.2或Mozilla 1.0之前的版本，Ajax技术就不能奏效。如果这是一些很重要的用户，你就要使用针对目标用户的跨浏览器的方法，而放弃Ajax，或者开发一个可以妥善降级的网站。浏览器支持可能不是一个重要因素，因为netscape Navigaxar 4在市场上的份额很小。不过，还是应该查看Web日志，看看你的应用适用什么技术。</p>
+<p>如前所述，验证和表单填写就非常适合采用Ajax实现。还可以使用DOM的“拖”技术建立真正动态的网站，如google的个性化主页.</p>
+<p>可以看到，Ajax为Web应用开发提供了新的机会。你不会再因为以往的专用技术或技术折中方案而受到妨碍。利用Ajax，胖客户与瘦客户之间的界限不再分明，真正的赢家则是你的用户。</p>
+<blockquote>
+<p>更多Ajax与PHP与json跨域交互的Demo源码，请参考我的github项目:<a href="https://github.com/daijiale/DaiJiale-Front-End/tree/master/ajax_demo" target="_blank" rel="external">DaiJiale’s Ajax Demo</a></p>
+<p>原创博文</p>
+<p>作者：戴嘉乐 </p>
+<p>转载请注明出处，谢谢！</p>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><strong>PS：</strong>写这篇Blog主要有两个三个动机：</p>
+<ul>
+<li>对以前自己所学知识的一个系统化review</li>
+<li>刚好给徒弟漫漫制作一份比较全面的Ajax教程</li>
+<li>帮助更多的，对此知识有需要的童鞋]]>
+    
+    </summary>
+    
+      <category term="Ajax" scheme="http://daijiale.github.io/tags/Ajax/"/>
+    
+      <category term="Javascript" scheme="http://daijiale.github.io/tags/Javascript/"/>
+    
+      <category term="Json" scheme="http://daijiale.github.io/tags/Json/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+      <category term="Web开发日记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[记我的高中——南昌二中]]></title>
+    <link href="http://daijiale.github.io/2015/04/03/%E8%AE%B0%E5%8D%97%E6%98%8C%E4%BA%8C%E4%B8%AD/"/>
+    <id>http://daijiale.github.io/2015/04/03/记南昌二中/</id>
+    <published>2015-04-03T05:20:09.000Z</published>
+    <updated>2015-06-02T02:07:10.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="硬件">硬件</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中在硬件上最大的特点就是壕！第一次来二中参加考试时便被壕气外露的红砖绿叶迷住了。还有人造草皮的足球场，三年一遇的游泳馆（三年就上过一次课），堆满了电脑随便用的图书馆。学校里四处都是花花草草，校门的花坛一月一换，班上的一体机切水果什么的信手拈来。就是任性就是壕！<br><a id="more"></a></p>
+<h1 id="师资">师资</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中的老师阵容十分强大，但随着这几年扩招老师资源也变得有些吃紧了。重点班尚能保证豪华阵容，在江西可以说不会逊色于任何学校的重点班，但平行班就会有很多刚进校不久的年轻老师了。当然不是说年轻老师一定不好，但是在高中尤其是高三，老师的经验与鼓舞对班级的提高是很有用的。所以二中这几年也在拼命招揽人才，目前一大批年轻老师已经走上一线，师资整体实力依然很强大。<br>3.理念：二中多年来一直重视综合素质教育，社团和各种活动巨多！学校也给很大的支持，每一届都会产生许多交际花。不过由于近年高考成绩不理想，15届开始进行了一些改革，加大了学业方面的侧重。所以未来二中也许会少一些交际花多一批学霸。</p>
+<h1 id="总结">总结</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中是一个神奇的地方，不论是在晨会上考试中挥斥方遒碾压众人的大神，还是走廊上树林旁对老师阿鲁巴时杀伐果断的凌厉，或是操场边天台上情侣基友看西山日落时的静谧，又抑或是顶楼学霸们在下课铃响时冲下楼梯直奔食堂的气势，它们一起组成了二中独一无二的体验。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;它壕气却又不失秀气，三年中拍的二中风景随便拎出一张都能胜任南昌市旅游明信片。它庄重却又不失亲和，老师们一个个才高八斗学富五车，却又能和学生们打成一片课上开撕。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中就是这样一个地方，简约而不简单，无论你来自哪里，在这里你总会找到最浓重的归属感。</p>
+<p><strong>－－－－－－－－－－－－－－－－－－－－－－－华丽的分割线，多图预警－－－－－－－－－－－－－－－－－－－－</strong></p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicnanchang2zhong.jpg" alt=""></p>
+<p>－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="硬件">硬件</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中在硬件上最大的特点就是壕！第一次来二中参加考试时便被壕气外露的红砖绿叶迷住了。还有人造草皮的足球场，三年一遇的游泳馆（三年就上过一次课），堆满了电脑随便用的图书馆。学校里四处都是花花草草，校门的花坛一月一换，班上的一体机切水果什么的信手拈来。就是任性就是壕！<br>]]>
+    
+    </summary>
+    
+      <category term="个人故事" scheme="http://daijiale.github.io/tags/%E4%B8%AA%E4%BA%BA%E6%95%85%E4%BA%8B/"/>
+    
+      <category term="转载博文" scheme="http://daijiale.github.io/categories/%E8%BD%AC%E8%BD%BD%E5%8D%9A%E6%96%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[从“主机搬家、第五次个人主站更新、第三次博客技术架构迁移”说起]]></title>
+    <link href="http://daijiale.github.io/2015/04/02/Blog%E8%BF%81%E7%A7%BB%E6%97%A5%E8%AE%B0/"/>
+    <id>http://daijiale.github.io/2015/04/02/Blog迁移日记/</id>
+    <published>2015-04-02T15:30:09.000Z</published>
+    <updated>2015-06-08T02:57:46.000Z</updated>
+    <content type="html"><![CDATA[<p><strong>以下所指“更新”：均为Blog技术更新，非文章更新</strong></p>
+<h1 id="第一次更新_个人Blog">第一次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;说起自己的第一个Blog，要从小学刚开通QQ空间开始，具体几年级已经记不清了，那个时候刚甩掉纸质日记本，然后就迈入网络日志的深坑。以前倒是产出了不少优质日志，不过都是些多愁善感的随便，至今都已经封存进<em>私密日日记</em>中(如下图)：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpic_qqzonesec.PNG" alt=""><br><a id="more"></a></p>
+<h1 id="第二次更新_个人Blog">第二次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后面高中开始玩人人，Blog也顺势搬到人人。。。现在想来这搬迁史也很简单——围绕社交圈，毕竟Blog写出来是给人看的，而QQzone和人人都是一个很好的社交载体。当然，如今的人人，我早已放弃，一个月都不登一次的这种，blog数据也全部清除了，高中写的都是些没营养的东西，个人认为没有存在的价值。<br>最后留张图纪念一下曾经的人人帐号：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicrenren.PNG" alt=""></p>
+<h1 id="第三次更新_个人Blog">第三次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后面因为大学专业性质原因，再加上由于个人兴趣先接触的知识是Web开发，所以打算通过自己编写代码，建立带有自己专属域名的独立Blog全站（其实是不知道做什么内容。。。就以Blog为题材了，而且身为一个程序猿，Blog是撑脸面的东西）。正如很多刚入门的小白一样：最初选用的技术框架是 <code>PHP+MySQL</code>，边学边写，坚持了一段时间后发现根本没法拿出手，在人生导师 <code>@阔空晴云</code>（亦师亦友的关系，大学同学，年级传奇….我Blog友情链接有他的Blog..但是，为保留他的个人隐私，我就不透露<strong>林志豪</strong>的<strong>真名</strong>了）的建议下，<br>后来选用了知名度很大的 <code>wordpress</code> 框架去快速开发能拿得出手的Blog，那也是我第一次接触框架类的东西，在那之前都是直接C++和C做底层开发，js和html也都是从新建文件开始码起，—&gt;你懂得…从大众空间到自己独立虚拟主机空间，也算是第一次技术迁移了！网站是托管在人生导师的虚拟主机上，记得刚拍下<a href="http://www.daijiale.cn" target="_blank" rel="external">www.daijiale.cn</a>个人域名，挂到上线的时候是这样子的:<br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_daijialewebsiteworkshop.png" alt=""></p>
+<p>嗯，对于一个大一上刚学会做站点的小虾开发者来说，还是感觉Geek满满的。</p>
+<h1 id="第四次更新_个人Blog">第四次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;自上一次大更新以后的两年多里，都没有什么大的起伏（主要是太懒，或者忙其他项目去了），直到后面阴差阳错侥幸获得了这个证书：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/SAEDeveloper.jpg" alt="">,新浪每月给我SAE上打的云豆工单根本用都用不完了，so，我打算把Blog全部迁移到 <code>SAE上</code> （毕竟老放在人生导师那也不太好）。顺便更新了下Blog的界面和交互，增加了首页响应式效果（方便宣传嘛，嘿嘿）,自己设计和编码水平的提高也让每次迭代后的Blog页面颜值更高：<br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/daijialeweb_personalsite.png" alt=""></p>
+<h1 id="第五次更新_个人Blog">第五次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这次改动比较大，也就是目前大家看到的这个站点：<a href="http://daijiale.github.io/" target="_blank" rel="external">http://daijiale.github.io/</a>（域名换了，因为托管原因，把原来的<a href="http://www.daijiale.cn" target="_blank" rel="external">www.daijiale.cn</a>改成了简历页和入口页，其实也挺不错，性质不一样，刚好趁着这次技术整改实现了分布式控制），整个技术体系和空间都搬家+大改了，这次的技术架构没有采用市面上被大家广泛使用的常见技术，<strong>没有服务器脚本语言的参合，没有数据库，没有进行数据存储优化</strong>，简而言之就是，妈的！这逼网站<strong>居然没有后台</strong>（其实我心里一开始是拒绝的）。是的，你没听错，这特么就是个伪静态Blog，但是…这丝毫不影响ta的逼格大增,so let’s see it：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;技术框架选用的是 <code>Hexo+Node.js+ejs+bootstrap+markdown+GithubPage</code>，为什么会采用这套剑走偏锋的框架？其实，是受到了周围小伙伴的影响，越来越多的朋友为了解决成本和增加B格，将Blog结合 <code>GithubPage</code> 托管在 <a href="https://github.com/" target="_blank" rel="external"><code>github</code></a>（程序猿的facebook，我也是从2014年才开始玩的）上，具体这套架构的<strong>优点</strong>和<strong>搭建教程</strong>请参考如下博文：</p>
+<ul>
+<li><p><a href="http://note.youdao.com/share/?id=0dc251a2004362d10d7ce520fecdcbff&amp;type=note" target="_blank" rel="external">Blog搭建之Hexo+Node.js+ejs+bootstrap+markdown+GithubPage</a></p>
+<p>这里主要提一下 <code>Hexo</code> 和 <code>Jacman</code>：</p>
+</li>
+<li><p>Hexo：</p>
+<ul>
+<li>风一般的速度：<code>Hexo</code> 基于 <code>Node.js</code> ，支持多进程，几百篇文章也可以秒生成。</li>
+<li>流畅的撰写：支持 <code>GitHub</code> <code>Flavored</code> <code>Markdown</code> 和所有 <code>Octopress</code> 的插件。</li>
+<li>扩展性：<code>Hexo</code>支持 <code>EJS</code>、 <code>Swig</code>和 <code>Stylus</code>。通过插件支持 <code>Haml</code>、 <code>Jade</code>和 <code>Less</code>.</li>
+<li>More：<a href="http://hexo.io/" target="_blank" rel="external">请参见官网</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>Jacman：<code>Hexo</code> 的一个 <code>ejs</code>模版主题，来源于民间大神<strong>WuChong</strong>（<a href="http://note.youdao.com/share/?id=d93d060ce27c0d085021c9c0192c9e08&amp;type=note" target="_blank" rel="external">更多详细用法传送门</a>），在所有Hexo官网主题中个人比较倾向于他的风格，但是对于这个主题，我还是不太满意，挺多瑕疵需要我自己慢慢修改，后面我的Blog主题也会自己改成一个新的原创主题，到时候再开源出来，给更多的 <code>hexo</code> 开发者使用。现在正在往 <code>Low Poly Style</code>发展。</p>
+</li>
+<li><p>图床：</p>
+<ul>
+<li><a href="http://www.qiniu.com/?utm_source=BAIDU&amp;utm_medium=cpc&amp;utm_term=%E4%BA%91%E5%AD%98%E5%82%A8&amp;utm_content=chanpinlei&amp;utm_campaign=qiniu-ceshi" target="_blank" rel="external">七牛云存储</a>（大图用七牛，加速给力）</li>
+<li><a href="http://baichuan.taobao.com/portal/doc?articleId=329" target="_blank" rel="external">TAE</a>(小图用TAE，百川Hackathon接触到的，还不错)</li>
+</ul>
+</li>
+<li><p>音床：<a href="http://music.163.com/#" target="_blank" rel="external">网易云音乐</a>（个人认为是目前市场上最好的全端音乐软件，不服来辩）</p>
+</li>
+<li><p>视频床：自己Coding把。。。（博主暂时只找到<a href="http://v.qq.com/" target="_blank" rel="external">腾讯视频</a>的漏洞，亲测可用）</p>
+</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>持续更新中</strong></p>
+<embed src="http://music.163.com/style/swf/widget.swf?sid=29717271&type=2&auto=1&width=320&height=66" width="340" height="86" allownetworking="all">]]></content>
+    <summary type="html">
+    <![CDATA[<p><strong>以下所指“更新”：均为Blog技术更新，非文章更新</strong></p>
+<h1 id="第一次更新_个人Blog">第一次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;说起自己的第一个Blog，要从小学刚开通QQ空间开始，具体几年级已经记不清了，那个时候刚甩掉纸质日记本，然后就迈入网络日志的深坑。以前倒是产出了不少优质日志，不过都是些多愁善感的随便，至今都已经封存进<em>私密日日记</em>中(如下图)：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpic_qqzonesec.PNG" alt=""><br>]]>
+    
+    </summary>
+    
+      <category term="Blog" scheme="http://daijiale.github.io/tags/Blog/"/>
+    
+      <category term="Hexo" scheme="http://daijiale.github.io/tags/Hexo/"/>
+    
+      <category term="Node.js" scheme="http://daijiale.github.io/tags/Node-js/"/>
+    
+      <category term="个人故事" scheme="http://daijiale.github.io/tags/%E4%B8%AA%E4%BA%BA%E6%95%85%E4%BA%8B/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+      <category term="Web开发日记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
+  
+</feed>

@@ -1,0 +1,755 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>基于百度ODP的Web前端开发 | DaiJiale&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Jiale Dai">
+    
+
+    
+    <meta name="description" content="ODP，即Online Develop Platform，是为百度Web业务提供完善且高度集成的基础环境、框架、基础库和工具，统一规范模式。
+个人认为，这套PHP开发框架和TP类似，但是安全性和效率性方便远胜于TP
+由于新业务的需求，转向FE的角色，这几天为此调研了一下基于ODP的Web前端开发。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于百度ODP的Web前端开发">
+<meta property="og:url" content="http://daijiale.github.io/2015/06/10/基于百度ODP的前端开发/index.html">
+<meta property="og:site_name" content="DaiJiale's Blog">
+<meta property="og:description" content="ODP，即Online Develop Platform，是为百度Web业务提供完善且高度集成的基础环境、框架、基础库和工具，统一规范模式。
+个人认为，这套PHP开发框架和TP类似，但是安全性和效率性方便远胜于TP
+由于新业务的需求，转向FE的角色，这几天为此调研了一下基于ODP的Web前端开发。">
+<meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogBaiduMapCar1.png">
+<meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogBaiduMapCar2.png">
+<meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogBaiduMapCar3.png">
+<meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogBaiduMapCar4.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于百度ODP的Web前端开发">
+<meta name="twitter:description" content="ODP，即Online Develop Platform，是为百度Web业务提供完善且高度集成的基础环境、框架、基础库和工具，统一规范模式。
+个人认为，这套PHP开发框架和TP类似，但是安全性和效率性方便远胜于TP
+由于新业务的需求，转向FE的角色，这几天为此调研了一下基于ODP的Web前端开发。">
+
+    
+    <link rel="alternative" href="/atom.xml" title="DaiJiale&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="DaiJiale&#39;s Blog" title="DaiJiale&#39;s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="DaiJiale&#39;s Blog">DaiJiale&#39;s Blog</a></h1>
+				<h2 class="blog-motto">只有汗水不会欺骗你 || Only sweat will not fail you</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于我</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:daijiale.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/06/10/基于百度ODP的前端开发/" title="基于百度ODP的Web前端开发" itemprop="url">基于百度ODP的Web前端开发</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jiale Dai" target="_blank" itemprop="author">Jiale Dai</a>
+		
+  <p class="article-time">
+    <time datetime="2015-06-10T03:03:09.000Z" itemprop="datePublished"> 发表于 2015-06-10</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ODP的安装和部署"><span class="toc-number">1.</span> <span class="toc-text">ODP的安装和部署</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ODP文件环境"><span class="toc-number">2.</span> <span class="toc-text">ODP文件环境</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#app"><span class="toc-number">2.1.</span> <span class="toc-text">app</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#conf"><span class="toc-number">2.2.</span> <span class="toc-text">conf</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#data"><span class="toc-number">2.3.</span> <span class="toc-text">data</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#install"><span class="toc-number">2.4.</span> <span class="toc-text">install</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#log"><span class="toc-number">2.5.</span> <span class="toc-text">log</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#php"><span class="toc-number">2.6.</span> <span class="toc-text">php</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#template"><span class="toc-number">2.7.</span> <span class="toc-text">template</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webroot"><span class="toc-number">2.8.</span> <span class="toc-text">webroot</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webserver"><span class="toc-number">2.9.</span> <span class="toc-text">webserver</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#在Template下进行前端模版开发"><span class="toc-number">3.</span> <span class="toc-text">在Template下进行前端模版开发</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#H5+AmazeUI_实现移动端WebView"><span class="toc-number">4.</span> <span class="toc-text">H5+AmazeUI 实现移动端WebView</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#html5表单标签新特性："><span class="toc-number">4.1.</span> <span class="toc-text">html5表单标签新特性：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AmazeUI"><span class="toc-number">4.2.</span> <span class="toc-text">AmazeUI</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么不用bootstrap？"><span class="toc-number">4.2.1.</span> <span class="toc-text">为什么不用bootstrap？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Demo演示"><span class="toc-number">4.2.2.</span> <span class="toc-text">Demo演示</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#移动端内核兼容性分析"><span class="toc-number">5.</span> <span class="toc-text">移动端内核兼容性分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Android_WebView兼容性"><span class="toc-number">5.1.</span> <span class="toc-text">Android WebView兼容性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IOS_WebView兼容性"><span class="toc-number">5.2.</span> <span class="toc-text">IOS WebView兼容性</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<blockquote>
+<p>ODP，即Online Develop Platform，是为百度Web业务提供完善且高度集成的基础环境、框架、基础库和工具，统一规范模式。</p>
+<p>个人认为，这套PHP开发框架和TP类似，但是安全性和效率性方便远胜于TP</p>
+<p>由于新业务的需求，转向FE的角色，这几天为此调研了一下基于ODP的Web前端开发。</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="ODP的安装和部署">ODP的安装和部署</h1><p><a href="http://man.baidu.com/inf/odp/tutorial/#ODP安装" target="_blank" rel="external">请参考内部文档</a></p>
+<h1 id="ODP文件环境">ODP文件环境</h1><p>直接切到odp文件夹下：</p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[chenyijie@cq01-ksarch-rdtest00.vm odp] $ pwd</span><br><span class="line">/home/chenyijie/odp</span><br><span class="line">[chenyijie@cq01-ksarch-rdtest00.vm odp] $ ls</span><br><span class="line">app conf data install log php <span class="keyword">template</span> webroot webserver</span><br></pre></td></tr></table></figure>
+<h2 id="app">app</h2><p>用于放置产品线业务<code>app</code>代码，类似于TP中的<code>application目录</code></p>
+<h2 id="conf">conf</h2><p><code>conf目录</code>中包含了四个文件夹，十个文件，为配置目录，用于存放组件和<code>app</code>的配置。类似于TP中的<code>config.yaml</code></p>
+<p>内含文件名称以及用途简介：</p>
+<ul>
+<li>app    文件夹，用于存放app相关的配置文件</li>
+<li>db    文件夹，存放数据库相关的配置文件：cluster.conf global.conf</li>
+<li>i18n    文件夹，存放国际化相关的配置文件：feature.conf locale.conf</li>
+<li>ral    文件夹，存放RAL（资源访问层）相关的配置文件，内容较复杂，见后续章节介绍</li>
+<li>idc.conf    Conf组件的分机房配置与RAL组件的配置相关</li>
+<li>init.conf    init组件的配置文件</li>
+<li>log.conf    配置log目录下的日志如何打印的配置文件</li>
+<li>saf.conf    SAF框架的配置文件</li>
+<li>smarty.conf    Smarty模板的配置文件</li>
+<li>passport.conf    Passport服务的配置文件</li>
+<li>pcheck.conf    pcheck静态代码检查工具的配置文件</li>
+<li>phptest.conf    phptest单元测试框架组件的配置文件</li>
+<li>layerproxy.conf    layerproxy组件的配置文件</li>
+</ul>
+<h2 id="data">data</h2><p>  本地数据目录，用来放置组件和app生成的本机数据、缓存，类似于TP的<code>data</code></p>
+<h2 id="install">install</h2><p>为组件安装信息存储目录，OCM命令读取的即为该目录信息。类似于TP中的钩子目录：<code>plugins</code></p>
+<h2 id="log">log</h2><p>生产日志目录，对调试信息的查找十分便捷。</p>
+<h2 id="php">php</h2><p>是ODP环境包含的php安装后所在的目录，可以在此目录中查看php安装的扩展、以及对php解析的开启与关闭操作。php目录中包含的phplib目录为公共库目录，存放ODP和产品线的公共库，bin目录为PHP程序目录，存放PHP和ODP的工具程序。</p>
+<h2 id="template">template</h2><p>用于存放php的页面模板，ODP环境支持火麒麟与smarty模板技术，因此template目录下可以存放以.tpl为后缀的文件。类似于TP中的<code>tpl</code></p>
+<h2 id="webroot">webroot</h2><p>webroot目录为默认的web文档目录，用于存放静态文件，以及每个app的index.php。</p>
+<h2 id="webserver">webserver</h2><p>webserver目录为webserver的安装目录，当前ODP支持lighttpd以及nginx两种服务器。</p>
+<h1 id="在Template下进行前端模版开发">在Template下进行前端模版开发</h1><p>研究了一下电视游戏的前端代码，发现和TP比较类似：</p>
+<p><strong>举例：</strong></p>
+<p>TP的做法：</p>
+<pre><code>Tpl
+-<span class="ruby"> uestc_club
+</span>    -<span class="ruby"> public
+</span>       -<span class="ruby"> <span class="constant">CSS</span>
+</span>       -<span class="ruby"> images
+</span>       -<span class="ruby"> js
+</span>       -<span class="ruby"> nav.html
+</span>       -<span class="ruby"> head.html
+</span>       -<span class="ruby"> footer.html
+</span>       -<span class="ruby"> scripts.html
+</span>    -<span class="ruby"> <span class="constant">User</span>
+</span>    -<span class="ruby"> portal
+</span>        -<span class="ruby">index.html
+</span>        -<span class="ruby"> list.html
+</span>        -<span class="ruby"> article.html
+</span>    -<span class="ruby"> config.html
+</span>    -<span class="ruby"> error.html
+</span>    -<span class="ruby"> success.html
+</span>    -<span class="ruby"> jump.html</span>
+</code></pre><p>ODP的做法：</p>
+<pre><code>template
+-<span class="ruby"> tvgame
+</span>     -<span class="ruby"> css
+</span>     -<span class="ruby"> download
+</span>     -<span class="ruby"> feedback
+</span>     -<span class="ruby"> file
+</span>         -<span class="ruby"> .apk
+</span>     -<span class="ruby"> home
+</span>         -<span class="ruby"> index.tpl
+</span>     -<span class="ruby"> images
+</span>     -<span class="ruby"> js
+</span>     -<span class="ruby"> mob
+</span>         -<span class="ruby"> about.tpl
+</span>         -<span class="ruby"> aboutNew.tpl
+</span>         -<span class="ruby"> help.tpl
+</span>     -<span class="ruby"> passport</span>
+</code></pre><p><strong>前端主要区别：</strong></p>
+<ul>
+<li><code>TP</code>一般用的<code>vo</code>渲染前端页的数据。</li>
+<li><code>ODP</code>一般用<code>Smarty</code>渲染<code>tpl</code>文件生成前端。</li>
+</ul>
+<p>（经<code>大卓</code>透露：<code>Smarty</code>对<code>ORM</code>——ODP封装了docker技术后的产物，兼容性不好，有大坑未解决，所以暂时不用，直接采取插入php变量进行数据交互）</p>
+<h1 id="H5+AmazeUI_实现移动端WebView">H5+AmazeUI 实现移动端WebView</h1><h2 id="html5表单标签新特性：">html5表单标签新特性：</h2><p><a href="http://www.w3school.com.cn/html5/html_5_form_input_types.asp" target="_blank" rel="external">Input 类型</a></p>
+<p><a href="http://www.w3school.com.cn/html5/html_5_form_attributes.asp" target="_blank" rel="external">表单元素</a></p>
+<h2 id="AmazeUI">AmazeUI</h2><h3 id="为什么不用bootstrap？">为什么不用bootstrap？</h3><ul>
+<li>bootstrap只是对HTML增加了CSS进行美化和响应式，而amaze ui则在bootstrap美化的基础上，主要增加了<a href="http://amazeui.org/javascript/slider" target="_blank" rel="external">常见的JS动态</a>，以及更多样式。</li>
+<li>支持国产吧</li>
+</ul>
+<h3 id="Demo演示">Demo演示</h3><p><a href="http://2.daijialewebdesign.sinaapp.com/MapCar/BaiduMapCar.html" target="_blank" rel="external">H5+AmazeUI实现的“车生活_Demo”</a></p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogBaiduMapCar1.png" alt=""><br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogBaiduMapCar2.png" alt=""><br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogBaiduMapCar3.png" alt=""><br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogBaiduMapCar4.png" alt=""></p>
+<h1 id="移动端内核兼容性分析">移动端内核兼容性分析</h1><h2 id="Android_WebView兼容性">Android WebView兼容性</h2><p><strong>Android WebView内核：</strong></p>
+<ul>
+<li>在Android 4.4以下(不包含4.4)系统WebView底层实现是采用<a href="http://www.webkit.org/" target="_blank" rel="external">WebKit</a>内核。</li>
+<li>在Android 4.4及其以上Google 采用了<a href="http://www.chromium.org/" target="_blank" rel="external">chromium</a>作为系统WebView的底层内核支持。</li>
+</ul>
+<p>WebKit for WebView VS Chromium for WebView性能比对（测试环境 小米2. CM Browser. Android 4.1.1 VS 4.4.3）：</p>
+<table border="1"><br><tr><br><td></td><br><td>Webkit for Webview</td><br><td>Chromium for Webview</td><br><td>备注</td><br></tr><br><tr><br><td>HTML5</td><br><td>278</td><br><td>434</td><br><td><a href="http://html5test.com/" target="_blank" rel="external">http://html5test.com/</a></td><br></tr><br><tr><br><td>远程调试</td><br><td>不支持</td><br><td>支持</td><br><td>不支持</td><br></tr><br><tr><br><td>内存占用</td><br><td>小</td><br><td>大</td><br><td>相差20-30M左右</td><br></tr><br><tr><br><td>WebAudio</td><br><td>不支持</td><br><td>支持</td><br><td>Android5.0以上支持</td><br></tr><br><tr><br><td>WebGL</td><br><td>不支持</td><br><td>支持</td><br><td>Android5.0以上支持</td><br></tr><br><tr><br><td>WebRTC</td><br><td>不支持</td><br><td>支持</td><br><td>Android5.0以上支持</td><br></tr><br></table>
+
+
+<p><strong>注意点：</strong></p>
+<ul>
+<li><p>通过webview调起本地服务的时候需要在<code>activity</code>的<code>onActivityResult</code>里做处理 ，<code>setWebViewClient</code>和<code>setWebChromeClient</code>去监听一下<code>WebView</code>的回调。</p>
+</li>
+<li><p>主流手机对HTML5的支持都是很不错的，webview一般也都是用的硬加速，不过Android和IOS相比还是比较卡。</p>
+</li>
+</ul>
+<h2 id="IOS_WebView兼容性">IOS WebView兼容性</h2><p> iOS 8拥有4个Web内核引擎，当然，也意味着兼容性和bug都是有差异的。 </p>
+<ul>
+<li><ol>
+<li>Safari</li>
+</ol>
+</li>
+<li><ol>
+<li>Web.app (使用full-screen 桌面应用)</li>
+</ol>
+</li>
+<li><ol>
+<li>UIWebView (老)</li>
+</ol>
+</li>
+<li><ol>
+<li>WKWebView（新）</li>
+</ol>
+</li>
+</ul>
+<p>这些都是支持HTML5的。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/原创博文/">原创博文</a>►<a class="article-category-link" href="/categories/原创博文/Web开发日记/">Web开发日记</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Amaze-UI/">Amaze UI</a><a href="/tags/html5/">html5</a><a href="/tags/php/">php</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://daijiale.github.io/2015/06/10/基于百度ODP的前端开发/" data-title="基于百度ODP的Web前端开发 | DaiJiale&#39;s Blog" data-tsina="3173290371" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/06/18/在百度实习的那些日子/" title="在百度实习的那些日子">
+  <strong>上一篇：</strong><br/>
+  <span>
+  在百度实习的那些日子</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/06/09/JavaScript经典设计模式总结/"  title="JavaScript经典设计模式总结">
+ <strong>下一篇：</strong><br/> 
+ <span>JavaScript经典设计模式总结
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/06/10/基于百度ODP的前端开发/" data-title="基于百度ODP的Web前端开发" data-url="http://daijiale.github.io/2015/06/10/基于百度ODP的前端开发/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ODP的安装和部署"><span class="toc-number">1.</span> <span class="toc-text">ODP的安装和部署</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ODP文件环境"><span class="toc-number">2.</span> <span class="toc-text">ODP文件环境</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#app"><span class="toc-number">2.1.</span> <span class="toc-text">app</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#conf"><span class="toc-number">2.2.</span> <span class="toc-text">conf</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#data"><span class="toc-number">2.3.</span> <span class="toc-text">data</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#install"><span class="toc-number">2.4.</span> <span class="toc-text">install</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#log"><span class="toc-number">2.5.</span> <span class="toc-text">log</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#php"><span class="toc-number">2.6.</span> <span class="toc-text">php</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#template"><span class="toc-number">2.7.</span> <span class="toc-text">template</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webroot"><span class="toc-number">2.8.</span> <span class="toc-text">webroot</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webserver"><span class="toc-number">2.9.</span> <span class="toc-text">webserver</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#在Template下进行前端模版开发"><span class="toc-number">3.</span> <span class="toc-text">在Template下进行前端模版开发</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#H5+AmazeUI_实现移动端WebView"><span class="toc-number">4.</span> <span class="toc-text">H5+AmazeUI 实现移动端WebView</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#html5表单标签新特性："><span class="toc-number">4.1.</span> <span class="toc-text">html5表单标签新特性：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AmazeUI"><span class="toc-number">4.2.</span> <span class="toc-text">AmazeUI</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么不用bootstrap？"><span class="toc-number">4.2.1.</span> <span class="toc-text">为什么不用bootstrap？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Demo演示"><span class="toc-number">4.2.2.</span> <span class="toc-text">Demo演示</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#移动端内核兼容性分析"><span class="toc-number">5.</span> <span class="toc-text">移动端内核兼容性分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Android_WebView兼容性"><span class="toc-number">5.1.</span> <span class="toc-text">Android WebView兼容性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IOS_WebView兼容性"><span class="toc-number">5.2.</span> <span class="toc-text">IOS WebView兼容性</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/原创博文/Android开发笔记/" title="Android开发笔记">Android开发笔记<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/原创博文/Web开发日记/" title="Web开发日记">Web开发日记<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/原创博文/单反自学笔记/" title="单反自学笔记">单反自学笔记<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/原创博文/" title="原创博文">原创博文<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/转载博文/" title="转载博文">转载博文<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/个人故事/" title="个人故事">个人故事<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hackathon/" title="Hackathon">Hackathon<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/智能可穿戴/" title="智能可穿戴">智能可穿戴<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/工具神器/" title="工具神器">工具神器<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/代码托管/" title="代码托管">代码托管<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Amaze-UI/" title="Amaze UI">Amaze UI<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Json/" title="Json">Json<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html5/" title="html5">html5<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/拍照摄影/" title="拍照摄影">拍照摄影<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AndroidWear/" title="AndroidWear">AndroidWear<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Blog/" title="Blog">Blog<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Ajax/" title="Ajax">Ajax<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php/" title="php">php<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.daijiale.cn" target="_blank" title="DaiJiale的个人简历页">DaiJiale的个人站点</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.linzhihao.cn" target="_blank" title="我师父的Blog">MasterLin的Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://charles-xiao.github.io/" target="_blank" title="好友肖勇Blog">CharlesXiao的Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://lizhuolun.com/" target="_blank" title="好友卓伦Blog">lizhuolun的Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://stormzhang.com/" target="_blank" title="偶像的Blog（Android_CN OG级人物）">StormZhang的Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me/" target="_blank" title="jacman原创博主">Jark&#39;s Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.developerclub.cn" target="_blank" title="博主自己独立开发的：一个面向电子科技大学开发者的网上社区">电子科技大学开发者俱乐部</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://uestc.xyz" target="_blank" title="一个面向电子科技大学Linux开发者的社区">电子科技大学Linux开源社区</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://tongji.cnzz.com/main.php?c=site&a=show&siteid=1254856612" target="_blank" title=" 站点数据统计">站长统计</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Jiale Dai in UESTC. <br/>
+			Welcome To My World.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/3173290371" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/daijiale" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="https://www.zhihu.com/people/dai-jia-le-35" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:daijiale6239@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by Hexo and Theme Rebuilt From Jacman By</a> © 2015 
+		
+		<a href="http://www.daijiale.cn">Jiale Dai</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"daijiale"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254856612'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1254856612' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
