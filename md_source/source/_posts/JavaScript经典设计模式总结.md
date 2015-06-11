@@ -1,4 +1,4 @@
-title: JavaScript设计
+title: JavaScript经典设计模式总结
 date: 2015-6-9 11:29:31
 tags:
 
