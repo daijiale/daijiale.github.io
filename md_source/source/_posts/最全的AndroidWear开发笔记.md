@@ -647,8 +647,7 @@ PS：这里有博主自己曾经写过的一个运行在Android手机上的Demo�
 ## 让用户如何退出APP ##
  
 在手机或平板上，用户会使用返回或主页键来推出APP，但这些按钮在Android Wear设备上都不会出现，相反，在wear app上，用户离开你的APP会有如下两种办法：**一种是把页面朝左滑动至边缘退出，另一种是长按APP退出**：
-
-   ### 滑动退出： ###
+### 滑动退出： ###
 
 通过Android Wear我们引入了一种新的窗口属性：
         
@@ -662,29 +661,35 @@ PS：这里有博主自己曾经写过的一个运行在Android手机上的Demo�
 
 **You get it by default**
 
-```<activity
+```
+<activity
 	android:name=".ControlRobotsActivity"
 	android:theme="Theme.DeviceDefault"
 />
-``` 
-当然，我们知道，有些APP没办法使用滑动退出的功能，比如，无限移动的地图应用时永远没有边缘的，如果你不想使用滑动手势，那么你可以通过吧滑动的退出属性设置为false，来在你的主题中禁用ta。对于无法通过滑动来退出的APP。我们可以使用第二个属性：即**长按退出功能。**
+```
+
+
+当然，我们知道，有些APP没办法使用滑动退出的功能，比如，无限移动的地图应用时永远没有边缘的，如果你不想使用滑动手势，那么你可以通过吧滑动的退出属性设置为false，来在你的主题中禁用ta。对于无法通过滑动来退出的APP。我们可以使用第二个属性：即**长按退出功能**。
     
 ### 长按退出 ###
-这就相当于是一个退出按钮的行为了，为了让用户知道你的APP可以长按退出，在APP首次运行时，你要给用户一个长按退出的提示。打开我们的wear设备，你会发现在屏幕任何地方出现长按行为，都会在APP上出现一个退出按钮。再按下那个按钮来退出活动，用户则会回到主页，为了让你的APP退出变得尽量容易，Google做了一个可以在大多数UI上运行的View,它叫退出覆盖视图（dismiss overlay view）
+
+这就相当于是一个退出按钮的行为了，为了让用户知道你的APP可以长按退出，在APP首次运行时，你要给用户一个长按退出的提示。打开我们的wear设备，你会发现在屏幕任何地方出现长按行为，都会在APP上出现一个退出按钮。再按下那个按钮来退出活动，用户则会回到主页，为了让你的APP退出变得尽量容易，Google做了一个可以在大多数UI上运行的View,它叫退出覆盖视图。（dismiss overlay view）
      
 **activity_control_robots.xml**
      
-```<android.support.wearable.view.DismissOverlayView
+
+```
+<android.support.wearable.view.DismissOverlayView
 	android:id="@+id/dismiss_overlay"
 	android:layout_height="match_parent"
       android:layout_width＝"match_parent"
-     />    
-```
+     />
+ ```
+
 
 为了把它集成到你的APP中，首先要把它添加进你的XML活动层中，确保它**增加的位置一定是在其他布局之上的**你还要确保该视图的尺寸能够覆盖整个屏幕，把它高度和宽度设置成与父框架相匹配，这样它就能够确保全屏，而且处于最顶层了，现在我们来看看java类里面怎么写：
 
 **ControlRobotsActivity.java**
-
 
 ```
 public void onCreate(Bundle savedState){
@@ -692,19 +697,17 @@ public void onCreate(Bundle savedState){
 	setContentView(R.layout.activity_control_robots);  	mDismissOverlay = (DismissOverlayView)findViewById(R.id.dismiss_overlay);
 	mDismissOverlay.setIntroText(R.string.long_press_intro);
 	mDismissOverlay.showIntroIfNecessary();
-    ```
-
      mDetector = new GestureDetector(this,new SimpleOnGestureListener(){
        public void onLongPress(MotionEvent ev){
        	mDismissOverlay.show();
        }
-     
      });
-    ```
+```
     
-    
+ 接下来是`TouchEvent`。  
    
-```public boolean onTouchEvent(MotionEvent ev){
+```
+public boolean onTouchEvent(MotionEvent ev){
 	return mDetector.onTouchEvent(ev) | | super.onTouchEvent(ev);}   
 ```
 
@@ -718,7 +721,8 @@ public void onCreate(Bundle savedState){
 首先，我们来看看360的屏幕维度吧，这是一个直径为320px的圆圈，下方有30px的`chin`，因此系统会认为它的尺寸为320x290px，在我们自己开发的过程中，我们意识到chin会将一些非计划中的结果导入到现有的布局中，比如我们来看一下信息流中的行为卡片，我们希望给屏幕中央放置一个行为图标，但我们给中央垂直点加了一个层重力机制之后，结果这个蓝圆偏移了15px，但我们还是希望中间的这个蓝圆最好能够处于整个屏幕的中央，在我们之前提到过的默认主题中，`windowOverscan`属性已经设置了，而且整个视图分级结构的源是320X320px，这就导致了你的APP顶级结构视图，依然认为是320X320，而非320X290，然后再把你的局布如预想般放在屏幕中央，如何检测你的活动是运行在圆形屏幕中的呢？你的视图会请求应用窗口插入`insets`,然后会返回一个窗口插入目标，它会告诉你屏幕的形状，在Moto360中，它会告诉你下方插入的窗口为30px，在任何地方只要你要围绕这个`chin`来布局，你就需要经常使用这个值，这里所使用的插入值，会确保你的APP在以后任何可穿戴设备上看起来都很漂亮，为了节省大家敲打这些通用代码的时间，Google增加了一个叫`WatchViewStub`的视图，它可以让你根据APP运行的不同屏幕来扩充一两种不同的布局，如果你想在屏幕上看起来与众不同，就可以使用`WatchViewStub`来作为任何视图分级就够的源，要使用的话，先在你的活动或者onCreate碎片中创建一个新的源，完成之后，你就需要给你的源加上两层布局（`Round、Rect`）,但是有一个问题需要注意：因为这些布局在视图在附加进结构分级前，并没有进行扩充，你就没办法进入子一级的视图，相反，附加一个OnLayoutInflatedListener(布局扩充收听器)，它可以在布局内层进行不合适的扩充时使用，退出布局视图和这个WatchViewStub都可以在可穿戴支持库`Wearable Library`中找到，如下：
 
 
-```public WindowInsets onApplyWindowInsets(View view,WindowInsets windowInsets){
+```
+public WindowInsets onApplyWindowInsets(View view,WindowInsets windowInsets){
 	if(windowInsets.isRound()){
 		Rect insets = windowInsets.getSystemWindowInsets();
 	//insets.bottom = 30
@@ -728,7 +732,8 @@ public void onCreate(Bundle savedState){
 
 **ControlRobotsActivity.java**
 
-```public void onCreate(Bundle savedInstanceState){
+```
+public void onCreate(Bundle savedInstanceState){
    WatchViewStub stub = new WatchViewStub(this);
 	stub.setRectLayout(R.layout.activity_control_robots_rect);
 	stub.setRoundLayout(R.layout.activity_control_robots_round);
