@@ -25,6 +25,7 @@
 <meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogBaiduMapCar2.png">
 <meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogBaiduMapCar3.png">
 <meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogBaiduMapCar4.png">
+<meta property="og:updated_time" content="2015-06-14T06:17:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于百度ODP的Web前端开发">
 <meta name="twitter:description" content="ODP，即Online Develop Platform，是为百度Web业务提供完善且高度集成的基础环境、框架、基础库和工具，统一规范模式。
@@ -117,7 +118,7 @@
 <a id="more"></a>
 <h1 id="ODP的安装和部署">ODP的安装和部署</h1><p><a href="http://man.baidu.com/inf/odp/tutorial/#ODP安装" target="_blank" rel="external">请参考内部文档</a></p>
 <h1 id="ODP文件环境">ODP文件环境</h1><p>直接切到odp文件夹下：</p>
-<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[chenyijie@cq01-ksarch-rdtest00.vm odp] $ pwd</span><br><span class="line">/home/chenyijie/odp</span><br><span class="line">[chenyijie@cq01-ksarch-rdtest00.vm odp] $ ls</span><br><span class="line">app conf data install log php <span class="keyword">template</span> webroot webserver</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;[chenyijie@cq01-ksarch-rdtest00.vm odp] $ pwd&#10;/home/chenyijie/odp&#10;[chenyijie@cq01-ksarch-rdtest00.vm odp] $ ls&#10;app conf data install log php template webroot webserver</span><br></pre></td></tr></table></figure>
 <h2 id="app">app</h2><p>用于放置产品线业务<code>app</code>代码，类似于TP中的<code>application目录</code></p>
 <h2 id="conf">conf</h2><p><code>conf目录</code>中包含了四个文件夹，十个文件，为配置目录，用于存放组件和<code>app</code>的配置。类似于TP中的<code>config.yaml</code></p>
 <p>内含文件名称以及用途简介：</p>
@@ -187,7 +188,7 @@
 <li><code>TP</code>一般用的<code>vo</code>渲染前端页的数据。</li>
 <li><code>ODP</code>一般用<code>Smarty</code>渲染<code>tpl</code>文件生成前端。</li>
 </ul>
-<p>（经<code>大卓</code>透露：<code>Smarty</code>对<code>ORM</code>——ODP封装了docker技术后的产物，兼容性不好，有大坑未解决，所以暂时不用，直接采取插入php变量进行数据交互）</p>
+<p>（经<code>大卓</code>透露：<code>Smarty</code>对<code>OCM</code>——ODP封装了docker技术后的产物，兼容性不好，有大坑未解决，所以暂时不用，直接采取插入php变量进行数据交互）</p>
 <h1 id="H5+AmazeUI_实现移动端WebView">H5+AmazeUI 实现移动端WebView</h1><h2 id="html5表单标签新特性：">html5表单标签新特性：</h2><p><a href="http://www.w3school.com.cn/html5/html_5_form_input_types.asp" target="_blank" rel="external">Input 类型</a></p>
 <p><a href="http://www.w3school.com.cn/html5/html_5_form_attributes.asp" target="_blank" rel="external">表单元素</a></p>
 <h2 id="AmazeUI">AmazeUI</h2><h3 id="为什么不用bootstrap？">为什么不用bootstrap？</h3><ul>
