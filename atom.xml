@@ -464,7 +464,7 @@
     <link href="http://daijiale.github.io/2015/05/04/%E6%9C%80%E5%85%A8%E7%9A%84AndroidWear%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
     <id>http://daijiale.github.io/2015/05/04/最全的AndroidWear开发笔记/</id>
     <published>2015-05-04T08:23:09.000Z</published>
-    <updated>2015-06-14T06:49:44.000Z</updated>
+    <updated>2015-06-14T16:03:45.000Z</updated>
     <content type="html"><![CDATA[<h1 id="本文作者">本文作者</h1><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicslrme.jpg" alt=""></p>
 <h2 id="Jiale_Dai"><a href="http://www.daijiale.cn" target="_blank" rel="external">Jiale Dai</a></h2><p>成都 电子科技大学 本科生( 其实还没毕业，目前大三 ）</p>
 <p>从14年开始一直专研于AndroidWear开发</p>
@@ -690,9 +690,43 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public void onCreate(Bundle savedInstanceState)&#123;&#10;   WatchViewStub stub = new WatchViewStub(this);&#10;&#9;stub.setRectLayout(R.layout.activity_control_robots_rect);&#10;&#9;stub.setRoundLayout(R.layout.activity_control_robots_round);&#10;&#9;stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener()&#123;&#10;&#9;&#9;@Override public void onLayoutInflated(WatchViewStub stub)&#123;&#10;&#9;&#9;&#9;stub.findViewById(R.id.start_invasion).setOnClickListener(mClick);&#10;&#9;&#9;&#125;&#10;&#9;&#125;);&#10;&#9;setContentView(stub);&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>该库同时也提供叫做<code>盒状插入布局的新布局管理器</code>，它拓展了框架布局，让开发师能够同时在方形与圆形屏幕上使用同一布局。</p>
 <h1 id="Android_Wear表盘（WatchFace）设计与开发">Android Wear表盘（WatchFace）设计与开发</h1><p>不得不承认，Google在表盘方面上还是很鼓励第三方开发者去自由创作的，有别于<br><a href="http://www.leikeji.com/article?2264" target="_blank" rel="external">Apple Watch不允许接入第三方watch face应用</a>的做法。</p>
+<p>要做一款WatchFace应用，你先需要拓展一下<code>CanvasWatchFaceService</code>及其引擎，</p>
 <p><a href="http://code.tutsplus.com/tutorials/creating-an-android-wear-watch-face--cms-23718" target="_blank" rel="external">AndroidWear CanvasWatchFaceService</a></p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/canvaswatchface.png" alt=""></p>
+<h2 id="onCreate_&amp;_onDraw">onCreate  &amp;  onDraw</h2><p>你可以加载并缩放任意图片，通过<code>onCreate</code>方式来设置表盘风格，它包含一些控制瞥视卡片模式 变量，如上图所示，这种模式是放置OK Google 状态条图标和其他东西的地方，然后你可以用<code>onDraw</code>来绘制一个表盘，在个方法中，我们要把显示在表盘的框架的每一帧都渲染出来，因为我们是在画布上绘制，所以我们可以用标准的位图或形状函数，因为这个代码是在每个框架下都能运行的，所以TA的运行状态我们要牢记在心里，</p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/githubblogliangzhongMode.png" alt=""></p>
+<h2 id="交互模式">交互模式</h2><p>在交互模式（<code>interactive</code>）下，你是可以绘制全彩色和动画的，模板默认每秒钟更新一次，如果你想让TA更新的更加频繁，举个例子，你想播放一个动画时，那么你就要做三件事了：</p>
+<ul>
+<li><p>第一，你要移除<code>mUpdateTimeHandles</code>(默认更新时间管理)，要不然<code>onDraw</code>只会一秒需要一次。</p>
+</li>
+<li><p>第二，在第一次表盘可见时，需要触发<code>onDraw</code>方式，这样就可以让<code>onVisibilityChange</code>方式下的框架无效了。</p>
+</li>
+<li><p>第三，你需要在<code>onDraw</code>方式最后使框架无效，这样会剔除掉<code>onDraw</code>循环，可以让动画流畅播放，现在表盘就会不断更新了，在使框架无效之前，很重要的一点就是查看你的表盘是否处于环境模式下，要不然的话更新循环就会不断在后台运行，就算在环境模式下也是如此，而这么做的话，会<strong>极大地影响电池寿命</strong>。</p>
+</li>
+</ul>
+<h2 id="环境模式">环境模式</h2><p>在环境模式（<code>ambient mode</code>类似于手机的待机模式）下，使用的绘制颜色是有限制的，而且模板默认每分钟才更新一次。</p>
+<p>在这个模式下，一般会选用两个模式，</p>
+<ul>
+<li>选择灰色图片或者黑白双色。</li>
+<li><p>移除那些更新频率超过1分钟1次的屏幕元素（eg:秒针）</p>
+<p>要检测手表有没有进入环境模式，你可以覆盖<code>onAmbientModeChange</code>方式，RD会发送实例变量来表明手表处于环境模式下并使当前框架无效，这样会触发重新绘制机制， </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public void  onAmbientModeChanged&#10;(boolean inAmbientMode)&#123;&#10;// ...&#10;&#9;mAmient = inAmbientMode&#10;// ... &#9;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>然后，在下一次的<code>onDraw</code>中，RD可以决定他们去做什么。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> public void onDraw(Canvas canvas ,Rect rect)&#123;&#10;   //...draw code....&#10;   if(!mAmbient)&#123;&#10;   //additional drawing code....&#10;   &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>当然AndroidWearWatchFace API还为开发者们提供 一些高级自定义的情景，来确保表盘在所有情况下都能流畅进行，特别说一下其中两个：</p>
+<ul>
+<li>第一个：一些Android Wear设置支持低比特率的环境模式，这就意味着只显示屏幕像素，甚至关掉它，只使用灰度设计，无法在这些屏幕上运行，这就是我们为什么要用黑白代替灰色设计的原因。为了判断设计是否支持低比特率，我们把<code>onPropertiesChange</code>进行覆盖。开发者可以查看手表是否支持低比特率的环境模式，</li>
+</ul>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> public void onPropertiesChanged(Bundle properties)&#10;&#123;&#10;&#9;super.onPropertiesChanged(properties);&#10;&#9;mLowBitAmbient=&#10;&#9;properties.getBoolean&#10;&#9;&#9;(PROPERTY_LOW_BIT_AMBIENT,false); &#10;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>第二个：表盘能显示瞥视卡片在屏幕下方，我们通常会围绕卡片边缘onDraw一个透明矩形区域——TA可以确保你不会与表盘设计有很差的交互体验，而且在环境模式下尤其重要，要是没有它，卡片信息会被表盘底部的刻度线给遮挡。</p>
+<p>这里博主为大家提供了一些<a href="https://github.com/AndroidWearDemo/AndroidWearWatchface" target="_blank" rel="external">谷歌官方和自己编写的表盘Demo</a>。</p>
+</li>
+</ul>
 <h1 id="Android_Wear更多系列教程：">Android Wear更多系列教程：</h1><blockquote>
-<p>博主认为，目前天朝的可穿戴社区仍处于起步阶段，很多资源还不丰富，但是天朝程序猿的力量是强大的，相信随着更多wear developers的加入，可穿戴的社区会愈来愈壮大，最后仅以自己微薄之力，为Android Wear开源做出一点贡献，希望能帮助到更多的人。</p>
+<p>博主认为，目前天朝的可穿戴社区仍处于起步阶段，很多资源还不丰富，但是天朝程序猿的力量是强大的，相信随着更多wear developers的加入，可穿戴的社区会愈来愈壮大，最后仅以自己微薄之力，为Android Wear开源做出一点贡献，希望能帮助到更多的人。&gt; </p>
 </blockquote>
 <p>下面汇总了目前国内比较好的一些Android Wear资源，请参考：</p>
 <ul>
