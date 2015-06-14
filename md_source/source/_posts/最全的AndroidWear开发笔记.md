@@ -754,10 +754,78 @@ public void onCreate(Bundle savedInstanceState){
 [Apple Watch不允许接入第三方watch face应用](http://www.leikeji.com/article?2264)的做法。
 
 
+要做一款WatchFace应用，你先需要拓展一下`CanvasWatchFaceService`及其引擎，
+
 [AndroidWear CanvasWatchFaceService](http://code.tutsplus.com/tutorials/creating-an-android-wear-watch-face--cms-23718)
+
+![](http://7xi6qz.com1.z0.glb.clouddn.com/canvaswatchface.png)
+
+## onCreate  &  onDraw
+你可以加载并缩放任意图片，通过`onCreate`方式来设置表盘风格，它包含一些控制瞥视卡片模式 变量，如上图所示，这种模式是放置OK Google 状态条图标和其他东西的地方，然后你可以用`onDraw`来绘制一个表盘，在个方法中，我们要把显示在表盘的框架的每一帧都渲染出来，因为我们是在画布上绘制，所以我们可以用标准的位图或形状函数，因为这个代码是在每个框架下都能运行的，所以TA的运行状态我们要牢记在心里，
+
+![](http://7xi6qz.com1.z0.glb.clouddn.com/githubblogliangzhongMode.png)
+
+## 交互模式
+在交互模式（`interactive`）下，你是可以绘制全彩色和动画的，模板默认每秒钟更新一次，如果你想让TA更新的更加频繁，举个例子，你想播放一个动画时，那么你就要做三件事了：
+
+ - 第一，你要移除`mUpdateTimeHandles`(默认更新时间管理)，要不然`onDraw`只会一秒需要一次。
+ 
+ - 第二，在第一次表盘可见时，需要触发`onDraw`方式，这样就可以让`onVisibilityChange`方式下的框架无效了。
+ 
+ - 第三，你需要在`onDraw`方式最后使框架无效，这样会剔除掉`onDraw`循环，可以让动画流畅播放，现在表盘就会不断更新了，在使框架无效之前，很重要的一点就是查看你的表盘是否处于环境模式下，要不然的话更新循环就会不断在后台运行，就算在环境模式下也是如此，而这么做的话，会**极大地影响电池寿命**。
+
+
+## 环境模式
+
+在环境模式（`ambient mode`类似于手机的待机模式）下，使用的绘制颜色是有限制的，而且模板默认每分钟才更新一次。
+
+在这个模式下，一般会选用两个模式，
+ - 选择灰色图片或者黑白双色。
+ - 移除那些更新频率超过1分钟1次的屏幕元素（eg:秒针）
+ 
+ 要检测手表有没有进入环境模式，你可以覆盖`onAmbientModeChange`方式，RD会发送实例变量来表明手表处于环境模式下并使当前框架无效，这样会触发重新绘制机制， 
+ ```
+  public void  onAmbientModeChanged
+ 	(boolean inAmbientMode){
+ 	// ...
+ 		mAmient = inAmbientMode
+ 	// ... 	
+ 	}	
+ ```
+ 然后，在下一次的`onDraw`中，RD可以决定他们去做什么。
+
+  ```
+  public void onDraw(Canvas canvas ,Rect rect){
+    //...draw code....
+    if(!mAmbient){
+    //additional drawing code....
+    }
+ }
+ ```
+ 
+当然AndroidWearWatchFace API还为开发者们提供 一些高级自定义的情景，来确保表盘在所有情况下都能流畅进行，特别说一下其中两个：
+
+ - 第一个：一些Android Wear设置支持低比特率的环境模式，这就意味着只显示屏幕像素，甚至关掉它，只使用灰度设计，无法在这些屏幕上运行，这就是我们为什么要用黑白代替灰色设计的原因。为了判断设计是否支持低比特率，我们把`onPropertiesChange`进行覆盖。开发者可以查看手表是否支持低比特率的环境模式，
+
+ 
+ ```
+  public void onPropertiesChanged(Bundle properties)
+ {
+ 	super.onPropertiesChanged(properties);
+ 	mLowBitAmbient=
+ 	properties.getBoolean
+ 		(PROPERTY_LOW_BIT_AMBIENT,false); 
+ }
+ ```
+ 
+ 
+ - 第二个：表盘能显示瞥视卡片在屏幕下方，我们通常会围绕卡片边缘onDraw一个透明矩形区域——TA可以确保你不会与表盘设计有很差的交互体验，而且在环境模式下尤其重要，要是没有它，卡片信息会被表盘底部的刻度线给遮挡。
+ 
+ 这里博主为大家提供了一些[谷歌官方和自己编写的表盘Demo](https://github.com/AndroidWearDemo/AndroidWearWatchface)。
+
 # Android Wear更多系列教程： #
 
-> 博主认为，目前天朝的可穿戴社区仍处于起步阶段，很多资源还不丰富，但是天朝程序猿的力量是强大的，相信随着更多wear developers的加入，可穿戴的社区会愈来愈壮大，最后仅以自己微薄之力，为Android Wear开源做出一点贡献，希望能帮助到更多的人。
+> 博主认为，目前天朝的可穿戴社区仍处于起步阶段，很多资源还不丰富，但是天朝程序猿的力量是强大的，相信随着更多wear developers的加入，可穿戴的社区会愈来愈壮大，最后仅以自己微薄之力，为Android Wear开源做出一点贡献，希望能帮助到更多的人。> 
 
 
 下面汇总了目前国内比较好的一些Android Wear资源，请参考：
