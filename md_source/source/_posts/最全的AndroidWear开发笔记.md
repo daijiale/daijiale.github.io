@@ -549,9 +549,9 @@ build.extend(new NotificationCompat.WearableExtend)
 
 远程输入则是提醒行为的另外一个新特性，在激活一个行为时，它可以让用户开启文本回复，设备会提供给用户一个短语或让用户从一些选项中进行选择，这种输入的结果就是将含有你意图的行为发送了出去，通过远程输入，AndroidWear与手机、平板或可穿戴设备的APP互动就变得非常简单了，下面的代码就显示出我们为回复行为增加了一个远程输入，用户在卡片流中点击这一行为时，系统就会在`Quick Reply`的标签下，提供给用户一个语音回复的行为，一旦文本回复转换完成而又得到了用户的同意，你的行为意图就会发出，而且目的已经包含在内了，
 
-```
-
 **Add RemoteInput to a notification action**
+
+```
 String EXTRA_QUICK_REPLY = "quick_reply";
 
 NotificationCompat.Builder builder=...
@@ -562,9 +562,7 @@ builder.addAction(
 		new RemoteInput.Builder(EXTRA_QUICK_REPLY)
 			.setLabel("Quick reply").build())
 		.build());
-
 ...
-
 ```
 
 你的意图接收器，可以是一个`Activity`，`Service`，`Broadcast`，就可以使用远程输入API意图功能中的`Get Results`，来重新恢复成目的文本了，在下面的代码中，quickReplyText变量会根据用户的输入来进行设置，在远程输入API中还有许多其他选项可以使用，支持的内容包括预设选择、允许或禁用、自由样式输入，还支持同一行为的多种输入等。
@@ -585,7 +583,6 @@ protected void onCreate(Bundle savedInstanceState){
 
 }
 
-
 ```
 
 ## Custom Display Cards ##
@@ -600,7 +597,6 @@ protected void onCreate(Bundle savedInstanceState){
 	android:exported="true"
 	android:allowEmbeded="true"
 	android:taskAffinity="" />
-
 ```
 
 下面就是自定义显示提醒的一些模版，信息流中的标准提醒会基于内容自动调整大小，但是自定义显示提醒则需要在不想要默认大尺寸的情况下提供一个尺寸，你可以使用可穿戴拓展器中的设置自定义尺寸预设，或是设置自定义内容高度等方式来选择尺寸。
@@ -619,8 +615,6 @@ protected void onCreate(Bundle savedInstanceState){
 ```
 NotificationCompat.Builder builder = ...
 builder.setLocalOnly(false);
-
-
 ```
 
 **Add an action for phones,tablets,and wearables**
@@ -668,12 +662,10 @@ PS：这里有博主自己曾经写过的一个运行在Android手机上的Demo�
 
 **You get it by default**
 
-```
-<activity
+```<activity
 	android:name=".ControlRobotsActivity"
 	android:theme="Theme.DeviceDefault"
 />
-
 ``` 
 当然，我们知道，有些APP没办法使用滑动退出的功能，比如，无限移动的地图应用时永远没有边缘的，如果你不想使用滑动手势，那么你可以通过吧滑动的退出属性设置为false，来在你的主题中禁用ta。对于无法通过滑动来退出的APP。我们可以使用第二个属性：即**长按退出功能。**
     
@@ -682,43 +674,38 @@ PS：这里有博主自己曾经写过的一个运行在Android手机上的Demo�
      
 **activity_control_robots.xml**
      
-```
-<android.support.wearable.view.DismissOverlayView
+```<android.support.wearable.view.DismissOverlayView
 	android:id="@+id/dismiss_overlay"
 	android:layout_height="match_parent"
       android:layout_width＝"match_parent"
      />    
-
 ```
+
 为了把它集成到你的APP中，首先要把它添加进你的XML活动层中，确保它**增加的位置一定是在其他布局之上的**你还要确保该视图的尺寸能够覆盖整个屏幕，把它高度和宽度设置成与父框架相匹配，这样它就能够确保全屏，而且处于最顶层了，现在我们来看看java类里面怎么写：
 
 **ControlRobotsActivity.java**
 
+
 ```
 public void onCreate(Bundle savedState){
 	super.onCreate(savedState);
-	setContentView(R.layout.activity_control_robots);
-	
-	mDismissOverlay = (DismissOverlayView)findViewById(R.id.dismiss_overlay);
+	setContentView(R.layout.activity_control_robots);  	mDismissOverlay = (DismissOverlayView)findViewById(R.id.dismiss_overlay);
 	mDismissOverlay.setIntroText(R.string.long_press_intro);
 	mDismissOverlay.showIntroIfNecessary();
-    
+    ```
+
      mDetector = new GestureDetector(this,new SimpleOnGestureListener(){
        public void onLongPress(MotionEvent ev){
        	mDismissOverlay.show();
        }
      
      });
-    }
+    ```
     
     
-...
-
-
-@Override
-public boolean onTouchEvent(MotionEvent ev){
-	return mDetector.onTouchEvent(ev) | | super.onTouchEvent(ev);	
-}    
+   
+```public boolean onTouchEvent(MotionEvent ev){
+	return mDetector.onTouchEvent(ev) | | super.onTouchEvent(ev);}   
 ```
 
 在它的`onCreate`中把退出层从你的布局层中拉出来，然后设置为内省文本，这个文本会在第一次运行活动时显示出来，而且会显示在APP其他内容之上，用来告诉用户可以通过长按来返回主页，然后，使用`showIntroIfNecessary`(必要时显示内省文本)，它会，也只会在第一次运行该APP时显示这个内省层，，接下来，如果用户长按了你的app，我们就需要让它激活，使用`GestureDectector`(手势检测器）和`SimpleOnGestureListener`（简易手势接收器）,使用这些框架类会确保所有app感应到手势的时长，在你长按返回时，会激活布局层显示退出行为，会显示一个退出按钮，如果用户点击了该按钮，你的活动就会被结束，但如果你没有点击该按钮，那么这个退出层就会自行隐藏，等着下次出现的命令，最后，还是在你的活动中覆盖一层 `onTouchEvent` (触控事件)，然后让`reveiveTouchEvents` (接受触控事件)连通到`GestureDectector`（手势检测器）,如果 `GestureDetector` 返回为true，你也真的返回主页了，而且不用触动 `onTouchEvent` 方式的正常活动,相反如果为false，那就可以继续使用正常活动的触控。
@@ -731,27 +718,20 @@ public boolean onTouchEvent(MotionEvent ev){
 首先，我们来看看360的屏幕维度吧，这是一个直径为320px的圆圈，下方有30px的`chin`，因此系统会认为它的尺寸为320x290px，在我们自己开发的过程中，我们意识到chin会将一些非计划中的结果导入到现有的布局中，比如我们来看一下信息流中的行为卡片，我们希望给屏幕中央放置一个行为图标，但我们给中央垂直点加了一个层重力机制之后，结果这个蓝圆偏移了15px，但我们还是希望中间的这个蓝圆最好能够处于整个屏幕的中央，在我们之前提到过的默认主题中，`windowOverscan`属性已经设置了，而且整个视图分级结构的源是320X320px，这就导致了你的APP顶级结构视图，依然认为是320X320，而非320X290，然后再把你的局布如预想般放在屏幕中央，如何检测你的活动是运行在圆形屏幕中的呢？你的视图会请求应用窗口插入`insets`,然后会返回一个窗口插入目标，它会告诉你屏幕的形状，在Moto360中，它会告诉你下方插入的窗口为30px，在任何地方只要你要围绕这个`chin`来布局，你就需要经常使用这个值，这里所使用的插入值，会确保你的APP在以后任何可穿戴设备上看起来都很漂亮，为了节省大家敲打这些通用代码的时间，Google增加了一个叫`WatchViewStub`的视图，它可以让你根据APP运行的不同屏幕来扩充一两种不同的布局，如果你想在屏幕上看起来与众不同，就可以使用`WatchViewStub`来作为任何视图分级就够的源，要使用的话，先在你的活动或者onCreate碎片中创建一个新的源，完成之后，你就需要给你的源加上两层布局（`Round、Rect`）,但是有一个问题需要注意：因为这些布局在视图在附加进结构分级前，并没有进行扩充，你就没办法进入子一级的视图，相反，附加一个OnLayoutInflatedListener(布局扩充收听器)，它可以在布局内层进行不合适的扩充时使用，退出布局视图和这个WatchViewStub都可以在可穿戴支持库`Wearable Library`中找到，如下：
 
 
-```
-public WindowInsets onApplyWindowInsets(View view,WindowInsets windowInsets){
+```public WindowInsets onApplyWindowInsets(View view,WindowInsets windowInsets){
 	if(windowInsets.isRound()){
 		Rect insets = windowInsets.getSystemWindowInsets();
 	//insets.bottom = 30
 	}
 }
-
-
 ```
 
 **ControlRobotsActivity.java**
 
-```
-@Override
-public void onCreate(Bundle savedInstanceState){
-
+```public void onCreate(Bundle savedInstanceState){
    WatchViewStub stub = new WatchViewStub(this);
 	stub.setRectLayout(R.layout.activity_control_robots_rect);
 	stub.setRoundLayout(R.layout.activity_control_robots_round);
-
 	stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener(){
 		@Override public void onLayoutInflated(WatchViewStub stub){
 			stub.findViewById(R.id.start_invasion).setOnClickListener(mClick);
@@ -759,7 +739,6 @@ public void onCreate(Bundle savedInstanceState){
 	});
 	setContentView(stub);
 }
-
 ```
 
 该库同时也提供叫做`盒状插入布局的新布局管理器`，它拓展了框架布局，让开发师能够同时在方形与圆形屏幕上使用同一布局。
