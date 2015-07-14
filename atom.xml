@@ -4,7 +4,7 @@
   <subtitle><![CDATA[只有汗水不会欺骗你 || Only sweat will not fail you]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://daijiale.github.io/"/>
-  <updated>2015-06-25T13:46:55.000Z</updated>
+  <updated>2015-07-14T11:14:37.000Z</updated>
   <id>http://daijiale.github.io/</id>
   
   <author>
@@ -15,28 +15,167 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[Android开发常用知识点总结]]></title>
+    <link href="http://daijiale.github.io/2015/07/10/Android%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/"/>
+    <id>http://daijiale.github.io/2015/07/10/Android开发常用知识点总结/</id>
+    <published>2015-07-10T07:13:09.000Z</published>
+    <updated>2015-07-14T11:14:37.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="Android开发常用知识点总结：">Android开发常用知识点总结：</h1><a id="more"></a>
+<h2 id="Android异步加载：">Android异步加载：</h2><p>  用异步的方式去加载数据（主要是图像，不解释），可以让用户在刷新数据时候不用经历太多卡顿，这也是Google官方要求我们去做的一种方式。</p>
+<ul>
+<li>为什么要使用异步加载：Android单线程模型以及耗时操作阻塞UI线程。</li>
+<li>异步加载最常用的两种方式：线程池以及AsyncTask。</li>
+</ul>
+<h3 id="AsyncTask流程：">AsyncTask流程：</h3><h4 id="字符串异步加载">字符串异步加载</h4><p>  1.在<code>onCreate</code>方法中，<code>new NewsAsyncTask().execute(URL)</code>;传入所对应需要异步访问的URL。</p>
+<p>  2.将URL传入下面<code>AsyncTask</code>中的<code>getJsonData()</code>。</p>
+<p>  3.再通过<code>getJsonData()</code>中的Json解析操作，将网络Json数据存储到程序里封装的<code>NewsBean</code>数据项对象 (和 <code>Json Obj</code>格式一一对应的关系) 中。</p>
+<p>  4.在<code>AsyncTask</code>的<code>onPostExecute</code>方法中，将<code>NewsBean</code>数据传递给<code>NewsAdapter</code>，来构造出<code>ListView</code>的数据源。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class NewAsyncTask extend AsyncTask&#60;String,Void,List&#60;NewsBean&#62;&#62;&#123;&#10;&#9;protected List&#60;NewsBean&#62;doInBackground(...)&#123;&#10;&#9;&#9;return getJsonData(params[0]);&#10;&#9;&#125;&#10;&#9;&#10;&#9;protected onPostExecute(List&#60;NewsBean&#62; newsBean)&#123;&#10;&#9;&#9;super.onPostExecute(newsBean);&#10;&#9;&#9;NewsAdapter adapter = new Newsadapter(MainActivity.this,newsBean);&#10;&#9;&#9;mListView.setAdapter(adapter);  &#9;&#10;&#9;&#125;&#10;&#9;  &#9;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="图像异步加载">图像异步加载</h4><h5 id="多线程方式">多线程方式</h5><p>1.新建<code>ImageLoader</code>类，使用多线程去加载图片，引入<code>showImageByThread(ImageView imageView,String url)</code>方法，去通过<code>URL</code>获取图片数据，并转化成<code>Bitmap</code>数据，并在<code>Adapter</code>中调用该方法.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;public class ImageLoad &#123;&#10;&#9;public void showImageByThread(ImageView imageView,String url) &#123;&#9;&#9;new Thread()&#123;&#10;&#9;&#9;&#9;public void run()&#123;&#10;&#9;&#9;&#9;super.run();&#10;&#9;&#9;&#9;&#10;&#9;&#9;&#125;&#9;&#9;&#10;&#9;&#125;.start();&#10;&#125;&#10;&#9;public Bitmap getBitmapFromURL(String urlString)&#123;&#10;&#9;&#9;Bitmap bitmap;&#10;&#9;&#9;InputStream is;&#10;&#9;&#9;try &#123;&#10;&#9;&#9;&#9;URL url = new URL&#65288;urlString&#65289;&#65307;&#10;&#9;&#9;&#9;HttpURLConnection connection = (HttpURLConnection)url.openConnection();&#10;&#9;&#9;&#9;is = new BufferedInputStream(connection.getInputStream());&#10;&#9;&#9;&#9;bitmap = BitmapFactory.decodeStream(is);&#10;&#9;&#9;&#9;connection.disconnect();&#10;&#9;&#9;&#9;return bitmap;&#10;&#9;&#9;&#125;catch(java.io.IOException e)&#123;&#10;&#9;&#9;&#9;e.printStackTrace();&#10;&#9;&#9;&#125;finally&#123;&#10;&#9;&#9;&#9;is.close();&#10;&#9;&#9;&#125;&#10;&#9;&#9;return null;&#10;&#9;&#125;&#10;  &#10;  &#125;</span><br></pre></td></tr></table></figure>
+<p>2.在<code>NewsAdapter</code>类中设置<code>xml</code>文件对应的<code>ImageView</code>控件ID和<code>showImageByThread</code>绑定。</p>
+<p>3.在子线程中去执行<code>bitmap</code>获取函数，并设置<code>handler</code>来绑定<code>ImageView</code></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public class ImageLoad &#123;&#10;       &#10;       private ImageView mImageView;&#10;       private Handler handler = new Handler()&#123;&#10;       &#9;&#9;&#10;       &#9;&#9;public void handleMessage(Message msg)&#123;&#10;       &#9;&#9;&#9;super.handleMessage(msg);&#10;       &#9;&#9;&#9;&#10;       &#9;&#9;&#9;//&#23558;&#28040;&#24687;&#20256;&#36882;&#26469;&#30340;bitmap&#21462;&#20986;&#65292;&#35774;&#32622;&#32473;imageview&#10;       &#9;&#9;&#9;&#10;       &#9;&#9;&#9;mImageView.setImageBitmap((Bitmap)msg.obj);      &#9;&#9;&#9;&#10;       &#9;&#9;&#125;&#10;       &#10;       &#125;;&#10;  &#10;&#10;&#9;public void showImageByThread(ImageView imageView,final String url) &#123;&#10;&#9;&#9;&#9;mImageView = imageView;&#10;&#9;&#9;&#9;new Thread()&#123;&#10;&#9;&#9;&#9;&#9;public void run()&#123;&#10;&#9;&#9;&#9;&#9;&#9;super.run();&#10;&#9;&#9;&#9;&#9;&#9;Bitmap&#9;bitmap = getBitmapFromURL(url);&#10;&#9;&#9;&#9;/* &#34429;&#28982;&#25105;&#20204;&#36825;&#37324;&#26377;&#20102;&#19968;&#20010;bitmap&#65292;&#20294;&#26159;&#30001;&#20110;Android&#30340;&#21333;&#32447;&#31243;&#27169;&#22411;&#65288;&#38750;&#20027;&#32447;&#31243;&#26159;&#19981;&#33021;&#30452;&#25509;&#21435;&#32534;&#36753;UI&#30340;&#65289;&#65292;&#25105;&#20204;&#26080;&#27861;&#30452;&#25509;&#25226;bitmap&#36171;&#20540;&#32473;ImageView&#12290;&#25152;&#20197;&#36825;&#37324;&#25105;&#20204;&#38656;&#35201;&#21551;&#19968;&#20010;Handler&#21435;&#20570;&#28040;&#24687;&#30340;&#20256;&#36882;&#12290;*/&#10;&#9;&#9;&#9;&#9;&#9;Message message = Message.obtain();  //&#20351;&#29992;&#20808;&#29992;&#24050;&#32463;&#22238;&#25910;&#30340;message&#65292;&#25552;&#39640;Android&#31995;&#32479;&#25928;&#29575;&#10;&#9;&#9;&#9;&#9;&#9;message.obj = bitmap;&#10;&#9;&#9;&#9;&#9;&#9;handler.sendMessage(message);&#10;&#9;&#9;&#9;&#9;&#125;&#9;&#9;&#10;&#9;&#9;&#9;&#125;.start();&#10;&#125;&#10;&#9;public Bitmap getBitmapFromURL(String urlString)&#123;...&#125;&#10;  &#10;  &#125;</span><br></pre></td></tr></table></figure>
+<p>4.最后注意<code>ListView的缓存机制</code>：<code>ListView</code>会重用<code>ConvertView</code>，每次下拉刷新后会从缓冲池中重用旧的图片。为了解决这个问题，我们需要在<code>Adapter</code>中增加<code>Tag</code>，在<code>handler</code>中来进行身份判定,确定<code>handle</code>接收到的<code>Tag</code>和传进的<code>URL</code>是相同的时候，才设置<code>Bitmap</code>，使得正确的<code>Item</code>显示正确的数据。（这是处理异步加载错乱常用的一种方式，另一种是：用成员变量，对数据进行缓冲来消除由于网络获取时间不确定导致时序顺序错误。）</p>
+<p>NewsAdapter类中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//&#22312;NewsAdapter&#20013;&#65292;&#35774;&#32622;&#22270;&#29255;UrlTag&#29992;&#20316;&#21028;&#23450;&#26465;&#20214;&#10;String url = mList.getr(position).newsIconUrl;&#10;viewHolder.ivIcon.setTag(url);</span><br></pre></td></tr></table></figure>
+<p>ImageLoad类中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;//&#22312;ImageLoad&#20013;&#65292;&#22686;&#21152;`handler`&#20013;`bitmap`&#32465;&#23450;`ImageView`&#30340;&#21028;&#23450;&#26465;&#20214;&#10;&#10; private ImageView mImageView;&#10;       private Handler handler = new Handler()&#123;&#10;       &#9;&#9;&#10;       &#9;&#9;public void handleMessage(Message msg)&#123;&#10;       &#9;&#9;&#9;super.handleMessage(msg);&#10;       &#9;&#9;&#9;&#10;       &#9;&#9;&#9;//&#23558;&#28040;&#24687;&#20256;&#36882;&#26469;&#30340;bitmap&#21462;&#20986;&#65292;&#35774;&#32622;&#32473;imageview&#10;       &#9;&#9;&#9;if(mImageView.getTag().equals(url))&#123;&#10;       &#9;&#9;&#9;&#9;mImageView.setImageBitmap((Bitmap)msg.obj);      &#9;&#9;&#9;&#125;&#10;       &#9;&#9;&#125;&#10;       &#10;       &#125;;</span><br></pre></td></tr></table></figure>
+<h5 id="AsyncTask方式">AsyncTask方式</h5><p>1.在<code>Adapter</code>中新建<code>showImageByAsyncTask(ImageView imageView,String url)</code>方法</p>
+<p>2.紧接着，在<code>Adapter</code>中创建<code>NewsAsyncTask extend AsyncTask</code>去加载<code>ImageView</code>并绑定</p>
+<p>3.在<code>AsyncTask</code>的<code>onPostExecute</code>方法中，设置<code>Bitmap</code>绑定到<code>imageVIew</code>上，即：<code>mImageView.setImageBitmap(bitmap)</code>;</p>
+<p>4.最后注意增加Tag来解决异步加载错乱的问题:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if(mImageView.getTag().equals(mUrl))&#123;&#10;&#9;mImageView.setImageBitmap(bitmap);&#10;&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="网络加载优化">网络加载优化</h4><h5 id="优化原因">优化原因</h5><p>图片资源过大，最好不要一滑动就重复加载。为了解决这个问题，我们增加缓存机制，提高用户体验。</p>
+<h5 id="Lru算法">Lru算法</h5><ul>
+<li>Lru: Least Recently Used 近期最少使用算法。</li>
+<li>Android提供了LruCache类来实现这个缓存算法。</li>
+</ul>
+<h5 id="使用方法">使用方法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private LruCache&#60;String,Bitmap&#62; mCaches;&#10;&#10;public ImageLoader ( ) &#123;&#10;&#9;int maxMemory = (int) Runtime.getRuntime().maxMemory();//&#33719;&#21462;&#26368;&#22823;&#21487;&#29992;&#20869;&#23384;&#10;&#9;int cacheSize = maxMemory / 4;&#10;&#9;mCaches = new LruCache&#60;String , Bitmap&#62;(cacheSize)&#123;&#10;&#9;&#9;protected int sizeof(String key,Bitmap value)&#123;&#10;&#9;&#9;//&#27599;&#27425;&#23384;&#20837;&#32531;&#23384;&#30340;&#26102;&#20505;&#35843;&#29992;&#10;&#9;&#9;&#9;return value.getByteCount();&#10;&#9;&#9;&#125;&#10;&#9;&#125;;&#10;&#125;&#10;&#10;//&#22686;&#21152;&#21040;&#32531;&#23384;&#10;public void addBitmapToCache(String url,Bitmap bitmap)&#123;&#10;&#9;if(getBitmapFromCache(url) == null )&#123;&#10;&#9;&#9;mCaches.put(url,bitmap);&#10;&#9;&#10;&#9;&#125;&#10;&#125;&#10;&#10;//&#20174;&#32531;&#23384;&#20013;&#21462;&#20986;&#25968;&#25454;&#10;public Bitmap getBitmapFromCache(String url)&#123;&#10;&#9;return mCaches.get(url);&#10;&#125;&#10;&#10;//&#20197;AsyncTask&#20026;&#20363;&#65292;&#20043;&#21518;&#25105;&#20204;&#38656;&#35201;&#20808;&#21028;&#26029;&#19968;&#19979;&#32531;&#23384;&#20013;&#26159;&#21542;&#24050;&#32463;&#26377;&#20102;&#19968;&#20010;URL&#23545;&#24212;&#30340;&#22270;&#29255;&#12290;&#10;&#10;public void showImageByAsyncTask(ImageView imageView,String url)&#123;&#10;&#9;&#9;//&#20174;&#32531;&#23384;&#20013;&#21462;&#20986;&#22270;&#29255;&#10;&#9; Bitmap bitmap = getBitmapFromCache(url);&#10; &#9;&#9;if(bitmap == null)&#123;&#10; &#9;&#9;//&#22914;&#26524;&#32531;&#23384;&#20013;&#27809;&#26377;&#65292;&#21017;&#24517;&#39035;&#21435;&#32593;&#32476;&#24322;&#27493;&#19979;&#36733;&#10; &#9;&#9;&#9;new NewsAsyncTask(imageView,url).execute(url);&#10; &#9;&#9;&#125;else&#123;&#10; &#9;&#9;&#9;imageView.setImageBitmap(bitmap);&#10; &#9;&#125;&#10;&#10;&#125;&#10;&#10;&#10;//&#20462;&#25913;NewsAsyncTask&#26041;&#27861;&#65292;&#23558;&#32593;&#32476;&#24322;&#27493;&#19979;&#36733;&#19979;&#30340;&#22270;&#29255;&#20445;&#23384;&#21040;LruCache&#20013;&#12290;&#10;&#10;private class NewsAsyncTasks extends AsyncTask&#60;String,Void,Bitmap&#62;&#123;&#10;&#9;&#10;&#9;private ImageView mImageView;&#10;&#9;private String mUrl;&#10;&#9;&#10;&#9;public NewsAsyncTask(ImageView imageView,String url)&#123;&#10;&#9;&#9;mImageView = imageView;&#10;&#9;&#9;mUrl = url;&#9;&#10;&#9;&#125;&#10;&#9;&#10;&#9;protected Bitmap doInBackground(String...params)&#123;&#10;&#9;&#9;String url = params[0];&#10;&#9;&#9;//&#20174;&#32593;&#32476;&#19978;&#33719;&#21462;&#22270;&#29255;&#10;&#9;&#9;Bitmap bitmap &#65309; getBitmapFromURL&#65288;url&#65289;&#65307;&#10;&#9;&#9;&#10;&#9;&#9;if ( bitmap ! = null ) &#123;&#10;&#9;&#9;//&#23558;&#19981;&#22312;&#32531;&#23384;&#30340;&#22270;&#29255;&#21152;&#20837;&#32531;&#23384;&#10;&#9;&#9;addBitmapToCache(url,bitmap);&#10;&#9;&#9;&#125;&#10;&#9;&#9;return bitmap;&#10;&#9;&#125;&#10;&#9;&#10;&#9;......&#10;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Android字符流">Android字符流</h2><p>  注意用InputStream去读取字节流时候需要用InputStreamReader转化成为UTF8字符流传入BufferedReader，再通过定义string content 去循环接收BufferedReader的字符流数据。</p>
+<h2 id="Android-util-Log">Android.util.Log</h2><p>  android.util.Log常用的方法有以下5个：Log.v() Log.d() Log.i() Log.w() 以及 Log.e() 。根据首字母对应VERBOSE，DEBUG,INFO, WARN，ERROR。</p>
+<p>1、Log.v 的调试颜色为黑色的，任何消息都会输出，这里的v代表verbose啰嗦的意思，平时使用就是Log.v(“”,””);</p>
+<p>2、Log.d的输出颜色是蓝色的，仅输出debug调试的意思，但他会输出上层的信息，过滤起来可以通过DDMS的Logcat标签来选择.</p>
+<p>3、Log.i的输出为绿色，一般提示性的消息information，它不会输出Log.v和Log.d的信息，但会显示i、w和e的信息</p>
+<p>4、Log.w的意思为橙色，可以看作为warning警告，一般需要我们注意优化Android代码，同时选择它后还会输出Log.e的信息。</p>
+<p>5、Log.e为红色，可以想到error错误，这里仅显示红色的错误信息，这些错误就需要我们认真的分析，查看栈的信息了。</p>
+<h2 id="Android_Handler">Android Handler</h2>]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="Android开发常用知识点总结：">Android开发常用知识点总结：</h1>]]>
+    
+    </summary>
+    
+      <category term="Android" scheme="http://daijiale.github.io/tags/Android/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+      <category term="Android开发笔记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Android%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Node.js学习开发笔记]]></title>
+    <link href="http://daijiale.github.io/2015/07/06/Node.js%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
+    <id>http://daijiale.github.io/2015/07/06/Node.js学习开发笔记/</id>
+    <published>2015-07-06T11:21:11.000Z</published>
+    <updated>2015-07-06T12:15:40.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="前言">前言</h1><blockquote>
+<p>第一次接触Node.js是大二在四川长虹实习期间，距现在已经1年多了，在自己的一些项目中有用到，积累了一些经验，但是想更加系统的学习一下这门技术（主要这两年发展的太火了。。），同时也想把一些开发过程中的问题和案例分享出来， 特为此撰写一篇博客笔记…<br><a id="more"></a></p>
+</blockquote>
+<h1 id="学习篇">学习篇</h1><h2 id="Node-js相比于PHP、Java、Python的优势">Node.js相比于PHP、Java、Python的优势</h2><ul>
+<li><p><a href="http://www.zhihu.com/question/20961574" target="_blank" rel="external">Node.js和Python优势对比</a></p>
+</li>
+<li><p><a href="http://note.youdao.com/share/?id=a83b62577821d670122f8d08a67d8fd4&amp;type=note" target="_blank" rel="external">Node.js和PHP的优势对比</a></p>
+</li>
+</ul>
+<h2 id="Node-js的版本">Node.js的版本</h2><ul>
+<li>偶数位为稳定版本（-0.6x   -0.8x  -0.10.x）</li>
+<li>奇数为非稳定版本（-0.7x   -0.9x  -0.11.x）</li>
+</ul>
+<h1 id="开发篇">开发篇</h1>]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="前言">前言</h1><blockquote>
+<p>第一次接触Node.js是大二在四川长虹实习期间，距现在已经1年多了，在自己的一些项目中有用到，积累了一些经验，但是想更加系统的学习一下这门技术（主要这两年发展的太火了。。），同时也想把一些开发过程中的问题和案例分享出来， 特为此撰写一篇博客笔记…<br>]]>
+    
+    </summary>
+    
+      <category term="Javascript" scheme="http://daijiale.github.io/tags/Javascript/"/>
+    
+      <category term="Node.js" scheme="http://daijiale.github.io/tags/Node-js/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+      <category term="Web开发日记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[在百度实习的那些日子]]></title>
-    <link href="http://daijiale.github.io/2015/06/25/%E5%9C%A8%E7%99%BE%E5%BA%A6%E5%AE%9E%E4%B9%A0%E7%9A%84%E9%82%A3%E4%BA%9B%E6%97%A5%E5%AD%90/"/>
-    <id>http://daijiale.github.io/2015/06/25/在百度实习的那些日子/</id>
-    <published>2015-06-25T08:13:09.000Z</published>
-    <updated>2015-06-25T13:46:55.000Z</updated>
+    <link href="http://daijiale.github.io/2015/06/29/%E5%9C%A8%E7%99%BE%E5%BA%A6%E5%AE%9E%E4%B9%A0%E7%9A%84%E9%82%A3%E4%BA%9B%E6%97%A5%E5%AD%90/"/>
+    <id>http://daijiale.github.io/2015/06/29/在百度实习的那些日子/</id>
+    <published>2015-06-29T11:13:09.000Z</published>
+    <updated>2015-07-06T10:48:18.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
-<p>时间：2014.11.19-2015.6.22</p>
+<p>时间：2014.11.19-2015.6.24</p>
 <p>地点：北京海淀区上地东路鹏寰国际大厦</p>
 <p>部门: 移动搜索事业部</p>
 </blockquote>
-<p>转眼之间，在百度移动搜索事业部创新业务项目组已经实习六个多月了，终于到了要说再见的日子。心里五味杂陈，特此写下这篇Blog，纪念这段特殊经历带给我的那些巨大成长…</p>
+<p>转眼之间，在百度移动搜索事业部创新业务项目组已经实习七个多月了，终于到了要说再见的日子。心里五味杂陈，特此写下这篇Blog，纪念这段特殊经历带给我的那些巨大成长…</p>
 <a id="more"></a>
 <p>我也不知道从哪起头比较好，就按时间顺序来吧。</p>
 <h1 id="2014年10月">2014年10月</h1><p>记得去年10月刚开始找实习的时候，直接就果断投了BAT，腾讯阿里那边可能由于是淡季的原因(没有校园通道)，社招实习生的简历基本不怎么看。。。只等到了百度HR姐姐的电话，紧接着就是长达半个月的一面、二面、三面、以及offer发放。还比较顺利，总共投了两份百度岗位，就都拿到了offer（也证明了大一大二自己那么拼是有价值的），拒绝了百度MUX视觉设计的职位，毅然选择了移动应用研发。唯一比较郁闷的就是那边立刻要求入职。。。所以只好11.19号就得奔赴北京（当时还是大三上。。。12月和1月还得回来期末考）。。。</p>
-<h1 id="2014年11月">2014年11月</h1>]]></content>
+<h1 id="2014年11月">2014年11月</h1><ul>
+<li>11月中下旬，一个人乘着火车来到了帝都。。。</li>
+<li>紧接着：入职百度</li>
+<li>进入了彬大的团队，周围都是神一样的程序员…</li>
+<li>熟悉公司环境和业务流程</li>
+<li>掌握token使用和云开发机权限</li>
+<li>学习大型互联网公司的企业管理</li>
+<li>自己找房子，和胖哥、刘亚军一起合租，料理好生活琐事</li>
+</ul>
+<h1 id="2014年12月">2014年12月</h1><ul>
+<li>和第一位导师宏驰哥（T5）一起学习<code>AndroidCanvas</code>动效知识，熟悉<code>百度语音开发SDK</code>，协助语音SDK的Demo特效开发。</li>
+<li>去北邮见了老马和李彦轩等老同学。</li>
+<li>12月底花了1500多RMB买了两张机票，只为回学校考一门坑爹的考试（信号论）</li>
+</ul>
+<h1 id="2015年1月">2015年1月</h1><ul>
+<li>回Baidu继续上班，完成语音SDK的AndroidDemo后，又开始制作自定义View，从马总那得知年后会有一个百度智能手表的产品线要上，为此做技术预演。</li>
+<li>团队里新入职了很多NB的实习生，有北大、哈工大、中科大、南邮的研究生，还有来中山大学的大四生肖勇（后面成了好基友）。</li>
+<li>钻研AndroidWear开发。</li>
+<li>请了半个月的假回去参加陆续的期末考试（任性，但是没办法，钱倒霉吧）。。。</li>
+<li>回去考试中旅转机和胖哥去了趟天津，看了看天津之眼，很棒的城市。</li>
+</ul>
+<h1 id="2015年2月">2015年2月</h1><ul>
+<li>这个月的过得挺丰富的，挺多精彩的事情值得回忆一下。</li>
+<li>去北交见了下李路航。</li>
+<li>参加了今年的百度年会（高端大气上档次），见了Robin。</li>
+<li>参加了移动云的部门年会，见了明远太子。</li>
+<li>和团队一起去军都山滑雪，爱上这个运动了，很有操作感。</li>
+<li>考完试回来后真正融入团队的产品线了—DuWear智能手表操作系统。</li>
+<li>配合MUX的UE研发<code>Du系列</code>智能手表三套表盘。</li>
+<li>回家过大年，10天假，见见老同学和朋友。</li>
+<li>1个月的业余时间+过年期间，为自己学校俱乐部搭建了一个基于TP的<a href="www.developerclub.cn">UESTC开发者俱乐部</a>（校园开发者社区站点），感受了下全栈工程师的工作量（PS: 真不是人干的）。</li>
+</ul>
+<h1 id="2015年3月">2015年3月</h1><ul>
+<li>过完年回来开始接触产品线上更核心的业务了。</li>
+<li>在导师文杰（T6）和超神（T7）的指导下，协助完成所有工程的持续集成编译（学会了ant工具和Jenkin），DuWearROM的制作，系统构建的sh脚本维护，以及系统ROM的OTA升级。</li>
+<li>修复之前开发的表盘的Bugs。</li>
+<li>收到了来自Bomo，即  公司CEO少岳的邀约，很受鼓舞，付出都是值得的。</li>
+</ul>
+<h1 id="2015年4月">2015年4月</h1><ul>
+<li>DuWear产品4月内测和公测上线，所以这个月忙成Dog了，除了本身系统底层的持续集成，脚本维护，表盘优化修复Bug等工作，还客串了一回FE，协助产品官网研发工作 。</li>
+<li>跟着超神打打下手，维护超神写的GMS-&gt;BWS神器脚本，帮助运营同学和手表助手APP的DuWear手表应用市场贡献更多兼容GoogleAndroidWear和DuWear的物料APP。</li>
+<li>开源UESTC开发者俱乐部到Github上，建立了一个Organization，想把TA打造成一个快速搭建校园技术咨询站点的模板引擎（理想有点远大，但是可行性很高，而且做好之后，可以帮助更多的初级开发者很省事地搭建相关网站，很适合校园大多数初创工作室的需求），由于自己时间有限，托付给部分学弟一起，但是估计要等回学校才能慢慢实现了，这个工程太大。</li>
+<li>DuWear产品发布，见识了大百度的运营和推广是多恶心。。。太NB了。（PS：当然我们的产品也是很棒的，具体细节可以去<a href="http://www.duwear.baidu.com" target="_blank" rel="external">DuWear官网</a>。</li>
+</ul>
+<h1 id="2015年5月">2015年5月</h1>]]></content>
     <summary type="html">
     <![CDATA[<blockquote>
-<p>时间：2014.11.19-2015.6.22</p>
+<p>时间：2014.11.19-2015.6.24</p>
 <p>地点：北京海淀区上地东路鹏寰国际大厦</p>
 <p>部门: 移动搜索事业部</p>
 </blockquote>
-<p>转眼之间，在百度移动搜索事业部创新业务项目组已经实习六个多月了，终于到了要说再见的日子。心里五味杂陈，特此写下这篇Blog，纪念这段特殊经历带给我的那些巨大成长…</p>]]>
+<p>转眼之间，在百度移动搜索事业部创新业务项目组已经实习七个多月了，终于到了要说再见的日子。心里五味杂陈，特此写下这篇Blog，纪念这段特殊经历带给我的那些巨大成长…</p>]]>
     
     </summary>
     
@@ -51,7 +190,7 @@
     <link href="http://daijiale.github.io/2015/06/10/%E5%9F%BA%E4%BA%8E%E7%99%BE%E5%BA%A6ODP%E7%9A%84%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
     <id>http://daijiale.github.io/2015/06/10/基于百度ODP的前端开发/</id>
     <published>2015-06-10T03:03:09.000Z</published>
-    <updated>2015-06-18T07:30:57.000Z</updated>
+    <updated>2015-06-26T06:14:58.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>ODP，即Online Develop Platform，是为百度Web业务提供完善且高度集成的基础环境、框架、基础库和工具，统一规范模式。</p>
 <p>个人认为，这套PHP开发框架和TP类似，但是安全性和效率性方便远胜于TP</p>
@@ -202,7 +341,7 @@
     <link href="http://daijiale.github.io/2015/06/09/JavaScript%E7%BB%8F%E5%85%B8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93/"/>
     <id>http://daijiale.github.io/2015/06/09/JavaScript经典设计模式总结/</id>
     <published>2015-06-09T03:29:31.000Z</published>
-    <updated>2015-06-14T16:12:38.000Z</updated>
+    <updated>2015-06-26T06:14:58.000Z</updated>
     <content type="html"><![CDATA[<h1 id="前言">前言</h1><blockquote>
 <p>在百度即将离职的最后一个月里，我被派往新项目担任FE的角色，借此机会也重新review一下大一大二的老本行——Web前端开发。这篇Blog是对自己所学2年JS的一个设计模式总结，也是实际编码中经常用到的很多经典Case，希望能帮助到更多JS开发者，也给那些还活跃在 <code>JS API</code> 层的同学打开一个新的学习思路。<br>PS：本篇Blog侧重点在于JS的设计模式，如果只是期望了解JS语法，请直接戳<a href="http://www.w3school.com.cn/js/index.asp" target="_blank" rel="external">W3C传送门</a>！<br><a id="more"></a></p>
 </blockquote>
@@ -226,7 +365,7 @@
     <link href="http://daijiale.github.io/2015/05/28/%E9%98%BF%E9%87%8C%E7%99%BE%E5%B7%9DHackathon/"/>
     <id>http://daijiale.github.io/2015/05/28/阿里百川Hackathon/</id>
     <published>2015-05-28T12:23:09.000Z</published>
-    <updated>2015-06-14T16:12:38.000Z</updated>
+    <updated>2015-06-26T06:14:58.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>时间：2015.5.21-2015.5.24</p>
 <p>地点：杭州 阿里百川海创大厦</p>
@@ -301,7 +440,7 @@
     <link href="http://daijiale.github.io/2015/05/06/ADB%E5%B8%B8%E7%94%A8Shell%E5%91%BD%E4%BB%A4/"/>
     <id>http://daijiale.github.io/2015/05/06/ADB常用Shell命令/</id>
     <published>2015-05-06T08:23:09.000Z</published>
-    <updated>2015-06-14T16:12:38.000Z</updated>
+    <updated>2015-06-26T06:14:58.000Z</updated>
     <content type="html"><![CDATA[<h1 id="实用Adb_Shell命令演示">实用Adb Shell命令演示</h1><blockquote>
 <p>一些灵巧方便的Adb Shell命令笔记</p>
 </blockquote>
@@ -464,7 +603,7 @@
     <link href="http://daijiale.github.io/2015/05/04/%E6%9C%80%E5%85%A8%E7%9A%84AndroidWear%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
     <id>http://daijiale.github.io/2015/05/04/最全的AndroidWear开发笔记/</id>
     <published>2015-05-04T08:23:09.000Z</published>
-    <updated>2015-06-26T06:07:36.000Z</updated>
+    <updated>2015-06-26T06:14:59.000Z</updated>
     <content type="html"><![CDATA[<h1 id="本文作者">本文作者</h1><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicslrme.jpg" alt=""></p>
 <h2 id="Jiale_Dai"><a href="http://www.daijiale.cn" target="_blank" rel="external">Jiale Dai</a></h2><p>成都 电子科技大学 本科生( 其实还没毕业，目前大三 ）</p>
 <p>从14年开始一直专研于AndroidWear开发</p>
@@ -829,7 +968,7 @@
     <link href="http://daijiale.github.io/2015/04/27/%E6%88%91%E7%9A%84%E4%B8%80%E7%82%B9%E7%9C%8B%E6%B3%95%E5%85%B3%E4%BA%8E%E7%9B%AE%E5%89%8D%E5%B8%82%E9%9D%A2%E4%B8%8A%E6%B5%81%E8%A1%8C%E7%9A%84Git%E6%89%98%E7%AE%A1%E6%9C%8D%E5%8A%A1%E7%A4%BE%E5%8C%BA/"/>
     <id>http://daijiale.github.io/2015/04/27/我的一点看法关于目前市面上流行的Git托管服务社区/</id>
     <published>2015-04-27T03:39:09.000Z</published>
-    <updated>2015-06-14T16:12:38.000Z</updated>
+    <updated>2015-06-26T06:14:58.000Z</updated>
     <content type="html"><![CDATA[<p><code>git</code> 服务社区越来越多，无论是国外的还是国内的，免费公益的还是按需收费的，我们该如何选择呢？</p>
 <p>这里整理了一些我自己接触过的，给大家参考一下：</p>
 <a id="more"></a>
@@ -870,7 +1009,7 @@
     <link href="http://daijiale.github.io/2015/04/26/%E5%8D%95%E5%8F%8D%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/"/>
     <id>http://daijiale.github.io/2015/04/26/单反自学笔记/</id>
     <published>2015-04-26T13:26:09.000Z</published>
-    <updated>2015-06-14T16:12:38.000Z</updated>
+    <updated>2015-06-26T06:14:58.000Z</updated>
     <content type="html"><![CDATA[<p><strong>PS：</strong>2015年4月在<a href="http://mp.weixin.qq.com/s?__biz=MzAxMDM5MTIwMw==&amp;mid=204127766&amp;idx=1&amp;sn=7c6a4b87110f472a1ced270b6daafc10&amp;scene=5#rd" target="_blank" rel="external">胖哥（Axl、隔壁老王）</a>的唆使下，我入手了人身第一台<a href="http://baike.baidu.com/link?url=lUwpC5ksAq3Sh_zqGsNAZ4NmcxmiPul3P6SV-QXO5vdWItnvlm7GjvBreNyqoFYWoj-bbozDnDd0yU6lnqsKy7tsVn5qpNJ7BrEFqh_-k1Ml32XcaLvK0FlHUbbrL_eifzZoMYNglLhc-aX8K1XCd_" target="_blank" rel="external">单反</a>…（迈入继耳机之后的又一深坑）这篇Blog是最近学习新技能时做的笔记：</p>
 <h1 id="单反自学笔记_新人篇">单反自学笔记_新人篇</h1><ul>
 <li><a href="http://note.youdao.com/share/?id=48a8f388b8f5cb21ab3cd50d169a665f&amp;type=note" target="_blank" rel="external">新人第一课：井字构图法</a></li>
@@ -912,7 +1051,7 @@
     <link href="http://daijiale.github.io/2015/04/15/%E7%99%BE%E5%BA%A6%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8AHackathon%20Coding%20Party%E5%B0%8F%E8%AE%B0/"/>
     <id>http://daijiale.github.io/2015/04/15/百度第十二届Hackathon Coding Party小记/</id>
     <published>2015-04-15T12:23:09.000Z</published>
-    <updated>2015-06-14T16:12:38.000Z</updated>
+    <updated>2015-06-26T06:14:58.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>时间：2015.4.11-2015.4.14</p>
 <p>地点：北京 百度大厦</p>
@@ -983,7 +1122,7 @@
     <link href="http://daijiale.github.io/2015/04/09/AjaxReview/"/>
     <id>http://daijiale.github.io/2015/04/09/AjaxReview/</id>
     <published>2015-04-09T10:30:09.000Z</published>
-    <updated>2015-06-14T16:12:38.000Z</updated>
+    <updated>2015-07-06T12:37:42.000Z</updated>
     <content type="html"><![CDATA[<p><strong>PS：</strong>写这篇Blog主要有两个三个动机：</p>
 <ul>
 <li>对以前自己所学知识的一个系统化review</li>
@@ -1121,6 +1260,18 @@
 <li>json读写的速度更快</li>
 <li>json可以使用JavaScript内建的方法直接进行解析，转换成Javascript对象，非常方便。</li>
 </ul>
+<h2 id="JSON数据格式和Serialize数据格式的异同和使用">JSON数据格式和Serialize数据格式的异同和使用</h2><h3 id="相同点">相同点</h3><ul>
+<li>都是把其他数据类型转换成一个可以传输的字符串</li>
+<li>都是结构性数据</li>
+</ul>
+<h3 id="不同点">不同点</h3><ul>
+<li><code>Serialize</code>序列化后的数据格式保存数据原有类型</li>
+<li>JSON数据格式要简洁相比<code>Serialize</code>序列化之后的数据格式</li>
+</ul>
+<h3 id="使用场景">使用场景</h3><ul>
+<li>JSON适合数据量大，不要求保留原有数据类型的情况下使用</li>
+<li><code>Serialize</code>适合存储带有加密方式的数据串，防止数据被中途窃取反序列化破解</li>
+</ul>
 <h2 id="书写类型：">书写类型：</h2><p><strong>eg：</strong>“name”:”戴嘉乐”</p>
 <h2 id="JSON解析：">JSON解析：</h2><p>不要使用 <code>eval</code> 来解析，<code>eval</code>会解析内置函数，造成安全隐患.尽量用 <code>JSON.parse</code>.</p>
 <h2 id="JSON校验工具：">JSON校验工具：</h2><ul>
@@ -1221,7 +1372,7 @@
     <link href="http://daijiale.github.io/2015/04/03/%E8%AE%B0%E5%8D%97%E6%98%8C%E4%BA%8C%E4%B8%AD/"/>
     <id>http://daijiale.github.io/2015/04/03/记南昌二中/</id>
     <published>2015-04-03T05:20:09.000Z</published>
-    <updated>2015-06-14T16:12:38.000Z</updated>
+    <updated>2015-06-26T06:14:58.000Z</updated>
     <content type="html"><![CDATA[<h1 id="硬件">硬件</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中在硬件上最大的特点就是壕！第一次来二中参加考试时便被壕气外露的红砖绿叶迷住了。还有人造草皮的足球场，三年一遇的游泳馆（三年就上过一次课），堆满了电脑随便用的图书馆。学校里四处都是花花草草，校门的花坛一月一换，班上的一体机切水果什么的信手拈来。就是任性就是壕！<br><a id="more"></a></p>
 <h1 id="师资">师资</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中的老师阵容十分强大，但随着这几年扩招老师资源也变得有些吃紧了。重点班尚能保证豪华阵容，在江西可以说不会逊色于任何学校的重点班，但平行班就会有很多刚进校不久的年轻老师了。当然不是说年轻老师一定不好，但是在高中尤其是高三，老师的经验与鼓舞对班级的提高是很有用的。所以二中这几年也在拼命招揽人才，目前一大批年轻老师已经走上一线，师资整体实力依然很强大。<br>3.理念：二中多年来一直重视综合素质教育，社团和各种活动巨多！学校也给很大的支持，每一届都会产生许多交际花。不过由于近年高考成绩不理想，15届开始进行了一些改革，加大了学业方面的侧重。所以未来二中也许会少一些交际花多一批学霸。</p>
 <h1 id="总结">总结</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中是一个神奇的地方，不论是在晨会上考试中挥斥方遒碾压众人的大神，还是走廊上树林旁对老师阿鲁巴时杀伐果断的凌厉，或是操场边天台上情侣基友看西山日落时的静谧，又抑或是顶楼学霸们在下课铃响时冲下楼梯直奔食堂的气势，它们一起组成了二中独一无二的体验。</p>
@@ -1247,7 +1398,7 @@
     <link href="http://daijiale.github.io/2015/04/02/Blog%E8%BF%81%E7%A7%BB%E6%97%A5%E8%AE%B0/"/>
     <id>http://daijiale.github.io/2015/04/02/Blog迁移日记/</id>
     <published>2015-04-02T15:30:09.000Z</published>
-    <updated>2015-06-14T16:12:38.000Z</updated>
+    <updated>2015-06-26T06:14:58.000Z</updated>
     <content type="html"><![CDATA[<p><strong>以下所指“更新”：均为Blog技术更新，非文章更新</strong></p>
 <h1 id="第一次更新_个人Blog">第一次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;说起自己的第一个Blog，要从小学刚开通QQ空间开始，具体几年级已经记不清了，那个时候刚甩掉纸质日记本，然后就迈入网络日志的深坑。以前倒是产出了不少优质日志，不过都是些多愁善感的随便，至今都已经封存进<em>私密日日记</em>中(如下图)：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpic_qqzonesec.PNG" alt=""><br><a id="more"></a></p>
 <h1 id="第二次更新_个人Blog">第二次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后面高中开始玩人人，Blog也顺势搬到人人。。。现在想来这搬迁史也很简单——围绕社交圈，毕竟Blog写出来是给人看的，而QQzone和人人都是一个很好的社交载体。当然，如今的人人，我早已放弃，一个月都不登一次的这种，blog数据也全部清除了，高中写的都是些没营养的东西，个人认为没有存在的价值。<br>最后留张图纪念一下曾经的人人帐号：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicrenren.PNG" alt=""></p>
