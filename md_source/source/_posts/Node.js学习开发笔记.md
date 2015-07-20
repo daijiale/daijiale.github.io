@@ -26,6 +26,8 @@ categories:
  - [Node.js和Python优势对比](http://www.zhihu.com/question/20961574)
 
  - [Node.js和PHP的优势对比](http://note.youdao.com/share/?id=a83b62577821d670122f8d08a67d8fd4&type=note)
+  - [Node.js和PHP的优势对比2](http://www.admin10000.com/document/6536.html)
+ 
 
 ## Node.js的版本 
 
