@@ -1,5 +1,5 @@
 title: Android求职知识点Review
-date: 2015-7-20 15:13:09
+date: 2015-7-21 15:13:09
 tags:
 
  - Android
@@ -100,10 +100,13 @@ wait（100L）意思为：不占用CPU，线程等待100毫秒
 ## 16. [Io和nio](http://www.jb51.net/article/50621.htm)
 ## 17. [写一个单例模式的例子](http://blog.csdn.net/jason0539/article/details/23297037)
 
-18. Socket
-19. Exception
-20. 有向图和无向图什么区别
-21. Linux基本命令
+## 18. Socket
+[socket原理](http://www.cnblogs.com/linzheng/archive/2011/01/23/1942328.html)
+
+[Java实现socket连接](http://blog.csdn.net/benweizhu/article/details/6615542)
+## [19. Exception](http://baike.baidu.com/link?url=mDZRsd9wu9hvuNCzQ-ElxThAAb87sMLa-JN1FMuY_SzZZ0DtTJcQ3nWJXZMpy2ub4aTx0s7dGfLVmh-Zn_Z2Mq)
+## [20. 有向图和无向图什么区别](http://zhidao.baidu.com/link?url=9LsXkHigig70jc8lVZc0qY7_Q_vg3wPkZ0d41HCyUgxLO6Prt5nE_HhKjL0X97K8JKsTFAZfMzDlXSSS2WDuaa)
+## [21. Linux基本命令](http://www.cnblogs.com/laov/p/3541414.html)
 22. 数组和链表
 23. 深克隆，浅克隆
 24. Java的引用类型有哪些，在垃圾回收的时候有什么表现
