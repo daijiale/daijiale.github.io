@@ -80,10 +80,10 @@ void Aa(){ System.out.println("abcabc"); }
 ## [9. 无序数组ab，每个数组有一次循环遍历的机会，找出a有b没有的数字(不能使用外部东西)](http://zhidao.baidu.com/link?url=xNrK6lpmardilOvaN07ekFO1f6GxckKRSbBGA8BpUEGLU_e1zE7lw4aDoFFDvZecbZ-pZvPViB_7HgkO09TsN5KLOhfkOgUZvJXLhxaC8Ua)
 
 ## 10. Hashtable和hashmap
-[两者区别](http://blog.csdn.net/tianfeng701/article/details/7588091)
-[HashMap源码分析](http://www.jb51.net/article/42769.htm)
-[HashTable源码分析](http://www.cnblogs.com/caca/p/java_Hashtable.html)
-[HashMap和TreeMap区别](http://www.jb51.net/article/32652.htm)
+ - [两者区别](http://blog.csdn.net/tianfeng701/article/details/7588091)
+ - [HashMap源码分析](http://www.jb51.net/article/42769.htm)
+ - [HashTable源码分析](http://www.cnblogs.com/caca/p/java_Hashtable.html)
+ - [HashMap和TreeMap区别](http://www.jb51.net/article/32652.htm)
 
 ## [11. Hashcode是怎么得到的](http://www.importnew.com/8189.html)
 ## [12. 线程和进程](http://blog.csdn.net/yaosiming2011/article/details/44280797)
@@ -107,9 +107,11 @@ wait（100L）意思为：不占用CPU，线程等待100毫秒
 ## [19. Exception](http://baike.baidu.com/link?url=mDZRsd9wu9hvuNCzQ-ElxThAAb87sMLa-JN1FMuY_SzZZ0DtTJcQ3nWJXZMpy2ub4aTx0s7dGfLVmh-Zn_Z2Mq)
 ## [20. 有向图和无向图什么区别](http://zhidao.baidu.com/link?url=9LsXkHigig70jc8lVZc0qY7_Q_vg3wPkZ0d41HCyUgxLO6Prt5nE_HhKjL0X97K8JKsTFAZfMzDlXSSS2WDuaa)
 ## [21. Linux基本命令](http://www.cnblogs.com/laov/p/3541414.html)
-22. 数组和链表
-23. 深克隆，浅克隆
-24. Java的引用类型有哪些，在垃圾回收的时候有什么表现
+##  [22. KMP算法](http://wenku.baidu.com/link?url=ABxFIVEN_q3u3v-bySigVT0U8AZ0BKdTT1sFSCv-RqCb5AA_6FVEV0OraK66cT2TkDevzrarKujN2tcDOBbD5GgJVXjHymFZl7Cfoc6RJbC)
+## [23. 深克隆，浅克隆](http://www.cnblogs.com/xing901022/p/4051097.html#_label3)
+## 24. Java的引用类型有哪些，在垃圾回收的时候有什么表现
+
+
 
 
 # 数据库
