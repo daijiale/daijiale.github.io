@@ -11,7 +11,7 @@ categories:
 
 ---
 
-<!--more-->
+
 
 # JAVA
 
@@ -55,6 +55,7 @@ void Aa(){ System.out.println("abcabc"); }
 
 [Java中的堆栈](http://blog.csdn.net/chengyingzhilian/article/details/7781858)
 
+<!--more-->
 
 ## 3. 垃圾回收
 
