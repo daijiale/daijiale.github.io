@@ -4,28 +4,26 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>我的一点看法关于市面上流行的Git托管服务社区 | DaiJiale&#39;s Blog</title>
+    <title>cURL使用之PHP | DaiJiale&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Jiale Dai">
     
 
     
-    <meta name="description" content="git 服务社区越来越多，无论是国外的还是国内的，免费公益的还是按需收费的，我们该如何选择呢？
-这里整理了一些我自己接触过的，给大家参考一下：">
+    <meta name="description" content="前言
+cURL(Client URL Library Functions): curl is a command line tool for transferring data with URL syntax,即使用URL语法传输数据的命令行工具。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我的一点看法关于市面上流行的Git托管服务社区">
-<meta property="og:url" content="http://daijiale.github.io/2015/04/27/我的一点看法关于目前市面上流行的Git托管服务社区/index.html">
+<meta property="og:title" content="cURL使用之PHP">
+<meta property="og:url" content="http://daijiale.github.io/2015/09/21/PHP_cURL/index.html">
 <meta property="og:site_name" content="DaiJiale's Blog">
-<meta property="og:description" content="git 服务社区越来越多，无论是国外的还是国内的，免费公益的还是按需收费的，我们该如何选择呢？
-这里整理了一些我自己接触过的，给大家参考一下：">
-<meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicgitosc.PNG">
-<meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicgogs.PNG">
-<meta property="og:updated_time" content="2015-09-06T13:55:01.000Z">
+<meta property="og:description" content="前言
+cURL(Client URL Library Functions): curl is a command line tool for transferring data with URL syntax,即使用URL语法传输数据的命令行工具。">
+<meta property="og:updated_time" content="2015-09-20T13:55:57.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我的一点看法关于市面上流行的Git托管服务社区">
-<meta name="twitter:description" content="git 服务社区越来越多，无论是国外的还是国内的，免费公益的还是按需收费的，我们该如何选择呢？
-这里整理了一些我自己接触过的，给大家参考一下：">
+<meta name="twitter:title" content="cURL使用之PHP">
+<meta name="twitter:description" content="前言
+cURL(Client URL Library Functions): curl is a command line tool for transferring data with URL syntax,即使用URL语法传输数据的命令行工具。">
 
     
     <link rel="alternative" href="/atom.xml" title="DaiJiale&#39;s Blog" type="application/atom+xml">
@@ -85,14 +83,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/04/27/我的一点看法关于目前市面上流行的Git托管服务社区/" title="我的一点看法关于市面上流行的Git托管服务社区" itemprop="url">我的一点看法关于市面上流行的Git托管服务社区</a>
+      <a href="/2015/09/21/PHP_cURL/" title="cURL使用之PHP" itemprop="url">cURL使用之PHP</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Jiale Dai" target="_blank" itemprop="author">Jiale Dai</a>
 		
   <p class="article-time">
-    <time datetime="2015-04-27T03:39:09.000Z" itemprop="datePublished"> 发表于 2015-04-27</time>
+    <time datetime="2015-09-21T13:21:11.000Z" itemprop="datePublished"> 发表于 2015-09-21</time>
     
   </p>
 </header>
@@ -101,27 +99,51 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#市面上流行的Git服务社区："><span class="toc-number">1.</span> <span class="toc-text">市面上流行的Git服务社区：</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#学习篇"><span class="toc-number">2.</span> <span class="toc-text">学习篇</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#开发篇"><span class="toc-number">3.</span> <span class="toc-text">开发篇</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#更多参考"><span class="toc-number">4.</span> <span class="toc-text">更多参考</span></a></li></ol>
 		
 		</div>
 		
-		<p><code>git</code> 服务社区越来越多，无论是国外的还是国内的，免费公益的还是按需收费的，我们该如何选择呢？</p>
-<p>这里整理了一些我自己接触过的，给大家参考一下：</p>
-<a id="more"></a>
-<h1 id="市面上流行的Git服务社区：">市面上流行的Git服务社区：</h1><ul>
-<li>1、<code>Github</code>：不解释。</li>
-<li><p>2、<code>GitLab</code>：在github上全开源，CE私有库免费，现在很多新生git社区的内核，后面提到的Git@OSC就是基于它做的。<br>两个版本 ：GitLab 社区版（CE）是可用而不下MIT许可证的任何费用。<br>GitLab企业版（EE） ，包括额外的功能，这对于拥有超过100个用户的组织最有用的。要访问的EE和支持，请成为用户。</p>
-</li>
-<li><p>3、<code>GitCafe</code>：私有库收费，企业版还TM未开放。。。唯一的优点可能就是国内优秀的合作伙伴（等等）比较多！</p>
-</li>
-<li><p>4、<code>Git@OSC</code>：每人可以1000个库，无论是私有还是公有，和Team@OSC，Sonar@OSC，PaaS@OSC可以配套使用，形成闭环，整个生态基本全部免费，专业化集成度最高！<br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicgitosc.PNG" alt=""></p>
-</li>
-<li><p>5、<code>Gogs</code>：新生力量，前段时间在好友<a href="http://blog.paincompiler.us/" target="_blank" rel="external">NastyLeoc</a>的SinaWeiBlog上看到的，基于go语言的超轻量级平台，在github上全开源，支持fork pull协作，私有库免费，听说性能也很不错，前景比较大，膜拜一下四位缔造者：<br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicgogs.PNG" alt=""></p>
-</li>
+		<h1 id="前言">前言</h1><blockquote>
+<p>cURL(Client URL Library Functions): curl is a command line tool for transferring data with URL syntax,即使用URL语法传输数据的命令行工具。<br><a id="more"></a></p>
+</blockquote>
+<h1 id="学习篇">学习篇</h1><ul>
+<li>1、初始化cURL：curl_init()</li>
+<li>2、发送请求到server：curl_exec()</li>
+<li>3、接收server数据：curl_exec()</li>
+<li>4、关闭cURL：curl_close()</li>
 </ul>
+<h1 id="开发篇">开发篇</h1><p>php -f xxx.php &gt; xxx.html</p>
 <ul>
-<li>6、<code>Bitbucket</code>：性质和github差不多，元老级社区，但是。。。被github完虐！</li>
-<li>7、<code>coding</code>：我个人最喜欢的一个协作环境，支持复用开发环境是其最大的亮点，同时也可以体验云端编程的快感，移动端的支持也很给力，目前Android和IOS的两个客户端都很稳定，码农社交圈也在慢慢扩大。自己目前正有把私有项目全都搬过去的打算(私有仓库还TM是免费的）。<a href="http://blog.coding.net/blog/why-coding-does-not-equals-github" target="_blank" rel="external">但coding绝对不是“中国的github”</a></li>
+<li>1、利用cURL直接抓取“百度”首页</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;$curl=curl_init(&#39;http://www.baidu.com&#39;);&#10;curl_exec($curl);&#10;curl_close($curl);&#10;?&#62;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>2、网络上下载一个网页并把内容中的“百度”替换为“屌丝”之后输出</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;$curlobj = curl_init();&#9;&#9;&#9;// &#21021;&#22987;&#21270;&#10;curl_setopt($curlobj, CURLOPT_URL, &#34;http://www.baidu.com&#34;);&#9;&#9;// &#35774;&#32622;&#35775;&#38382;&#32593;&#39029;&#30340;URL&#10;curl_setopt($curlobj, CURLOPT_RETURNTRANSFER, true);&#9;&#9;&#9;// &#25191;&#34892;&#20043;&#21518;&#19981;&#30452;&#25509;&#25171;&#21360;&#20986;&#26469;&#10;$output=curl_exec($curlobj);&#9;// &#25191;&#34892;&#10;curl_close($curlobj);&#9;&#9;&#9;// &#20851;&#38381;cURL&#10;echo str_replace(&#34;&#30334;&#24230;&#34;,&#34;&#23628;&#19997;&#34;,$output);&#10;?&#62;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>3、登录慕课网并下载个人空间页面</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;/**&#10; * &#33258;&#23450;&#20041;&#23454;&#29616;&#39029;&#38754;&#38142;&#25509;&#36339;&#36716;&#25235;&#21462;&#10; * &#10; */&#10;$data=&#39;username=demo_peter@126.com&#38;password=123qwe&#38;remember=1&#39;;&#10;$curlobj = curl_init();&#9;&#9;&#9;// &#21021;&#22987;&#21270;&#10;curl_setopt($curlobj, CURLOPT_URL, &#34;http://www.imooc.com/user/login&#34;);&#9;&#9;// &#35774;&#32622;&#35775;&#38382;&#32593;&#39029;&#30340;URL&#10;curl_setopt($curlobj, CURLOPT_RETURNTRANSFER, true);&#9;&#9;&#9;// &#25191;&#34892;&#20043;&#21518;&#19981;&#30452;&#25509;&#25171;&#21360;&#20986;&#26469;&#10;&#10;// Cookie&#30456;&#20851;&#35774;&#32622;&#65292;&#36825;&#37096;&#20998;&#35774;&#32622;&#38656;&#35201;&#22312;&#25152;&#26377;&#20250;&#35805;&#24320;&#22987;&#20043;&#21069;&#35774;&#32622;&#10;date_default_timezone_set(&#39;PRC&#39;); // &#20351;&#29992;Cookie&#26102;&#65292;&#24517;&#39035;&#20808;&#35774;&#32622;&#26102;&#21306;&#10;curl_setopt($curlobj, CURLOPT_COOKIESESSION, TRUE); &#10;curl_setopt($curlobj, CURLOPT_HEADER, 0); &#10;// &#27880;&#37322;&#25481;&#36825;&#34892;&#65292;&#22240;&#20026;&#36825;&#20010;&#35774;&#32622;&#24517;&#39035;&#20851;&#38381;&#23433;&#20840;&#27169;&#24335; &#20197;&#21450;&#20851;&#38381;open_basedir&#65292;&#23545;&#26381;&#21153;&#22120;&#23433;&#20840;&#19981;&#21033;&#10;//curl_setopt($curlobj, CURLOPT_FOLLOWLOCATION, 1);  &#10;&#10;curl_setopt($curlobj, CURLOPT_POST, 1);  &#10;curl_setopt($curlobj, CURLOPT_POSTFIELDS, $data);  &#10;curl_setopt($curlobj, CURLOPT_HTTPHEADER, array(&#34;application/x-www-form-urlencoded; charset=utf-8&#34;, &#10;&#9;&#34;Content-length: &#34;.strlen($data)&#10;&#9;)); &#10;curl_exec($curlobj);&#9;// &#25191;&#34892;&#10;curl_setopt($curlobj, CURLOPT_URL, &#34;http://www.imooc.com/space/index&#34;);&#10;curl_setopt($curlobj, CURLOPT_POST, 0);  &#10;curl_setopt($curlobj, CURLOPT_HTTPHEADER, array(&#34;Content-type: text/xml&#34;&#10;&#9;)); &#10;$output=curl_redir_exec($curlobj);&#9;// &#25191;&#34892;&#10;curl_close($curlobj);&#9;&#9;&#9;// &#20851;&#38381;cURL&#10;echo $output;&#10;&#10;/**&#10; * &#33258;&#23450;&#20041;&#23454;&#29616;&#39029;&#38754;&#38142;&#25509;&#36339;&#36716;&#25235;&#21462;&#10; */&#10;function curl_redir_exec($ch,$debug=&#34;&#34;) &#10;&#123; &#10;    static $curl_loops = 0; &#10;    static $curl_max_loops = 20; &#10;&#10;    if ($curl_loops++ &#62;= $curl_max_loops) &#10;    &#123; &#10;        $curl_loops = 0; &#10;        return FALSE; &#10;    &#125; &#10;    curl_setopt($ch, CURLOPT_HEADER, true); // &#24320;&#21551;header&#25165;&#33021;&#22815;&#25235;&#21462;&#21040;&#37325;&#23450;&#21521;&#21040;&#30340;&#26032;URL&#10;    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); &#10;    $data = curl_exec($ch); &#10;    // &#20998;&#21106;&#36820;&#22238;&#30340;&#20869;&#23481;&#10;    $h_len = curl_getinfo($ch, CURLINFO_HEADER_SIZE); &#10;    $header = substr($data,0,$h_len);&#10;    $data = substr($data,$h_len - 1);&#10;&#10;    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE); &#10;    if ($http_code == 301 || $http_code == 302) &#123; &#10;        $matches = array(); &#10;        preg_match(&#39;/Location:(.*?)\n/&#39;, $header, $matches); &#10;        $url = @parse_url(trim(array_pop($matches))); &#10;        // print_r($url); &#10;        if (!$url) &#10;        &#123; &#10;            //couldn&#39;t process the url to redirect to &#10;            $curl_loops = 0; &#10;            return $data; &#10;        &#125; &#10;        $last_url = parse_url(curl_getinfo($ch, CURLINFO_EFFECTIVE_URL)); &#10;        if (!isset($url[&#39;scheme&#39;])) &#10;            $url[&#39;scheme&#39;] = $last_url[&#39;scheme&#39;]; &#10;        if (!isset($url[&#39;host&#39;])) &#10;            $url[&#39;host&#39;] = $last_url[&#39;host&#39;]; &#10;        if (!isset($url[&#39;path&#39;])) &#10;            $url[&#39;path&#39;] = $last_url[&#39;path&#39;];&#10;&#10;        $new_url = $url[&#39;scheme&#39;] . &#39;://&#39; . $url[&#39;host&#39;] . $url[&#39;path&#39;] . (isset($url[&#39;query&#39;])?&#39;?&#39;.$url[&#39;query&#39;]:&#39;&#39;); &#10;        curl_setopt($ch, CURLOPT_URL, $new_url); &#10;&#10;        return curl_redir_exec($ch); &#10;    &#125; else &#123; &#10;        $curl_loops=0; &#10;        return $data; &#10;    &#125; &#10;&#125; &#10;?&#62;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>4、获取webservice天气数据</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;$data = &#39;theCityName=&#21271;&#20140;&#39;;&#10;$curlobj = curl_init();&#9;&#10;curl_setopt($curlobj, CURLOPT_URL, &#34;http://www.webxml.com.cn/WebServices/WeatherWebService.asmx/getWeatherbyCityName&#34;);  &#10;curl_setopt($curlobj, CURLOPT_HEADER, 0); &#10;curl_setopt($curlobj, CURLOPT_RETURNTRANSFER, 1);  &#10;curl_setopt($curlobj, CURLOPT_POST, 1);  &#10;curl_setopt($curlobj, CURLOPT_POSTFIELDS, $data);  &#10;curl_setopt($curlobj, CURLOPT_HTTPHEADER, array(&#34;application/x-www-form-urlencoded; charset=utf-8&#34;, &#10;&#9;&#34;Content-length: &#34;.strlen($data)&#10;&#9;)); &#10;$rtn = curl_exec($curlobj);   &#10;if(!curl_errno($curlobj))&#123;&#10;&#9;// $info = curl_getinfo($curlobj); &#10;&#9;// print_r($info);&#10;&#9;echo $rtn;  &#10;&#125; else &#123;&#10;  echo &#39;Curl error: &#39; . curl_error($curlobj);&#10;&#125;&#10;curl_close($curlobj);&#10;?&#62;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>5、从FTP上下载数据</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;$curlobj = curl_init();&#9;&#10;curl_setopt($curlobj, CURLOPT_URL, &#34;ftp://192.168.1.100/downloaddemo.txt&#34;);  &#10;curl_setopt($curlobj, CURLOPT_HEADER, 0); &#10;curl_setopt($curlobj, CURLOPT_RETURNTRANSFER, 1);  &#10;curl_setopt($curlobj, CURLOPT_TIMEOUT, 300); // times out after 300s&#10;curl_setopt($curlobj, CURLOPT_USERPWD, &#34;peter.zhou:123456&#34;);//FTP&#29992;&#25143;&#21517;&#65306;&#23494;&#30721;&#10;// Sets up the output file&#10;$outfile = fopen(&#39;dest.txt&#39;, &#39;wb&#39;);//&#20445;&#23384;&#21040;&#26412;&#22320;&#30340;&#25991;&#20214;&#21517;&#10;curl_setopt($curlobj, CURLOPT_FILE, $outfile);&#10;&#10;$rtn = curl_exec($curlobj);  &#10;fclose($outfile); &#10;if(!curl_errno($curlobj))&#123;&#10;&#9;// $info = curl_getinfo($curlobj); &#10;&#9;// print_r($info);&#10;&#9;echo &#34;RETURN: &#34; . $rtn;  &#10;&#125; else &#123;&#10;  echo &#39;Curl error: &#39; . curl_error($curlobj);&#10;&#125;&#10;curl_close($curlobj);&#10;?&#62;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>6、上传数据到FTP </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;&#10;$curlobj = curl_init();&#9;&#10;$localfile = &#39;ftp01.php&#39;;&#10;$fp = fopen($localfile, &#39;r&#39;);&#10;&#10;curl_setopt($curlobj, CURLOPT_URL, &#34;ftp://192.168.1.100/ftp01_uploaded.php&#34;);  &#10;curl_setopt($curlobj, CURLOPT_HEADER, 0); &#10;curl_setopt($curlobj, CURLOPT_RETURNTRANSFER, 1);  &#10;curl_setopt($curlobj, CURLOPT_TIMEOUT, 300); // times out after 300s&#10;curl_setopt($curlobj, CURLOPT_USERPWD, &#34;peter.zhou:123456&#34;);//FTP&#29992;&#25143;&#21517;&#65306;&#23494;&#30721;&#10;&#10;curl_setopt($curlobj, CURLOPT_UPLOAD, 1);&#10;curl_setopt($curlobj, CURLOPT_INFILE, $fp);&#10;curl_setopt($curlobj, CURLOPT_INFILESIZE, filesize($localfile));&#10;$rtn = curl_exec($curlobj);  &#10;fclose($fp); &#10;if(!curl_errno($curlobj))&#123;&#10;&#9;echo &#34;Uploaded successfully.&#34;;  &#10;&#125; else &#123;&#10;  echo &#39;Curl error: &#39; . curl_error($curlobj);&#10;&#125;&#10;curl_close($curlobj);&#10;?&#62;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>7、下载网络上面的一个HTTPS的资源</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;$curlobj = curl_init();&#9;&#9;&#9;// &#21021;&#22987;&#21270;&#10;curl_setopt($curlobj, CURLOPT_URL, &#34;https://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.js&#34;);&#9;&#9;// &#35774;&#32622;&#35775;&#38382;&#32593;&#39029;&#30340;URL&#10;curl_setopt($curlobj, CURLOPT_RETURNTRANSFER, true);&#9;&#9;&#9;// &#25191;&#34892;&#20043;&#21518;&#19981;&#30452;&#25509;&#25171;&#21360;&#20986;&#26469;&#10;&#10;// &#35774;&#32622;HTTPS&#25903;&#25345;&#10;date_default_timezone_set(&#39;PRC&#39;); // &#20351;&#29992;Cookie&#26102;&#65292;&#24517;&#39035;&#20808;&#35774;&#32622;&#26102;&#21306;&#10;curl_setopt($curlobj, CURLOPT_SSL_VERIFYPEER, 0); // &#23545;&#35748;&#35777;&#35777;&#20070;&#26469;&#28304;&#30340;&#26816;&#26597;&#20174;&#35777;&#20070;&#20013;&#26816;&#26597;SSL&#21152;&#23494;&#31639;&#27861;&#26159;&#21542;&#23384;&#22312;&#10;curl_setopt($curlobj, CURLOPT_SSL_VERIFYHOST, 2); // &#10;&#10;$output=curl_exec($curlobj);&#9;// &#25191;&#34892;&#10;curl_close($curlobj);&#9;&#9;&#9;// &#20851;&#38381;cURL&#10;echo $output;&#10;?&#62;</span><br></pre></td></tr></table></figure>
+<h1 id="更多参考">更多参考</h1><ul>
+<li><a href="http://www.php.net/manual/zh/book.curl.php" target="_blank" rel="external">官方手册</a></li>
+<li><a href="http://php.net/manual/zh/" target="_blank" rel="external">PHP中文手册</a></li>
 </ul>
   
 	</div>
@@ -130,13 +152,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/原创博文/">原创博文</a>
+  <a class="article-category-link" href="/categories/原创博文/">原创博文</a>►<a class="article-category-link" href="/categories/原创博文/Web开发日记/">Web开发日记</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/git/">git</a><a href="/tags/代码托管/">代码托管</a><a href="/tags/工具神器/">工具神器</a>
+  <span></span> <a href="/tags/PHP/">PHP</a>
   </div>
 
 </div>
@@ -145,7 +167,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://daijiale.github.io/2015/04/27/我的一点看法关于目前市面上流行的Git托管服务社区/" data-title="我的一点看法关于市面上流行的Git托管服务社区 | DaiJiale&#39;s Blog" data-tsina="3173290371" class="share clearfix">
+	  <div data-url="http://daijiale.github.io/2015/09/21/PHP_cURL/" data-title="cURL使用之PHP | DaiJiale&#39;s Blog" data-tsina="3173290371" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -158,19 +180,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/05/04/最全的AndroidWear开发笔记/" title="下次人家问再你怎么入门AndroidWear，你就甩这篇文章给TA">
-  <strong>上一篇：</strong><br/>
-  <span>
-  下次人家问再你怎么入门AndroidWear，你就甩这篇文章给TA</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/04/26/单反自学笔记/"  title="单反自学笔记">
+<a href="/2015/07/21/Android求职知识点Review/"  title="Android求职知识点Review">
  <strong>下一篇：</strong><br/> 
- <span>单反自学笔记
+ <span>Android求职知识点Review
 </span>
 </a>
 </div>
@@ -179,7 +193,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/04/27/我的一点看法关于目前市面上流行的Git托管服务社区/" data-title="我的一点看法关于市面上流行的Git托管服务社区" data-url="http://daijiale.github.io/2015/04/27/我的一点看法关于目前市面上流行的Git托管服务社区/"></div>
+	<div class="ds-thread" data-thread-key="2015/09/21/PHP_cURL/" data-title="cURL使用之PHP" data-url="http://daijiale.github.io/2015/09/21/PHP_cURL/"></div>
 </section>
 
 
@@ -189,7 +203,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#市面上流行的Git服务社区："><span class="toc-number">1.</span> <span class="toc-text">市面上流行的Git服务社区：</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#学习篇"><span class="toc-number">2.</span> <span class="toc-text">学习篇</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#开发篇"><span class="toc-number">3.</span> <span class="toc-text">开发篇</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#更多参考"><span class="toc-number">4.</span> <span class="toc-text">更多参考</span></a></li></ol>
  
   </div>
 
