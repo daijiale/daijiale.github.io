@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>cURL使用之PHP | DaiJiale&#39;s Blog</title>
+    <title>PHP安全性开发 | DaiJiale&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Jiale Dai">
@@ -12,24 +12,18 @@
 
     
     <meta name="description" content="前言
-php给了开发者极大的灵活性，但是这也为安全问题带来了潜在的隐患，近期需要总结一下以往的问题，在这里借翻译一篇文章同时加上自己开发的一些感触总结一下。
-
-简介当开发一个互联网服务的时候，必须时刻牢记安全观念，并在开发的代码中体现。PHP脚本语言对安全问题并不关心，特别是对大多数没有经验的开发者来说。每当你讲任何涉及到钱财事务等交易问题时，需要特别注意安全问题的考虑，例如开发一个论坛或者是一个">
+php给了开发者极大的灵活性，但是这也为安全问题带来了潜在的隐患，近期需要总结一下以往的问题，在这里借翻译一篇文章同时加上自己开发的一些感触总结一下。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="cURL使用之PHP">
+<meta property="og:title" content="PHP安全性开发">
 <meta property="og:url" content="http://daijiale.github.io/2015/09/21/PHP安全性开发/index.html">
 <meta property="og:site_name" content="DaiJiale's Blog">
 <meta property="og:description" content="前言
-php给了开发者极大的灵活性，但是这也为安全问题带来了潜在的隐患，近期需要总结一下以往的问题，在这里借翻译一篇文章同时加上自己开发的一些感触总结一下。
-
-简介当开发一个互联网服务的时候，必须时刻牢记安全观念，并在开发的代码中体现。PHP脚本语言对安全问题并不关心，特别是对大多数没有经验的开发者来说。每当你讲任何涉及到钱财事务等交易问题时，需要特别注意安全问题的考虑，例如开发一个论坛或者是一个">
-<meta property="og:updated_time" content="2015-10-01T04:46:00.000Z">
+php给了开发者极大的灵活性，但是这也为安全问题带来了潜在的隐患，近期需要总结一下以往的问题，在这里借翻译一篇文章同时加上自己开发的一些感触总结一下。">
+<meta property="og:updated_time" content="2015-10-07T09:09:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="cURL使用之PHP">
+<meta name="twitter:title" content="PHP安全性开发">
 <meta name="twitter:description" content="前言
-php给了开发者极大的灵活性，但是这也为安全问题带来了潜在的隐患，近期需要总结一下以往的问题，在这里借翻译一篇文章同时加上自己开发的一些感触总结一下。
-
-简介当开发一个互联网服务的时候，必须时刻牢记安全观念，并在开发的代码中体现。PHP脚本语言对安全问题并不关心，特别是对大多数没有经验的开发者来说。每当你讲任何涉及到钱财事务等交易问题时，需要特别注意安全问题的考虑，例如开发一个论坛或者是一个">
+php给了开发者极大的灵活性，但是这也为安全问题带来了潜在的隐患，近期需要总结一下以往的问题，在这里借翻译一篇文章同时加上自己开发的一些感触总结一下。">
 
     
     <link rel="alternative" href="/atom.xml" title="DaiJiale&#39;s Blog" type="application/atom+xml">
@@ -89,7 +83,7 @@ php给了开发者极大的灵活性，但是这也为安全问题带来了潜�
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/09/21/PHP安全性开发/" title="cURL使用之PHP" itemprop="url">cURL使用之PHP</a>
+      <a href="/2015/09/21/PHP安全性开发/" title="PHP安全性开发" itemprop="url">PHP安全性开发</a>
   </h1>
   <p class="article-author">By
        
@@ -110,7 +104,7 @@ php给了开发者极大的灵活性，但是这也为安全问题带来了潜�
 		</div>
 		
 		<h1 id="前言">前言</h1><blockquote>
-<p>php给了开发者极大的灵活性，但是这也为安全问题带来了潜在的隐患，近期需要总结一下以往的问题，在这里借翻译一篇文章同时加上自己开发的一些感触总结一下。</p>
+<p>php给了开发者极大的灵活性，但是这也为安全问题带来了潜在的隐患，近期需要总结一下以往的问题，在这里借翻译一篇文章同时加上自己开发的一些感触总结一下。<br><a id="more"></a></p>
 </blockquote>
 <h1 id="简介">简介</h1><p>当开发一个互联网服务的时候，必须时刻牢记安全观念，并在开发的代码中体现。PHP脚本语言对安全问题并不关心，特别是对大多数没有经验的开发者来说。每当你讲任何涉及到钱财事务等交易问题时，需要特别注意安全问题的考虑，例如开发一个论坛或者是一个购物车等。</p>
 <h2 id="安全保护一般性要点">安全保护一般性要点</h2><h3 id="不相信表单">不相信表单</h3><p>对于一般的Javascript前台验证，由于无法得知用户的行为，例如关闭了浏览器的javascript引擎，这样通过POST恶意数据到服务器。需要在服务器端进行验证，对每个php脚本验证传递到的数据，防止XSS攻击和SQL注入</p>
@@ -202,7 +196,7 @@ php给了开发者极大的灵活性，但是这也为安全问题带来了潜�
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://daijiale.github.io/2015/09/21/PHP安全性开发/" data-title="cURL使用之PHP | DaiJiale&#39;s Blog" data-tsina="3173290371" class="share clearfix">
+	  <div data-url="http://daijiale.github.io/2015/09/21/PHP安全性开发/" data-title="PHP安全性开发 | DaiJiale&#39;s Blog" data-tsina="3173290371" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -236,7 +230,7 @@ php给了开发者极大的灵活性，但是这也为安全问题带来了潜�
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/09/21/PHP安全性开发/" data-title="cURL使用之PHP" data-url="http://daijiale.github.io/2015/09/21/PHP安全性开发/"></div>
+	<div class="ds-thread" data-thread-key="2015/09/21/PHP安全性开发/" data-title="PHP安全性开发" data-url="http://daijiale.github.io/2015/09/21/PHP安全性开发/"></div>
 </section>
 
 
