@@ -4,7 +4,7 @@
   <subtitle><![CDATA[只有汗水不会欺骗你 || Only sweat will not fail you]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://daijiale.github.io/"/>
-  <updated>2015-09-20T13:55:57.000Z</updated>
+  <updated>2015-10-01T04:35:58.000Z</updated>
   <id>http://daijiale.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://daijiale.github.io/2015/09/21/PHP_cURL/"/>
     <id>http://daijiale.github.io/2015/09/21/PHP_cURL/</id>
     <published>2015-09-21T13:21:11.000Z</published>
-    <updated>2015-09-20T13:55:57.000Z</updated>
+    <updated>2015-10-01T04:35:58.000Z</updated>
     <content type="html"><![CDATA[<h1 id="前言">前言</h1><blockquote>
 <p>cURL(Client URL Library Functions): curl is a command line tool for transferring data with URL syntax,即使用URL语法传输数据的命令行工具。<br><a id="more"></a></p>
 </blockquote>
@@ -78,11 +78,104 @@
   </entry>
   
   <entry>
+    <title><![CDATA[cURL使用之PHP]]></title>
+    <link href="http://daijiale.github.io/2015/09/21/PHP%E5%AE%89%E5%85%A8%E6%80%A7%E5%BC%80%E5%8F%91/"/>
+    <id>http://daijiale.github.io/2015/09/21/PHP安全性开发/</id>
+    <published>2015-09-21T13:21:11.000Z</published>
+    <updated>2015-10-01T04:46:00.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="前言">前言</h1><blockquote>
+<p>php给了开发者极大的灵活性，但是这也为安全问题带来了潜在的隐患，近期需要总结一下以往的问题，在这里借翻译一篇文章同时加上自己开发的一些感触总结一下。</p>
+</blockquote>
+<h1 id="简介">简介</h1><p>当开发一个互联网服务的时候，必须时刻牢记安全观念，并在开发的代码中体现。PHP脚本语言对安全问题并不关心，特别是对大多数没有经验的开发者来说。每当你讲任何涉及到钱财事务等交易问题时，需要特别注意安全问题的考虑，例如开发一个论坛或者是一个购物车等。</p>
+<h2 id="安全保护一般性要点">安全保护一般性要点</h2><h3 id="不相信表单">不相信表单</h3><p>对于一般的Javascript前台验证，由于无法得知用户的行为，例如关闭了浏览器的javascript引擎，这样通过POST恶意数据到服务器。需要在服务器端进行验证，对每个php脚本验证传递到的数据，防止XSS攻击和SQL注入</p>
+<h3 id="不相信用户">不相信用户</h3><p>要假设你的网站接收的每一条数据都是存在恶意代码的，存在隐藏的威胁，要对每一条数据都进行清理</p>
+<h3 id="关闭全局变量">关闭全局变量</h3><p>在php.ini文件中进行以下配置：</p>
+<p>register_globals = Off<br>如果这个配置选项打开之后，会出现很大的安全隐患。例如有一个process.php的脚本文件，会将接收到的数据插入到数据库，接收用户输入数据的表单可能如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;input name=&#34;username&#34; type=&#34;text&#34; size=&#34;15&#34; maxlength=&#34;64&#34;&#62;</span><br></pre></td></tr></table></figure>
+<p>这样，当提交数据到<code>process.php</code>之后，php会注册一个<code>$username</code>变量，将这个变量数据提交到<code>process.php</code>，同时对于任何POST或GET请求参数，都会设置这样的变量。如果不是显示进行初始化那么就会出现下面的问题：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;// Define $authorized = true only if user is authenticated&#10;if (authenticated_user()) &#123;&#10;    $authorized = true;&#10;&#125;&#10;?&#62;</span><br></pre></td></tr></table></figure>
+<p>此处，假设authenticated_user函数就是判断$authorized变量的值，如果开启了register_globals配置，那么任何用户都可以发送一个请求，来设置$authorized变量的值为任意值从而就能绕过这个验证。</p>
+<p>所有的这些提交数据都应该通过PHP预定义内置的全局数组来获取，包括$_POST、$_GET、$_FILES、$_SERVER、$_REQUEST等，其中$_REQUEST是一个$_GET/$_POST/$_COOKIE三个数组的联合变量，默认的顺序是$_COOKIE、$_POST、$_GET。</p>
+<p>推荐的安全配置选项<br>error_reporting设置为Off：不要暴露错误信息给用户，开发的时候可以设置为ON</p>
+<p>safe_mode设置为Off</p>
+<p>register_globals设置为Off</p>
+<p>将以下函数禁用：system、exec、passthru、shell_exec、proc_open、popen</p>
+<p>open_basedir设置为 /tmp ，这样可以让session信息有存储权限，同时设置单独的网站根目录</p>
+<p>expose_php设置为Off</p>
+<p>allow_url_fopen设置为Off</p>
+<p>allow_url_include设置为Off</p>
+<h3 id="SQL注入攻击">SQL注入攻击</h3><p>对于操作数据库的SQL语句，需要特别注意安全性，因为用户可能输入特定语句使得原有的SQL语句改变了功能。类似下面的例子：</p>
+<p>$sql = “select * from pinfo where product = ‘$product’”;<br>此时如果用户输入的$product参数为：</p>
+<p>39’; DROP pinfo; SELECT ‘FOO<br>那么最终SQL语句就变成了如下的样子：</p>
+<p>select product from pinfo where product = ‘39’; DROP pinfo; SELECT ‘FOO’<br>这样就会变成三条SQL语句，会造成pinfo表被删除，这样会造成严重的后果。</p>
+<p>这个问题可以简单的使用PHP的内置函数解决：</p>
+<p>$sql = ‘Select * from pinfo where product = ‘“‘<br>       mysql_real_escape_string($product) . ‘“‘;<br>防止SQL注入攻击需要做好两件事：</p>
+<p>对输入的参数总是进行类型验证</p>
+<p>对单引号、双引号、反引号等特殊字符总是使用mysql_real_escape_string函数进行转义</p>
+<p>但是，这里根据开发经验，不要开启php的Magic Quotes，这个特性在php6中已经废除，总是自己在需要的时候进行转义。</p>
+<h3 id="防止基本的XSS攻击">防止基本的XSS攻击</h3><p>XSS攻击不像其他攻击，这种攻击在客户端进行，最基本的XSS工具就是防止一段javascript脚本在用户待提交的表单页面，将用户提交的数据和cookie偷取过来。</p>
+<p>XSS工具比SQL注入更加难以防护，各大公司网站都被XSS攻击过，虽然这种攻击与php语言无关，但可以使用php来筛选用户数据达到保护用户数据的目的，这里主要使用的是对用户的数据进行过滤，一般过滤掉HTML标签，特别是a标签。下面是一个普通的过滤方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function transform_HTML($string, $length = null) &#123;&#10;// Helps prevent XSS attacks&#10;    // Remove dead space.&#10;    $string = trim($string);&#10;    // Prevent potential Unicode codec problems.&#10;    $string = utf8_decode($string);&#10;    // HTMLize HTML-specific characters.&#10;    $string = htmlentities($string, ENT_NOQUOTES);&#10;    $string = str_replace(&#34;#&#34;, &#34;#&#34;, $string);&#10;    $string = str_replace(&#34;%&#34;, &#34;%&#34;, $string);&#10;    $length = intval($length);&#10;    if ($length &#62; 0) &#123;&#10;        $string = substr($string, 0, $length);&#10;    &#125;&#10;    return $string;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>这个函数将HTML的特殊字符转换为了HTML实体，浏览器在渲染这段文本的时候以纯文本形式显示。如<strong>bold</strong>会被显示为：</p>
+<p>&lt;STRONG&gt;BoldText&lt;/STRONG&gt;</p>
+<p>上述函数的核心就是htmlentities函数，这个函数将html特殊标签转换为html实体字符，这样可以过滤大部分的XSS攻击。</p>
+<p>但是对于有经验的XSS攻击者，有更加巧妙的办法进行攻击：将他们的恶意代码使用十六进制或者utf-8编码，而不是普通的ASCII文本，例如可以使用下面的方式进行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;a href=&#34;http://host/a.php?variable=%22%3e %3c%53%43%52%49%50%54%3e%44%6f%73%6f%6d%65%74%68%69%6e%67%6d%61%6c%69%63%69%6f%75%73%3c%2f%53%43%52%49%50%54%3e&#34;&#62;</span><br></pre></td></tr></table></figure>
+<p>这样浏览器渲染的结果其实是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;a href=&#34;http://host/a.php?variable=&#34;&#62; &#60;SCRIPT&#62;Dosomethingmalicious&#60;/SCRIPT&#62;&#10;&#60;/a&#62;</span><br></pre></td></tr></table></figure>
+<p>这样就达到了攻击的目的。为了防止这种情况，需要在transform_HTML函数的基础上再将#和%转换为他们对应的实体符号，同时加上了$length参数来限制提交的数据的最大长度。</p>
+<h3 id="使用SafeHTML防止XSS攻击">使用SafeHTML防止XSS攻击</h3><p>上述关于XSS攻击的防护非常简单，但是不包含用户的所有标记，同时有上百种绕过过滤函数提交javascript代码的方法，也没有办法能完全阻止这个情况。</p>
+<p>目前，没有一个单一的脚本能保证不被攻击突破，但是总有相对来说防护程度更好的。一共有两个安全防护的方式：白名单和黑名单。其中白名单更加简单和有效。</p>
+<p>一种白名单解决方案就是SafeHTML，它足够智能能够识别有效的HTML，然后就可以去除任何危险的标签。这个需要基于HTMLSax包来进行解析。</p>
+<p>安装使用SafeHTML的方法：</p>
+<p>1、前往<a href="http://pixel-apes.com/safehtml/?page=safehtml" target="_blank" rel="external">http://pixel-apes.com/safehtml/?page=safehtml</a> 下载最新的SafeHTML</p>
+<p>2、将文件放入服务器的classes 目录，这个目录包含所有的SafeHTML和HTMLSax库</p>
+<p>3、在自己的脚本中包含SafeHTML类文件</p>
+<p>4、建立一个SafeHTML对象</p>
+<p>5、使用parse方法进行过滤</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;/* If you&#39;re storing the HTMLSax3.php in the /classes directory, along&#10;   with the safehtml.php script, define XML_HTMLSAX3 as a null string. */&#10;define(XML_HTMLSAX3, &#39;&#39;);&#10;// Include the class file.&#10;require_once(&#39;classes/safehtml.php&#39;);&#10;// Define some sample bad code.&#10;$data = &#34;This data would raise an alert &#60;script&#62;alert(&#39;XSS Attack&#39;)&#60;/script&#62;&#34;;&#10;// Create a safehtml object.&#10;$safehtml = new safehtml();&#10;// Parse and sanitize the data.&#10;$safe_data = $safehtml-&#62;parse($data);&#10;// Display result.&#10;echo &#39;The sanitized data is &#60;br /&#62;&#39; . $safe_data;&#10;?&#62;</span><br></pre></td></tr></table></figure>
+<p>SafeHTML并不能完全防止XSS攻击，只是一个相对复杂的脚本来检验的方式。</p>
+<p>使用单向HASH加密方式来保护数据</p>
+<p>单向hash加密保证对每个用户的密码都是唯一的，而且不能被破译的，只有最终用户知道密码，系统也是不知道原始密码的。这样的一个好处是在系统被攻击后攻击者也无法知道原始密码数据。</p>
+<p>加密和Hash是不同的两个过程。与加密不同，Hash是无法被解密的，是单向的；同时两个不同的字符串可能会得到同一个hash值，并不能保证hash值的唯一性。</p>
+<p>MD5函数处理过的hash值基本不能被破解，但是总是有可能性的，而且网上也有MD5的hash字典。</p>
+<h3 id="使用mcrypt加密数据">使用mcrypt加密数据</h3><p>MD5 hash函数可以在可读的表单中显示数据，但是对于存储用户的信用卡信息的时候，需要进行加密处理后存储，并且需要之后进行解密。</p>
+<p>最好的方法是使用mcrypt模块，这个模块包含了超过30中加密方式来保证只有加密者才能解密数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;$data = &#34;Stuff you want encrypted&#34;;&#10;$key = &#34;Secret passphrase used to encrypt your data&#34;;&#10;$cipher = &#34;MCRYPT_SERPENT_256&#34;;&#10;$mode = &#34;MCRYPT_MODE_CBC&#34;;&#10;function encrypt($data, $key, $cipher, $mode) &#123;&#10;// Encrypt data&#10;return (string)&#10;            base64_encode&#10;                (&#10;                mcrypt_encrypt&#10;                    (&#10;                    $cipher,&#10;                    substr(md5($key),0,mcrypt_get_key_size($cipher, $mode)),&#10;                    $data,&#10;                    $mode,&#10;                    substr(md5($key),0,mcrypt_get_block_size($cipher, $mode))&#10;                    )&#10;                );&#10;&#125;&#10;function decrypt($data, $key, $cipher, $mode) &#123;&#10;// Decrypt data&#10;    return (string)&#10;            mcrypt_decrypt&#10;                (&#10;                $cipher,&#10;                substr(md5($key),0,mcrypt_get_key_size($cipher, $mode)),&#10;                base64_decode($data),&#10;                $mode,&#10;                substr(md5($key),0,mcrypt_get_block_size($cipher, $mode))&#10;                );&#10;&#125;&#10;?&#62;</span><br></pre></td></tr></table></figure>
+<p>mcrypt函数需要以下信息：</p>
+<p>1、待加密数据</p>
+<p>2、用来加密和解密数据的key</p>
+<p>3、用户选择的加密数据的特定算法（cipher：如 MCRYPT_TWOFISH192,MCRYPT_SERPENT_256， MCRYPT_RC2, MCRYPT_DES, and MCRYPT_LOKI97）</p>
+<p>4、用来加密的模式</p>
+<p>5、加密的种子，用来起始加密过程的数据，是一个额外的二进制数据用来初始化加密算法</p>
+<p>6、加密key和种子的长度，使用mcrypt_get_key_size函数和mcrypt_get_block_size函数可以获取</p>
+<p>如果数据和key都被盗取，那么攻击者可以遍历ciphers寻找开行的方式即可，因此我们需要将加密的key进行MD5一次后保证安全性。同时由于mcrypt函数返回的加密数据是一个二进制数据，这样保存到数据库字段中会引起其他错误，使用了base64encode将这些数据转换为了十六进制数方便保存。</p>
+<p><a href="http://www.codeproject.com/Articles/363897/PHP-Security" target="_blank" rel="external">参考文献：http://www.codeproject.com/Articles/363897/PHP-Security</a></p>
+<h1 id="更多参考">更多参考</h1><ul>
+<li><a href="http://php.net/manual/zh/" target="_blank" rel="external">PHP中文手册</a></li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="前言">前言</h1><blockquote>
+<p>php给了开发者极大的灵活性，但是这也为安全问题带来了潜在的隐患，近期需要总结一下以往的问题，在这里借翻译一篇文章同时加上自己开发的一些感触总结一下。</p>
+</blockquote>
+<h1 id="简介"]]>
+    </summary>
+    
+      <category term="PHP" scheme="http://daijiale.github.io/tags/PHP/"/>
+    
+      <category term="转载博文" scheme="http://daijiale.github.io/categories/%E8%BD%AC%E8%BD%BD%E5%8D%9A%E6%96%87/"/>
+    
+      <category term="Web开发日记" scheme="http://daijiale.github.io/categories/%E8%BD%AC%E8%BD%BD%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Android求职知识点Review]]></title>
     <link href="http://daijiale.github.io/2015/07/21/Android%E6%B1%82%E8%81%8C%E7%9F%A5%E8%AF%86%E7%82%B9Review/"/>
     <id>http://daijiale.github.io/2015/07/21/Android求职知识点Review/</id>
     <published>2015-07-21T07:13:09.000Z</published>
-    <updated>2015-09-06T13:55:01.000Z</updated>
+    <updated>2015-10-01T04:35:58.000Z</updated>
     <content type="html"><![CDATA[<h1 id="JAVA">JAVA</h1><h2 id="1-_举例说明多态和重载区别">1. 举例说明多态和重载区别</h2><pre><code><span class="keyword">*</span><span class="keyword">*</span> 重载<span class="keyword">*</span><span class="keyword">*</span>
 </code></pre> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;&#10;void Aa(int a )&#123;....&#125;&#10;void Aa (int a,int b)&#123;...&#125; &#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>虽然Aa定义了2个 但是因为他们注册的参数不同所以 看作为2个不同的方法</p>
@@ -155,7 +248,7 @@
     <link href="http://daijiale.github.io/2015/07/10/Android%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/"/>
     <id>http://daijiale.github.io/2015/07/10/Android开发常用知识点总结/</id>
     <published>2015-07-10T07:13:09.000Z</published>
-    <updated>2015-09-06T13:55:01.000Z</updated>
+    <updated>2015-10-01T04:35:58.000Z</updated>
     <content type="html"><![CDATA[<h1 id="Android开发常用知识点总结：">Android开发常用知识点总结：</h1><a id="more"></a>
 <h2 id="Android异步加载：">Android异步加载：</h2><p>  用异步的方式去加载数据（主要是图像，不解释），可以让用户在刷新数据时候不用经历太多卡顿，这也是Google官方要求我们去做的一种方式。</p>
 <ul>
@@ -214,7 +307,7 @@
     <link href="http://daijiale.github.io/2015/07/06/Node.js%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
     <id>http://daijiale.github.io/2015/07/06/Node.js学习开发笔记/</id>
     <published>2015-07-06T11:21:11.000Z</published>
-    <updated>2015-09-06T13:55:01.000Z</updated>
+    <updated>2015-10-01T04:35:58.000Z</updated>
     <content type="html"><![CDATA[<h1 id="前言">前言</h1><blockquote>
 <p>第一次接触Node.js是大二在四川长虹实习期间，距现在已经1年多了，在自己的一些项目中有用到，积累了一些经验，但是想更加系统的学习一下这门技术（主要这两年发展的太火了。。），同时也想把一些开发过程中的问题和案例分享出来， 特为此撰写一篇博客笔记…<br><a id="more"></a></p>
 </blockquote>
@@ -253,7 +346,7 @@
     <link href="http://daijiale.github.io/2015/06/29/%E5%9C%A8%E7%99%BE%E5%BA%A6%E5%AE%9E%E4%B9%A0%E7%9A%84%E9%82%A3%E4%BA%9B%E6%97%A5%E5%AD%90/"/>
     <id>http://daijiale.github.io/2015/06/29/在百度实习的那些日子/</id>
     <published>2015-06-29T11:13:09.000Z</published>
-    <updated>2015-09-06T13:55:01.000Z</updated>
+    <updated>2015-10-07T06:59:39.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>时间：2014.11.19-2015.6.24</p>
 <p>地点：北京海淀区上地东路鹏寰国际大厦</p>
@@ -304,10 +397,61 @@
 <h1 id="2015年4月">2015年4月</h1><ul>
 <li>DuWear产品4月内测和公测上线，所以这个月忙成Dog了，除了本身系统底层的持续集成，脚本维护，表盘优化修复Bug等工作，还客串了一回FE，协助产品官网研发工作 。</li>
 <li>跟着超神打打下手，维护超神写的GMS-&gt;BWS神器脚本，帮助运营同学和手表助手APP的DuWear手表应用市场贡献更多兼容GoogleAndroidWear和DuWear的物料APP。</li>
-<li>开源UESTC开发者俱乐部到Github上，建立了一个Organization，想把TA打造成一个快速搭建校园技术咨询站点的模板引擎（理想有点远大，但是可行性很高，而且做好之后，可以帮助更多的初级开发者很省事地搭建相关网站，很适合校园大多数初创工作室的需求），由于自己时间有限，托付给部分学弟一起，但是估计要等回学校才能慢慢实现了，这个工程太大。</li>
+<li>开源UESTC开发者俱乐部到Github上，建立了一个Organization，想把TA打造成一个快速搭建校园技术咨询站点的模板引擎（理想有点远大，但是可行性很高，而且做好之后，可以帮助更多的初级开发者很省事地搭建相关网站，很适合校园大多数初创工作室的需求），自己时间有限，托付给部分学弟一起，但是估计要等回学校才能慢慢实现了，这个工程太大。</li>
 <li>DuWear产品发布，见识了大百度的运营和推广是多恶心。。。太NB了。（PS：当然我们的产品也是很棒的，具体细节可以去<a href="http://www.duwear.baidu.com" target="_blank" rel="external">DuWear官网</a>。</li>
 </ul>
-<h1 id="2015年5月">2015年5月</h1>]]></content>
+<h1 id="2015年5月">2015年5月</h1><ul>
+<li><p>这个月主要和云计算部的QA一起完成Jenkins CI平台化工作，即：把之前本地的ROM制作环境迁移到云端Jenkins上，完成持续集成化工作，节约构建人力成本和时间成本，自动化控制产物，方便QA提测。</p>
+</li>
+<li><p>还有就是制作了一个DuWear官网开发者中心的Demo——Notifiwear，主要给内部PM和第三方开发者使用。</p>
+</li>
+<li><p>并且新增三套新表盘的研发工作，结合之前三套，凑成Du.系列表盘。<br>准备百度内部跨部门技术串讲——《DuWearROM编译和OTA包制作》，把之前DuWear的ROM和OTA包制作知识分享给团队其他成员。</p>
+</li>
+<li><p>一怒之下，买了台单反红圈+MacPro2015。。。 一下子把实习所赚全花完了。</p>
+</li>
+<li>团建，去北戴河疯玩了一趟。</li>
+</ul>
+<h1 id="2015年6月">2015年6月</h1><ul>
+<li><p>上架了一款自己的wear应用（聚会摇摇蛋for wear）于ticwear app商店上，两周2000+下载量，很满足。</p>
+</li>
+<li><p>和团队协助LBS地图业务部进行新业务开发。即：百度地图车生活020组件式Web前端开发：具体细节请参考<a href="http://daijiale.github.io/2015/06/10/%E5%9F%BA%E4%BA%8E%E7%99%BE%E5%BA%A6ODP%E7%9A%84%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">Blog文</a>。</p>
+</li>
+</ul>
+<ul>
+<li>见见北京老朋友，和胖哥到处耍耍，拍拍照， 办离职，回学校。最后在机场收到了马总和彬大给的提前offer，打算明年毕业回百度，over！</li>
+</ul>
+<h1 id="总结">总结</h1><pre><code>  百度是如今中国的互联网三巨头之一，能进这样的公司实习，我感到很骄傲，而它的企业文化——“让人们最平等便捷地获取信息，找到所求”这点也让我内心触动最深！企业环境集现代化、休闲化、人性化甚至浪漫梦幻为一体，工作环境优雅，充分彰显工程师文化。
+
+百度实习生的待遇应该算是国内数一数二的，高额的薪资，各种报销制度，顶级的导师，平易近人的同事，还有后勤组织部带来层出不穷的福利等等！但是<span class="attribute">...</span><span class="attribute">...</span>你也会发现你的boss永远下班比你晚，每天每层楼晚上<span class="number">10</span>点以后还有四分之三的人还没走，一百多个会议室永远处于被借状态，只有总裁级别才有自己办公室，喝水时间都难抽出的coding hours等等。<span class="attribute">...</span><span class="attribute">...</span><span class="built_in">.</span>后来听Robin说，这叫“狼性”！
+
+
+   在实习过程中，我的专业技术水平、动手能力相比以前又有了质的提高。但是，更让我受益匪浅的是：我见识到了一家大型互联网公司的专业开发模式和工业流程，还有科学的团队管建知识，这些是以往在学校、普通软件公司完全没有机会接触和学习的！
+
+
+   在实习过程中，不乏遇到各式各样的问题和困难，例如：刚开始来到BAT这样的名企实习时，内心压力颇大，毕竟周围都是神一样的前辈们。所以有时会自己给自己压力，导致Boss下发的任务完成度不高。还有就是名企的工程式管理，一开始很不熟悉，有一个比较漫长的适应过程，偶尔也会时常犯一些小错。但是犯错的同时也是一个成长的过程，我也很珍惜这些发现问题，并解决问题的机会。
+
+
+   当然，偶尔也会遇到一些比较有难度的工作，可能会导致项目延期，为此，平常可是花了不少功夫去扩充自己的基础知识，争取不拖后腿，这同时也是一个对自己能力提升的过程。
+
+
+   在生活方面，可能更需要自己的一些自理能力，因为身处异地，自己租房子，生活琐事上也会遇到各种问题，譬如：房租，水电缴费，自我打理，生病等等。
+
+    针对我遇到的这些问题，我觉得最好的解决办法就是提高自己的适应能力和学习能力，在职场中不比学校，可能不会有人专门为你答疑，周围的小伙伴都有自己的排期和任务，你能做的，是多从老员工和优秀员工上汲取他们的经验与优点，以更好地适应和融入企业。
+
+   再者，主动了解一个企业的企业文化很重要，它能帮你更好更快地融入企业和团队工作，养成属于你自己的工作习惯。
+
+
+   而对于工作压力这一块，我很想说我自己长挂在嘴边的一句话：只有汗水不会欺骗你。BAT的工作压力是我们这些初入职场小虾成长的沃土，只要你能承受住这样的压力，你会肉眼可见自己的不断成长。
+
+
+   多利用网络资源和公司资源自主解决个人的问题。我们常常会遇到面对一个需求而茫然无措的时候，此时我们能依靠的就是利用身边资源自主解决问题的能力。
+
+
+   多参加一些线下的技术交流会和一些其它的沙龙可以更好的帮助我们成长，我们应该珍惜在北上广这样大城市的实习机会，毕竟这边的氛围更浓，相比学校有更多丰富的活动等着我们，怎么能不好好利用利用呢？
+
+
+在生活上，我们应该集结在同城一起实习的校友，多交流，互相有个照顾，而且，多和邻里之间建立好良好的关系，切忌把自己封闭起来。多和同事出去郊游，不仅能加强友谊还能更好地帮助自己融入团队。
+</code></pre>]]></content>
     <summary type="html">
     <![CDATA[<blockquote>
 <p>时间：2014.11.19-2015.6.24</p>
@@ -329,7 +473,7 @@
     <link href="http://daijiale.github.io/2015/06/10/%E5%9F%BA%E4%BA%8E%E7%99%BE%E5%BA%A6ODP%E7%9A%84%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
     <id>http://daijiale.github.io/2015/06/10/基于百度ODP的前端开发/</id>
     <published>2015-06-10T03:03:09.000Z</published>
-    <updated>2015-09-06T13:55:01.000Z</updated>
+    <updated>2015-10-01T04:35:58.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>ODP，即Online Develop Platform，是为百度Web业务提供完善且高度集成的基础环境、框架、基础库和工具，统一规范模式。</p>
 <p>个人认为，这套PHP开发框架和TP类似，但是安全性和效率性方便远胜于TP</p>
@@ -480,11 +624,27 @@
     <link href="http://daijiale.github.io/2015/06/09/JavaScript%E7%BB%8F%E5%85%B8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93/"/>
     <id>http://daijiale.github.io/2015/06/09/JavaScript经典设计模式总结/</id>
     <published>2015-06-09T03:29:31.000Z</published>
-    <updated>2015-09-06T13:56:44.000Z</updated>
+    <updated>2015-10-02T15:48:17.000Z</updated>
     <content type="html"><![CDATA[<h1 id="前言">前言</h1><blockquote>
 <p>在百度即将离职的最后一个月里，我被派往新项目担任FE的角色，借此机会也重新review一下大一大二的老本行——Web前端开发。这篇Blog是对自己所学2年JS的一个设计模式总结，也是实际编码中经常用到的很多经典Case，希望能帮助到更多JS开发者，也给那些还活跃在 <code>JS API</code> 层的同学打开一个新的学习思路。<br>PS：本篇Blog侧重点在于JS的设计模式，如果只是期望了解JS语法，请直接戳<a href="http://www.w3school.com.cn/js/index.asp" target="_blank" rel="external">W3C传送门</a>！<br><a id="more"></a></p>
 </blockquote>
-<h1 id="一、JS基础">一、JS基础</h1><h2 id="动态类型语言和鸭子类型">动态类型语言和鸭子类型</h2><h1 id="最后汇总一些比较好的技术文章和其他资料">最后汇总一些比较好的技术文章和其他资料</h1><ul>
+<h1 id="一、JS基础">一、JS基础</h1><h2 id="动态类型语言和鸭子类型">动态类型语言和鸭子类型</h2><h2 id="this、call、apply">this、call、apply</h2><p>Javascript 的<code>this</code>总是指向一个对象，而具体指向哪个对象是在运行时基于函数的执行环境动态绑定的，而不是函数被声明时的环境。</p>
+<h3 id="this的指向">this的指向</h3><p>除去不常用的<code>with</code>和<code>eval</code>情况。</p>
+<h4 id="1、作为对象的方法调用">1、作为对象的方法调用</h4><p>当函数作为对象的方法被调用时候，this指向该对象：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;&#10;a: 1,&#10;getA: function()&#123;&#10;&#9;alert( this === obj); // &#36755;&#20986;:true&#10;&#9;alert( this .a); //&#36755;&#20986;:1&#10;&#9;&#65373;&#10;&#125;;&#10;obj.getA();</span><br></pre></td></tr></table></figure>
+<h4 id="2、作为普通函数调用">2、作为普通函数调用</h4><p>即普通函数方式：this总是指向全局对象，在浏览器的JavaScript中，这个全局对象是window对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.name = &#39;globalName&#39; ;&#10;&#10;var myObject = &#123;&#10;&#9;&#9;name: &#39;daijiale&#39; , &#10;&#9;&#9;getName = function()&#123;&#10;&#9;&#9;return this.name;&#10;&#9;&#9;&#125;&#10;&#125;;&#10;var getName = myObject.getName;&#10;console.log( getName() ); //&#36755;&#20986;: globalName</span><br></pre></td></tr></table></figure>
+<p>注：<br>有时候我们在某个标签，例如“div”节点的事件函数内部，有一个局部的callback方法，callback被作为普通函数调用时，callback内部的this指向了window，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;html&#62;&#10;&#9;&#9;&#60;body&#62;&#10;&#9;&#9;&#9;&#60;div id = &#34;div1&#34;&#62;&#25105;&#26159;&#19968;&#20010;div&#60;/div&#62;&#10;&#9;&#9;&#60;/body&#62;&#10;&#9;&#9;&#10;&#9;&#9;&#60;script&#62;&#10;&#9;&#9;&#10;&#9;&#9;window.id = &#39;window&#39; ;&#10;&#9;&#9;&#10;&#9;&#9;document.getElementById( &#39;div1&#39; ).onclick = function()&#123;&#10;&#9;&#9;&#9;alert(this.id); //&#36755;&#20986;&#65306;&#39;div1&#39;&#10;&#9;&#9;&#9;var callback = function()&#123;&#10;&#9;&#9;&#9;&#9;alert(this .id); //&#36755;&#20986;:&#39;window&#39;&#10;&#9;&#9;&#9;&#125;&#10;&#9;&#9;&#9;callback();&#10;&#9;&#9;&#125;;&#10;&#9;&#9;&#60;/script&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
+<p>但我们往往是想让他指向div节点，解决办法：可以用一个变量保存div节点的引用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById(&#39;div1&#39;).onclick = function()&#123;&#10;&#9;&#9;var that = this; //&#20445;&#23384;div&#30340;&#24341;&#29992;&#10;&#9;&#9;var callback = function()&#123;&#10;&#9;&#9;&#9;&#9;alert(that.id);&#9;//&#36755;&#20986;&#65306; &#8216;div1&#8217;&#10;&#9;&#9;&#10;&#9;&#125;&#10;&#9;callback();&#10;&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="3、构造器调用">3、构造器调用</h4><p>JavaScript中没有类，但是可以从构造器中创建对象，同时也提供了ne运算符，使得构造器看起来更像一个类。<br>当用new运算符调用函数时，该函数总会返回一个对象，通常情况下，构造器里的this就指向返回的这个对象，见如下代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var MyClass &#65309; function()&#123;&#10;&#9;&#9;this.name = &#39; daijiale&#39;;&#10;&#9;&#9;&#9;&#9;&#10;&#125;&#65307;&#10;&#10;var obj = new MyClass();&#10;alert(obj.name); //&#36755;&#20986;daijiale;</span><br></pre></td></tr></table></figure>
+<p>注:<br>如果构造器显式地返回了一个object类型的对象，那么此次运算结果最终会返回这个对象，而不是我们之前期待的this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var MyClass = function()&#123;&#10;&#9;this.name = &#39;daijiale&#39;;&#10;       return &#123;  //&#26174;&#31034;&#22320;&#36820;&#22238;&#19968;&#20010;&#23545;&#35937;&#10;         name:&#39;daijiale2&#39;&#10;       &#125;&#9;&#10;&#125;;&#10;&#10;var obj = new MyClass();&#10;alert(obj.name); //&#36755;&#20986;daijiale2</span><br></pre></td></tr></table></figure>
+<h4 id="4、Function-prototype-call_或_Function-prototype-apply调用">4、Function.prototype.call 或 Function.prototype.apply调用</h4><p>跟普通的函数调用相比，用Function.prototype.call或 Function.prototype.apply可以动态的改变传入函数的this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var obj1 = &#123;&#10;&#9;name : &#39;daijiale&#39;,&#10;&#9;getName: function()&#123;&#10;&#9;&#9;return this.name;&#10;&#9;&#125;&#10;&#125;;&#10;&#10;var obj2 = &#123;&#10;&#9;name: &#39;daijiale2&#39;&#10;&#125;;&#10;&#10;console.log(obj1.getName());//&#36755;&#20986;&#65306;daijiale&#10;console.log(obj1.getName.call(obj2));//&#36755;&#20986;:daijiale2</span><br></pre></td></tr></table></figure>
+<h1 id="最后汇总一些比较好的技术文章和其他资料">最后汇总一些比较好的技术文章和其他资料</h1><ul>
 <li><a href="http://www.w3cfuns.com/blog-5465288-5408787.html" target="_blank" rel="external">javascript异步编程的4种方法</a></li>
 </ul>
 ]]></content>
@@ -507,7 +667,7 @@
     <link href="http://daijiale.github.io/2015/05/28/%E9%98%BF%E9%87%8C%E7%99%BE%E5%B7%9DHackathon/"/>
     <id>http://daijiale.github.io/2015/05/28/阿里百川Hackathon/</id>
     <published>2015-05-28T12:23:09.000Z</published>
-    <updated>2015-09-06T13:55:01.000Z</updated>
+    <updated>2015-10-01T04:35:58.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>时间：2015.5.21-2015.5.24</p>
 <p>地点：杭州 阿里百川海创大厦</p>
@@ -582,7 +742,7 @@
     <link href="http://daijiale.github.io/2015/05/06/ADB%E5%B8%B8%E7%94%A8Shell%E5%91%BD%E4%BB%A4/"/>
     <id>http://daijiale.github.io/2015/05/06/ADB常用Shell命令/</id>
     <published>2015-05-06T08:23:09.000Z</published>
-    <updated>2015-09-06T13:55:01.000Z</updated>
+    <updated>2015-10-01T04:35:58.000Z</updated>
     <content type="html"><![CDATA[<h1 id="实用Adb_Shell命令演示">实用Adb Shell命令演示</h1><blockquote>
 <p>一些灵巧方便的Adb Shell命令笔记</p>
 </blockquote>
@@ -745,7 +905,7 @@
     <link href="http://daijiale.github.io/2015/05/04/%E6%9C%80%E5%85%A8%E7%9A%84AndroidWear%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
     <id>http://daijiale.github.io/2015/05/04/最全的AndroidWear开发笔记/</id>
     <published>2015-05-04T08:23:09.000Z</published>
-    <updated>2015-09-06T13:55:01.000Z</updated>
+    <updated>2015-10-01T04:35:58.000Z</updated>
     <content type="html"><![CDATA[<h1 id="本文作者">本文作者</h1><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicslrme.jpg" alt=""></p>
 <h2 id="Jiale_Dai"><a href="http://www.daijiale.cn" target="_blank" rel="external">Jiale Dai</a></h2><p>成都 电子科技大学 本科生( 其实还没毕业，目前大三 ）</p>
 <p>从14年开始一直专研于AndroidWear开发</p>
@@ -1110,7 +1270,7 @@
     <link href="http://daijiale.github.io/2015/04/27/%E6%88%91%E7%9A%84%E4%B8%80%E7%82%B9%E7%9C%8B%E6%B3%95%E5%85%B3%E4%BA%8E%E7%9B%AE%E5%89%8D%E5%B8%82%E9%9D%A2%E4%B8%8A%E6%B5%81%E8%A1%8C%E7%9A%84Git%E6%89%98%E7%AE%A1%E6%9C%8D%E5%8A%A1%E7%A4%BE%E5%8C%BA/"/>
     <id>http://daijiale.github.io/2015/04/27/我的一点看法关于目前市面上流行的Git托管服务社区/</id>
     <published>2015-04-27T03:39:09.000Z</published>
-    <updated>2015-09-06T13:55:01.000Z</updated>
+    <updated>2015-10-01T04:35:58.000Z</updated>
     <content type="html"><![CDATA[<p><code>git</code> 服务社区越来越多，无论是国外的还是国内的，免费公益的还是按需收费的，我们该如何选择呢？</p>
 <p>这里整理了一些我自己接触过的，给大家参考一下：</p>
 <a id="more"></a>
@@ -1151,7 +1311,7 @@
     <link href="http://daijiale.github.io/2015/04/26/%E5%8D%95%E5%8F%8D%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/"/>
     <id>http://daijiale.github.io/2015/04/26/单反自学笔记/</id>
     <published>2015-04-26T13:26:09.000Z</published>
-    <updated>2015-09-06T13:55:01.000Z</updated>
+    <updated>2015-10-01T04:35:58.000Z</updated>
     <content type="html"><![CDATA[<p><strong>PS：</strong>2015年4月在<a href="http://mp.weixin.qq.com/s?__biz=MzAxMDM5MTIwMw==&amp;mid=204127766&amp;idx=1&amp;sn=7c6a4b87110f472a1ced270b6daafc10&amp;scene=5#rd" target="_blank" rel="external">胖哥（Axl、隔壁老王）</a>的唆使下，我入手了人身第一台<a href="http://baike.baidu.com/link?url=lUwpC5ksAq3Sh_zqGsNAZ4NmcxmiPul3P6SV-QXO5vdWItnvlm7GjvBreNyqoFYWoj-bbozDnDd0yU6lnqsKy7tsVn5qpNJ7BrEFqh_-k1Ml32XcaLvK0FlHUbbrL_eifzZoMYNglLhc-aX8K1XCd_" target="_blank" rel="external">单反</a>…（迈入继耳机之后的又一深坑）这篇Blog是最近学习新技能时做的笔记：</p>
 <h1 id="单反自学笔记_新人篇">单反自学笔记_新人篇</h1><ul>
 <li><a href="http://note.youdao.com/share/?id=48a8f388b8f5cb21ab3cd50d169a665f&amp;type=note" target="_blank" rel="external">新人第一课：井字构图法</a></li>
@@ -1193,7 +1353,7 @@
     <link href="http://daijiale.github.io/2015/04/15/%E7%99%BE%E5%BA%A6%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8AHackathon%20Coding%20Party%E5%B0%8F%E8%AE%B0/"/>
     <id>http://daijiale.github.io/2015/04/15/百度第十二届Hackathon Coding Party小记/</id>
     <published>2015-04-15T12:23:09.000Z</published>
-    <updated>2015-09-06T13:55:01.000Z</updated>
+    <updated>2015-10-01T04:35:58.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>时间：2015.4.11-2015.4.14</p>
 <p>地点：北京 百度大厦</p>
@@ -1264,7 +1424,7 @@
     <link href="http://daijiale.github.io/2015/04/09/AjaxReview/"/>
     <id>http://daijiale.github.io/2015/04/09/AjaxReview/</id>
     <published>2015-04-09T10:30:09.000Z</published>
-    <updated>2015-09-06T13:55:01.000Z</updated>
+    <updated>2015-10-01T04:35:58.000Z</updated>
     <content type="html"><![CDATA[<p><strong>PS：</strong>写这篇Blog主要有两个三个动机：</p>
 <ul>
 <li>对以前自己所学知识的一个系统化review</li>
@@ -1514,7 +1674,7 @@
     <link href="http://daijiale.github.io/2015/04/03/%E8%AE%B0%E5%8D%97%E6%98%8C%E4%BA%8C%E4%B8%AD/"/>
     <id>http://daijiale.github.io/2015/04/03/记南昌二中/</id>
     <published>2015-04-03T05:20:09.000Z</published>
-    <updated>2015-09-06T13:55:01.000Z</updated>
+    <updated>2015-10-01T04:35:58.000Z</updated>
     <content type="html"><![CDATA[<h1 id="硬件">硬件</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中在硬件上最大的特点就是壕！第一次来二中参加考试时便被壕气外露的红砖绿叶迷住了。还有人造草皮的足球场，三年一遇的游泳馆（三年就上过一次课），堆满了电脑随便用的图书馆。学校里四处都是花花草草，校门的花坛一月一换，班上的一体机切水果什么的信手拈来。就是任性就是壕！<br><a id="more"></a></p>
 <h1 id="师资">师资</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中的老师阵容十分强大，但随着这几年扩招老师资源也变得有些吃紧了。重点班尚能保证豪华阵容，在江西可以说不会逊色于任何学校的重点班，但平行班就会有很多刚进校不久的年轻老师了。当然不是说年轻老师一定不好，但是在高中尤其是高三，老师的经验与鼓舞对班级的提高是很有用的。所以二中这几年也在拼命招揽人才，目前一大批年轻老师已经走上一线，师资整体实力依然很强大。<br>3.理念：二中多年来一直重视综合素质教育，社团和各种活动巨多！学校也给很大的支持，每一届都会产生许多交际花。不过由于近年高考成绩不理想，15届开始进行了一些改革，加大了学业方面的侧重。所以未来二中也许会少一些交际花多一批学霸。</p>
 <h1 id="总结">总结</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中是一个神奇的地方，不论是在晨会上考试中挥斥方遒碾压众人的大神，还是走廊上树林旁对老师阿鲁巴时杀伐果断的凌厉，或是操场边天台上情侣基友看西山日落时的静谧，又抑或是顶楼学霸们在下课铃响时冲下楼梯直奔食堂的气势，它们一起组成了二中独一无二的体验。</p>
@@ -1540,7 +1700,7 @@
     <link href="http://daijiale.github.io/2015/04/02/Blog%E8%BF%81%E7%A7%BB%E6%97%A5%E8%AE%B0/"/>
     <id>http://daijiale.github.io/2015/04/02/Blog迁移日记/</id>
     <published>2015-04-02T15:30:09.000Z</published>
-    <updated>2015-09-06T13:55:01.000Z</updated>
+    <updated>2015-10-01T04:35:58.000Z</updated>
     <content type="html"><![CDATA[<p><strong>以下所指“更新”：均为Blog技术更新，非文章更新</strong></p>
 <h1 id="第一次更新_个人Blog">第一次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;说起自己的第一个Blog，要从小学刚开通QQ空间开始，具体几年级已经记不清了，那个时候刚甩掉纸质日记本，然后就迈入网络日志的深坑。以前倒是产出了不少优质日志，不过都是些多愁善感的随便，至今都已经封存进<em>私密日日记</em>中(如下图)：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpic_qqzonesec.PNG" alt=""><br><a id="more"></a></p>
 <h1 id="第二次更新_个人Blog">第二次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后面高中开始玩人人，Blog也顺势搬到人人。。。现在想来这搬迁史也很简单——围绕社交圈，毕竟Blog写出来是给人看的，而QQzone和人人都是一个很好的社交载体。当然，如今的人人，我早已放弃，一个月都不登一次的这种，blog数据也全部清除了，高中写的都是些没营养的东西，个人认为没有存在的价值。<br>最后留张图纪念一下曾经的人人帐号：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicrenren.PNG" alt=""></p>

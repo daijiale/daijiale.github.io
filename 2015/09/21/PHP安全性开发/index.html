@@ -4,22 +4,32 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>DaiJiale&#39;s Blog</title>
+    <title>cURL使用之PHP | DaiJiale&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Jiale Dai">
     
 
     
-    <meta name="description" content="Welcome to DaiJiale&apos;s world!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="DaiJiale's Blog">
-<meta property="og:url" content="http://daijiale.github.io/index.html">
+    <meta name="description" content="前言
+php给了开发者极大的灵活性，但是这也为安全问题带来了潜在的隐患，近期需要总结一下以往的问题，在这里借翻译一篇文章同时加上自己开发的一些感触总结一下。
+
+简介当开发一个互联网服务的时候，必须时刻牢记安全观念，并在开发的代码中体现。PHP脚本语言对安全问题并不关心，特别是对大多数没有经验的开发者来说。每当你讲任何涉及到钱财事务等交易问题时，需要特别注意安全问题的考虑，例如开发一个论坛或者是一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cURL使用之PHP">
+<meta property="og:url" content="http://daijiale.github.io/2015/09/21/PHP安全性开发/index.html">
 <meta property="og:site_name" content="DaiJiale's Blog">
-<meta property="og:description" content="Welcome to DaiJiale&apos;s world!">
+<meta property="og:description" content="前言
+php给了开发者极大的灵活性，但是这也为安全问题带来了潜在的隐患，近期需要总结一下以往的问题，在这里借翻译一篇文章同时加上自己开发的一些感触总结一下。
+
+简介当开发一个互联网服务的时候，必须时刻牢记安全观念，并在开发的代码中体现。PHP脚本语言对安全问题并不关心，特别是对大多数没有经验的开发者来说。每当你讲任何涉及到钱财事务等交易问题时，需要特别注意安全问题的考虑，例如开发一个论坛或者是一个">
+<meta property="og:updated_time" content="2015-10-01T04:46:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="DaiJiale's Blog">
-<meta name="twitter:description" content="Welcome to DaiJiale&apos;s world!">
+<meta name="twitter:title" content="cURL使用之PHP">
+<meta name="twitter:description" content="前言
+php给了开发者极大的灵活性，但是这也为安全问题带来了潜在的隐患，近期需要总结一下以往的问题，在这里借翻译一篇文章同时加上自己开发的一些感触总结一下。
+
+简介当开发一个互联网服务的时候，必须时刻牢记安全观念，并在开发的代码中体现。PHP脚本语言对安全问题并不关心，特别是对大多数没有经验的开发者来说。每当你讲任何涉及到钱财事务等交易问题时，需要特别注意安全问题的考虑，例如开发一个论坛或者是一个">
 
     
     <link rel="alternative" href="/atom.xml" title="DaiJiale&#39;s Blog" type="application/atom+xml">
@@ -73,77 +83,10 @@
 </div>
     </header>
     <div id="container">
-      <div id="main">
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/09/21/PHP_cURL/" title="cURL使用之PHP" itemprop="url">cURL使用之PHP</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Jiale Dai" target="_blank" itemprop="author">Jiale Dai</a>
-		
-  <p class="article-time">
-    <time datetime="2015-09-21T13:21:11.000Z" itemprop="datePublished"> 发表于 2015-09-21</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="前言">前言</h1><blockquote>
-<p>cURL(Client URL Library Functions): curl is a command line tool for transferring data with URL syntax,即使用URL语法传输数据的命令行工具。<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/09/21/PHP_cURL/#more">阅读更多</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/原创博文/">原创博文</a>►<a class="article-category-link" href="/categories/原创博文/Web开发日记/">Web开发日记</a>
-</div>
-
-
-  <div class="article-tags">
+      <div id="main" class="post" itemscope itemprop="blogPost">
   
-  <span></span> <a href="/tags/PHP/">PHP</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/09/21/PHP_cURL/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/09/21/PHP_cURL/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
   <h1 itemprop="name">
     
       <a href="/2015/09/21/PHP安全性开发/" title="cURL使用之PHP" itemprop="url">cURL使用之PHP</a>
@@ -157,9 +100,16 @@
     
   </p>
 </header>
-    <div class="article-content">
-        
-        <h1 id="前言">前言</h1><blockquote>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#简介"><span class="toc-number">2.</span> <span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安全保护一般性要点"><span class="toc-number">2.1.</span> <span class="toc-text">安全保护一般性要点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#不相信表单"><span class="toc-number">2.1.1.</span> <span class="toc-text">不相信表单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不相信用户"><span class="toc-number">2.1.2.</span> <span class="toc-text">不相信用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关闭全局变量"><span class="toc-number">2.1.3.</span> <span class="toc-text">关闭全局变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL注入攻击"><span class="toc-number">2.1.4.</span> <span class="toc-text">SQL注入攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#防止基本的XSS攻击"><span class="toc-number">2.1.5.</span> <span class="toc-text">防止基本的XSS攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用SafeHTML防止XSS攻击"><span class="toc-number">2.1.6.</span> <span class="toc-text">使用SafeHTML防止XSS攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用mcrypt加密数据"><span class="toc-number">2.1.7.</span> <span class="toc-text">使用mcrypt加密数据</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#更多参考"><span class="toc-number">3.</span> <span class="toc-text">更多参考</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="前言">前言</h1><blockquote>
 <p>php给了开发者极大的灵活性，但是这也为安全问题带来了潜在的隐患，近期需要总结一下以往的问题，在这里借翻译一篇文章同时加上自己开发的一些感触总结一下。</p>
 </blockquote>
 <h1 id="简介">简介</h1><p>当开发一个互联网服务的时候，必须时刻牢记安全观念，并在开发的代码中体现。PHP脚本语言对安全问题并不关心，特别是对大多数没有经验的开发者来说。每当你讲任何涉及到钱财事务等交易问题时，需要特别注意安全问题的考虑，例如开发一个论坛或者是一个购物车等。</p>
@@ -230,14 +180,9 @@
 <h1 id="更多参考">更多参考</h1><ul>
 <li><a href="http://php.net/manual/zh/" target="_blank" rel="external">PHP中文手册</a></li>
 </ul>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
+  
+	</div>
+		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
 <div class="article-categories">
@@ -255,231 +200,55 @@
 
 
 
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://daijiale.github.io/2015/09/21/PHP安全性开发/" data-title="cURL使用之PHP | DaiJiale&#39;s Blog" data-tsina="3173290371" class="share clearfix">
+	  </div>
+	
+	</div>
 
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/09/21/PHP安全性开发/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/09/21/PHP安全性开发/" data-count-type="comments">&nbsp;</a>
-	
-</div>
 
 </footer>
 
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/07/21/Android求职知识点Review/" title="Android求职知识点Review" itemprop="url">Android求职知识点Review</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Jiale Dai" target="_blank" itemprop="author">Jiale Dai</a>
-		
-  <p class="article-time">
-    <time datetime="2015-07-21T07:13:09.000Z" itemprop="datePublished"> 发表于 2015-07-21</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="JAVA">JAVA</h1><h2 id="1-_举例说明多态和重载区别">1. 举例说明多态和重载区别</h2><pre><code><span class="keyword">*</span><span class="keyword">*</span> 重载<span class="keyword">*</span><span class="keyword">*</span>
-</code></pre> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;&#10;void Aa(int a )&#123;....&#125;&#10;void Aa (int a,int b)&#123;...&#125; &#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>虽然Aa定义了2个 但是因为他们注册的参数不同所以 看作为2个不同的方法</p>
-<p><strong>多态</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">interface A &#10;&#123; &#10;void Aa();&#10;&#125;&#10;class B implement A&#10;&#123;&#10;void Aa()&#123; System.out.println(&#34;123123&#34;); &#125;&#10;&#125;&#10;class C implement A&#10;&#123;&#10;void Aa()&#123; System.out.println(&#34;abcabc&#34;); &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>多态就是可以理解一个方法被不同实现后 展现不同的效果及状态</p>
-<h2 id="2-_堆栈">2. 堆栈</h2><p><a href="http://zhidao.baidu.com/link?url=nPxYN0s7pcGMl30_IhoQw_K7MykYYQOgiHNIzzeXZt-cLPQAbzJqVOYZvy3aNZayeYpEnHuBA98zXFpJzRa8sq">广义堆栈数据结构</a></p>
-<p><a href="http://blog.csdn.net/chengyingzhilian/article/details/7781858">Java中的堆栈</a></p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/07/21/Android求职知识点Review/#more">阅读更多</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/原创博文/">原创博文</a>►<a class="article-category-link" href="/categories/原创博文/Android开发笔记/">Android开发笔记</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Android/">Android</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
+   	       
+	</article>
 	
-	  	<span></span>
-		<a href="/2015/07/21/Android求职知识点Review/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/07/21/Android求职知识点Review/" data-count-type="comments">&nbsp;</a>
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/09/21/PHP_cURL/" title="cURL使用之PHP">
+  <strong>上一篇：</strong><br/>
+  <span>
+  cURL使用之PHP</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/07/21/Android求职知识点Review/"  title="Android求职知识点Review">
+ <strong>下一篇：</strong><br/> 
+ <span>Android求职知识点Review
+</span>
+</a>
+</div>
+
+</nav>
+
 	
-</div>
-
-</footer>
-
-
-    </article>
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/09/21/PHP安全性开发/" data-title="cURL使用之PHP" data-url="http://daijiale.github.io/2015/09/21/PHP安全性开发/"></div>
+</section>
 
 
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/07/10/Android开发常用知识点总结/" title="Android开发常用知识点总结" itemprop="url">Android开发常用知识点总结</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Jiale Dai" target="_blank" itemprop="author">Jiale Dai</a>
-		
-  <p class="article-time">
-    <time datetime="2015-07-10T07:13:09.000Z" itemprop="datePublished"> 发表于 2015-07-10</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="Android开发常用知识点总结：">Android开发常用知识点总结：</h1>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/07/10/Android开发常用知识点总结/#more">阅读更多</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/原创博文/">原创博文</a>►<a class="article-category-link" href="/categories/原创博文/Android开发笔记/">Android开发笔记</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Android/">Android</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/07/10/Android开发常用知识点总结/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/07/10/Android开发常用知识点总结/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/07/06/Node.js学习开发笔记/" title="Node.js学习开发笔记" itemprop="url">Node.js学习开发笔记</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Jiale Dai" target="_blank" itemprop="author">Jiale Dai</a>
-		
-  <p class="article-time">
-    <time datetime="2015-07-06T11:21:11.000Z" itemprop="datePublished"> 发表于 2015-07-06</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="前言">前言</h1><blockquote>
-<p>第一次接触Node.js是大二在四川长虹实习期间，距现在已经1年多了，在自己的一些项目中有用到，积累了一些经验，但是想更加系统的学习一下这门技术（主要这两年发展的太火了。。），同时也想把一些开发过程中的问题和案例分享出来， 特为此撰写一篇博客笔记…<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/07/06/Node.js学习开发笔记/#more">阅读更多</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/原创博文/">原创博文</a>►<a class="article-category-link" href="/categories/原创博文/Web开发日记/">Web开发日记</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Javascript/">Javascript</a><a href="/tags/Node-js/">Node.js</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/07/06/Node.js学习开发笔记/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/07/06/Node.js学习开发笔记/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-
-  <nav id="page-nav" class="clearfix">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
-  </nav>
-
-</div>
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#简介"><span class="toc-number">2.</span> <span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安全保护一般性要点"><span class="toc-number">2.1.</span> <span class="toc-text">安全保护一般性要点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#不相信表单"><span class="toc-number">2.1.1.</span> <span class="toc-text">不相信表单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不相信用户"><span class="toc-number">2.1.2.</span> <span class="toc-text">不相信用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关闭全局变量"><span class="toc-number">2.1.3.</span> <span class="toc-text">关闭全局变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL注入攻击"><span class="toc-number">2.1.4.</span> <span class="toc-text">SQL注入攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#防止基本的XSS攻击"><span class="toc-number">2.1.5.</span> <span class="toc-text">防止基本的XSS攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用SafeHTML防止XSS攻击"><span class="toc-number">2.1.6.</span> <span class="toc-text">使用SafeHTML防止XSS攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用mcrypt加密数据"><span class="toc-number">2.1.7.</span> <span class="toc-text">使用mcrypt加密数据</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#更多参考"><span class="toc-number">3.</span> <span class="toc-text">更多参考</span></a></li></ol>
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
@@ -766,6 +535,11 @@ $(document).ready(function(){
     o.css("top",Math.max(80,260-$(this).scrollTop()));
   });
   
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
   $(window).resize(function(){
     getSize(); 
     if (myWidth >= 1024) {
@@ -774,12 +548,69 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
 
 
 
@@ -883,4 +714,4 @@ $(document).ready(function(){
 <!-- Tiny_search End -->
 
   </body>
- </html>
+</html>
