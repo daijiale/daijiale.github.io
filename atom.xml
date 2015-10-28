@@ -4,7 +4,7 @@
   <subtitle><![CDATA[只有汗水不会欺骗你 || Only sweat will not fail you]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://daijiale.github.io/"/>
-  <updated>2015-10-07T07:03:12.000Z</updated>
+  <updated>2015-10-28T14:28:39.000Z</updated>
   <id>http://daijiale.github.io/</id>
   
   <author>
@@ -15,11 +15,56 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[PHP跟踪错误7大步骤]]></title>
+    <link href="http://daijiale.github.io/2015/10/10/PHP%E8%B7%9F%E8%B8%AA%E9%94%99%E8%AF%AF7%E5%A4%A7%E6%AD%A5%E9%AA%A4/"/>
+    <id>http://daijiale.github.io/2015/10/10/PHP跟踪错误7大步骤/</id>
+    <published>2015-10-10T04:34:21.000Z</published>
+    <updated>2015-10-28T14:28:39.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>这个话题老生长谈了，在面试中必然考核的能力中，我个人认为解决问题能力是排第一位的，比学习能力优先级更高。解决问题的能力既能看出程序员的思维能力，应变能力，探索能力等，又可以看出他的经验。如果解决问题能力不佳是无法通过面试的。</p>
+<p>这里举个例子，假如我执行了一个PHP的脚本，如php test.php，预期是可以返回一个字符串。但执行后没有任何信息输出，这时候通过什么方法能知道程序错在哪里？这里可以将解决问题能力分为8个等级，越到后面的表示能力越强。</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="Lv0_查看PHP错误信息">Lv0 查看PHP错误信息</h1><p>程序没有达到预期效果，证明代码出错了，看PHP的错误信息是第一步。如果直接忽略错误信息，表明这个人不适合担任专业的程序员岗位。有些情况下php.ini配置中关闭了错误显示，需要修改php.ini打开错误信息，或者错误信息被导出到了日志文件，这种情况可以直接tailf php_error.log来看错误信息。</p>
+<p>拿到错误信息后直接定位到程序代码问题，或者到Google/百度搜索，即可解决问题。</p>
+<p>注：打开错误显示的方法是</p>
+<p>php.ini中display_errors / display_startup_errors 设置为On<br>php.ini中error_reporting 设置为E_ALL<br>PHP代码中设置error_reporting(E_ALL)<br>Lv1 存在多个版本的php或php-cli与php-fpm加载不同的配置</p>
+<p>存在多个版本的php，懂得通过which php来看是哪个PHP，或者加绝对路径制定php版本。表示此PHPer通过了此层级的50%考验。</p>
+<p>另外一个情况就是php-cli与php-fpm得到的执行情况不一样，如在web浏览器中执行是对的，cli下执行是错的。这时候可能是2个环境加载的php.ini不同所致。cli下通过php -i |grep php.ini得到加载了哪个php.ini。而fpm下通过phpinfo()函数可以得到php.ini的绝对路径。</p>
+<h1 id="Lv2_var_dump/die打印变量值信息单步调试">Lv2 var_dump/die打印变量值信息单步调试</h1><p>这是惯用的程序调试手段，也是最简单粗暴有效的解决问题方法。高级一点的手段是使用PHP的Trace类/日志类，花哨一点的可以借助phpstorm+xdebug在IDE工具里进行Debug。</p>
+<p>Trace工具还可以分析脚本的耗时，进行PHP程序的性能优化。</p>
+<p>这3个考验全部通过，表明此程序员已经具备了专业PHP程序员应该有的解决问题能力了。PHP程序员只要过了这个等级，就足以应多大部分情况，在中小型网站中毫无压力。</p>
+<h1 id="Lv3_使用strace工具跟踪程序执行">Lv3 使用strace工具跟踪程序执行</h1><p>strace可以用来查看系统调用的执行，使用strace php test.php，或者strace -p 进程ID。strace就可以帮助你透过现象看本质，掌握程序执行的过程。这个手段是在大型网站，大公司里最常用的。如果没掌握strace，这里只能说抱歉了，我们不接受不会strace的PHPer。</p>
+<p>strace其实也是对程序员基础的考验，如果不懂操作操作系统，完全不懂底层，肯定也达不到会用strace的程度。当然strace对于PHP代码里的死循环是解决不了的。比如你发现一个php-fpm进程CPU100%了，strace恐怕是解决不了的。因为strace是看系统调用，一般都是IO类操作，既然是IO密集，那CPU一定不可能是100%。</p>
+<h1 id=""> </h1><h1 id="Lv4_使用tcpdump工具分析网络通信过程">Lv4 使用tcpdump工具分析网络通信过程</h1><p>tcpdump可以抓到网卡的数据通信过程，甚至数据内容也可以抓到。使用tcpdump可以看到网络通信过程是什么样的，如何时发起了TCP SYN3次握手，何时发送FIN包，何时发送RST包。这是一个基本功，如果不懂tcpdump，证明不具备网络问题解决能力。</p>
+<h1 id="Lv5_统计函数调用的耗时和成功率">Lv5 统计函数调用的耗时和成功率</h1><p>使用xhporf/xdebug导出PHP请求的调用过程，然后分析每个函数调用的过程和耗时。能够分析PHP程序的性能瓶颈，找出可以优化的点。</p>
+<p>另外一个对于网络服务的调用，如mysql查询，curl，其他API调用等，通过记录起始和结束时microtime，返回的是不是false，可以得到调用是否成功，耗时多少。如果可以汇总数据，整理出调用的成功率，失败率，平均延时，证明此程序员对接口质量敏感，有大型网站项目经验。</p>
+<h1 id="Lv6_gdb使用">Lv6 gdb使用</h1><p>gdb是C/C++调试程序的利器，需要具备一定C/C++功底的程序员才会能熟练使用gdb。上面说的strace无法跟踪php程序CPU100%，而gdb是可以跟踪的。另外gdb也可以解决php程序core dump的问题。</p>
+<p>通过gdb -p 进程ID，再配合php-src的.gdbinit zbacktrace等工具，可以很方便地跟踪PHP程序的执行。像上面的CPU100%往往是PHP程序中发生死循环了，gdb进行多次查看，就大致可以得到死循环的位置。具备gdb解决问题能力的PHP程序员少之又少。如果能使用gdb解决PHP问题，这个PHPer百分之百可以通过面试，并且可以拿到较高的技术评级。</p>
+<h1 id="Lv7_查看PHP内核和扩展源码">Lv7 查看PHP内核和扩展源码</h1><p>如果能熟悉PHP内核和扩展的源码，遇到PHP程序中最复杂的内存错误，也可以有解决的能力。这类PHP程序员就是凤毛麟角了。配合gdb工具和对PHP源码的熟悉，可以查看opcode的信息，execute_data的内存，全局变量的状态等。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>这个话题老生长谈了，在面试中必然考核的能力中，我个人认为解决问题能力是排第一位的，比学习能力优先级更高。解决问题的能力既能看出程序员的思维能力，应变能力，探索能力等，又可以看出他的经验。如果解决问题能力不佳是无法通过面试的。</p>
+<p>这里举个例子，假如我执行了一个PHP的脚本，如php test.php，预期是可以返回一个字符串。但执行后没有任何信息输出，这时候通过什么方法能知道程序错在哪里？这里可以将解决问题能力分为8个等级，越到后面的表示能力越强。</p>
+</blockquote>]]>
+    
+    </summary>
+    
+      <category term="PHP" scheme="http://daijiale.github.io/tags/PHP/"/>
+    
+      <category term="转载博文" scheme="http://daijiale.github.io/categories/%E8%BD%AC%E8%BD%BD%E5%8D%9A%E6%96%87/"/>
+    
+      <category term="Web开发分享" scheme="http://daijiale.github.io/categories/%E8%BD%AC%E8%BD%BD%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E5%88%86%E4%BA%AB/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[cURL使用之PHP]]></title>
     <link href="http://daijiale.github.io/2015/09/21/PHP_cURL/"/>
     <id>http://daijiale.github.io/2015/09/21/PHP_cURL/</id>
     <published>2015-09-21T13:21:11.000Z</published>
-    <updated>2015-10-07T07:03:12.000Z</updated>
+    <updated>2015-10-09T06:05:02.000Z</updated>
     <content type="html"><![CDATA[<h1 id="前言">前言</h1><blockquote>
 <p>cURL(Client URL Library Functions): curl is a command line tool for transferring data with URL syntax,即使用URL语法传输数据的命令行工具。<br><a id="more"></a></p>
 </blockquote>
@@ -82,7 +127,7 @@
     <link href="http://daijiale.github.io/2015/09/21/PHP%E5%AE%89%E5%85%A8%E6%80%A7%E5%BC%80%E5%8F%91/"/>
     <id>http://daijiale.github.io/2015/09/21/PHP安全性开发/</id>
     <published>2015-09-21T13:21:11.000Z</published>
-    <updated>2015-10-07T09:09:58.000Z</updated>
+    <updated>2015-10-28T14:28:29.000Z</updated>
     <content type="html"><![CDATA[<h1 id="前言">前言</h1><blockquote>
 <p>php给了开发者极大的灵活性，但是这也为安全问题带来了潜在的隐患，近期需要总结一下以往的问题，在这里借翻译一篇文章同时加上自己开发的一些感触总结一下。<br><a id="more"></a></p>
 </blockquote>
@@ -165,7 +210,7 @@
     
       <category term="转载博文" scheme="http://daijiale.github.io/categories/%E8%BD%AC%E8%BD%BD%E5%8D%9A%E6%96%87/"/>
     
-      <category term="Web开发日记" scheme="http://daijiale.github.io/categories/%E8%BD%AC%E8%BD%BD%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E6%97%A5%E8%AE%B0/"/>
+      <category term="Web开发分享" scheme="http://daijiale.github.io/categories/%E8%BD%AC%E8%BD%BD%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -174,7 +219,7 @@
     <link href="http://daijiale.github.io/2015/07/21/Android%E6%B1%82%E8%81%8C%E7%9F%A5%E8%AF%86%E7%82%B9Review/"/>
     <id>http://daijiale.github.io/2015/07/21/Android求职知识点Review/</id>
     <published>2015-07-21T07:13:09.000Z</published>
-    <updated>2015-10-07T07:03:12.000Z</updated>
+    <updated>2015-10-09T06:05:02.000Z</updated>
     <content type="html"><![CDATA[<h1 id="JAVA">JAVA</h1><h2 id="1-_举例说明多态和重载区别">1. 举例说明多态和重载区别</h2><pre><code><span class="keyword">*</span><span class="keyword">*</span> 重载<span class="keyword">*</span><span class="keyword">*</span>
 </code></pre> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;&#10;void Aa(int a )&#123;....&#125;&#10;void Aa (int a,int b)&#123;...&#125; &#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>虽然Aa定义了2个 但是因为他们注册的参数不同所以 看作为2个不同的方法</p>
@@ -247,7 +292,7 @@
     <link href="http://daijiale.github.io/2015/07/10/Android%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/"/>
     <id>http://daijiale.github.io/2015/07/10/Android开发常用知识点总结/</id>
     <published>2015-07-10T07:13:09.000Z</published>
-    <updated>2015-10-07T07:03:12.000Z</updated>
+    <updated>2015-10-09T06:05:02.000Z</updated>
     <content type="html"><![CDATA[<h1 id="Android开发常用知识点总结：">Android开发常用知识点总结：</h1><a id="more"></a>
 <h2 id="Android异步加载：">Android异步加载：</h2><p>  用异步的方式去加载数据（主要是图像，不解释），可以让用户在刷新数据时候不用经历太多卡顿，这也是Google官方要求我们去做的一种方式。</p>
 <ul>
@@ -306,7 +351,7 @@
     <link href="http://daijiale.github.io/2015/07/06/Node.js%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
     <id>http://daijiale.github.io/2015/07/06/Node.js学习开发笔记/</id>
     <published>2015-07-06T11:21:11.000Z</published>
-    <updated>2015-10-07T07:03:12.000Z</updated>
+    <updated>2015-10-09T06:05:02.000Z</updated>
     <content type="html"><![CDATA[<h1 id="前言">前言</h1><blockquote>
 <p>第一次接触Node.js是大二在四川长虹实习期间，距现在已经1年多了，在自己的一些项目中有用到，积累了一些经验，但是想更加系统的学习一下这门技术（主要这两年发展的太火了。。），同时也想把一些开发过程中的问题和案例分享出来， 特为此撰写一篇博客笔记…<br><a id="more"></a></p>
 </blockquote>
@@ -345,7 +390,7 @@
     <link href="http://daijiale.github.io/2015/06/29/%E5%9C%A8%E7%99%BE%E5%BA%A6%E5%AE%9E%E4%B9%A0%E7%9A%84%E9%82%A3%E4%BA%9B%E6%97%A5%E5%AD%90/"/>
     <id>http://daijiale.github.io/2015/06/29/在百度实习的那些日子/</id>
     <published>2015-06-29T11:13:09.000Z</published>
-    <updated>2015-10-07T07:03:12.000Z</updated>
+    <updated>2015-10-09T06:05:02.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>时间：2014.11.19-2015.6.24</p>
 <p>地点：北京海淀区上地东路鹏寰国际大厦</p>
@@ -472,7 +517,7 @@
     <link href="http://daijiale.github.io/2015/06/10/%E5%9F%BA%E4%BA%8E%E7%99%BE%E5%BA%A6ODP%E7%9A%84%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
     <id>http://daijiale.github.io/2015/06/10/基于百度ODP的前端开发/</id>
     <published>2015-06-10T03:03:09.000Z</published>
-    <updated>2015-10-07T07:03:12.000Z</updated>
+    <updated>2015-10-09T06:05:02.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>ODP，即Online Develop Platform，是为百度Web业务提供完善且高度集成的基础环境、框架、基础库和工具，统一规范模式。</p>
 <p>个人认为，这套PHP开发框架和TP类似，但是安全性和效率性方便远胜于TP</p>
@@ -623,7 +668,7 @@
     <link href="http://daijiale.github.io/2015/06/09/JavaScript%E7%BB%8F%E5%85%B8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93/"/>
     <id>http://daijiale.github.io/2015/06/09/JavaScript经典设计模式总结/</id>
     <published>2015-06-09T03:29:31.000Z</published>
-    <updated>2015-10-07T07:03:12.000Z</updated>
+    <updated>2015-10-09T06:05:02.000Z</updated>
     <content type="html"><![CDATA[<h1 id="前言">前言</h1><blockquote>
 <p>在百度即将离职的最后一个月里，我被派往新项目担任FE的角色，借此机会也重新review一下大一大二的老本行——Web前端开发。这篇Blog是对自己所学2年JS的一个设计模式总结，也是实际编码中经常用到的很多经典Case，希望能帮助到更多JS开发者，也给那些还活跃在 <code>JS API</code> 层的同学打开一个新的学习思路。<br>PS：本篇Blog侧重点在于JS的设计模式，如果只是期望了解JS语法，请直接戳<a href="http://www.w3school.com.cn/js/index.asp" target="_blank" rel="external">W3C传送门</a>！<br><a id="more"></a></p>
 </blockquote>
@@ -666,7 +711,7 @@
     <link href="http://daijiale.github.io/2015/05/28/%E9%98%BF%E9%87%8C%E7%99%BE%E5%B7%9DHackathon/"/>
     <id>http://daijiale.github.io/2015/05/28/阿里百川Hackathon/</id>
     <published>2015-05-28T12:23:09.000Z</published>
-    <updated>2015-10-07T07:03:12.000Z</updated>
+    <updated>2015-10-09T06:05:02.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>时间：2015.5.21-2015.5.24</p>
 <p>地点：杭州 阿里百川海创大厦</p>
@@ -741,7 +786,7 @@
     <link href="http://daijiale.github.io/2015/05/06/ADB%E5%B8%B8%E7%94%A8Shell%E5%91%BD%E4%BB%A4/"/>
     <id>http://daijiale.github.io/2015/05/06/ADB常用Shell命令/</id>
     <published>2015-05-06T08:23:09.000Z</published>
-    <updated>2015-10-07T07:03:12.000Z</updated>
+    <updated>2015-10-09T06:05:02.000Z</updated>
     <content type="html"><![CDATA[<h1 id="实用Adb_Shell命令演示">实用Adb Shell命令演示</h1><blockquote>
 <p>一些灵巧方便的Adb Shell命令笔记</p>
 </blockquote>
@@ -904,7 +949,7 @@
     <link href="http://daijiale.github.io/2015/05/04/%E6%9C%80%E5%85%A8%E7%9A%84AndroidWear%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
     <id>http://daijiale.github.io/2015/05/04/最全的AndroidWear开发笔记/</id>
     <published>2015-05-04T08:23:09.000Z</published>
-    <updated>2015-10-07T07:03:12.000Z</updated>
+    <updated>2015-10-09T06:05:02.000Z</updated>
     <content type="html"><![CDATA[<h1 id="本文作者">本文作者</h1><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicslrme.jpg" alt=""></p>
 <h2 id="Jiale_Dai"><a href="http://www.daijiale.cn" target="_blank" rel="external">Jiale Dai</a></h2><p>成都 电子科技大学 本科生( 其实还没毕业，目前大三 ）</p>
 <p>从14年开始一直专研于AndroidWear开发</p>
@@ -1269,7 +1314,7 @@
     <link href="http://daijiale.github.io/2015/04/27/%E6%88%91%E7%9A%84%E4%B8%80%E7%82%B9%E7%9C%8B%E6%B3%95%E5%85%B3%E4%BA%8E%E7%9B%AE%E5%89%8D%E5%B8%82%E9%9D%A2%E4%B8%8A%E6%B5%81%E8%A1%8C%E7%9A%84Git%E6%89%98%E7%AE%A1%E6%9C%8D%E5%8A%A1%E7%A4%BE%E5%8C%BA/"/>
     <id>http://daijiale.github.io/2015/04/27/我的一点看法关于目前市面上流行的Git托管服务社区/</id>
     <published>2015-04-27T03:39:09.000Z</published>
-    <updated>2015-10-07T07:03:12.000Z</updated>
+    <updated>2015-10-09T06:05:02.000Z</updated>
     <content type="html"><![CDATA[<p><code>git</code> 服务社区越来越多，无论是国外的还是国内的，免费公益的还是按需收费的，我们该如何选择呢？</p>
 <p>这里整理了一些我自己接触过的，给大家参考一下：</p>
 <a id="more"></a>
@@ -1310,7 +1355,7 @@
     <link href="http://daijiale.github.io/2015/04/26/%E5%8D%95%E5%8F%8D%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/"/>
     <id>http://daijiale.github.io/2015/04/26/单反自学笔记/</id>
     <published>2015-04-26T13:26:09.000Z</published>
-    <updated>2015-10-07T07:03:12.000Z</updated>
+    <updated>2015-10-09T06:05:02.000Z</updated>
     <content type="html"><![CDATA[<p><strong>PS：</strong>2015年4月在<a href="http://mp.weixin.qq.com/s?__biz=MzAxMDM5MTIwMw==&amp;mid=204127766&amp;idx=1&amp;sn=7c6a4b87110f472a1ced270b6daafc10&amp;scene=5#rd" target="_blank" rel="external">胖哥（Axl、隔壁老王）</a>的唆使下，我入手了人身第一台<a href="http://baike.baidu.com/link?url=lUwpC5ksAq3Sh_zqGsNAZ4NmcxmiPul3P6SV-QXO5vdWItnvlm7GjvBreNyqoFYWoj-bbozDnDd0yU6lnqsKy7tsVn5qpNJ7BrEFqh_-k1Ml32XcaLvK0FlHUbbrL_eifzZoMYNglLhc-aX8K1XCd_" target="_blank" rel="external">单反</a>…（迈入继耳机之后的又一深坑）这篇Blog是最近学习新技能时做的笔记：</p>
 <h1 id="单反自学笔记_新人篇">单反自学笔记_新人篇</h1><ul>
 <li><a href="http://note.youdao.com/share/?id=48a8f388b8f5cb21ab3cd50d169a665f&amp;type=note" target="_blank" rel="external">新人第一课：井字构图法</a></li>
@@ -1352,7 +1397,7 @@
     <link href="http://daijiale.github.io/2015/04/15/%E7%99%BE%E5%BA%A6%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8AHackathon%20Coding%20Party%E5%B0%8F%E8%AE%B0/"/>
     <id>http://daijiale.github.io/2015/04/15/百度第十二届Hackathon Coding Party小记/</id>
     <published>2015-04-15T12:23:09.000Z</published>
-    <updated>2015-10-07T07:03:12.000Z</updated>
+    <updated>2015-10-09T06:05:02.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>时间：2015.4.11-2015.4.14</p>
 <p>地点：北京 百度大厦</p>
@@ -1423,7 +1468,7 @@
     <link href="http://daijiale.github.io/2015/04/09/AjaxReview/"/>
     <id>http://daijiale.github.io/2015/04/09/AjaxReview/</id>
     <published>2015-04-09T10:30:09.000Z</published>
-    <updated>2015-10-07T07:03:12.000Z</updated>
+    <updated>2015-10-09T06:05:02.000Z</updated>
     <content type="html"><![CDATA[<p><strong>PS：</strong>写这篇Blog主要有两个三个动机：</p>
 <ul>
 <li>对以前自己所学知识的一个系统化review</li>
@@ -1673,7 +1718,7 @@
     <link href="http://daijiale.github.io/2015/04/03/%E8%AE%B0%E5%8D%97%E6%98%8C%E4%BA%8C%E4%B8%AD/"/>
     <id>http://daijiale.github.io/2015/04/03/记南昌二中/</id>
     <published>2015-04-03T05:20:09.000Z</published>
-    <updated>2015-10-07T07:03:12.000Z</updated>
+    <updated>2015-10-09T06:05:02.000Z</updated>
     <content type="html"><![CDATA[<h1 id="硬件">硬件</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中在硬件上最大的特点就是壕！第一次来二中参加考试时便被壕气外露的红砖绿叶迷住了。还有人造草皮的足球场，三年一遇的游泳馆（三年就上过一次课），堆满了电脑随便用的图书馆。学校里四处都是花花草草，校门的花坛一月一换，班上的一体机切水果什么的信手拈来。就是任性就是壕！<br><a id="more"></a></p>
 <h1 id="师资">师资</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中的老师阵容十分强大，但随着这几年扩招老师资源也变得有些吃紧了。重点班尚能保证豪华阵容，在江西可以说不会逊色于任何学校的重点班，但平行班就会有很多刚进校不久的年轻老师了。当然不是说年轻老师一定不好，但是在高中尤其是高三，老师的经验与鼓舞对班级的提高是很有用的。所以二中这几年也在拼命招揽人才，目前一大批年轻老师已经走上一线，师资整体实力依然很强大。<br>3.理念：二中多年来一直重视综合素质教育，社团和各种活动巨多！学校也给很大的支持，每一届都会产生许多交际花。不过由于近年高考成绩不理想，15届开始进行了一些改革，加大了学业方面的侧重。所以未来二中也许会少一些交际花多一批学霸。</p>
 <h1 id="总结">总结</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中是一个神奇的地方，不论是在晨会上考试中挥斥方遒碾压众人的大神，还是走廊上树林旁对老师阿鲁巴时杀伐果断的凌厉，或是操场边天台上情侣基友看西山日落时的静谧，又抑或是顶楼学霸们在下课铃响时冲下楼梯直奔食堂的气势，它们一起组成了二中独一无二的体验。</p>
@@ -1699,7 +1744,7 @@
     <link href="http://daijiale.github.io/2015/04/02/Blog%E8%BF%81%E7%A7%BB%E6%97%A5%E8%AE%B0/"/>
     <id>http://daijiale.github.io/2015/04/02/Blog迁移日记/</id>
     <published>2015-04-02T15:30:09.000Z</published>
-    <updated>2015-10-07T07:03:12.000Z</updated>
+    <updated>2015-10-09T06:05:02.000Z</updated>
     <content type="html"><![CDATA[<p><strong>以下所指“更新”：均为Blog技术更新，非文章更新</strong></p>
 <h1 id="第一次更新_个人Blog">第一次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;说起自己的第一个Blog，要从小学刚开通QQ空间开始，具体几年级已经记不清了，那个时候刚甩掉纸质日记本，然后就迈入网络日志的深坑。以前倒是产出了不少优质日志，不过都是些多愁善感的随便，至今都已经封存进<em>私密日日记</em>中(如下图)：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpic_qqzonesec.PNG" alt=""><br><a id="more"></a></p>
 <h1 id="第二次更新_个人Blog">第二次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后面高中开始玩人人，Blog也顺势搬到人人。。。现在想来这搬迁史也很简单——围绕社交圈，毕竟Blog写出来是给人看的，而QQzone和人人都是一个很好的社交载体。当然，如今的人人，我早已放弃，一个月都不登一次的这种，blog数据也全部清除了，高中写的都是些没营养的东西，个人认为没有存在的价值。<br>最后留张图纪念一下曾经的人人帐号：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicrenren.PNG" alt=""></p>

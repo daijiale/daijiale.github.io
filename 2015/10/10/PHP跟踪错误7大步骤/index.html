@@ -4,28 +4,26 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>我的一点看法关于市面上流行的Git托管服务社区 | DaiJiale&#39;s Blog</title>
+    <title>PHP跟踪错误7大步骤 | DaiJiale&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Jiale Dai">
     
 
     
-    <meta name="description" content="git 服务社区越来越多，无论是国外的还是国内的，免费公益的还是按需收费的，我们该如何选择呢？
-这里整理了一些我自己接触过的，给大家参考一下：">
+    <meta name="description" content="这个话题老生长谈了，在面试中必然考核的能力中，我个人认为解决问题能力是排第一位的，比学习能力优先级更高。解决问题的能力既能看出程序员的思维能力，应变能力，探索能力等，又可以看出他的经验。如果解决问题能力不佳是无法通过面试的。
+这里举个例子，假如我执行了一个PHP的脚本，如php test.php，预期是可以返回一个字符串。但执行后没有任何信息输出，这时候通过什么方法能知道程序错在哪里？这里可以将解">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我的一点看法关于市面上流行的Git托管服务社区">
-<meta property="og:url" content="http://daijiale.github.io/2015/04/27/我的一点看法关于目前市面上流行的Git托管服务社区/index.html">
+<meta property="og:title" content="PHP跟踪错误7大步骤">
+<meta property="og:url" content="http://daijiale.github.io/2015/10/10/PHP跟踪错误7大步骤/index.html">
 <meta property="og:site_name" content="DaiJiale's Blog">
-<meta property="og:description" content="git 服务社区越来越多，无论是国外的还是国内的，免费公益的还是按需收费的，我们该如何选择呢？
-这里整理了一些我自己接触过的，给大家参考一下：">
-<meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicgitosc.PNG">
-<meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicgogs.PNG">
-<meta property="og:updated_time" content="2015-10-09T06:05:02.000Z">
+<meta property="og:description" content="这个话题老生长谈了，在面试中必然考核的能力中，我个人认为解决问题能力是排第一位的，比学习能力优先级更高。解决问题的能力既能看出程序员的思维能力，应变能力，探索能力等，又可以看出他的经验。如果解决问题能力不佳是无法通过面试的。
+这里举个例子，假如我执行了一个PHP的脚本，如php test.php，预期是可以返回一个字符串。但执行后没有任何信息输出，这时候通过什么方法能知道程序错在哪里？这里可以将解">
+<meta property="og:updated_time" content="2015-10-28T14:28:39.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我的一点看法关于市面上流行的Git托管服务社区">
-<meta name="twitter:description" content="git 服务社区越来越多，无论是国外的还是国内的，免费公益的还是按需收费的，我们该如何选择呢？
-这里整理了一些我自己接触过的，给大家参考一下：">
+<meta name="twitter:title" content="PHP跟踪错误7大步骤">
+<meta name="twitter:description" content="这个话题老生长谈了，在面试中必然考核的能力中，我个人认为解决问题能力是排第一位的，比学习能力优先级更高。解决问题的能力既能看出程序员的思维能力，应变能力，探索能力等，又可以看出他的经验。如果解决问题能力不佳是无法通过面试的。
+这里举个例子，假如我执行了一个PHP的脚本，如php test.php，预期是可以返回一个字符串。但执行后没有任何信息输出，这时候通过什么方法能知道程序错在哪里？这里可以将解">
 
     
     <link rel="alternative" href="/atom.xml" title="DaiJiale&#39;s Blog" type="application/atom+xml">
@@ -85,14 +83,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/04/27/我的一点看法关于目前市面上流行的Git托管服务社区/" title="我的一点看法关于市面上流行的Git托管服务社区" itemprop="url">我的一点看法关于市面上流行的Git托管服务社区</a>
+      <a href="/2015/10/10/PHP跟踪错误7大步骤/" title="PHP跟踪错误7大步骤" itemprop="url">PHP跟踪错误7大步骤</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Jiale Dai" target="_blank" itemprop="author">Jiale Dai</a>
 		
   <p class="article-time">
-    <time datetime="2015-04-27T03:39:09.000Z" itemprop="datePublished"> 发表于 2015-04-27</time>
+    <time datetime="2015-10-10T04:34:21.000Z" itemprop="datePublished"> 发表于 2015-10-10</time>
     
   </p>
 </header>
@@ -101,28 +99,32 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#市面上流行的Git服务社区："><span class="toc-number">1.</span> <span class="toc-text">市面上流行的Git服务社区：</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Lv0_查看PHP错误信息"><span class="toc-number">1.</span> <span class="toc-text">Lv0 查看PHP错误信息</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lv2_var_dump/die打印变量值信息单步调试"><span class="toc-number">2.</span> <span class="toc-text">Lv2 var_dump/die打印变量值信息单步调试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lv3_使用strace工具跟踪程序执行"><span class="toc-number">3.</span> <span class="toc-text">Lv3 使用strace工具跟踪程序执行</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#"><span class="toc-number">4.</span> <span class="toc-text"> </span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lv4_使用tcpdump工具分析网络通信过程"><span class="toc-number">5.</span> <span class="toc-text">Lv4 使用tcpdump工具分析网络通信过程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lv5_统计函数调用的耗时和成功率"><span class="toc-number">6.</span> <span class="toc-text">Lv5 统计函数调用的耗时和成功率</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lv6_gdb使用"><span class="toc-number">7.</span> <span class="toc-text">Lv6 gdb使用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lv7_查看PHP内核和扩展源码"><span class="toc-number">8.</span> <span class="toc-text">Lv7 查看PHP内核和扩展源码</span></a></li></ol>
 		
 		</div>
 		
-		<p><code>git</code> 服务社区越来越多，无论是国外的还是国内的，免费公益的还是按需收费的，我们该如何选择呢？</p>
-<p>这里整理了一些我自己接触过的，给大家参考一下：</p>
+		<blockquote>
+<p>这个话题老生长谈了，在面试中必然考核的能力中，我个人认为解决问题能力是排第一位的，比学习能力优先级更高。解决问题的能力既能看出程序员的思维能力，应变能力，探索能力等，又可以看出他的经验。如果解决问题能力不佳是无法通过面试的。</p>
+<p>这里举个例子，假如我执行了一个PHP的脚本，如php test.php，预期是可以返回一个字符串。但执行后没有任何信息输出，这时候通过什么方法能知道程序错在哪里？这里可以将解决问题能力分为8个等级，越到后面的表示能力越强。</p>
+</blockquote>
 <a id="more"></a>
-<h1 id="市面上流行的Git服务社区：">市面上流行的Git服务社区：</h1><ul>
-<li>1、<code>Github</code>：不解释。</li>
-<li><p>2、<code>GitLab</code>：在github上全开源，CE私有库免费，现在很多新生git社区的内核，后面提到的Git@OSC就是基于它做的。<br>两个版本 ：GitLab 社区版（CE）是可用而不下MIT许可证的任何费用。<br>GitLab企业版（EE） ，包括额外的功能，这对于拥有超过100个用户的组织最有用的。要访问的EE和支持，请成为用户。</p>
-</li>
-<li><p>3、<code>GitCafe</code>：私有库收费，企业版还TM未开放。。。唯一的优点可能就是国内优秀的合作伙伴（等等）比较多！</p>
-</li>
-<li><p>4、<code>Git@OSC</code>：每人可以1000个库，无论是私有还是公有，和Team@OSC，Sonar@OSC，PaaS@OSC可以配套使用，形成闭环，整个生态基本全部免费，专业化集成度最高！<br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicgitosc.PNG" alt=""></p>
-</li>
-<li><p>5、<code>Gogs</code>：新生力量，前段时间在好友<a href="http://blog.paincompiler.us/" target="_blank" rel="external">NastyLeoc</a>的SinaWeiBlog上看到的，基于go语言的超轻量级平台，在github上全开源，支持fork pull协作，私有库免费，听说性能也很不错，前景比较大，膜拜一下四位缔造者：<br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicgogs.PNG" alt=""></p>
-</li>
-</ul>
-<ul>
-<li>6、<code>Bitbucket</code>：性质和github差不多，元老级社区，但是。。。被github完虐！</li>
-<li>7、<code>coding</code>：我个人最喜欢的一个协作环境，支持复用开发环境是其最大的亮点，同时也可以体验云端编程的快感，移动端的支持也很给力，目前Android和IOS的两个客户端都很稳定，码农社交圈也在慢慢扩大。自己目前正有把私有项目全都搬过去的打算(私有仓库还TM是免费的）。<a href="http://blog.coding.net/blog/why-coding-does-not-equals-github" target="_blank" rel="external">但coding绝对不是“中国的github”</a></li>
-</ul>
+<h1 id="Lv0_查看PHP错误信息">Lv0 查看PHP错误信息</h1><p>程序没有达到预期效果，证明代码出错了，看PHP的错误信息是第一步。如果直接忽略错误信息，表明这个人不适合担任专业的程序员岗位。有些情况下php.ini配置中关闭了错误显示，需要修改php.ini打开错误信息，或者错误信息被导出到了日志文件，这种情况可以直接tailf php_error.log来看错误信息。</p>
+<p>拿到错误信息后直接定位到程序代码问题，或者到Google/百度搜索，即可解决问题。</p>
+<p>注：打开错误显示的方法是</p>
+<p>php.ini中display_errors / display_startup_errors 设置为On<br>php.ini中error_reporting 设置为E_ALL<br>PHP代码中设置error_reporting(E_ALL)<br>Lv1 存在多个版本的php或php-cli与php-fpm加载不同的配置</p>
+<p>存在多个版本的php，懂得通过which php来看是哪个PHP，或者加绝对路径制定php版本。表示此PHPer通过了此层级的50%考验。</p>
+<p>另外一个情况就是php-cli与php-fpm得到的执行情况不一样，如在web浏览器中执行是对的，cli下执行是错的。这时候可能是2个环境加载的php.ini不同所致。cli下通过php -i |grep php.ini得到加载了哪个php.ini。而fpm下通过phpinfo()函数可以得到php.ini的绝对路径。</p>
+<h1 id="Lv2_var_dump/die打印变量值信息单步调试">Lv2 var_dump/die打印变量值信息单步调试</h1><p>这是惯用的程序调试手段，也是最简单粗暴有效的解决问题方法。高级一点的手段是使用PHP的Trace类/日志类，花哨一点的可以借助phpstorm+xdebug在IDE工具里进行Debug。</p>
+<p>Trace工具还可以分析脚本的耗时，进行PHP程序的性能优化。</p>
+<p>这3个考验全部通过，表明此程序员已经具备了专业PHP程序员应该有的解决问题能力了。PHP程序员只要过了这个等级，就足以应多大部分情况，在中小型网站中毫无压力。</p>
+<h1 id="Lv3_使用strace工具跟踪程序执行">Lv3 使用strace工具跟踪程序执行</h1><p>strace可以用来查看系统调用的执行，使用strace php test.php，或者strace -p 进程ID。strace就可以帮助你透过现象看本质，掌握程序执行的过程。这个手段是在大型网站，大公司里最常用的。如果没掌握strace，这里只能说抱歉了，我们不接受不会strace的PHPer。</p>
+<p>strace其实也是对程序员基础的考验，如果不懂操作操作系统，完全不懂底层，肯定也达不到会用strace的程度。当然strace对于PHP代码里的死循环是解决不了的。比如你发现一个php-fpm进程CPU100%了，strace恐怕是解决不了的。因为strace是看系统调用，一般都是IO类操作，既然是IO密集，那CPU一定不可能是100%。</p>
+<h1 id=""> </h1><h1 id="Lv4_使用tcpdump工具分析网络通信过程">Lv4 使用tcpdump工具分析网络通信过程</h1><p>tcpdump可以抓到网卡的数据通信过程，甚至数据内容也可以抓到。使用tcpdump可以看到网络通信过程是什么样的，如何时发起了TCP SYN3次握手，何时发送FIN包，何时发送RST包。这是一个基本功，如果不懂tcpdump，证明不具备网络问题解决能力。</p>
+<h1 id="Lv5_统计函数调用的耗时和成功率">Lv5 统计函数调用的耗时和成功率</h1><p>使用xhporf/xdebug导出PHP请求的调用过程，然后分析每个函数调用的过程和耗时。能够分析PHP程序的性能瓶颈，找出可以优化的点。</p>
+<p>另外一个对于网络服务的调用，如mysql查询，curl，其他API调用等，通过记录起始和结束时microtime，返回的是不是false，可以得到调用是否成功，耗时多少。如果可以汇总数据，整理出调用的成功率，失败率，平均延时，证明此程序员对接口质量敏感，有大型网站项目经验。</p>
+<h1 id="Lv6_gdb使用">Lv6 gdb使用</h1><p>gdb是C/C++调试程序的利器，需要具备一定C/C++功底的程序员才会能熟练使用gdb。上面说的strace无法跟踪php程序CPU100%，而gdb是可以跟踪的。另外gdb也可以解决php程序core dump的问题。</p>
+<p>通过gdb -p 进程ID，再配合php-src的.gdbinit zbacktrace等工具，可以很方便地跟踪PHP程序的执行。像上面的CPU100%往往是PHP程序中发生死循环了，gdb进行多次查看，就大致可以得到死循环的位置。具备gdb解决问题能力的PHP程序员少之又少。如果能使用gdb解决PHP问题，这个PHPer百分之百可以通过面试，并且可以拿到较高的技术评级。</p>
+<h1 id="Lv7_查看PHP内核和扩展源码">Lv7 查看PHP内核和扩展源码</h1><p>如果能熟悉PHP内核和扩展的源码，遇到PHP程序中最复杂的内存错误，也可以有解决的能力。这类PHP程序员就是凤毛麟角了。配合gdb工具和对PHP源码的熟悉，可以查看opcode的信息，execute_data的内存，全局变量的状态等。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -130,13 +132,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/原创博文/">原创博文</a>
+  <a class="article-category-link" href="/categories/转载博文/">转载博文</a>►<a class="article-category-link" href="/categories/转载博文/Web开发分享/">Web开发分享</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/git/">git</a><a href="/tags/代码托管/">代码托管</a><a href="/tags/工具神器/">工具神器</a>
+  <span></span> <a href="/tags/PHP/">PHP</a>
   </div>
 
 </div>
@@ -145,7 +147,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://daijiale.github.io/2015/04/27/我的一点看法关于目前市面上流行的Git托管服务社区/" data-title="我的一点看法关于市面上流行的Git托管服务社区 | DaiJiale&#39;s Blog" data-tsina="3173290371" class="share clearfix">
+	  <div data-url="http://daijiale.github.io/2015/10/10/PHP跟踪错误7大步骤/" data-title="PHP跟踪错误7大步骤 | DaiJiale&#39;s Blog" data-tsina="3173290371" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -158,19 +160,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/05/04/最全的AndroidWear开发笔记/" title="下次人家问再你怎么入门AndroidWear，你就甩这篇文章给TA">
-  <strong>上一篇：</strong><br/>
-  <span>
-  下次人家问再你怎么入门AndroidWear，你就甩这篇文章给TA</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/04/26/单反自学笔记/"  title="单反自学笔记">
+<a href="/2015/09/21/PHP_cURL/"  title="cURL使用之PHP">
  <strong>下一篇：</strong><br/> 
- <span>单反自学笔记
+ <span>cURL使用之PHP
 </span>
 </a>
 </div>
@@ -179,7 +173,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/04/27/我的一点看法关于目前市面上流行的Git托管服务社区/" data-title="我的一点看法关于市面上流行的Git托管服务社区" data-url="http://daijiale.github.io/2015/04/27/我的一点看法关于目前市面上流行的Git托管服务社区/"></div>
+	<div class="ds-thread" data-thread-key="2015/10/10/PHP跟踪错误7大步骤/" data-title="PHP跟踪错误7大步骤" data-url="http://daijiale.github.io/2015/10/10/PHP跟踪错误7大步骤/"></div>
 </section>
 
 
@@ -189,7 +183,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#市面上流行的Git服务社区："><span class="toc-number">1.</span> <span class="toc-text">市面上流行的Git服务社区：</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Lv0_查看PHP错误信息"><span class="toc-number">1.</span> <span class="toc-text">Lv0 查看PHP错误信息</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lv2_var_dump/die打印变量值信息单步调试"><span class="toc-number">2.</span> <span class="toc-text">Lv2 var_dump/die打印变量值信息单步调试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lv3_使用strace工具跟踪程序执行"><span class="toc-number">3.</span> <span class="toc-text">Lv3 使用strace工具跟踪程序执行</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#"><span class="toc-number">4.</span> <span class="toc-text"> </span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lv4_使用tcpdump工具分析网络通信过程"><span class="toc-number">5.</span> <span class="toc-text">Lv4 使用tcpdump工具分析网络通信过程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lv5_统计函数调用的耗时和成功率"><span class="toc-number">6.</span> <span class="toc-text">Lv5 统计函数调用的耗时和成功率</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lv6_gdb使用"><span class="toc-number">7.</span> <span class="toc-text">Lv6 gdb使用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lv7_查看PHP内核和扩展源码"><span class="toc-number">8.</span> <span class="toc-text">Lv7 查看PHP内核和扩展源码</span></a></li></ol>
  
   </div>
 
