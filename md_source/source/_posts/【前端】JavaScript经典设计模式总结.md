@@ -1,4 +1,4 @@
-title: JavaScript经典设计模式总结
+title: 【前端】JavaScript经典设计模式总结
 date: 2015-6-9 11:29:31
 tags:
 
@@ -7,7 +7,7 @@ tags:
 categories:
 
  - 原创博文
- - Web开发日记
+ - Web开发笔记
 
 ---
 

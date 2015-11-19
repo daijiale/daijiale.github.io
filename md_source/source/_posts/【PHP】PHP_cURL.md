@@ -1,4 +1,4 @@
-title: cURL使用之PHP
+title: 【PHP】cURL使用之PHP
 date: 2015-9-21 21:21:11
 tags:
 
@@ -8,7 +8,7 @@ tags:
 categories:
 
  - 原创博文
- - Web开发日记
+ - Web开发笔记
 
 ---
 
@@ -35,7 +35,7 @@ php -f xxx.php > xxx.html
 
 - 1、利用cURL直接抓取“百度”首页
 
-```
+```php
 <?php
 $curl=curl_init('http://www.baidu.com');
 curl_exec($curl);
@@ -45,7 +45,7 @@ curl_close($curl);
 
 - 2、网络上下载一个网页并把内容中的“百度”替换为“屌丝”之后输出
 
-```
+```php
 <?php
 $curlobj = curl_init();			// 初始化
 curl_setopt($curlobj, CURLOPT_URL, "http://www.baidu.com");		// 设置访问网页的URL
@@ -59,7 +59,7 @@ echo str_replace("百度","屌丝",$output);
 
 - 3、登录慕课网并下载个人空间页面
 
-```
+```php
 <?php
 /**
  * 自定义实现页面链接跳转抓取
@@ -146,7 +146,7 @@ function curl_redir_exec($ch,$debug="")
 
 - 4、获取webservice天气数据
 
-```
+```php
 <?php
 $data = 'theCityName=北京';
 $curlobj = curl_init();	
@@ -172,7 +172,7 @@ curl_close($curlobj);
 
 - 5、从FTP上下载数据
 
-```
+```php
 <?php
 $curlobj = curl_init();	
 curl_setopt($curlobj, CURLOPT_URL, "ftp://192.168.1.100/downloaddemo.txt");  
@@ -199,7 +199,7 @@ curl_close($curlobj);
 
 - 6、上传数据到FTP 
 
-```
+```php
 <?php
 
 $curlobj = curl_init();	
@@ -229,7 +229,7 @@ curl_close($curlobj);
 
 - 7、下载网络上面的一个HTTPS的资源
 
-```
+```php
 <?php
 $curlobj = curl_init();			// 初始化
 curl_setopt($curlobj, CURLOPT_URL, "https://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.js");		// 设置访问网页的URL

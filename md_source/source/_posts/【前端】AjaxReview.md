@@ -1,4 +1,4 @@
-title: AjaxReview
+title: 【前端】AjaxReview
 date: 2015-4-9 18:30:09
 
 tags:
@@ -11,7 +11,7 @@ tags:
 categories:
 
 - 原创博文
-- Web开发日记
+- Web开发笔记
 
 
 ---

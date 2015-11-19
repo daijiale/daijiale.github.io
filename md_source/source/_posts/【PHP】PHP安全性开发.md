@@ -1,4 +1,4 @@
-title: PHP安全性开发
+title: 【PHP】PHP安全性开发
 date: 2015-9-21 21:21:11
 tags:
 
@@ -39,13 +39,13 @@ categories:
 register_globals = Off
 如果这个配置选项打开之后，会出现很大的安全隐患。例如有一个process.php的脚本文件，会将接收到的数据插入到数据库，接收用户输入数据的表单可能如下：
 
-```
+```html
 <input name="username" type="text" size="15" maxlength="64">
 ```
 
 这样，当提交数据到`process.php`之后，php会注册一个`$username`变量，将这个变量数据提交到`process.php`，同时对于任何POST或GET请求参数，都会设置这样的变量。如果不是显示进行初始化那么就会出现下面的问题：
 
-```
+```php
 <?php
 // Define $authorized = true only if user is authenticated
 if (authenticated_user()) {
@@ -105,7 +105,7 @@ XSS攻击不像其他攻击，这种攻击在客户端进行，最基本的XSS�
 
 XSS工具比SQL注入更加难以防护，各大公司网站都被XSS攻击过，虽然这种攻击与php语言无关，但可以使用php来筛选用户数据达到保护用户数据的目的，这里主要使用的是对用户的数据进行过滤，一般过滤掉HTML标签，特别是a标签。下面是一个普通的过滤方法：
 
-```
+```php
 function transform_HTML($string, $length = null) {
 // Helps prevent XSS attacks
     // Remove dead space.
@@ -131,13 +131,13 @@ function transform_HTML($string, $length = null) {
 
 但是对于有经验的XSS攻击者，有更加巧妙的办法进行攻击：将他们的恶意代码使用十六进制或者utf-8编码，而不是普通的ASCII文本，例如可以使用下面的方式进行：
 
-```
+```html
 <a href="http://host/a.php?variable=%22%3e %3c%53%43%52%49%50%54%3e%44%6f%73%6f%6d%65%74%68%69%6e%67%6d%61%6c%69%63%69%6f%75%73%3c%2f%53%43%52%49%50%54%3e">
 ```
 
 这样浏览器渲染的结果其实是：
 
-```
+```html
 <a href="http://host/a.php?variable="> <SCRIPT>Dosomethingmalicious</SCRIPT>
 </a>
 ```
@@ -163,7 +163,7 @@ function transform_HTML($string, $length = null) {
 
 5、使用parse方法进行过滤
 
-```
+```php
 <?php
 /* If you're storing the HTMLSax3.php in the /classes directory, along
    with the safehtml.php script, define XML_HTMLSAX3 as a null string. */
@@ -196,7 +196,7 @@ MD5 hash函数可以在可读的表单中显示数据，但是对于存储用户
 
 最好的方法是使用mcrypt模块，这个模块包含了超过30中加密方式来保证只有加密者才能解密数据。
 
-```
+```php
 <?php
 $data = "Stuff you want encrypted";
 $key = "Secret passphrase used to encrypt your data";

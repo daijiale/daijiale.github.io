@@ -1,4 +1,4 @@
-title: 基于百度ODP的Web前端开发
+title: 【前端】基于百度ODP的Web前端开发
 date: 2015-6-10 11:03:09
 tags:
  
@@ -9,7 +9,7 @@ tags:
 categories:
 
  - 原创博文
- - Web开发日记
+ - Web开发笔记
 
 ---
 

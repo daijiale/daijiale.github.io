@@ -1,4 +1,4 @@
-title: Node.js学习开发笔记
+title: 【Node.js-持续更新】Node.js学习开发笔记
 date: 2015-7-6 19:21:11
 tags:
 
@@ -8,7 +8,7 @@ tags:
 categories:
 
  - 原创博文
- - Web开发日记
+ - Web开发笔记
 
 ---
 

@@ -1,4 +1,4 @@
-title: 下次人家问再你怎么入门AndroidWear，你就甩这篇文章给TA
+title: 【Android-持续更新】下次人家问再你怎么入门AndroidWear，你就甩这篇文章给TA
 date: 2015-5-4 16:23:09
 tags:
 
@@ -90,7 +90,7 @@ categories:
 
 **Add RemoteInput to Reply Action**
 
-```
+```java
 Action replyAction = new NotificationCompat.Action.Builder(
 	R.drawble.ic_reply,getString(R.string.reply), 
 	replyPendingIntent)
@@ -102,7 +102,7 @@ Action replyAction = new NotificationCompat.Action.Builder(
 
 **Modify Activity to Use Reply Text**
 
-```
+```java
 Bundle results =
 	RemoteInput.getResultsFromIntent(intent);
 	if(results!=null){
@@ -115,7 +115,7 @@ Bundle results =
 3、最后我再来详细介绍下“多卡片重叠式信息提醒”的实现原理，视觉设计上采用的是复线收件箱的风格，ta不再把多条信息压缩到单一的卡片中，我们想做的是每封邮件都有自己的卡片。而这些卡片又放入一个可扩大的堆栈中，这一堆提醒卡片，也叫提醒卡片堆栈，也是notification API的新特性，不会把所有邮件提醒都只能通过一个提醒显示出来，而是按类划分，表明有所关联，ta们在可穿戴设备上组合成一个卡片丛，而用户也可以通过卡片丛去逐个浏览，以提取某一封邮件，并对其回复或者进行其他操作。而卡片丛 即：notification group也有一个分类键，通过设置这个键来控制丛内卡片顺序，并且可以从中标记一个卡片作为组群的整体摘要描述，具体实现代码如下：
 
 
-```
+```java
 Notification card1 = 
 	new NotificationCompat.Builder(context)
 		.setGroup(GROUP_KEY)
@@ -154,7 +154,7 @@ Notification summary =
 
 2、环聊也增加了新的提醒特征：近期会话历史记录。因为在语音回复之前，多出现一些聊天记录总是好的，为了实现这个效果，我们在wear设备扩充器中采用了添加页面的办法：它可以让你为主要提醒内容增加额外的页面，我们把聊天记录放入一个次级大的文本式提醒，然后把它加入到主要提醒中的第二页，并且手机端的提醒体验同时保持不变。关键代码实现如下：
 
-```
+```java
 Notification chatHistory =
 	new NotificationCompat.Builder()
 		.setStyle(
@@ -188,7 +188,7 @@ firstPageNotification.extend(
 
 **Setting a DataItem**
 
-```
+```java
 PutDataMapRequest dataMapRequest =
 	PutDataMapRequest.create(DATA_ITEM_NAME);
 dataMapRequest.getDataMap().putBoolean(
@@ -200,7 +200,7 @@ Wearable.DataApi.putDataItem(
 ```
 **WearableListenerService**
 
-```
+```java
 public class CameraListennerService
 	extends WearableListennerService{
 	@Override
@@ -222,7 +222,7 @@ public class CameraListennerService
 ```
 **Sending an Asset**
 
-```
+```java
 PutDataMapRequest dataMapRequest =
 	PutDataMapRequest.create(DATA_ITEM_NAME);
 dataMapRequest.getDataMap().putBoolean(
@@ -255,7 +255,7 @@ Wearable.DataApi.putDataItem(
 
 **Custom Notification with Display Intent**
 
-```
+```java
 Intent displayIntent = 
 	createUpdateIntent(data, maneuverBitmap);
 displayIntent.setClass(
@@ -278,7 +278,7 @@ Notification notification = builder.extend(
 3、google map通过语音指令来开启导航进程，为了实现这一点，可
 wear端的google map app会联手意图过滤器（ `Intent`）来为导航声音指令服务，然后需要在 `AndroidManifest.xml`中声明如下：
 
-```
+```xml
 <activity
 	android:name=".StarNavigationActivity"
 	android:theme="@style/TranslucentTheme">
@@ -296,7 +296,7 @@ wear端的google map app会联手意图过滤器（ `Intent`）来为导航声�
 
 **Sending a Message**
 
-```
+```java
 private void startNavigation(Intent intent){
 	
 	String uriString = intent.getDataString();
@@ -320,7 +320,7 @@ private void startNavigation(Intent intent){
 
 **Receiving a Message**
 
-```
+```java
 public void onMessageReceived(
 	MessageEvent messageEvent){
 	if(messageEvent.getPath().equals(
@@ -407,7 +407,7 @@ Android Wear刚好在正确的时间提供了正确的信息，让人们同时�
 
 **res/layout/pager_example.xml**
 
-```
+```xml
 <?xml version = "1.0" encoding = "utf-8"?>
 <android.support.wearable.views.GridViewPager
 	xmlns:android = "http://schemas.android.com"
@@ -422,7 +422,7 @@ Android Wear刚好在正确的时间提供了正确的信息，让人们同时�
 
 **FragmentGridPagerAdapter**
 
-```
+```java
 int getRowCount()
 int getColumnCount(int row)
 Fragment getItem(int row , int column)
@@ -440,7 +440,7 @@ int getCurrentColumnForRow(
 
 **SampleActivity.java**
 
-```
+```java
 
 public void onCreate(Bundle savedInstanceState){
 	 setContentView(R.layout.pager_example);
@@ -485,7 +485,7 @@ public void onCreate(Bundle savedInstanceState){
 
 **Add pages to a notification**
 
-```
+```java
 
 Notification page2 = ...
 Notification page3 = ...
@@ -514,7 +514,7 @@ NotificationManagerCompat.from(ctx)
 
 **Post group child notifications**
 
-```
+```java
 
 //for each child notification
 NotificationCompat.Builder builder = ...
@@ -529,7 +529,7 @@ NotificationManagerCompat.from(ctx)
 
 目前展示的提醒行为全部使用了默认设置，可以作为附加页面增加到相应卡片之中，下图左手的手表展示了这一设置,把主卡滑走就出现了“播放”行为，右手的手表则展示了直接把行为添加进当前卡片的行为，这样这张卡片就可以直接点击了，使用可穿戴扩展器中的setContentAction(设置内容行为)来为卡片添加行为。这些行为就不会作为单一页面来显示了。
 
-```
+```java
 
 //Action Notification
 NotificationCompat.Builder builder = ...
@@ -551,7 +551,7 @@ build.extend(new NotificationCompat.WearableExtend)
 
 **Add RemoteInput to a notification action**
 
-```
+```java
 String EXTRA_QUICK_REPLY = "quick_reply";
 
 NotificationCompat.Builder builder=...
@@ -570,7 +570,7 @@ builder.addAction(
 
 **MyActivity.java**
 
-```
+```java
 protected void onCreate(Bundle savedInstanceState){
 	super.onCreate(savedInstanceState);
 	Bundle results = RemoteInput.getResultsFromIntent(
@@ -591,7 +591,7 @@ protected void onCreate(Bundle savedInstanceState){
 
 **AndroidMainifest.xml**
 
-```
+```xml
 <activity
 	android:name="com.example.MyDisplayActivity"
 	android:exported="true"
@@ -612,14 +612,14 @@ protected void onCreate(Bundle savedInstanceState){
 
 **Disable bridging for a notification**
 
-```
+```java
 NotificationCompat.Builder builder = ...
 builder.setLocalOnly(false);
 ```
 
 **Add an action for phones,tablets,and wearables**
 
-```
+```java
 NotificationCompat.Builder builder = ...
 builder.addAction(R.drawable.reply,"Archive",pendingIntent);
 	.addAction
@@ -627,7 +627,7 @@ builder.addAction(R.drawable.reply,"Archive",pendingIntent);
 
 **Add an action for wearables only**
 
-```
+```java
 NotificationCompat.Builder builder = ...
 builder.extend(new NotificationCompat.WearableExtender()
 	.addAction(new NotificationCompat.Action(
@@ -661,7 +661,7 @@ PS：这里有博主自己曾经写过的一个运行在Android手机上的Demo�
 
 **You get it by default**
 
-```
+```xml
 <activity
 	android:name=".ControlRobotsActivity"
 	android:theme="Theme.DeviceDefault"
@@ -678,7 +678,7 @@ PS：这里有博主自己曾经写过的一个运行在Android手机上的Demo�
 **activity_control_robots.xml**
      
 
-```
+```xml
 <android.support.wearable.view.DismissOverlayView
 	android:id="@+id/dismiss_overlay"
 	android:layout_height="match_parent"
@@ -691,7 +691,7 @@ PS：这里有博主自己曾经写过的一个运行在Android手机上的Demo�
 
 **ControlRobotsActivity.java**
 
-```
+```java
 public void onCreate(Bundle savedState){
 	super.onCreate(savedState);
 	setContentView(R.layout.activity_control_robots);  	mDismissOverlay = (DismissOverlayView)findViewById(R.id.dismiss_overlay);
@@ -706,7 +706,7 @@ public void onCreate(Bundle savedState){
     
  接下来是`TouchEvent`。  
    
-```
+```java
 public boolean onTouchEvent(MotionEvent ev){
 	return mDetector.onTouchEvent(ev) | | super.onTouchEvent(ev);}   
 ```
@@ -721,7 +721,7 @@ public boolean onTouchEvent(MotionEvent ev){
 首先，我们来看看360的屏幕维度吧，这是一个直径为320px的圆圈，下方有30px的`chin`，因此系统会认为它的尺寸为320x290px，在我们自己开发的过程中，我们意识到chin会将一些非计划中的结果导入到现有的布局中，比如我们来看一下信息流中的行为卡片，我们希望给屏幕中央放置一个行为图标，但我们给中央垂直点加了一个层重力机制之后，结果这个蓝圆偏移了15px，但我们还是希望中间的这个蓝圆最好能够处于整个屏幕的中央，在我们之前提到过的默认主题中，`windowOverscan`属性已经设置了，而且整个视图分级结构的源是320X320px，这就导致了你的APP顶级结构视图，依然认为是320X320，而非320X290，然后再把你的局布如预想般放在屏幕中央，如何检测你的活动是运行在圆形屏幕中的呢？你的视图会请求应用窗口插入`insets`,然后会返回一个窗口插入目标，它会告诉你屏幕的形状，在Moto360中，它会告诉你下方插入的窗口为30px，在任何地方只要你要围绕这个`chin`来布局，你就需要经常使用这个值，这里所使用的插入值，会确保你的APP在以后任何可穿戴设备上看起来都很漂亮，为了节省大家敲打这些通用代码的时间，Google增加了一个叫`WatchViewStub`的视图，它可以让你根据APP运行的不同屏幕来扩充一两种不同的布局，如果你想在屏幕上看起来与众不同，就可以使用`WatchViewStub`来作为任何视图分级就够的源，要使用的话，先在你的活动或者onCreate碎片中创建一个新的源，完成之后，你就需要给你的源加上两层布局（`Round、Rect`）,但是有一个问题需要注意：因为这些布局在视图在附加进结构分级前，并没有进行扩充，你就没办法进入子一级的视图，相反，附加一个OnLayoutInflatedListener(布局扩充收听器)，它可以在布局内层进行不合适的扩充时使用，退出布局视图和这个WatchViewStub都可以在可穿戴支持库`Wearable Library`中找到，如下：
 
 
-```
+```java
 public WindowInsets onApplyWindowInsets(View view,WindowInsets windowInsets){
 	if(windowInsets.isRound()){
 		Rect insets = windowInsets.getSystemWindowInsets();
@@ -732,7 +732,7 @@ public WindowInsets onApplyWindowInsets(View view,WindowInsets windowInsets){
 
 **ControlRobotsActivity.java**
 
-```
+```java
 public void onCreate(Bundle savedInstanceState){
    WatchViewStub stub = new WatchViewStub(this);
 	stub.setRectLayout(R.layout.activity_control_robots_rect);
@@ -784,7 +784,7 @@ public void onCreate(Bundle savedInstanceState){
  - 移除那些更新频率超过1分钟1次的屏幕元素（eg:秒针）
  
  要检测手表有没有进入环境模式，你可以覆盖`onAmbientModeChange`方式，RD会发送实例变量来表明手表处于环境模式下并使当前框架无效，这样会触发重新绘制机制， 
- ```
+ ```java
   public void  onAmbientModeChanged
  	(boolean inAmbientMode){
  	// ...
@@ -794,7 +794,7 @@ public void onCreate(Bundle savedInstanceState){
  ```
  然后，在下一次的`onDraw`中，RD可以决定他们去做什么。
 
-  ```
+  ```java
   public void onDraw(Canvas canvas ,Rect rect){
     //...draw code....
     if(!mAmbient){
@@ -808,7 +808,7 @@ public void onCreate(Bundle savedInstanceState){
  - 第一个：一些Android Wear设置支持低比特率的环境模式，这就意味着只显示屏幕像素，甚至关掉它，只使用灰度设计，无法在这些屏幕上运行，这就是我们为什么要用黑白代替灰色设计的原因。为了判断设计是否支持低比特率，我们把`onPropertiesChange`进行覆盖。开发者可以查看手表是否支持低比特率的环境模式，
 
  
- ```
+ ```java
   public void onPropertiesChanged(Bundle properties)
  {
  	super.onPropertiesChanged(properties);

@@ -1,9 +1,9 @@
-title: 阿里百川Hackathon小记
-date: 2015-5-28 20:23:09
+title: 【Hackathon】阿里百川hackathon小记
+date: 2015-5-28 11:43:09
 tags:
-
- - Hackathon
+ 
  - 个人故事
+ - hackathon
  - Android
 
 categories:
@@ -12,6 +12,8 @@ categories:
  - Android开发笔记
 
 ---
+
+
 
 >时间：2015.5.21-2015.5.24
 
@@ -103,6 +105,8 @@ Hackathon正式启动，30组来自清华、浙大、上交、科大等各名校
 
 返程的路上，很多学弟学妹询问我这次的结果如何如何，其实很多时候过程真的比结果重要，我们Team并没有因为这次的比赛结果而忧愁满满，相反我们更加享受Hackathon给我们带来的快乐和成长，毕竟这是我们5人第一次合作，这次的经历也让我们磨合得更为默契，相信下学期实习完之后，我们回到成都，能重新聚在一起做出更惊人的产品，当然，下次一定要备好一个`自拍杆`和`无人机`，哈哈！
 
+此次hackathon的项目已开源：[Github地址](https://github.com/daijiale/Zuber)
+
 
 >今年继`百度十二季Hackathon`之后又一季重量级Hackathon比赛，感谢你们给我带来的成长和快乐！
 
@@ -111,6 +115,8 @@ Hackathon正式启动，30组来自清华、浙大、上交、科大等各名校
 ![](http://7xi6qz.com1.z0.glb.clouddn.com/alihackathondefault10.jpeg)
 
 <embed src="http://music.163.com/style/swf/widget.swf?sid=29808787&type=2&auto=1&width=320&height=66" width="340" height="86"  allowNetworking="all"></embed>
+
+
 
 
 
