@@ -1,0 +1,695 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>【个人】从“主机搬家、第五次个人主站更新、第三次博客技术架构迁移”说起 | DaiJiale&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Jiale Dai">
+    
+
+    
+    <meta name="description" content="以下所指“更新”：均为Blog技术更新，非文章更新
+第一次更新_个人Blog&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;说起自己的第一个Blog，要从小学刚开通QQ空间开始，具体几年级已经记不清了，那个时候刚甩掉纸质日记本，然后就迈入网络日志的深坑。以前倒是产出了不少优质日志，不过都是些多愁善感的随便，至今都已经封存进私密日日记中(如下图)：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【个人】从“主机搬家、第五次个人主站更新、第三次博客技术架构迁移”说起">
+<meta property="og:url" content="http://daijiale.github.io/2015/04/02/【个人】Blog迁移日记/index.html">
+<meta property="og:site_name" content="DaiJiale's Blog">
+<meta property="og:description" content="以下所指“更新”：均为Blog技术更新，非文章更新
+第一次更新_个人Blog&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;说起自己的第一个Blog，要从小学刚开通QQ空间开始，具体几年级已经记不清了，那个时候刚甩掉纸质日记本，然后就迈入网络日志的深坑。以前倒是产出了不少优质日志，不过都是些多愁善感的随便，至今都已经封存进私密日日记中(如下图)：">
+<meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpic_qqzonesec.PNG">
+<meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicrenren.PNG">
+<meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/github_daijialewebsiteworkshop.png">
+<meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/SAEDeveloper.jpg">
+<meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/daijialeweb_personalsite.png">
+<meta property="og:updated_time" content="2015-11-19T13:31:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【个人】从“主机搬家、第五次个人主站更新、第三次博客技术架构迁移”说起">
+<meta name="twitter:description" content="以下所指“更新”：均为Blog技术更新，非文章更新
+第一次更新_个人Blog&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;说起自己的第一个Blog，要从小学刚开通QQ空间开始，具体几年级已经记不清了，那个时候刚甩掉纸质日记本，然后就迈入网络日志的深坑。以前倒是产出了不少优质日志，不过都是些多愁善感的随便，至今都已经封存进私密日日记中(如下图)：">
+
+    
+    <link rel="alternative" href="/atom.xml" title="DaiJiale&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="DaiJiale&#39;s Blog" title="DaiJiale&#39;s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="DaiJiale&#39;s Blog">DaiJiale&#39;s Blog</a></h1>
+				<h2 class="blog-motto">只有汗水不会欺骗你 || Only sweat will not fail you</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于我</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:daijiale.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/04/02/【个人】Blog迁移日记/" title="【个人】从“主机搬家、第五次个人主站更新、第三次博客技术架构迁移”说起" itemprop="url">【个人】从“主机搬家、第五次个人主站更新、第三次博客技术架构迁移”说起</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jiale Dai" target="_blank" itemprop="author">Jiale Dai</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-02T15:30:09.000Z" itemprop="datePublished"> 发表于 2015-04-02</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第一次更新_个人Blog"><span class="toc-number">1.</span> <span class="toc-text">第一次更新_个人Blog</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第二次更新_个人Blog"><span class="toc-number">2.</span> <span class="toc-text">第二次更新_个人Blog</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第三次更新_个人Blog"><span class="toc-number">3.</span> <span class="toc-text">第三次更新_个人Blog</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第四次更新_个人Blog"><span class="toc-number">4.</span> <span class="toc-text">第四次更新_个人Blog</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第五次更新_个人Blog"><span class="toc-number">5.</span> <span class="toc-text">第五次更新_个人Blog</span></a></li></ol>
+		
+		</div>
+		
+		<p><strong>以下所指“更新”：均为Blog技术更新，非文章更新</strong></p>
+<h1 id="第一次更新_个人Blog">第一次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;说起自己的第一个Blog，要从小学刚开通QQ空间开始，具体几年级已经记不清了，那个时候刚甩掉纸质日记本，然后就迈入网络日志的深坑。以前倒是产出了不少优质日志，不过都是些多愁善感的随便，至今都已经封存进<em>私密日日记</em>中(如下图)：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpic_qqzonesec.PNG" alt=""><br><a id="more"></a></p>
+<h1 id="第二次更新_个人Blog">第二次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后面高中开始玩人人，Blog也顺势搬到人人。。。现在想来这搬迁史也很简单——围绕社交圈，毕竟Blog写出来是给人看的，而QQzone和人人都是一个很好的社交载体。当然，如今的人人，我早已放弃，一个月都不登一次的这种，blog数据也全部清除了，高中写的都是些没营养的东西，个人认为没有存在的价值。<br>最后留张图纪念一下曾经的人人帐号：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicrenren.PNG" alt=""></p>
+<h1 id="第三次更新_个人Blog">第三次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后面因为大学专业性质原因，再加上由于个人兴趣先接触的知识是Web开发，所以打算通过自己编写代码，建立带有自己专属域名的独立Blog全站（其实是不知道做什么内容。。。就以Blog为题材了，而且身为一个程序猿，Blog是撑脸面的东西）。正如很多刚入门的小白一样：最初选用的技术框架是 <code>PHP+MySQL</code>，边学边写，坚持了一段时间后发现根本没法拿出手，在人生导师 <code>@阔空晴云</code>（亦师亦友的关系，大学同学，年级传奇….我Blog友情链接有他的Blog..但是，为保留他的个人隐私，我就不透露<strong>林志豪</strong>的<strong>真名</strong>了）的建议下，<br>后来选用了知名度很大的 <code>wordpress</code> 框架去快速开发能拿得出手的Blog，那也是我第一次接触框架类的东西，在那之前都是直接C++和C做底层开发，js和html也都是从新建文件开始码起，—&gt;你懂得…从大众空间到自己独立虚拟主机空间，也算是第一次技术迁移了！网站是托管在人生导师的虚拟主机上，记得刚拍下<a href="http://www.daijiale.cn" target="_blank" rel="external">www.daijiale.cn</a>个人域名，挂到上线的时候是这样子的:<br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_daijialewebsiteworkshop.png" alt=""></p>
+<p>嗯，对于一个大一上刚学会做站点的小虾开发者来说，还是感觉Geek满满的。</p>
+<h1 id="第四次更新_个人Blog">第四次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;自上一次大更新以后的两年多里，都没有什么大的起伏（主要是太懒，或者忙其他项目去了），直到后面阴差阳错侥幸获得了这个证书：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/SAEDeveloper.jpg" alt="">,新浪每月给我SAE上打的云豆工单根本用都用不完了，so，我打算把Blog全部迁移到 <code>SAE上</code> （毕竟老放在人生导师那也不太好）。顺便更新了下Blog的界面和交互，增加了首页响应式效果（方便宣传嘛，嘿嘿）,自己设计和编码水平的提高也让每次迭代后的Blog页面颜值更高：<br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/daijialeweb_personalsite.png" alt=""></p>
+<h1 id="第五次更新_个人Blog">第五次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这次改动比较大，也就是目前大家看到的这个站点：<a href="http://daijiale.github.io/">http://daijiale.github.io/</a>（域名换了，因为托管原因，把原来的<a href="http://www.daijiale.cn" target="_blank" rel="external">www.daijiale.cn</a>改成了简历页和入口页，其实也挺不错，性质不一样，刚好趁着这次技术整改实现了分布式控制），整个技术体系和空间都搬家+大改了，这次的技术架构没有采用市面上被大家广泛使用的常见技术，<strong>没有服务器脚本语言的参合，没有数据库，没有进行数据存储优化</strong>，简而言之就是，妈的！这逼网站<strong>居然没有后台</strong>（其实我心里一开始是拒绝的）。是的，你没听错，这特么就是个伪静态Blog，但是…这丝毫不影响ta的逼格大增,so let’s see it：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;技术框架选用的是 <code>Hexo+Node.js+ejs+bootstrap+markdown+GithubPage</code>，为什么会采用这套剑走偏锋的框架？其实，是受到了周围小伙伴的影响，越来越多的朋友为了解决成本和增加B格，将Blog结合 <code>GithubPage</code> 托管在 <a href="https://github.com/" target="_blank" rel="external"><code>github</code></a>（程序猿的facebook，我也是从2014年才开始玩的）上，具体这套架构的<strong>优点</strong>和<strong>搭建教程</strong>请参考如下博文：</p>
+<ul>
+<li><p><a href="http://note.youdao.com/share/?id=0dc251a2004362d10d7ce520fecdcbff&amp;type=note" target="_blank" rel="external">Blog搭建之Hexo+Node.js+ejs+bootstrap+markdown+GithubPage</a></p>
+<p>这里主要提一下 <code>Hexo</code> 和 <code>Jacman</code>：</p>
+</li>
+<li><p>Hexo：</p>
+<ul>
+<li>风一般的速度：<code>Hexo</code> 基于 <code>Node.js</code> ，支持多进程，几百篇文章也可以秒生成。</li>
+<li>流畅的撰写：支持 <code>GitHub</code> <code>Flavored</code> <code>Markdown</code> 和所有 <code>Octopress</code> 的插件。</li>
+<li>扩展性：<code>Hexo</code>支持 <code>EJS</code>、 <code>Swig</code>和 <code>Stylus</code>。通过插件支持 <code>Haml</code>、 <code>Jade</code>和 <code>Less</code>.</li>
+<li>More：<a href="http://hexo.io/" target="_blank" rel="external">请参见官网</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>Jacman：<code>Hexo</code> 的一个 <code>ejs</code>模版主题，来源于民间大神<strong>WuChong</strong>（<a href="http://note.youdao.com/share/?id=d93d060ce27c0d085021c9c0192c9e08&amp;type=note" target="_blank" rel="external">更多详细用法传送门</a>），在所有Hexo官网主题中个人比较倾向于他的风格，但是对于这个主题，我还是不太满意，挺多瑕疵需要我自己慢慢修改，后面我的Blog主题也会自己改成一个新的原创主题，到时候再开源出来，给更多的 <code>hexo</code> 开发者使用。现在正在往 <code>Low Poly Style</code>发展。</p>
+</li>
+<li><p>图床：</p>
+<ul>
+<li><a href="http://www.qiniu.com/?utm_source=BAIDU&amp;utm_medium=cpc&amp;utm_term=%E4%BA%91%E5%AD%98%E5%82%A8&amp;utm_content=chanpinlei&amp;utm_campaign=qiniu-ceshi" target="_blank" rel="external">七牛云存储</a>（大图用七牛，加速给力）</li>
+<li><a href="http://baichuan.taobao.com/portal/doc?articleId=329" target="_blank" rel="external">TAE</a>(小图用TAE，百川Hackathon接触到的，还不错)</li>
+</ul>
+</li>
+<li><p>音床：<a href="http://music.163.com/#" target="_blank" rel="external">网易云音乐</a>（个人认为是目前市场上最好的全端音乐软件，不服来辩）</p>
+</li>
+<li><p>视频床：自己Coding把。。。（博主暂时只找到<a href="http://v.qq.com/" target="_blank" rel="external">腾讯视频</a>的漏洞，亲测可用）</p>
+</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>持续更新中</strong></p>
+<embed src="http://music.163.com/style/swf/widget.swf?sid=29717271&type=2&auto=1&width=320&height=66" width="340" height="86" allownetworking="all">  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/原创博文/">原创博文</a>►<a class="article-category-link" href="/categories/原创博文/Web开发笔记/">Web开发笔记</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Blog/">Blog</a><a href="/tags/Hexo/">Hexo</a><a href="/tags/Node-js/">Node.js</a><a href="/tags/个人故事/">个人故事</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://daijiale.github.io/2015/04/02/【个人】Blog迁移日记/" data-title="【个人】从“主机搬家、第五次个人主站更新、第三次博客技术架构迁移”说起 | DaiJiale&#39;s Blog" data-tsina="3173290371" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/04/03/【个人】记南昌二中/" title="【个人】记我的高中——南昌二中">
+  <strong>上一篇：</strong><br/>
+  <span>
+  【个人】记我的高中——南昌二中</span>
+</a>
+</div>
+
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/04/02/【个人】Blog迁移日记/" data-title="【个人】从“主机搬家、第五次个人主站更新、第三次博客技术架构迁移”说起" data-url="http://daijiale.github.io/2015/04/02/【个人】Blog迁移日记/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第一次更新_个人Blog"><span class="toc-number">1.</span> <span class="toc-text">第一次更新_个人Blog</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第二次更新_个人Blog"><span class="toc-number">2.</span> <span class="toc-text">第二次更新_个人Blog</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第三次更新_个人Blog"><span class="toc-number">3.</span> <span class="toc-text">第三次更新_个人Blog</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第四次更新_个人Blog"><span class="toc-number">4.</span> <span class="toc-text">第四次更新_个人Blog</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第五次更新_个人Blog"><span class="toc-number">5.</span> <span class="toc-text">第五次更新_个人Blog</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/原创博文/Android开发笔记/" title="Android开发笔记">Android开发笔记<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/转载博文/Web开发分享/" title="Web开发分享">Web开发分享<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/原创博文/Web开发笔记/" title="Web开发笔记">Web开发笔记<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/原创博文/单反自学笔记/" title="单反自学笔记">单反自学笔记<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/原创博文/" title="原创博文">原创博文<sup>17</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/转载博文/" title="转载博文">转载博文<sup>3</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/个人故事/" title="个人故事">个人故事<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/PHP/" title="PHP">PHP<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php/" title="php">php<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html5/" title="html5">html5<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/拍照摄影/" title="拍照摄影">拍照摄影<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Ajax/" title="Ajax">Ajax<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Json/" title="Json">Json<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据库/" title="数据库">数据库<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/代码托管/" title="代码托管">代码托管<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/智能可穿戴/" title="智能可穿戴">智能可穿戴<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Blog/" title="Blog">Blog<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Amaze-UI/" title="Amaze UI">Amaze UI<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hackathon/" title="hackathon">hackathon<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hackathon/" title="Hackathon">Hackathon<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AndroidWear/" title="AndroidWear">AndroidWear<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.daijiale.cn" target="_blank" title="DaiJiale的个人简历页">DaiJiale的个人站点</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://c2pblog.sinaapp.com/" target="_blank" title="Baiduer刘神的Blog">LiuKaiNing的Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.linzhihao.cn" target="_blank" title="我师父的Blog">MasterLin的Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://charles-xiao.github.io/" target="_blank" title="好友肖勇Blog">CharlesXiao的Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://lizhuolun.com/" target="_blank" title="好友卓伦Blog">lizhuolun的Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://leuisken.github.io/index.html" target="_blank" title="学弟嘉讯Blog">leuisken的Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.php-note.com/" target="_blank" title="神一样的PHPer">钱途无梁的PHP-Note</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://stormzhang.com/" target="_blank" title="偶像的Blog（Android_CN OG级人物）">StormZhang的Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me/" target="_blank" title="jacman原创博主">Jark&#39;s Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.developerclub.cn" target="_blank" title="博主自己独立开发的：一个面向电子科技大学开发者的网上社区">电子科技大学开发者俱乐部</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://uestc.xyz" target="_blank" title="一个面向电子科技大学Linux开发者的社区">电子科技大学Linux开源社区</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.newstacksoft.com/" target="_blank" title="2016届百度新人交流社区贡献者">NewBaiduer2016社区</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://tongji.cnzz.com/main.php?c=site&a=show&siteid=1254856612" target="_blank" title=" 站点数据统计">站长统计</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Jiale Dai in UESTC. <br/>
+			Welcome To My World.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/3173290371" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/daijiale" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="https://www.zhihu.com/people/dai-jia-le-35" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:daijiale6239@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by Hexo and Theme Rebuilt From Jacman By</a> © 2015 
+		
+		<a href="http://www.daijiale.cn">Jiale Dai</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"daijiale"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254856612'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1254856612' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

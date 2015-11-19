@@ -4,7 +4,7 @@
   <subtitle><![CDATA[只有汗水不会欺骗你 || Only sweat will not fail you]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://daijiale.github.io/"/>
-  <updated>2015-11-08T16:18:37.000Z</updated>
+  <updated>2015-11-19T13:18:40.000Z</updated>
   <id>http://daijiale.github.io/</id>
   
   <author>
@@ -15,11 +15,215 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[为何选择做“程序猿（媛）之家”]]></title>
-    <link href="http://daijiale.github.io/2015/11/08/%E4%B8%BA%E4%BD%95%E9%80%89%E6%8B%A9%E5%81%9A%E7%A8%8B%E5%BA%8F%E7%8C%BF%EF%BC%88%E5%AA%9B%EF%BC%89%E4%B9%8B%E5%AE%B6/"/>
-    <id>http://daijiale.github.io/2015/11/08/为何选择做程序猿（媛）之家/</id>
-    <published>2015-11-08T07:27:11.000Z</published>
-    <updated>2015-11-08T16:18:37.000Z</updated>
+    <title><![CDATA[【数据库-持续更新】数据库设计心得：]]></title>
+    <link href="http://daijiale.github.io/2015/11/19/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%91%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E5%BF%83%E5%BE%97/"/>
+    <id>http://daijiale.github.io/2015/11/19/【数据库】数据库设计心得/</id>
+    <published>2015-11-19T11:23:01.000Z</published>
+    <updated>2015-11-19T13:18:40.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>PS：从大学课设小项目到外包大型项目，再到实习时候参与过的千万级用户后台架构设计。对后端的数据库设计有了一些自己的心得体会，这里记录一些现在这个阶段的所想所得，后面随着level不断提升，持续更新。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="为什么要进行数据库设计">为什么要进行数据库设计</h2><p>因为这是一个：<strong>需求分析-&gt;逻辑设计-&gt;物理设计-&gt;维护优化</strong>的复杂过程。</p>
+<h3 id="需求分析：">需求分析：</h3><ul>
+<li>数据是什么？</li>
+<li>数据有哪些属性？</li>
+<li>数据和属性各自的特点是？</li>
+<li>实体间的关系（1对1，1对多，多对多）</li>
+<li>实体唯一标识的属性（属性组合）</li>
+</ul>
+<p><strong>eg：</strong><br>以一个小型的电子商务网站为例，在这个电子商务网站的系统中包括了几个核心模块：<strong>用户模块，商品模块，订单模块，购物车模块，供应商模块</strong>。</p>
+<p>就<strong>用户模块</strong>讲：</p>
+<ul>
+<li>包括属性：用户名、密码、电话、邮箱、身份证号、地址、姓名、昵称</li>
+<li>可选唯一标识属性：用户名、身份证、电话</li>
+<li>存储特点：随系统上线时间逐渐增加，需要永久存储。</li>
+</ul>
+<p>就<strong>商品模块</strong>讲：<br>-包括属性：商品编码、商品名称、商品描述、商品种类、供应商名称、重量、有效期、价格…<br>-可选唯一标识属性：（商品名称，供应商名称）、（商品编码）<br>-存储特点：对于下线商品可以归档存储</p>
+<p>就<strong>订单模块</strong>讲：<br>-包括属性：订单号、用户姓名、用户电话、收获地址、商品编号、商品名称、数量、价格、订单状态、支付状态、订单类型……<br>-可选唯一标识属性：（订单号）<br>-存储特点：永久存储（分表、分库存储）</p>
+<p>…</p>
+<p>其他模块省略分析</p>
+<p>可以看出，其中：</p>
+<p><strong>一对多</strong>关系有2组：用户&lt;-&gt;订单，用户&lt;-&gt;购物车</p>
+<p><strong>多对多</strong>关系有3组：订单&lt;-&gt;商品、商品&lt;-&gt;购物车、商品&lt;-&gt;供应商</p>
+<h3 id="逻辑设计：">逻辑设计：</h3><p>使用ER图，进行数据库逻辑建模。</p>
+<h4 id="逻辑设计是做什么的？">逻辑设计是做什么的？</h4><ul>
+<li>1、将需求转化为数据库的逻辑模型</li>
+<li>2、通过ER图的型式对逻辑模型进行展示</li>
+<li>3、同所选用的具体的DBMS系统无关</li>
+</ul>
+<h4 id="名字解释">名字解释</h4><ul>
+<li>关系：一个关系对应通常所说的一张表</li>
+<li>元祖：表中的一行即为一个元组。</li>
+<li>属性: 表中的一列即为一个属性，每一个属性都有一个名称，称为属性名，</li>
+<li>候选码：表中的某个属性组，TA可以唯一确定一个元组。</li>
+<li>主码：一个关系有多个候选码，选定其中一个为主码。</li>
+<li>域：属性的取值范围。</li>
+<li>分量：元组中的一个属性值。</li>
+</ul>
+<h4 id="ER图例">ER图例</h4><p> <img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlBlogerpic.png" alt=""></p>
+<h4 id="数据库设计范式">数据库设计范式</h4><p><strong>数据库设计需要遵循这些范式规则，否则就很可能会出现如下异常：</strong></p>
+<h5 id="操作异常">操作异常</h5><ul>
+<li><p>插入异常: 如果某实体随着另一个实体的存在而存在，即缺少某个实体时无法表示这个实体，那么这个表就存在插入异常。</p>
+</li>
+<li><p>更新异常: 如果更改表所对应的某个实体实例的单独属性时，需要多行更新，那么就说这个表存在更新异常。</p>
+</li>
+<li><p>删除异常：如果删除表的某一行来反映某实体实例失效时导致另一个不同实体实例信息丢失，那么这个表中就存在删除异常。</p>
+</li>
+</ul>
+<h5 id="数据冗余：">数据冗余：</h5><ul>
+<li>是指相同的数据在多个地方存在，或者说表中的某个列可以由其他列计算得到。</li>
+</ul>
+<h5 id="范式">范式</h5><ul>
+<li><p><strong>第一范式、</strong>数据库中的所有字段都是单一属性，不可再分的，这个单一属性是由基本的数据类型所构成的，如整数、浮点数、字符串、等；第一范式要求数据库中的表都是二维表。</p>
+</li>
+<li><p><strong>第二范式、</strong>数据库的表中不存在非关键字段对任一候选关键字段的部分函数依赖。所有单关键字段的表都符合第二范式。（通常通过拆分表来达到满足范式要求）</p>
+<ul>
+<li><p>eg：（商品名称）-&gt; (价格、描述、重量、商品有效期)</p>
+<p>   （供应商名称）-&gt;（供应商电话）</p>
+<p>存在两组依赖，有一组还是非关键字段，所以不满足。</p>
+</li>
+<li>将存在的问题如下：<br>1、插入异常<br>2、删除异常<br>3、更新异常<br>4、数据冗余</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>第三范式、</strong>在第二范式的基础上定义的，如果数据表中不存在非关键字段，对任意候选关键字段<strong>传递函数依赖</strong>则符合第三范式。（通常通过拆分表来达到满足范式要求）   - eg: (商品名称) -&gt; (分类) -&gt; (分类描述)<br> 也就是说存在非关键字段“分类描述”，对关键字段“商品名称”的传递函数依赖。所以不满足。</p>
+<ul>
+<li>将存在的问题如下：（分类、分类描述）对于每一个商品都会进行记录，所以存在数据冗余。同时也还存在数据的插入、更新及删除异常。</li>
+</ul>
+</li>
+<li><p><strong>BC范式（Boyce.Codd）、</strong>在第三范式的基础之上，数据库表中如果不存在任何字段对任一候选关键字段的传递函数依赖则附合BC范式。也就是说如果是复合关键字，则复合关键字之间也不能存在函数依赖关系。</p>
+<ul>
+<li>eg: (供应商)-&gt;(供应商联系人)<br>  (供应商联系人)-&gt;(供应商)<br>  并且存在数据操作异常和数据冗余。</li>
+</ul>
+</li>
+<li><p>PS：（第四、第五范式不做重点分析，自行百度）</p>
+</li>
+</ul>
+<h3 id="物理设计：">物理设计：</h3><ul>
+<li>1、选择合适的数据库管理系统，根据逻辑选择<code>NoSQL</code>或者是<code>关系数据库</code>等。</li>
+<li>2、定义数据库、表及字段的命名规范。</li>
+<li>3、根据所选的DBMS系统选择合适的字段类型。</li>
+<li>4、反范式化设计。</li>
+</ul>
+<h5 id="关系数据库">关系数据库</h5><p>Oracle、SQLServer常使用于企业级应用。<br>MySQL、PgSQL常用于互联网项目。</p>
+<h6 id="MySQL常用的存储引擎：">MySQL常用的存储引擎：</h6><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlBlogSQL存储引擎.png" alt=""></p>
+<h5 id="表及字段的命名规则">表及字段的命名规则</h5><h6 id="1、可读性原则">1、可读性原则</h6><p>使用大写和小写来格式化的库对象名字以获得良好的可读性。例如：使用CustAddress而不是cutaddress来提高可读性。（这里要注意有些DBMS系统对表名的大小写是敏感的）</p>
+<h6 id="2、表意性原则">2、表意性原则</h6><p>对象的名字应该能描述TA所标识的对象。例如：对于表，表的名称应该能够体现表中存储的数据内容；对于存储过程，存储过程名称应该能够体现存储过程的功能。</p>
+<h6 id="3、长名原则">3、长名原则</h6><p>尽可能少使用或者不使用缩写，使用于数据库（DATABASE）名之外的任一对象。</p>
+<h5 id="字段类型的选择原则">字段类型的选择原则</h5><p>列的数据类型一方面影响数据存储空间的开销，另一方面也会影响数据查询性能。当一个列可以选择多种数据类型时，应该优先考虑数字类型，其次是日期或二进制类型，最后是字符类型。对于相同级别的数据类型，应该优先选择占用空间小的数据类型。</p>
+<p>以上选择原则主要是从下面两个角度考虑：</p>
+<ul>
+<li><p>1、在对数据进行比较（查询条件、JOIN条件及排序）操作时：同样的数据，字符处理往往比数字处理慢，</p>
+<ul>
+<li>2、在数据库中，数据处理以页为单位，列的长度越小，利于性能提升。</li>
+</ul>
+</li>
+</ul>
+<h6 id="char和varchar如何选择">char和varchar如何选择</h6><p>原则：</p>
+<ul>
+<li><p>1、如果列中要存储的数据长度差不多是一致的，则应该考虑用char；否则应该考虑用varchar。</p>
+</li>
+<li><p>2、如果列中的最大数据长度小于50Byte，则一般也考虑用char。</p>
+</li>
+<li>3、一般不宜定义大于50Byte的char类型列。 </li>
+</ul>
+<h6 id="decimal与float如何选择">decimal与float如何选择</h6><p>原则：</p>
+<ul>
+<li><p>1、decimal用于存储精确数据，而float只能用于存储非精确数据。</p>
+</li>
+<li><p>2、由于float的存储空间开销一般比decimal小（精确到7位小数只需要4个字节，而精确到15位小数只需要8字节），故非精确数据优先选择float类型。</p>
+</li>
+</ul>
+<h6 id="时间类型如何存储">时间类型如何存储</h6><p>原则：</p>
+<ul>
+<li>1、使用int来存储时间字段的优缺点</li>
+</ul>
+<p>优点：字段长度比datetime小。<br>缺点：使用不方便，要进行函数转换。<br>限制：只能存储到2018-1-19 11：14：07即2^32 </p>
+<ul>
+<li>2、需要存储的时间粒度</li>
+</ul>
+<p>年 月 日 小时 分 秒 周</p>
+<h6 id="如何选择主键">如何选择主键</h6><ul>
+<li>1、区分业务主键和数据库主键</li>
+</ul>
+<p>业务主键用于标识业务数据，进行表与表之间的关联；<br>数据库主键为了优化数据存储（Innodb会生成6个字节的隐含主键）</p>
+<ul>
+<li>2、根据数据库的类型，考虑主键是否要顺序增长 </li>
+</ul>
+<p>有些数据库是按主键的顺序逻辑存储的</p>
+<ul>
+<li>3、主键的字段类型所占空间要尽可能的小</li>
+</ul>
+<p>对于使用聚集索引方式存储的表，每个索引后都会附加主键信息。</p>
+<h6 id="避免使用外键约束">避免使用外键约束</h6><ul>
+<li><p>1、降低数据导入的效率。</p>
+</li>
+<li><p>2、增加维护成本。</p>
+</li>
+<li><p>3、虽然不建议使用外键约束，但是相关联的列上一定要建立索引。</p>
+</li>
+</ul>
+<h6 id="避免使用触发器">避免使用触发器</h6><ul>
+<li><p>1、降低数据导入的效率。</p>
+</li>
+<li><p>2、可能会出现意想不到的数据异常。</p>
+</li>
+<li><p>3、使业务逻辑变的复杂。</p>
+</li>
+<li><p>4、严禁使用预留字段。</p>
+</li>
+</ul>
+<h6 id="反范式化">反范式化</h6><p>反范式化是针对范式化而言的，在前面介绍了数据库设计的第三范式，所谓的反范式化就是为了性能和读取效率的考虑而适当的对第三范式的要求进行违反，而允许存在少量的数据冗余，<strong>换句话来说反范式化就是使用空间来换取时间</strong>。</p>
+<p>优点：</p>
+<ul>
+<li><p>1、减少表的关联数量。</p>
+</li>
+<li><p>2、增加数据的读取效率。</p>
+</li>
+<li><p>3、反范式化一定要适度。</p>
+</li>
+</ul>
+<h3 id="维护优化：">维护优化：</h3><p>新的需求进行建表，索引优化，大表拆分</p>
+<ul>
+<li>1、维护数据字典<ul>
+<li>使用第三方工具对 数据字典进行维护（待补充）</li>
+<li>利用数据库本身的备注字段来维护数据字典。以MySQL为例：</li>
+</ul>
+</li>
+</ul>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>2、维护索引</p>
+</li>
+<li><p>3、维护表结构</p>
+</li>
+<li><p>4、在适当的时候对表进行水平拆分或垂直拆分</p>
+</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>PS：从大学课设小项目到外包大型项目，再到实习时候参与过的千万级用户后台架构设计。对后端的数据库设计有了一些自己的心得体会，这里记录一些现在这个阶段的所想所得，后面随着level不断提升，持续更新。</p>
+</blockquote>]]>
+    
+    </summary>
+    
+      <category term="数据库" scheme="http://daijiale.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+      <category term="Web开发笔记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[【个人】为什么选择做“程序猿（媛）之家”]]></title>
+    <link href="http://daijiale.github.io/2015/11/08/%E3%80%90%E4%B8%AA%E4%BA%BA%E3%80%91%E4%B8%BA%E4%BD%95%E9%80%89%E6%8B%A9%E5%81%9A%E7%A8%8B%E5%BA%8F%E7%8C%BF%EF%BC%88%E5%AA%9B%EF%BC%89%E4%B9%8B%E5%AE%B6/"/>
+    <id>http://daijiale.github.io/2015/11/08/【个人】为何选择做程序猿（媛）之家/</id>
+    <published>2015-11-08T03:43:09.000Z</published>
+    <updated>2015-11-19T13:49:18.000Z</updated>
     <content type="html"><![CDATA[<h1 id="为何选择做“程序猿（媛）之家”">为何选择做“程序猿（媛）之家”</h1><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/CXYZJ6666.jpg" alt=""></p>
 <blockquote>
 <p>引言：其实，”程序猿（媛）之家”的前身起源于“小枫特卖”，眼尖的小伙伴们肯定立马就Get到了两个关键点，一是“小枫”，二是“特卖”…….那么问题来了——“小枫是谁？”、“特卖，卖得有什么特别？”<br><a id="more"></a></p>
@@ -43,6 +247,19 @@
 <p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/CXYZJcxyzj-微店.jpg" alt=""></p>
 <p><strong>Android客户端：</strong>正在开发中</p>
 <p><strong>IOS客户端：</strong>正在开发中</p>
+<p>title:【Hackathon】 阿里百川Hackathon小记</p>
+<p>date: 2015-11-28 22:23:09<br>tags:</p>
+<ul>
+<li>Hackathon</li>
+<li>个人故事</li>
+<li>Android</li>
+</ul>
+<p>categories:</p>
+<ul>
+<li>原创博文</li>
+<li>Android开发笔记</li>
+</ul>
+<hr>
 ]]></content>
     <summary type="html">
     <![CDATA[<h1 id="为何选择做“程序猿（媛）之家”">为何选择做“程序猿（媛）之家”</h1><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/CXYZJ6666.jpg" alt=""></p>
@@ -58,11 +275,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[PHP跟踪错误7大步骤]]></title>
-    <link href="http://daijiale.github.io/2015/10/10/PHP%E8%B7%9F%E8%B8%AA%E9%94%99%E8%AF%AF7%E5%A4%A7%E6%AD%A5%E9%AA%A4/"/>
-    <id>http://daijiale.github.io/2015/10/10/PHP跟踪错误7大步骤/</id>
+    <title><![CDATA[【PHP】PHP跟踪错误7大步骤]]></title>
+    <link href="http://daijiale.github.io/2015/10/10/%E3%80%90PHP%E3%80%91PHP%E8%B7%9F%E8%B8%AA%E9%94%99%E8%AF%AF7%E5%A4%A7%E6%AD%A5%E9%AA%A4/"/>
+    <id>http://daijiale.github.io/2015/10/10/【PHP】PHP跟踪错误7大步骤/</id>
     <published>2015-10-10T04:34:21.000Z</published>
-    <updated>2015-10-30T16:40:59.000Z</updated>
+    <updated>2015-11-19T06:48:34.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>这个话题老生长谈了，在面试中必然考核的能力中，我个人认为解决问题能力是排第一位的，比学习能力优先级更高。解决问题的能力既能看出程序员的思维能力，应变能力，探索能力等，又可以看出他的经验。如果解决问题能力不佳是无法通过面试的。</p>
 <p>这里举个例子，假如我执行了一个PHP的脚本，如php test.php，预期是可以返回一个字符串。但执行后没有任何信息输出，这时候通过什么方法能知道程序错在哪里？这里可以将解决问题能力分为8个等级，越到后面的表示能力越强。</p>
@@ -103,11 +320,74 @@
   </entry>
   
   <entry>
-    <title><![CDATA[PHP安全性开发]]></title>
-    <link href="http://daijiale.github.io/2015/09/21/PHP%E5%AE%89%E5%85%A8%E6%80%A7%E5%BC%80%E5%8F%91/"/>
-    <id>http://daijiale.github.io/2015/09/21/PHP安全性开发/</id>
+    <title><![CDATA[【PHP】cURL使用之PHP]]></title>
+    <link href="http://daijiale.github.io/2015/09/21/%E3%80%90PHP%E3%80%91PHP_cURL/"/>
+    <id>http://daijiale.github.io/2015/09/21/【PHP】PHP_cURL/</id>
     <published>2015-09-21T13:21:11.000Z</published>
-    <updated>2015-10-30T16:40:59.000Z</updated>
+    <updated>2015-11-19T13:18:17.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="前言">前言</h1><blockquote>
+<p>cURL(Client URL Library Functions): curl is a command line tool for transferring data with URL syntax,即使用URL语法传输数据的命令行工具。<br><a id="more"></a></p>
+</blockquote>
+<h1 id="学习篇">学习篇</h1><ul>
+<li>1、初始化cURL：curl_init()</li>
+<li>2、发送请求到server：curl_exec()</li>
+<li>3、接收server数据：curl_exec()</li>
+<li>4、关闭cURL：curl_close()</li>
+</ul>
+<h1 id="开发篇">开发篇</h1><p>php -f xxx.php &gt; xxx.html</p>
+<ul>
+<li>1、利用cURL直接抓取“百度”首页</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="variable">$curl</span>=curl_init(<span class="string">'http://www.baidu.com'</span>);</span><br><span class="line">curl_exec(<span class="variable">$curl</span>);</span><br><span class="line">curl_close(<span class="variable">$curl</span>);</span><br><span class="line"><span class="preprocessor">?&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>2、网络上下载一个网页并把内容中的“百度”替换为“屌丝”之后输出</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="variable">$curlobj</span> = curl_init();			<span class="comment">// 初始化</span></span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_URL, <span class="string">"http://www.baidu.com"</span>);		<span class="comment">// 设置访问网页的URL</span></span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_RETURNTRANSFER, <span class="keyword">true</span>);			<span class="comment">// 执行之后不直接打印出来</span></span><br><span class="line"><span class="variable">$output</span>=curl_exec(<span class="variable">$curlobj</span>);	<span class="comment">// 执行</span></span><br><span class="line">curl_close(<span class="variable">$curlobj</span>);			<span class="comment">// 关闭cURL</span></span><br><span class="line"><span class="keyword">echo</span> str_replace(<span class="string">"百度"</span>,<span class="string">"屌丝"</span>,<span class="variable">$output</span>);</span><br><span class="line"><span class="preprocessor">?&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>3、登录慕课网并下载个人空间页面</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 自定义实现页面链接跳转抓取</span><br><span class="line"> * </span><br><span class="line"> */</span></span><br><span class="line"><span class="variable">$data</span>=<span class="string">'username=demo_peter@126.com&amp;password=123qwe&amp;remember=1'</span>;</span><br><span class="line"><span class="variable">$curlobj</span> = curl_init();			<span class="comment">// 初始化</span></span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_URL, <span class="string">"http://www.imooc.com/user/login"</span>);		<span class="comment">// 设置访问网页的URL</span></span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_RETURNTRANSFER, <span class="keyword">true</span>);			<span class="comment">// 执行之后不直接打印出来</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Cookie相关设置，这部分设置需要在所有会话开始之前设置</span></span><br><span class="line">date_default_timezone_set(<span class="string">'PRC'</span>); <span class="comment">// 使用Cookie时，必须先设置时区</span></span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_COOKIESESSION, <span class="keyword">TRUE</span>); </span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_HEADER, <span class="number">0</span>); </span><br><span class="line"><span class="comment">// 注释掉这行，因为这个设置必须关闭安全模式 以及关闭open_basedir，对服务器安全不利</span></span><br><span class="line"><span class="comment">//curl_setopt($curlobj, CURLOPT_FOLLOWLOCATION, 1);  </span></span><br><span class="line"></span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_POST, <span class="number">1</span>);  </span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_POSTFIELDS, <span class="variable">$data</span>);  </span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_HTTPHEADER, <span class="keyword">array</span>(<span class="string">"application/x-www-form-urlencoded; charset=utf-8"</span>, </span><br><span class="line">	<span class="string">"Content-length: "</span>.strlen(<span class="variable">$data</span>)</span><br><span class="line">	)); </span><br><span class="line">curl_exec(<span class="variable">$curlobj</span>);	<span class="comment">// 执行</span></span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_URL, <span class="string">"http://www.imooc.com/space/index"</span>);</span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_POST, <span class="number">0</span>);  </span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_HTTPHEADER, <span class="keyword">array</span>(<span class="string">"Content-type: text/xml"</span></span><br><span class="line">	)); </span><br><span class="line"><span class="variable">$output</span>=curl_redir_exec(<span class="variable">$curlobj</span>);	<span class="comment">// 执行</span></span><br><span class="line">curl_close(<span class="variable">$curlobj</span>);			<span class="comment">// 关闭cURL</span></span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$output</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 自定义实现页面链接跳转抓取</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">curl_redir_exec</span><span class="params">(<span class="variable">$ch</span>,<span class="variable">$debug</span>=<span class="string">""</span>)</span> </span><br><span class="line"></span>&#123; </span><br><span class="line">    <span class="keyword">static</span> <span class="variable">$curl_loops</span> = <span class="number">0</span>; </span><br><span class="line">    <span class="keyword">static</span> <span class="variable">$curl_max_loops</span> = <span class="number">20</span>; </span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$curl_loops</span>++ &gt;= <span class="variable">$curl_max_loops</span>) </span><br><span class="line">    &#123; </span><br><span class="line">        <span class="variable">$curl_loops</span> = <span class="number">0</span>; </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">FALSE</span>; </span><br><span class="line">    &#125; </span><br><span class="line">    curl_setopt(<span class="variable">$ch</span>, CURLOPT_HEADER, <span class="keyword">true</span>); <span class="comment">// 开启header才能够抓取到重定向到的新URL</span></span><br><span class="line">    curl_setopt(<span class="variable">$ch</span>, CURLOPT_RETURNTRANSFER, <span class="keyword">true</span>); </span><br><span class="line">    <span class="variable">$data</span> = curl_exec(<span class="variable">$ch</span>); </span><br><span class="line">    <span class="comment">// 分割返回的内容</span></span><br><span class="line">    <span class="variable">$h_len</span> = curl_getinfo(<span class="variable">$ch</span>, CURLINFO_HEADER_SIZE); </span><br><span class="line">    <span class="variable">$header</span> = substr(<span class="variable">$data</span>,<span class="number">0</span>,<span class="variable">$h_len</span>);</span><br><span class="line">    <span class="variable">$data</span> = substr(<span class="variable">$data</span>,<span class="variable">$h_len</span> - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="variable">$http_code</span> = curl_getinfo(<span class="variable">$ch</span>, CURLINFO_HTTP_CODE); </span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$http_code</span> == <span class="number">301</span> || <span class="variable">$http_code</span> == <span class="number">302</span>) &#123; </span><br><span class="line">        <span class="variable">$matches</span> = <span class="keyword">array</span>(); </span><br><span class="line">        preg_match(<span class="string">'/Location:(.*?)\n/'</span>, <span class="variable">$header</span>, <span class="variable">$matches</span>); </span><br><span class="line">        <span class="variable">$url</span> = @parse_url(trim(array_pop(<span class="variable">$matches</span>))); </span><br><span class="line">        <span class="comment">// print_r($url); </span></span><br><span class="line">        <span class="keyword">if</span> (!<span class="variable">$url</span>) </span><br><span class="line">        &#123; </span><br><span class="line">            <span class="comment">//couldn't process the url to redirect to </span></span><br><span class="line">            <span class="variable">$curl_loops</span> = <span class="number">0</span>; </span><br><span class="line">            <span class="keyword">return</span> <span class="variable">$data</span>; </span><br><span class="line">        &#125; </span><br><span class="line">        <span class="variable">$last_url</span> = parse_url(curl_getinfo(<span class="variable">$ch</span>, CURLINFO_EFFECTIVE_URL)); </span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">isset</span>(<span class="variable">$url</span>[<span class="string">'scheme'</span>])) </span><br><span class="line">            <span class="variable">$url</span>[<span class="string">'scheme'</span>] = <span class="variable">$last_url</span>[<span class="string">'scheme'</span>]; </span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">isset</span>(<span class="variable">$url</span>[<span class="string">'host'</span>])) </span><br><span class="line">            <span class="variable">$url</span>[<span class="string">'host'</span>] = <span class="variable">$last_url</span>[<span class="string">'host'</span>]; </span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">isset</span>(<span class="variable">$url</span>[<span class="string">'path'</span>])) </span><br><span class="line">            <span class="variable">$url</span>[<span class="string">'path'</span>] = <span class="variable">$last_url</span>[<span class="string">'path'</span>];</span><br><span class="line"></span><br><span class="line">        <span class="variable">$new_url</span> = <span class="variable">$url</span>[<span class="string">'scheme'</span>] . <span class="string">'://'</span> . <span class="variable">$url</span>[<span class="string">'host'</span>] . <span class="variable">$url</span>[<span class="string">'path'</span>] . (<span class="keyword">isset</span>(<span class="variable">$url</span>[<span class="string">'query'</span>])?<span class="string">'?'</span>.<span class="variable">$url</span>[<span class="string">'query'</span>]:<span class="string">''</span>); </span><br><span class="line">        curl_setopt(<span class="variable">$ch</span>, CURLOPT_URL, <span class="variable">$new_url</span>); </span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> curl_redir_exec(<span class="variable">$ch</span>); </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123; </span><br><span class="line">        <span class="variable">$curl_loops</span>=<span class="number">0</span>; </span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$data</span>; </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="preprocessor">?&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>4、获取webservice天气数据</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="variable">$data</span> = <span class="string">'theCityName=北京'</span>;</span><br><span class="line"><span class="variable">$curlobj</span> = curl_init();	</span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_URL, <span class="string">"http://www.webxml.com.cn/WebServices/WeatherWebService.asmx/getWeatherbyCityName"</span>);  </span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_HEADER, <span class="number">0</span>); </span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);  </span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_POST, <span class="number">1</span>);  </span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_POSTFIELDS, <span class="variable">$data</span>);  </span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_HTTPHEADER, <span class="keyword">array</span>(<span class="string">"application/x-www-form-urlencoded; charset=utf-8"</span>, </span><br><span class="line">	<span class="string">"Content-length: "</span>.strlen(<span class="variable">$data</span>)</span><br><span class="line">	)); </span><br><span class="line"><span class="variable">$rtn</span> = curl_exec(<span class="variable">$curlobj</span>);   </span><br><span class="line"><span class="keyword">if</span>(!curl_errno(<span class="variable">$curlobj</span>))&#123;</span><br><span class="line">	<span class="comment">// $info = curl_getinfo($curlobj); </span></span><br><span class="line">	<span class="comment">// print_r($info);</span></span><br><span class="line">	<span class="keyword">echo</span> <span class="variable">$rtn</span>;  </span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">'Curl error: '</span> . curl_error(<span class="variable">$curlobj</span>);</span><br><span class="line">&#125;</span><br><span class="line">curl_close(<span class="variable">$curlobj</span>);</span><br><span class="line"><span class="preprocessor">?&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>5、从FTP上下载数据</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="variable">$curlobj</span> = curl_init();	</span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_URL, <span class="string">"ftp://192.168.1.100/downloaddemo.txt"</span>);  </span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_HEADER, <span class="number">0</span>); </span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);  </span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_TIMEOUT, <span class="number">300</span>); <span class="comment">// times out after 300s</span></span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_USERPWD, <span class="string">"peter.zhou:123456"</span>);<span class="comment">//FTP用户名：密码</span></span><br><span class="line"><span class="comment">// Sets up the output file</span></span><br><span class="line"><span class="variable">$outfile</span> = fopen(<span class="string">'dest.txt'</span>, <span class="string">'wb'</span>);<span class="comment">//保存到本地的文件名</span></span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_FILE, <span class="variable">$outfile</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$rtn</span> = curl_exec(<span class="variable">$curlobj</span>);  </span><br><span class="line">fclose(<span class="variable">$outfile</span>); </span><br><span class="line"><span class="keyword">if</span>(!curl_errno(<span class="variable">$curlobj</span>))&#123;</span><br><span class="line">	<span class="comment">// $info = curl_getinfo($curlobj); </span></span><br><span class="line">	<span class="comment">// print_r($info);</span></span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"RETURN: "</span> . <span class="variable">$rtn</span>;  </span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">'Curl error: '</span> . curl_error(<span class="variable">$curlobj</span>);</span><br><span class="line">&#125;</span><br><span class="line">curl_close(<span class="variable">$curlobj</span>);</span><br><span class="line"><span class="preprocessor">?&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>6、上传数据到FTP </li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$curlobj</span> = curl_init();	</span><br><span class="line"><span class="variable">$localfile</span> = <span class="string">'ftp01.php'</span>;</span><br><span class="line"><span class="variable">$fp</span> = fopen(<span class="variable">$localfile</span>, <span class="string">'r'</span>);</span><br><span class="line"></span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_URL, <span class="string">"ftp://192.168.1.100/ftp01_uploaded.php"</span>);  </span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_HEADER, <span class="number">0</span>); </span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);  </span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_TIMEOUT, <span class="number">300</span>); <span class="comment">// times out after 300s</span></span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_USERPWD, <span class="string">"peter.zhou:123456"</span>);<span class="comment">//FTP用户名：密码</span></span><br><span class="line"></span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_UPLOAD, <span class="number">1</span>);</span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_INFILE, <span class="variable">$fp</span>);</span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_INFILESIZE, filesize(<span class="variable">$localfile</span>));</span><br><span class="line"><span class="variable">$rtn</span> = curl_exec(<span class="variable">$curlobj</span>);  </span><br><span class="line">fclose(<span class="variable">$fp</span>); </span><br><span class="line"><span class="keyword">if</span>(!curl_errno(<span class="variable">$curlobj</span>))&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"Uploaded successfully."</span>;  </span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">'Curl error: '</span> . curl_error(<span class="variable">$curlobj</span>);</span><br><span class="line">&#125;</span><br><span class="line">curl_close(<span class="variable">$curlobj</span>);</span><br><span class="line"><span class="preprocessor">?&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>7、下载网络上面的一个HTTPS的资源</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="variable">$curlobj</span> = curl_init();			<span class="comment">// 初始化</span></span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_URL, <span class="string">"https://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.js"</span>);		<span class="comment">// 设置访问网页的URL</span></span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_RETURNTRANSFER, <span class="keyword">true</span>);			<span class="comment">// 执行之后不直接打印出来</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置HTTPS支持</span></span><br><span class="line">date_default_timezone_set(<span class="string">'PRC'</span>); <span class="comment">// 使用Cookie时，必须先设置时区</span></span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_SSL_VERIFYPEER, <span class="number">0</span>); <span class="comment">// 对认证证书来源的检查从证书中检查SSL加密算法是否存在</span></span><br><span class="line">curl_setopt(<span class="variable">$curlobj</span>, CURLOPT_SSL_VERIFYHOST, <span class="number">2</span>); <span class="comment">// </span></span><br><span class="line"></span><br><span class="line"><span class="variable">$output</span>=curl_exec(<span class="variable">$curlobj</span>);	<span class="comment">// 执行</span></span><br><span class="line">curl_close(<span class="variable">$curlobj</span>);			<span class="comment">// 关闭cURL</span></span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$output</span>;</span><br><span class="line"><span class="preprocessor">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="更多参考">更多参考</h1><ul>
+<li><a href="http://www.php.net/manual/zh/book.curl.php" target="_blank" rel="external">官方手册</a></li>
+<li><a href="http://php.net/manual/zh/" target="_blank" rel="external">PHP中文手册</a></li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="前言">前言</h1><blockquote>
+<p>cURL(Client URL Library Functions): curl is a command line tool for transferring data with URL syntax,即使用URL语法传输数据的命令行工具。<br>]]>
+    
+    </summary>
+    
+      <category term="PHP" scheme="http://daijiale.github.io/tags/PHP/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+      <category term="Web开发笔记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[【PHP】PHP安全性开发]]></title>
+    <link href="http://daijiale.github.io/2015/09/21/%E3%80%90PHP%E3%80%91PHP%E5%AE%89%E5%85%A8%E6%80%A7%E5%BC%80%E5%8F%91/"/>
+    <id>http://daijiale.github.io/2015/09/21/【PHP】PHP安全性开发/</id>
+    <published>2015-09-21T13:21:11.000Z</published>
+    <updated>2015-11-19T13:31:07.000Z</updated>
     <content type="html"><![CDATA[<h1 id="前言">前言</h1><blockquote>
 <p>php给了开发者极大的灵活性，但是这也为安全问题带来了潜在的隐患，近期需要总结一下以往的问题，在这里借翻译一篇文章同时加上自己开发的一些感触总结一下。<br><a id="more"></a></p>
 </blockquote>
@@ -116,9 +396,9 @@
 <h3 id="不相信用户">不相信用户</h3><p>要假设你的网站接收的每一条数据都是存在恶意代码的，存在隐藏的威胁，要对每一条数据都进行清理</p>
 <h3 id="关闭全局变量">关闭全局变量</h3><p>在php.ini文件中进行以下配置：</p>
 <p>register_globals = Off<br>如果这个配置选项打开之后，会出现很大的安全隐患。例如有一个process.php的脚本文件，会将接收到的数据插入到数据库，接收用户输入数据的表单可能如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;input name=&#34;username&#34; type=&#34;text&#34; size=&#34;15&#34; maxlength=&#34;64&#34;&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">name</span>=<span class="value">"username"</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">size</span>=<span class="value">"15"</span> <span class="attribute">maxlength</span>=<span class="value">"64"</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这样，当提交数据到<code>process.php</code>之后，php会注册一个<code>$username</code>变量，将这个变量数据提交到<code>process.php</code>，同时对于任何POST或GET请求参数，都会设置这样的变量。如果不是显示进行初始化那么就会出现下面的问题：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;// Define $authorized = true only if user is authenticated&#10;if (authenticated_user()) &#123;&#10;    $authorized = true;&#10;&#125;&#10;?&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="comment">// Define $authorized = true only if user is authenticated</span></span><br><span class="line"><span class="keyword">if</span> (authenticated_user()) &#123;</span><br><span class="line">    <span class="variable">$authorized</span> = <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="preprocessor">?&gt;</span></span><br></pre></td></tr></table></figure>
 <p>此处，假设authenticated_user函数就是判断$authorized变量的值，如果开启了register_globals配置，那么任何用户都可以发送一个请求，来设置$authorized变量的值为任意值从而就能绕过这个验证。</p>
 <p>所有的这些提交数据都应该通过PHP预定义内置的全局数组来获取，包括$_POST、$_GET、$_FILES、$_SERVER、$_REQUEST等，其中$_REQUEST是一个$_GET/$_POST/$_COOKIE三个数组的联合变量，默认的顺序是$_COOKIE、$_POST、$_GET。</p>
 <p>推荐的安全配置选项<br>error_reporting设置为Off：不要暴露错误信息给用户，开发的时候可以设置为ON</p>
@@ -140,14 +420,14 @@
 <p>但是，这里根据开发经验，不要开启php的Magic Quotes，这个特性在php6中已经废除，总是自己在需要的时候进行转义。</p>
 <h3 id="防止基本的XSS攻击">防止基本的XSS攻击</h3><p>XSS攻击不像其他攻击，这种攻击在客户端进行，最基本的XSS工具就是防止一段javascript脚本在用户待提交的表单页面，将用户提交的数据和cookie偷取过来。</p>
 <p>XSS工具比SQL注入更加难以防护，各大公司网站都被XSS攻击过，虽然这种攻击与php语言无关，但可以使用php来筛选用户数据达到保护用户数据的目的，这里主要使用的是对用户的数据进行过滤，一般过滤掉HTML标签，特别是a标签。下面是一个普通的过滤方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function transform_HTML($string, $length = null) &#123;&#10;// Helps prevent XSS attacks&#10;    // Remove dead space.&#10;    $string = trim($string);&#10;    // Prevent potential Unicode codec problems.&#10;    $string = utf8_decode($string);&#10;    // HTMLize HTML-specific characters.&#10;    $string = htmlentities($string, ENT_NOQUOTES);&#10;    $string = str_replace(&#34;#&#34;, &#34;#&#34;, $string);&#10;    $string = str_replace(&#34;%&#34;, &#34;%&#34;, $string);&#10;    $length = intval($length);&#10;    if ($length &#62; 0) &#123;&#10;        $string = substr($string, 0, $length);&#10;    &#125;&#10;    return $string;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">transform_HTML</span><span class="params">(<span class="variable">$string</span>, <span class="variable">$length</span> = null)</span> </span>&#123;</span><br><span class="line"><span class="comment">// Helps prevent XSS attacks</span></span><br><span class="line">    <span class="comment">// Remove dead space.</span></span><br><span class="line">    <span class="variable">$string</span> = trim(<span class="variable">$string</span>);</span><br><span class="line">    <span class="comment">// Prevent potential Unicode codec problems.</span></span><br><span class="line">    <span class="variable">$string</span> = utf8_decode(<span class="variable">$string</span>);</span><br><span class="line">    <span class="comment">// HTMLize HTML-specific characters.</span></span><br><span class="line">    <span class="variable">$string</span> = htmlentities(<span class="variable">$string</span>, ENT_NOQUOTES);</span><br><span class="line">    <span class="variable">$string</span> = str_replace(<span class="string">"#"</span>, <span class="string">"#"</span>, <span class="variable">$string</span>);</span><br><span class="line">    <span class="variable">$string</span> = str_replace(<span class="string">"%"</span>, <span class="string">"%"</span>, <span class="variable">$string</span>);</span><br><span class="line">    <span class="variable">$length</span> = intval(<span class="variable">$length</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="variable">$string</span> = substr(<span class="variable">$string</span>, <span class="number">0</span>, <span class="variable">$length</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$string</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这个函数将HTML的特殊字符转换为了HTML实体，浏览器在渲染这段文本的时候以纯文本形式显示。如<strong>bold</strong>会被显示为：</p>
 <p>&lt;STRONG&gt;BoldText&lt;/STRONG&gt;</p>
 <p>上述函数的核心就是htmlentities函数，这个函数将html特殊标签转换为html实体字符，这样可以过滤大部分的XSS攻击。</p>
 <p>但是对于有经验的XSS攻击者，有更加巧妙的办法进行攻击：将他们的恶意代码使用十六进制或者utf-8编码，而不是普通的ASCII文本，例如可以使用下面的方式进行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;a href=&#34;http://host/a.php?variable=%22%3e %3c%53%43%52%49%50%54%3e%44%6f%73%6f%6d%65%74%68%69%6e%67%6d%61%6c%69%63%69%6f%75%73%3c%2f%53%43%52%49%50%54%3e&#34;&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"http://host/a.php?variable=%22%3e %3c%53%43%52%49%50%54%3e%44%6f%73%6f%6d%65%74%68%69%6e%67%6d%61%6c%69%63%69%6f%75%73%3c%2f%53%43%52%49%50%54%3e"</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这样浏览器渲染的结果其实是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;a href=&#34;http://host/a.php?variable=&#34;&#62; &#60;SCRIPT&#62;Dosomethingmalicious&#60;/SCRIPT&#62;&#10;&#60;/a&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"http://host/a.php?variable="</span>&gt;</span> <span class="tag">&lt;<span class="title">SCRIPT</span>&gt;</span><span class="undefined">Dosomethingmalicious</span><span class="tag">&lt;/<span class="title">SCRIPT</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这样就达到了攻击的目的。为了防止这种情况，需要在transform_HTML函数的基础上再将#和%转换为他们对应的实体符号，同时加上了$length参数来限制提交的数据的最大长度。</p>
 <h3 id="使用SafeHTML防止XSS攻击">使用SafeHTML防止XSS攻击</h3><p>上述关于XSS攻击的防护非常简单，但是不包含用户的所有标记，同时有上百种绕过过滤函数提交javascript代码的方法，也没有办法能完全阻止这个情况。</p>
 <p>目前，没有一个单一的脚本能保证不被攻击突破，但是总有相对来说防护程度更好的。一共有两个安全防护的方式：白名单和黑名单。其中白名单更加简单和有效。</p>
@@ -158,7 +438,7 @@
 <p>3、在自己的脚本中包含SafeHTML类文件</p>
 <p>4、建立一个SafeHTML对象</p>
 <p>5、使用parse方法进行过滤</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;/* If you&#39;re storing the HTMLSax3.php in the /classes directory, along&#10;   with the safehtml.php script, define XML_HTMLSAX3 as a null string. */&#10;define(XML_HTMLSAX3, &#39;&#39;);&#10;// Include the class file.&#10;require_once(&#39;classes/safehtml.php&#39;);&#10;// Define some sample bad code.&#10;$data = &#34;This data would raise an alert &#60;script&#62;alert(&#39;XSS Attack&#39;)&#60;/script&#62;&#34;;&#10;// Create a safehtml object.&#10;$safehtml = new safehtml();&#10;// Parse and sanitize the data.&#10;$safe_data = $safehtml-&#62;parse($data);&#10;// Display result.&#10;echo &#39;The sanitized data is &#60;br /&#62;&#39; . $safe_data;&#10;?&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="comment">/* If you're storing the HTMLSax3.php in the /classes directory, along</span><br><span class="line">   with the safehtml.php script, define XML_HTMLSAX3 as a null string. */</span></span><br><span class="line">define(XML_HTMLSAX3, <span class="string">''</span>);</span><br><span class="line"><span class="comment">// Include the class file.</span></span><br><span class="line"><span class="keyword">require_once</span>(<span class="string">'classes/safehtml.php'</span>);</span><br><span class="line"><span class="comment">// Define some sample bad code.</span></span><br><span class="line"><span class="variable">$data</span> = <span class="string">"This data would raise an alert &lt;script&gt;alert('XSS Attack')&lt;/script&gt;"</span>;</span><br><span class="line"><span class="comment">// Create a safehtml object.</span></span><br><span class="line"><span class="variable">$safehtml</span> = <span class="keyword">new</span> safehtml();</span><br><span class="line"><span class="comment">// Parse and sanitize the data.</span></span><br><span class="line"><span class="variable">$safe_data</span> = <span class="variable">$safehtml</span>-&gt;parse(<span class="variable">$data</span>);</span><br><span class="line"><span class="comment">// Display result.</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'The sanitized data is &lt;br /&gt;'</span> . <span class="variable">$safe_data</span>;</span><br><span class="line"><span class="preprocessor">?&gt;</span></span><br></pre></td></tr></table></figure>
 <p>SafeHTML并不能完全防止XSS攻击，只是一个相对复杂的脚本来检验的方式。</p>
 <p>使用单向HASH加密方式来保护数据</p>
 <p>单向hash加密保证对每个用户的密码都是唯一的，而且不能被破译的，只有最终用户知道密码，系统也是不知道原始密码的。这样的一个好处是在系统被攻击后攻击者也无法知道原始密码数据。</p>
@@ -166,7 +446,7 @@
 <p>MD5函数处理过的hash值基本不能被破解，但是总是有可能性的，而且网上也有MD5的hash字典。</p>
 <h3 id="使用mcrypt加密数据">使用mcrypt加密数据</h3><p>MD5 hash函数可以在可读的表单中显示数据，但是对于存储用户的信用卡信息的时候，需要进行加密处理后存储，并且需要之后进行解密。</p>
 <p>最好的方法是使用mcrypt模块，这个模块包含了超过30中加密方式来保证只有加密者才能解密数据。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;$data = &#34;Stuff you want encrypted&#34;;&#10;$key = &#34;Secret passphrase used to encrypt your data&#34;;&#10;$cipher = &#34;MCRYPT_SERPENT_256&#34;;&#10;$mode = &#34;MCRYPT_MODE_CBC&#34;;&#10;function encrypt($data, $key, $cipher, $mode) &#123;&#10;// Encrypt data&#10;return (string)&#10;            base64_encode&#10;                (&#10;                mcrypt_encrypt&#10;                    (&#10;                    $cipher,&#10;                    substr(md5($key),0,mcrypt_get_key_size($cipher, $mode)),&#10;                    $data,&#10;                    $mode,&#10;                    substr(md5($key),0,mcrypt_get_block_size($cipher, $mode))&#10;                    )&#10;                );&#10;&#125;&#10;function decrypt($data, $key, $cipher, $mode) &#123;&#10;// Decrypt data&#10;    return (string)&#10;            mcrypt_decrypt&#10;                (&#10;                $cipher,&#10;                substr(md5($key),0,mcrypt_get_key_size($cipher, $mode)),&#10;                base64_decode($data),&#10;                $mode,&#10;                substr(md5($key),0,mcrypt_get_block_size($cipher, $mode))&#10;                );&#10;&#125;&#10;?&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="variable">$data</span> = <span class="string">"Stuff you want encrypted"</span>;</span><br><span class="line"><span class="variable">$key</span> = <span class="string">"Secret passphrase used to encrypt your data"</span>;</span><br><span class="line"><span class="variable">$cipher</span> = <span class="string">"MCRYPT_SERPENT_256"</span>;</span><br><span class="line"><span class="variable">$mode</span> = <span class="string">"MCRYPT_MODE_CBC"</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">encrypt</span><span class="params">(<span class="variable">$data</span>, <span class="variable">$key</span>, <span class="variable">$cipher</span>, <span class="variable">$mode</span>)</span> </span>&#123;</span><br><span class="line"><span class="comment">// Encrypt data</span></span><br><span class="line"><span class="keyword">return</span> (string)</span><br><span class="line">            base64_encode</span><br><span class="line">                (</span><br><span class="line">                mcrypt_encrypt</span><br><span class="line">                    (</span><br><span class="line">                    <span class="variable">$cipher</span>,</span><br><span class="line">                    substr(md5(<span class="variable">$key</span>),<span class="number">0</span>,mcrypt_get_key_size(<span class="variable">$cipher</span>, <span class="variable">$mode</span>)),</span><br><span class="line">                    <span class="variable">$data</span>,</span><br><span class="line">                    <span class="variable">$mode</span>,</span><br><span class="line">                    substr(md5(<span class="variable">$key</span>),<span class="number">0</span>,mcrypt_get_block_size(<span class="variable">$cipher</span>, <span class="variable">$mode</span>))</span><br><span class="line">                    )</span><br><span class="line">                );</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">decrypt</span><span class="params">(<span class="variable">$data</span>, <span class="variable">$key</span>, <span class="variable">$cipher</span>, <span class="variable">$mode</span>)</span> </span>&#123;</span><br><span class="line"><span class="comment">// Decrypt data</span></span><br><span class="line">    <span class="keyword">return</span> (string)</span><br><span class="line">            mcrypt_decrypt</span><br><span class="line">                (</span><br><span class="line">                <span class="variable">$cipher</span>,</span><br><span class="line">                substr(md5(<span class="variable">$key</span>),<span class="number">0</span>,mcrypt_get_key_size(<span class="variable">$cipher</span>, <span class="variable">$mode</span>)),</span><br><span class="line">                base64_decode(<span class="variable">$data</span>),</span><br><span class="line">                <span class="variable">$mode</span>,</span><br><span class="line">                substr(md5(<span class="variable">$key</span>),<span class="number">0</span>,mcrypt_get_block_size(<span class="variable">$cipher</span>, <span class="variable">$mode</span>))</span><br><span class="line">                );</span><br><span class="line">&#125;</span><br><span class="line"><span class="preprocessor">?&gt;</span></span><br></pre></td></tr></table></figure>
 <p>mcrypt函数需要以下信息：</p>
 <p>1、待加密数据</p>
 <p>2、用来加密和解密数据的key</p>
@@ -195,74 +475,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[cURL使用之PHP]]></title>
-    <link href="http://daijiale.github.io/2015/09/21/PHP_cURL/"/>
-    <id>http://daijiale.github.io/2015/09/21/PHP_cURL/</id>
-    <published>2015-09-21T13:21:11.000Z</published>
-    <updated>2015-10-30T16:40:59.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="前言">前言</h1><blockquote>
-<p>cURL(Client URL Library Functions): curl is a command line tool for transferring data with URL syntax,即使用URL语法传输数据的命令行工具。<br><a id="more"></a></p>
-</blockquote>
-<h1 id="学习篇">学习篇</h1><ul>
-<li>1、初始化cURL：curl_init()</li>
-<li>2、发送请求到server：curl_exec()</li>
-<li>3、接收server数据：curl_exec()</li>
-<li>4、关闭cURL：curl_close()</li>
-</ul>
-<h1 id="开发篇">开发篇</h1><p>php -f xxx.php &gt; xxx.html</p>
-<ul>
-<li>1、利用cURL直接抓取“百度”首页</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;$curl=curl_init(&#39;http://www.baidu.com&#39;);&#10;curl_exec($curl);&#10;curl_close($curl);&#10;?&#62;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>2、网络上下载一个网页并把内容中的“百度”替换为“屌丝”之后输出</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;$curlobj = curl_init();&#9;&#9;&#9;// &#21021;&#22987;&#21270;&#10;curl_setopt($curlobj, CURLOPT_URL, &#34;http://www.baidu.com&#34;);&#9;&#9;// &#35774;&#32622;&#35775;&#38382;&#32593;&#39029;&#30340;URL&#10;curl_setopt($curlobj, CURLOPT_RETURNTRANSFER, true);&#9;&#9;&#9;// &#25191;&#34892;&#20043;&#21518;&#19981;&#30452;&#25509;&#25171;&#21360;&#20986;&#26469;&#10;$output=curl_exec($curlobj);&#9;// &#25191;&#34892;&#10;curl_close($curlobj);&#9;&#9;&#9;// &#20851;&#38381;cURL&#10;echo str_replace(&#34;&#30334;&#24230;&#34;,&#34;&#23628;&#19997;&#34;,$output);&#10;?&#62;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>3、登录慕课网并下载个人空间页面</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;/**&#10; * &#33258;&#23450;&#20041;&#23454;&#29616;&#39029;&#38754;&#38142;&#25509;&#36339;&#36716;&#25235;&#21462;&#10; * &#10; */&#10;$data=&#39;username=demo_peter@126.com&#38;password=123qwe&#38;remember=1&#39;;&#10;$curlobj = curl_init();&#9;&#9;&#9;// &#21021;&#22987;&#21270;&#10;curl_setopt($curlobj, CURLOPT_URL, &#34;http://www.imooc.com/user/login&#34;);&#9;&#9;// &#35774;&#32622;&#35775;&#38382;&#32593;&#39029;&#30340;URL&#10;curl_setopt($curlobj, CURLOPT_RETURNTRANSFER, true);&#9;&#9;&#9;// &#25191;&#34892;&#20043;&#21518;&#19981;&#30452;&#25509;&#25171;&#21360;&#20986;&#26469;&#10;&#10;// Cookie&#30456;&#20851;&#35774;&#32622;&#65292;&#36825;&#37096;&#20998;&#35774;&#32622;&#38656;&#35201;&#22312;&#25152;&#26377;&#20250;&#35805;&#24320;&#22987;&#20043;&#21069;&#35774;&#32622;&#10;date_default_timezone_set(&#39;PRC&#39;); // &#20351;&#29992;Cookie&#26102;&#65292;&#24517;&#39035;&#20808;&#35774;&#32622;&#26102;&#21306;&#10;curl_setopt($curlobj, CURLOPT_COOKIESESSION, TRUE); &#10;curl_setopt($curlobj, CURLOPT_HEADER, 0); &#10;// &#27880;&#37322;&#25481;&#36825;&#34892;&#65292;&#22240;&#20026;&#36825;&#20010;&#35774;&#32622;&#24517;&#39035;&#20851;&#38381;&#23433;&#20840;&#27169;&#24335; &#20197;&#21450;&#20851;&#38381;open_basedir&#65292;&#23545;&#26381;&#21153;&#22120;&#23433;&#20840;&#19981;&#21033;&#10;//curl_setopt($curlobj, CURLOPT_FOLLOWLOCATION, 1);  &#10;&#10;curl_setopt($curlobj, CURLOPT_POST, 1);  &#10;curl_setopt($curlobj, CURLOPT_POSTFIELDS, $data);  &#10;curl_setopt($curlobj, CURLOPT_HTTPHEADER, array(&#34;application/x-www-form-urlencoded; charset=utf-8&#34;, &#10;&#9;&#34;Content-length: &#34;.strlen($data)&#10;&#9;)); &#10;curl_exec($curlobj);&#9;// &#25191;&#34892;&#10;curl_setopt($curlobj, CURLOPT_URL, &#34;http://www.imooc.com/space/index&#34;);&#10;curl_setopt($curlobj, CURLOPT_POST, 0);  &#10;curl_setopt($curlobj, CURLOPT_HTTPHEADER, array(&#34;Content-type: text/xml&#34;&#10;&#9;)); &#10;$output=curl_redir_exec($curlobj);&#9;// &#25191;&#34892;&#10;curl_close($curlobj);&#9;&#9;&#9;// &#20851;&#38381;cURL&#10;echo $output;&#10;&#10;/**&#10; * &#33258;&#23450;&#20041;&#23454;&#29616;&#39029;&#38754;&#38142;&#25509;&#36339;&#36716;&#25235;&#21462;&#10; */&#10;function curl_redir_exec($ch,$debug=&#34;&#34;) &#10;&#123; &#10;    static $curl_loops = 0; &#10;    static $curl_max_loops = 20; &#10;&#10;    if ($curl_loops++ &#62;= $curl_max_loops) &#10;    &#123; &#10;        $curl_loops = 0; &#10;        return FALSE; &#10;    &#125; &#10;    curl_setopt($ch, CURLOPT_HEADER, true); // &#24320;&#21551;header&#25165;&#33021;&#22815;&#25235;&#21462;&#21040;&#37325;&#23450;&#21521;&#21040;&#30340;&#26032;URL&#10;    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); &#10;    $data = curl_exec($ch); &#10;    // &#20998;&#21106;&#36820;&#22238;&#30340;&#20869;&#23481;&#10;    $h_len = curl_getinfo($ch, CURLINFO_HEADER_SIZE); &#10;    $header = substr($data,0,$h_len);&#10;    $data = substr($data,$h_len - 1);&#10;&#10;    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE); &#10;    if ($http_code == 301 || $http_code == 302) &#123; &#10;        $matches = array(); &#10;        preg_match(&#39;/Location:(.*?)\n/&#39;, $header, $matches); &#10;        $url = @parse_url(trim(array_pop($matches))); &#10;        // print_r($url); &#10;        if (!$url) &#10;        &#123; &#10;            //couldn&#39;t process the url to redirect to &#10;            $curl_loops = 0; &#10;            return $data; &#10;        &#125; &#10;        $last_url = parse_url(curl_getinfo($ch, CURLINFO_EFFECTIVE_URL)); &#10;        if (!isset($url[&#39;scheme&#39;])) &#10;            $url[&#39;scheme&#39;] = $last_url[&#39;scheme&#39;]; &#10;        if (!isset($url[&#39;host&#39;])) &#10;            $url[&#39;host&#39;] = $last_url[&#39;host&#39;]; &#10;        if (!isset($url[&#39;path&#39;])) &#10;            $url[&#39;path&#39;] = $last_url[&#39;path&#39;];&#10;&#10;        $new_url = $url[&#39;scheme&#39;] . &#39;://&#39; . $url[&#39;host&#39;] . $url[&#39;path&#39;] . (isset($url[&#39;query&#39;])?&#39;?&#39;.$url[&#39;query&#39;]:&#39;&#39;); &#10;        curl_setopt($ch, CURLOPT_URL, $new_url); &#10;&#10;        return curl_redir_exec($ch); &#10;    &#125; else &#123; &#10;        $curl_loops=0; &#10;        return $data; &#10;    &#125; &#10;&#125; &#10;?&#62;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>4、获取webservice天气数据</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;$data = &#39;theCityName=&#21271;&#20140;&#39;;&#10;$curlobj = curl_init();&#9;&#10;curl_setopt($curlobj, CURLOPT_URL, &#34;http://www.webxml.com.cn/WebServices/WeatherWebService.asmx/getWeatherbyCityName&#34;);  &#10;curl_setopt($curlobj, CURLOPT_HEADER, 0); &#10;curl_setopt($curlobj, CURLOPT_RETURNTRANSFER, 1);  &#10;curl_setopt($curlobj, CURLOPT_POST, 1);  &#10;curl_setopt($curlobj, CURLOPT_POSTFIELDS, $data);  &#10;curl_setopt($curlobj, CURLOPT_HTTPHEADER, array(&#34;application/x-www-form-urlencoded; charset=utf-8&#34;, &#10;&#9;&#34;Content-length: &#34;.strlen($data)&#10;&#9;)); &#10;$rtn = curl_exec($curlobj);   &#10;if(!curl_errno($curlobj))&#123;&#10;&#9;// $info = curl_getinfo($curlobj); &#10;&#9;// print_r($info);&#10;&#9;echo $rtn;  &#10;&#125; else &#123;&#10;  echo &#39;Curl error: &#39; . curl_error($curlobj);&#10;&#125;&#10;curl_close($curlobj);&#10;?&#62;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>5、从FTP上下载数据</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;$curlobj = curl_init();&#9;&#10;curl_setopt($curlobj, CURLOPT_URL, &#34;ftp://192.168.1.100/downloaddemo.txt&#34;);  &#10;curl_setopt($curlobj, CURLOPT_HEADER, 0); &#10;curl_setopt($curlobj, CURLOPT_RETURNTRANSFER, 1);  &#10;curl_setopt($curlobj, CURLOPT_TIMEOUT, 300); // times out after 300s&#10;curl_setopt($curlobj, CURLOPT_USERPWD, &#34;peter.zhou:123456&#34;);//FTP&#29992;&#25143;&#21517;&#65306;&#23494;&#30721;&#10;// Sets up the output file&#10;$outfile = fopen(&#39;dest.txt&#39;, &#39;wb&#39;);//&#20445;&#23384;&#21040;&#26412;&#22320;&#30340;&#25991;&#20214;&#21517;&#10;curl_setopt($curlobj, CURLOPT_FILE, $outfile);&#10;&#10;$rtn = curl_exec($curlobj);  &#10;fclose($outfile); &#10;if(!curl_errno($curlobj))&#123;&#10;&#9;// $info = curl_getinfo($curlobj); &#10;&#9;// print_r($info);&#10;&#9;echo &#34;RETURN: &#34; . $rtn;  &#10;&#125; else &#123;&#10;  echo &#39;Curl error: &#39; . curl_error($curlobj);&#10;&#125;&#10;curl_close($curlobj);&#10;?&#62;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>6、上传数据到FTP </li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;&#10;$curlobj = curl_init();&#9;&#10;$localfile = &#39;ftp01.php&#39;;&#10;$fp = fopen($localfile, &#39;r&#39;);&#10;&#10;curl_setopt($curlobj, CURLOPT_URL, &#34;ftp://192.168.1.100/ftp01_uploaded.php&#34;);  &#10;curl_setopt($curlobj, CURLOPT_HEADER, 0); &#10;curl_setopt($curlobj, CURLOPT_RETURNTRANSFER, 1);  &#10;curl_setopt($curlobj, CURLOPT_TIMEOUT, 300); // times out after 300s&#10;curl_setopt($curlobj, CURLOPT_USERPWD, &#34;peter.zhou:123456&#34;);//FTP&#29992;&#25143;&#21517;&#65306;&#23494;&#30721;&#10;&#10;curl_setopt($curlobj, CURLOPT_UPLOAD, 1);&#10;curl_setopt($curlobj, CURLOPT_INFILE, $fp);&#10;curl_setopt($curlobj, CURLOPT_INFILESIZE, filesize($localfile));&#10;$rtn = curl_exec($curlobj);  &#10;fclose($fp); &#10;if(!curl_errno($curlobj))&#123;&#10;&#9;echo &#34;Uploaded successfully.&#34;;  &#10;&#125; else &#123;&#10;  echo &#39;Curl error: &#39; . curl_error($curlobj);&#10;&#125;&#10;curl_close($curlobj);&#10;?&#62;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>7、下载网络上面的一个HTTPS的资源</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;$curlobj = curl_init();&#9;&#9;&#9;// &#21021;&#22987;&#21270;&#10;curl_setopt($curlobj, CURLOPT_URL, &#34;https://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.js&#34;);&#9;&#9;// &#35774;&#32622;&#35775;&#38382;&#32593;&#39029;&#30340;URL&#10;curl_setopt($curlobj, CURLOPT_RETURNTRANSFER, true);&#9;&#9;&#9;// &#25191;&#34892;&#20043;&#21518;&#19981;&#30452;&#25509;&#25171;&#21360;&#20986;&#26469;&#10;&#10;// &#35774;&#32622;HTTPS&#25903;&#25345;&#10;date_default_timezone_set(&#39;PRC&#39;); // &#20351;&#29992;Cookie&#26102;&#65292;&#24517;&#39035;&#20808;&#35774;&#32622;&#26102;&#21306;&#10;curl_setopt($curlobj, CURLOPT_SSL_VERIFYPEER, 0); // &#23545;&#35748;&#35777;&#35777;&#20070;&#26469;&#28304;&#30340;&#26816;&#26597;&#20174;&#35777;&#20070;&#20013;&#26816;&#26597;SSL&#21152;&#23494;&#31639;&#27861;&#26159;&#21542;&#23384;&#22312;&#10;curl_setopt($curlobj, CURLOPT_SSL_VERIFYHOST, 2); // &#10;&#10;$output=curl_exec($curlobj);&#9;// &#25191;&#34892;&#10;curl_close($curlobj);&#9;&#9;&#9;// &#20851;&#38381;cURL&#10;echo $output;&#10;?&#62;</span><br></pre></td></tr></table></figure>
-<h1 id="更多参考">更多参考</h1><ul>
-<li><a href="http://www.php.net/manual/zh/book.curl.php" target="_blank" rel="external">官方手册</a></li>
-<li><a href="http://php.net/manual/zh/" target="_blank" rel="external">PHP中文手册</a></li>
-</ul>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="前言">前言</h1><blockquote>
-<p>cURL(Client URL Library Functions): curl is a command line tool for transferring data with URL syntax,即使用URL语法传输数据的命令行工具。<br>]]>
-    
-    </summary>
-    
-      <category term="PHP" scheme="http://daijiale.github.io/tags/PHP/"/>
-    
-      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
-    
-      <category term="Web开发日记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E6%97%A5%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Android求职知识点Review]]></title>
-    <link href="http://daijiale.github.io/2015/07/21/Android%E6%B1%82%E8%81%8C%E7%9F%A5%E8%AF%86%E7%82%B9Review/"/>
-    <id>http://daijiale.github.io/2015/07/21/Android求职知识点Review/</id>
+    <title><![CDATA[【Android-持续更新】Android求职知识点Review]]></title>
+    <link href="http://daijiale.github.io/2015/07/21/%E3%80%90Android%E3%80%91Android%E6%B1%82%E8%81%8C%E7%9F%A5%E8%AF%86%E7%82%B9Review/"/>
+    <id>http://daijiale.github.io/2015/07/21/【Android】Android求职知识点Review/</id>
     <published>2015-07-21T07:13:09.000Z</published>
-    <updated>2015-10-30T16:40:59.000Z</updated>
+    <updated>2015-11-19T06:47:33.000Z</updated>
     <content type="html"><![CDATA[<h1 id="JAVA">JAVA</h1><h2 id="1-_举例说明多态和重载区别">1. 举例说明多态和重载区别</h2><pre><code><span class="keyword">*</span><span class="keyword">*</span> 重载<span class="keyword">*</span><span class="keyword">*</span>
 </code></pre> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;&#10;void Aa(int a )&#123;....&#125;&#10;void Aa (int a,int b)&#123;...&#125; &#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>虽然Aa定义了2个 但是因为他们注册的参数不同所以 看作为2个不同的方法</p>
@@ -331,11 +548,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Android开发常用知识点总结]]></title>
-    <link href="http://daijiale.github.io/2015/07/10/Android%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/"/>
-    <id>http://daijiale.github.io/2015/07/10/Android开发常用知识点总结/</id>
+    <title><![CDATA[【Android-持续更新】Android开发常用知识点总结]]></title>
+    <link href="http://daijiale.github.io/2015/07/10/%E3%80%90Android%E3%80%91Android%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/"/>
+    <id>http://daijiale.github.io/2015/07/10/【Android】Android开发常用知识点总结/</id>
     <published>2015-07-10T07:13:09.000Z</published>
-    <updated>2015-10-30T16:40:59.000Z</updated>
+    <updated>2015-11-19T06:47:41.000Z</updated>
     <content type="html"><![CDATA[<h1 id="Android开发常用知识点总结：">Android开发常用知识点总结：</h1><a id="more"></a>
 <h2 id="Android异步加载：">Android异步加载：</h2><p>  用异步的方式去加载数据（主要是图像，不解释），可以让用户在刷新数据时候不用经历太多卡顿，这也是Google官方要求我们去做的一种方式。</p>
 <ul>
@@ -390,11 +607,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Node.js学习开发笔记]]></title>
-    <link href="http://daijiale.github.io/2015/07/06/Node.js%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
-    <id>http://daijiale.github.io/2015/07/06/Node.js学习开发笔记/</id>
+    <title><![CDATA[【Node.js-持续更新】Node.js学习开发笔记]]></title>
+    <link href="http://daijiale.github.io/2015/07/06/%E3%80%90Node.js%E3%80%91Node.js%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
+    <id>http://daijiale.github.io/2015/07/06/【Node.js】Node.js学习开发笔记/</id>
     <published>2015-07-06T11:21:11.000Z</published>
-    <updated>2015-10-30T16:40:59.000Z</updated>
+    <updated>2015-11-19T13:18:36.000Z</updated>
     <content type="html"><![CDATA[<h1 id="前言">前言</h1><blockquote>
 <p>第一次接触Node.js是大二在四川长虹实习期间，距现在已经1年多了，在自己的一些项目中有用到，积累了一些经验，但是想更加系统的学习一下这门技术（主要这两年发展的太火了。。），同时也想把一些开发过程中的问题和案例分享出来， 特为此撰写一篇博客笔记…<br><a id="more"></a></p>
 </blockquote>
@@ -424,16 +641,16 @@
     
       <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
     
-      <category term="Web开发日记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E6%97%A5%E8%AE%B0/"/>
+      <category term="Web开发笔记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[在百度实习的那些日子]]></title>
-    <link href="http://daijiale.github.io/2015/06/29/%E5%9C%A8%E7%99%BE%E5%BA%A6%E5%AE%9E%E4%B9%A0%E7%9A%84%E9%82%A3%E4%BA%9B%E6%97%A5%E5%AD%90/"/>
-    <id>http://daijiale.github.io/2015/06/29/在百度实习的那些日子/</id>
+    <title><![CDATA[【个人】在百度实习的那些日子]]></title>
+    <link href="http://daijiale.github.io/2015/06/29/%E3%80%90%E4%B8%AA%E4%BA%BA%E3%80%91%E5%9C%A8%E7%99%BE%E5%BA%A6%E5%AE%9E%E4%B9%A0%E7%9A%84%E9%82%A3%E4%BA%9B%E6%97%A5%E5%AD%90/"/>
+    <id>http://daijiale.github.io/2015/06/29/【个人】在百度实习的那些日子/</id>
     <published>2015-06-29T11:13:09.000Z</published>
-    <updated>2015-10-30T16:40:59.000Z</updated>
+    <updated>2015-11-19T06:46:06.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>时间：2014.11.19-2015.6.24</p>
 <p>地点：北京海淀区上地东路鹏寰国际大厦</p>
@@ -556,11 +773,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[基于百度ODP的Web前端开发]]></title>
-    <link href="http://daijiale.github.io/2015/06/10/%E5%9F%BA%E4%BA%8E%E7%99%BE%E5%BA%A6ODP%E7%9A%84%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    <id>http://daijiale.github.io/2015/06/10/基于百度ODP的前端开发/</id>
+    <title><![CDATA[【前端】基于百度ODP的Web前端开发]]></title>
+    <link href="http://daijiale.github.io/2015/06/10/%E3%80%90%E5%89%8D%E7%AB%AF%E3%80%91%E5%9F%BA%E4%BA%8E%E7%99%BE%E5%BA%A6ODP%E7%9A%84%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    <id>http://daijiale.github.io/2015/06/10/【前端】基于百度ODP的前端开发/</id>
     <published>2015-06-10T03:03:09.000Z</published>
-    <updated>2015-10-30T16:40:59.000Z</updated>
+    <updated>2015-11-19T13:17:55.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>ODP，即Online Develop Platform，是为百度Web业务提供完善且高度集成的基础环境、框架、基础库和工具，统一规范模式。</p>
 <p>个人认为，这套PHP开发框架和TP类似，但是安全性和效率性方便远胜于TP</p>
@@ -702,16 +919,16 @@
     
       <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
     
-      <category term="Web开发日记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E6%97%A5%E8%AE%B0/"/>
+      <category term="Web开发笔记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[JavaScript经典设计模式总结]]></title>
-    <link href="http://daijiale.github.io/2015/06/09/JavaScript%E7%BB%8F%E5%85%B8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93/"/>
-    <id>http://daijiale.github.io/2015/06/09/JavaScript经典设计模式总结/</id>
+    <title><![CDATA[【前端】JavaScript经典设计模式总结]]></title>
+    <link href="http://daijiale.github.io/2015/06/09/%E3%80%90%E5%89%8D%E7%AB%AF%E3%80%91JavaScript%E7%BB%8F%E5%85%B8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93/"/>
+    <id>http://daijiale.github.io/2015/06/09/【前端】JavaScript经典设计模式总结/</id>
     <published>2015-06-09T03:29:31.000Z</published>
-    <updated>2015-10-30T16:40:59.000Z</updated>
+    <updated>2015-11-19T13:18:10.000Z</updated>
     <content type="html"><![CDATA[<h1 id="前言">前言</h1><blockquote>
 <p>在百度即将离职的最后一个月里，我被派往新项目担任FE的角色，借此机会也重新review一下大一大二的老本行——Web前端开发。这篇Blog是对自己所学2年JS的一个设计模式总结，也是实际编码中经常用到的很多经典Case，希望能帮助到更多JS开发者，也给那些还活跃在 <code>JS API</code> 层的同学打开一个新的学习思路。<br>PS：本篇Blog侧重点在于JS的设计模式，如果只是期望了解JS语法，请直接戳<a href="http://www.w3school.com.cn/js/index.asp" target="_blank" rel="external">W3C传送门</a>！<br><a id="more"></a></p>
 </blockquote>
@@ -745,16 +962,16 @@
     
       <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
     
-      <category term="Web开发日记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E6%97%A5%E8%AE%B0/"/>
+      <category term="Web开发笔记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[阿里百川Hackathon小记]]></title>
-    <link href="http://daijiale.github.io/2015/05/28/%E9%98%BF%E9%87%8C%E7%99%BE%E5%B7%9DHackathon/"/>
-    <id>http://daijiale.github.io/2015/05/28/阿里百川Hackathon/</id>
-    <published>2015-05-28T12:23:09.000Z</published>
-    <updated>2015-10-30T16:40:59.000Z</updated>
+    <title><![CDATA[【Hackathon】阿里百川hackathon小记]]></title>
+    <link href="http://daijiale.github.io/2015/05/28/%E3%80%90Hackathon%E3%80%91%E9%98%BF%E9%87%8C%E7%99%BE%E5%B7%9DHackathon/"/>
+    <id>http://daijiale.github.io/2015/05/28/【Hackathon】阿里百川Hackathon/</id>
+    <published>2015-05-28T03:43:09.000Z</published>
+    <updated>2015-11-19T13:47:22.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>时间：2015.5.21-2015.5.24</p>
 <p>地点：杭州 阿里百川海创大厦</p>
@@ -789,12 +1006,15 @@
 <p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/alihackathondefault9.jpeg" alt=""></p>
 <h2 id="5月25号">5月25号</h2><p>请伙伴们吃了几道精致的西湖小菜后，就奔赴杭州东站，搭动车回北京继续上班啦。<br>这次的杭州之旅到此也画上了句号。</p>
 <h1 id="文尾">文尾</h1><p>返程的路上，很多学弟学妹询问我这次的结果如何如何，其实很多时候过程真的比结果重要，我们Team并没有因为这次的比赛结果而忧愁满满，相反我们更加享受Hackathon给我们带来的快乐和成长，毕竟这是我们5人第一次合作，这次的经历也让我们磨合得更为默契，相信下学期实习完之后，我们回到成都，能重新聚在一起做出更惊人的产品，当然，下次一定要备好一个<code>自拍杆</code>和<code>无人机</code>，哈哈！</p>
+<p>此次hackathon的项目已开源：<a href="https://github.com/daijiale/Zuber" target="_blank" rel="external">Github地址</a></p>
 <blockquote>
 <p>今年继<code>百度十二季Hackathon</code>之后又一季重量级Hackathon比赛，感谢你们给我带来的成长和快乐！</p>
 <p>期待自己下一次的Hackathon表现，相信那天并不会太远……</p>
 </blockquote>
 <p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/alihackathondefault10.jpeg" alt=""></p>
 <embed src="http://music.163.com/style/swf/widget.swf?sid=29808787&type=2&auto=1&width=320&height=66" width="340" height="86" allownetworking="all">
+
+
 
 
 
@@ -814,7 +1034,7 @@
     
       <category term="Android" scheme="http://daijiale.github.io/tags/Android/"/>
     
-      <category term="Hackathon" scheme="http://daijiale.github.io/tags/Hackathon/"/>
+      <category term="hackathon" scheme="http://daijiale.github.io/tags/hackathon/"/>
     
       <category term="个人故事" scheme="http://daijiale.github.io/tags/%E4%B8%AA%E4%BA%BA%E6%95%85%E4%BA%8B/"/>
     
@@ -825,11 +1045,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[常用Adb Shell命令]]></title>
-    <link href="http://daijiale.github.io/2015/05/06/ADB%E5%B8%B8%E7%94%A8Shell%E5%91%BD%E4%BB%A4/"/>
-    <id>http://daijiale.github.io/2015/05/06/ADB常用Shell命令/</id>
+    <title><![CDATA[【Android】常用Adb Shell命令]]></title>
+    <link href="http://daijiale.github.io/2015/05/06/%E3%80%90Android%E3%80%91ADB%E5%B8%B8%E7%94%A8Shell%E5%91%BD%E4%BB%A4/"/>
+    <id>http://daijiale.github.io/2015/05/06/【Android】ADB常用Shell命令/</id>
     <published>2015-05-06T08:23:09.000Z</published>
-    <updated>2015-10-30T16:40:59.000Z</updated>
+    <updated>2015-11-19T06:47:07.000Z</updated>
     <content type="html"><![CDATA[<h1 id="实用Adb_Shell命令演示">实用Adb Shell命令演示</h1><blockquote>
 <p>一些灵巧方便的Adb Shell命令笔记</p>
 </blockquote>
@@ -988,11 +1208,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[下次人家问再你怎么入门AndroidWear，你就甩这篇文章给TA]]></title>
-    <link href="http://daijiale.github.io/2015/05/04/%E6%9C%80%E5%85%A8%E7%9A%84AndroidWear%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
-    <id>http://daijiale.github.io/2015/05/04/最全的AndroidWear开发笔记/</id>
+    <title><![CDATA[【Android-持续更新】下次人家问再你怎么入门AndroidWear，你就甩这篇文章给TA]]></title>
+    <link href="http://daijiale.github.io/2015/05/04/%E3%80%90Android%E3%80%91%E6%9C%80%E5%85%A8%E7%9A%84AndroidWear%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
+    <id>http://daijiale.github.io/2015/05/04/【Android】最全的AndroidWear开发笔记/</id>
     <published>2015-05-04T08:23:09.000Z</published>
-    <updated>2015-10-30T16:40:59.000Z</updated>
+    <updated>2015-11-19T13:15:09.000Z</updated>
     <content type="html"><![CDATA[<h1 id="本文作者">本文作者</h1><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicslrme.jpg" alt=""></p>
 <h2 id="Jiale_Dai"><a href="http://www.daijiale.cn" target="_blank" rel="external">Jiale Dai</a></h2><p>成都 电子科技大学 本科生( 其实还没毕业，目前大三 ）</p>
 <p>从14年开始一直专研于AndroidWear开发</p>
@@ -1042,11 +1262,11 @@
 </ul>
 <p>下面是关键代码实现过程：</p>
 <p><strong>Add RemoteInput to Reply Action</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Action replyAction = new NotificationCompat.Action.Builder(&#10;&#9;R.drawble.ic_reply,getString(R.string.reply), &#10;&#9;replyPendingIntent)&#10;    addRemoteInput(&#10;&#9;  new RemoteInput.Builder(EXTRA_REPLY_TEXT)&#10;&#9;&#9;.setLabel(getString(R.string.replyLabel))&#10;&#9;&#9;.build()).build();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Action replyAction = <span class="keyword">new</span> NotificationCompat.Action.Builder(</span><br><span class="line">	R.drawble.ic_reply,getString(R.string.reply), </span><br><span class="line">	replyPendingIntent)</span><br><span class="line">    addRemoteInput(</span><br><span class="line">	  <span class="keyword">new</span> RemoteInput.Builder(EXTRA_REPLY_TEXT)</span><br><span class="line">		.setLabel(getString(R.string.replyLabel))</span><br><span class="line">		.build()).build();</span><br></pre></td></tr></table></figure>
 <p><strong>Modify Activity to Use Reply Text</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Bundle results =&#10;&#9;RemoteInput.getResultsFromIntent(intent);&#10;&#9;if(results!=null)&#123;&#10;&#9; String message = &#10;&#9;&#9;results getString(EXTRA_REPLY_TEXT)&#10;&#9;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Bundle results =</span><br><span class="line">	RemoteInput.getResultsFromIntent(intent);</span><br><span class="line">	<span class="keyword">if</span>(results!=<span class="keyword">null</span>)&#123;</span><br><span class="line">	 String message = </span><br><span class="line">		<span class="function">results <span class="title">getString</span><span class="params">(EXTRA_REPLY_TEXT)</span></span><br><span class="line">	&#125;</span></span><br></pre></td></tr></table></figure>
 <p>3、最后我再来详细介绍下“多卡片重叠式信息提醒”的实现原理，视觉设计上采用的是复线收件箱的风格，ta不再把多条信息压缩到单一的卡片中，我们想做的是每封邮件都有自己的卡片。而这些卡片又放入一个可扩大的堆栈中，这一堆提醒卡片，也叫提醒卡片堆栈，也是notification API的新特性，不会把所有邮件提醒都只能通过一个提醒显示出来，而是按类划分，表明有所关联，ta们在可穿戴设备上组合成一个卡片丛，而用户也可以通过卡片丛去逐个浏览，以提取某一封邮件，并对其回复或者进行其他操作。而卡片丛 即：notification group也有一个分类键，通过设置这个键来控制丛内卡片顺序，并且可以从中标记一个卡片作为组群的整体摘要描述，具体实现代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Notification card1 = &#10;&#9;new NotificationCompat.Builder(context)&#10;&#9;&#9;.setGroup(GROUP_KEY)&#10;&#9;&#9;.setSortKey(&#34;0&#34;)&#10;&#9;&#9;.build();&#10;&#10;Notification card2 = &#10;&#9;new NotificationCompat.Builder(context)&#10;&#9;&#9;.setGroup(GROUP_KEY)&#10;&#9;&#9;.setSortKey(&#34;1&#34;)&#10;&#9;&#9;.build();&#10;&#10;Notification card3 = &#10;&#9;new NotificationCompat.Builder(context)&#10;&#9;&#9;.setGroup(GROUP_KEY)&#10;&#9;&#9;.setSortKey(&#34;2&#34;)&#10;&#9;&#9;.build();&#10;&#10;Notification summary = &#10;&#9;new NotificationCompat.Builder(context)&#10;&#9;&#9;.setGroup(GROUP_KEY)&#10;&#9;&#9;.setGroupSummar;&#10;&#9;&#9;.build();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Notification card1 = </span><br><span class="line">	<span class="keyword">new</span> NotificationCompat.Builder(context)</span><br><span class="line">		.setGroup(GROUP_KEY)</span><br><span class="line">		.setSortKey(<span class="string">"0"</span>)</span><br><span class="line">		.build();</span><br><span class="line"></span><br><span class="line">Notification card2 = </span><br><span class="line">	<span class="keyword">new</span> NotificationCompat.Builder(context)</span><br><span class="line">		.setGroup(GROUP_KEY)</span><br><span class="line">		.setSortKey(<span class="string">"1"</span>)</span><br><span class="line">		.build();</span><br><span class="line"></span><br><span class="line">Notification card3 = </span><br><span class="line">	<span class="keyword">new</span> NotificationCompat.Builder(context)</span><br><span class="line">		.setGroup(GROUP_KEY)</span><br><span class="line">		.setSortKey(<span class="string">"2"</span>)</span><br><span class="line">		.build();</span><br><span class="line"></span><br><span class="line">Notification summary = </span><br><span class="line">	<span class="keyword">new</span> NotificationCompat.Builder(context)</span><br><span class="line">		.setGroup(GROUP_KEY)</span><br><span class="line">		.setGroupSummar;</span><br><span class="line">		.build();</span><br></pre></td></tr></table></figure>
 <h3 id="Hangouts">Hangouts</h3><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/androidwearhangouts.PNG" alt=""></p>
 <ul>
 <li>Hangouts Base On<ul>
@@ -1057,7 +1277,7 @@
 </ul>
 <p>1、环聊信息也会自动桥接到可穿戴设备上，在Gmail上面，我们想要的是语音回复，但是环聊的提醒则稍微有点不同，ta并没有回复行为，只是一个内容意图，只需要打开App就可以键入回复了，所以环聊可以很好的不依赖手机而直接在可穿戴设备上进行体验，而且，android wear的 <code>Notification API</code>会让你在手机和可穿戴设备上细化不同的操作设置，即手机行为只在手机显示。wear行为只在wear端显示，这就使得我们可以添加一个仅限可穿戴设备使用的回复行为，这一行为涵盖了一个远程输入，却无需变动手机行为。</p>
 <p>2、环聊也增加了新的提醒特征：近期会话历史记录。因为在语音回复之前，多出现一些聊天记录总是好的，为了实现这个效果，我们在wear设备扩充器中采用了添加页面的办法：它可以让你为主要提醒内容增加额外的页面，我们把聊天记录放入一个次级大的文本式提醒，然后把它加入到主要提醒中的第二页，并且手机端的提醒体验同时保持不变。关键代码实现如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Notification chatHistory =&#10;&#9;new NotificationCompat.Builder()&#10;&#9;&#9;.setStyle(&#10;&#9;&#9;&#9;new NotificationCompat.BigTextStyle()&#10;&#9;&#9;&#9;&#9;.bigText(getChatHistory()))&#10;&#9;&#9;.build();&#10;&#10;firstPageNotification.extend(&#10;&#9;new NotificationCompat.WearableExtender()&#10;&#9;&#9;.addPage(chatHistory)&#10;&#9;&#9;.build());</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Notification chatHistory =</span><br><span class="line">	<span class="keyword">new</span> NotificationCompat.Builder()</span><br><span class="line">		.setStyle(</span><br><span class="line">			<span class="keyword">new</span> NotificationCompat.BigTextStyle()</span><br><span class="line">				.bigText(getChatHistory()))</span><br><span class="line">		.build();</span><br><span class="line"></span><br><span class="line">firstPageNotification.extend(</span><br><span class="line">	<span class="keyword">new</span> NotificationCompat.WearableExtender()</span><br><span class="line">		.addPage(chatHistory)</span><br><span class="line">		.build());</span><br></pre></td></tr></table></figure>
 <h3 id="Google_Camera">Google Camera</h3><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/androidwearcamera.PNG" alt=""></p>
 <ul>
 <li>Google Camera Base On<ul>
@@ -1071,11 +1291,11 @@
 <p>2、相比于前面提到的Gmail和环聊（ta们只是用了 <code>Notification API</code> 来对手机端的消息做一个整合），Google Camera是一个相对个性而又具有和手机交互的特点，而且对于wear来说，仅仅只需要将<strong>快门</strong>这个按键特殊处理就行，所以，在wear端，光快门按键就霸占整个屏幕这一点也是可以容忍的。</p>
 <p>3、通过 <code>Google Play Service</code>(以后简称 <code>GMS</code>)，实现相机的wear端和手机端通信，在相机手机app准备好拍摄时，手机端端会设置好数据项（意味着它已经做好了接受远程快门信息的准备），这种数据项由手表中wear app内置的服务读取，而wear端则会显示出快门按钮，按住按钮，把信息发回手机来激活手机端的快门键，最后，如何预览你刚才拍到的照片呢？很简单：手机端会创建一张缩略图，然后作为数据项中的一个asset发送回手表端，然后做为wear端全屏来预览。<br>关键代码如下：</p>
 <p><strong>Setting a DataItem</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PutDataMapRequest dataMapRequest =&#10;&#9;PutDataMapRequest.create(DATA_ITEM_NAME);&#10;dataMapRequest.getDataMap().putBoolean(&#10;&#9;FIELD_READY,cameraReady);&#10;Wearable.DataApi.putDataItem(&#10;&#9;mGoogleApiClient,&#10;&#9;dataMapRequest.asPutDataRequest()&#10;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PutDataMapRequest dataMapRequest =</span><br><span class="line">	PutDataMapRequest.create(DATA_ITEM_NAME);</span><br><span class="line">dataMapRequest.getDataMap().putBoolean(</span><br><span class="line">	FIELD_READY,cameraReady);</span><br><span class="line">Wearable.DataApi.putDataItem(</span><br><span class="line">	mGoogleApiClient,</span><br><span class="line">	dataMapRequest.asPutDataRequest()</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 <p><strong>WearableListenerService</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public class CameraListennerService&#10;&#9;extends WearableListennerService&#123;&#10;&#9;@Override&#10;&#9;public void onDataChanged(DataEventBuffer dataEvents)&#123;&#10;&#9;&#9;for(DataEvent dataEvent:dataEvents)&#123;&#10;&#9;&#9;    if(dataEvent.getType()== &#9;DataEvent.TYPE_CHANGED)&#123;&#10;&#9;&#9;&#9;DataMapItem mapDataItem = &#10;&#9;&#9;&#9;&#9;DataMapItem.fromDataItem(&#10;&#9;&#9;&#9;&#9;&#9;dataEvent.getDataItem());&#10;&#9;&#9;&#9;if(mapDataItem.getDataItem().getBoolean(FIELD_CAMERA_READY,false))&#123;&#10;&#9;&#9;&#9;postNotification();&#10;&#9;&#9;&#125;else&#123;&#10;&#9;&#9;stopActivity();&#9;&#10;&#9;&#125;&#10;&#9;)&#10;  &#125;&#10; &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CameraListennerService</span></span><br><span class="line">	<span class="keyword">extends</span> <span class="title">WearableListennerService</span></span>&#123;</span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDataChanged</span><span class="params">(DataEventBuffer dataEvents)</span></span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(DataEvent dataEvent:dataEvents)&#123;</span><br><span class="line">		    <span class="keyword">if</span>(dataEvent.getType()== 	DataEvent.TYPE_CHANGED)&#123;</span><br><span class="line">			DataMapItem mapDataItem = </span><br><span class="line">				DataMapItem.fromDataItem(</span><br><span class="line">					dataEvent.getDataItem());</span><br><span class="line">			<span class="keyword">if</span>(mapDataItem.getDataItem().getBoolean(FIELD_CAMERA_READY,<span class="keyword">false</span>))&#123;</span><br><span class="line">			postNotification();</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		stopActivity();	</span><br><span class="line">	&#125;</span><br><span class="line">	)</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>Sending an Asset</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PutDataMapRequest dataMapRequest =&#10;&#9;PutDataMapRequest.create(DATA_ITEM_NAME);&#10;dataMapRequest.getDataMap().putBoolean(&#10;&#9;FIELD_READY,cameraReady);&#10;&#10;//&#22312;DataItem&#25968;&#25454;&#39033;&#20013;&#25554;&#20837;&#19968;&#20010;&#21028;&#26029;&#10;if(previewBitmap != null)&#123;&#10;&#9;dataMapRequest.getDataMap().putAsset(&#10;&#9; FIELD_PREVIEW,preview);&#10;&#9;)&#10;&#125;&#10;&#10;Wearable.DataApi.putDataItem(&#10;&#9;mGoogleApiClient,&#10;&#9;dataMapRequest.asPutDataRequest()&#10;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">PutDataMapRequest dataMapRequest =</span><br><span class="line">	PutDataMapRequest.create(DATA_ITEM_NAME);</span><br><span class="line">dataMapRequest.getDataMap().putBoolean(</span><br><span class="line">	FIELD_READY,cameraReady);</span><br><span class="line"></span><br><span class="line"><span class="comment">//在DataItem数据项中插入一个判断</span></span><br><span class="line"><span class="keyword">if</span>(previewBitmap != <span class="keyword">null</span>)&#123;</span><br><span class="line">	dataMapRequest.getDataMap().putAsset(</span><br><span class="line">	 FIELD_PREVIEW,preview);</span><br><span class="line">	)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Wearable.DataApi.putDataItem(</span><br><span class="line">	mGoogleApiClient,</span><br><span class="line">	dataMapRequest.asPutDataRequest()</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 <h3 id="Google_Maps">Google Maps</h3><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/androidwearmaps.PNG" alt=""></p>
 <ul>
 <li>Google Maps Base On<ul>
@@ -1087,14 +1307,14 @@
 <p>1、在Google Maps导航期间，我们想要在手腕上提示导航，这个应用场景在走路的时候尤其有用，因为你要一直拿着你的手机走在大马路上会非常奇怪且占用你的双手，如果把手机放在你的口袋，转而看一下手表的描述来获知导航信息无疑更为便捷和实用。</p>
 <p>2、在wear端，google想实现对布局和导航呈现精细的把握，特地搭建了一款wear版本的google maps wear App，让个性抽取式卡片成为限于本地的提醒，通过修改google map手机app的数据项，增加了用于下一次操作的描述与图标以及用于解释导航状态的信息，同时wear端的google maps也增加了这样的数据项，每次变动发生后，ta都会读取新数据，然后更新wear的卡片，提取卡片时，wear app采用可穿戴扩充器的新显示意图特性，你可以指定一个活动来在提醒卡片中绘制内容，这样我们想在卡片上画什么都是可以的，而不是受限制于标准提醒样式。<br>关键实现代码：</p>
 <p><strong>Custom Notification with Display Intent</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Intent displayIntent = &#10;&#9;createUpdateIntent(data, maneuverBitmap);&#10;displayIntent.setClass(&#10;&#9;this,NotificationDisplayActivity.class);&#10;&#10;PendingIntent displayPendingIntent = PendingIntent.getActivity(&#10;&#9;this,0,displayIntent,&#10;&#9;PendingIntent.FLAG_CANCEL_CURRENT);&#10;&#10;Notification notification = builder.extend(&#10;&#9;new NotificationCompat.WearableExtender()&#10;&#9;&#9;.setHintHideIcon(true)&#10;&#9;&#9;.setDisplayIntent(displayPendingIntent)&#10;&#9;&#9;.setBackground(background)&#10;&#9;&#9;.addPage(secondPage)&#10;&#9;&#9;.build();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Intent displayIntent = </span><br><span class="line">	createUpdateIntent(data, maneuverBitmap);</span><br><span class="line">displayIntent.setClass(</span><br><span class="line">	<span class="keyword">this</span>,NotificationDisplayActivity.class);</span><br><span class="line"></span><br><span class="line">PendingIntent displayPendingIntent = PendingIntent.getActivity(</span><br><span class="line">	<span class="keyword">this</span>,<span class="number">0</span>,displayIntent,</span><br><span class="line">	PendingIntent.FLAG_CANCEL_CURRENT);</span><br><span class="line"></span><br><span class="line">Notification notification = builder.extend(</span><br><span class="line">	<span class="keyword">new</span> NotificationCompat.WearableExtender()</span><br><span class="line">		.setHintHideIcon(<span class="keyword">true</span>)</span><br><span class="line">		.setDisplayIntent(displayPendingIntent)</span><br><span class="line">		.setBackground(background)</span><br><span class="line">		.addPage(secondPage)</span><br><span class="line">		.build();</span><br></pre></td></tr></table></figure>
 <p>3、google map通过语音指令来开启导航进程，为了实现这一点，可<br>wear端的google map app会联手意图过滤器（ <code>Intent</code>）来为导航声音指令服务，然后需要在 <code>AndroidManifest.xml</code>中声明如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;activity&#10;&#9;android:name=&#34;.StarNavigationActivity&#34;&#10;&#9;android:theme=&#34;@style/TranslucentTheme&#34;&#62;&#10;&#9;&#60;intent-filter&#62;&#10;&#9; &#60;action&#10;&#9;&#9;android:name=&#34;android.intent.action.VIEW&#34;/&#62;&#10;&#9;&#9;&#60;category&#9;&#9;&#9;android:name=&#34;android.intent.category.DEFAULT&#34;/&#62;&#10;&#9;    &#60;data&#10;&#9;&#9;&#9;android:scheme=&#34;google.navigation&#34;/&#62;&#10;&#9;&#60;/intent-filter&#62;&#10;&#60;/activity&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">activity</span></span><br><span class="line">	<span class="attribute">android:name</span>=<span class="value">".StarNavigationActivity"</span></span><br><span class="line">	<span class="attribute">android:theme</span>=<span class="value">"@style/TranslucentTheme"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">intent-filter</span>&gt;</span></span><br><span class="line">	 <span class="tag">&lt;<span class="title">action</span></span><br><span class="line">		<span class="attribute">android:name</span>=<span class="value">"android.intent.action.VIEW"</span>/&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="title">category</span>			<span class="attribute">android:name</span>=<span class="value">"android.intent.category.DEFAULT"</span>/&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="title">data</span></span><br><span class="line">			<span class="attribute">android:scheme</span>=<span class="value">"google.navigation"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="title">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">activity</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>声明之后，就会产生一个像这样的意图，可穿戴App接收到这个意图之后，就会给手机上的google map发送一条信息，信息包括目的地和导航模式，手机google map app接收到这条信息之后，然后开始导航到目的地，然后就可以出发了，具体通信代码如下:</p>
 <p><strong>Sending a Message</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private void startNavigation(Intent intent)&#123;&#10;&#9;&#10;&#9;String uriString = intent.getDataString();&#10;&#9;&#10;&#9;mGoogleApiClient.blockingConnect(&#10;&#9;&#9;Constants.TIMEOUT_MS,&#10;&#9;&#9;TimeUnit.MILLISECONDS);&#10;&#10;&#9;DataMap dataMap = new DataMap();&#10;&#9;dataMap.putString(FIELD_URI,uriString&#65289;&#65307;&#10;&#10;&#9;Wearable.MessageApi.sendMessage(&#10;&#9;   mGoogleApiClient,&#10;&#9;   mOtherNodeId,&#10;&#9;   Constants.MESSAGE_PATH_START_NAVIGATION,&#10;&#9;&#9;dataMap.toByteArray()).await();&#10;&#9;googleApiClient.diconnect();&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">startNavigation</span><span class="params">(Intent intent)</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	String uriString = intent.getDataString();</span><br><span class="line">	</span><br><span class="line">	mGoogleApiClient.blockingConnect(</span><br><span class="line">		Constants.TIMEOUT_MS,</span><br><span class="line">		TimeUnit.MILLISECONDS);</span><br><span class="line"></span><br><span class="line">	DataMap dataMap = <span class="keyword">new</span> DataMap();</span><br><span class="line">	dataMap.putString(FIELD_URI,uriString）；</span><br><span class="line"></span><br><span class="line">	Wearable.MessageApi.sendMessage(</span><br><span class="line">	   mGoogleApiClient,</span><br><span class="line">	   mOtherNodeId,</span><br><span class="line">	   Constants.MESSAGE_PATH_START_NAVIGATION,</span><br><span class="line">		dataMap.toByteArray()).await();</span><br><span class="line">	googleApiClient.diconnect();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>Receiving a Message</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public void onMessageReceived(&#10;&#9;MessageEvent messageEvent)&#123;&#10;&#9;if(messageEvent.getPath().equals(&#10;&#9;&#9;MESSAGE_PATH_START_NAVIGATION))&#123;&#10;&#9;  DataMap requestData =&#10;&#9;&#9;&#9;DataMap.fromByteArray(&#10;&#9;&#9;&#9;&#9;messageEvent.getData());&#10;&#9;&#9;&#9;String uriString =&#10;&#9;&#9;&#9;&#9;requestData.getString(FIELD_URI);&#10;&#9;&#9;&#9;Intent navIntent = new Intent(&#10;&#9;&#9;&#9;&#9;Intent.ACTION_VIEW,&#10;&#9;&#9;&#9;&#9;Uri.parse(uriString));&#10;&#9;&#9;&#9;startActivity(navIntent);&#10;&#9;&#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMessageReceived</span><span class="params">(</span><br><span class="line">	MessageEvent messageEvent)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(messageEvent.getPath().equals(</span><br><span class="line">		MESSAGE_PATH_START_NAVIGATION))&#123;</span><br><span class="line">	  DataMap requestData =</span><br><span class="line">			DataMap.fromByteArray(</span><br><span class="line">				messageEvent.getData());</span><br><span class="line">			String uriString =</span><br><span class="line">				requestData.getString(FIELD_URI);</span><br><span class="line">			Intent navIntent = <span class="keyword">new</span> Intent(</span><br><span class="line">				Intent.ACTION_VIEW,</span><br><span class="line">				Uri.parse(uriString));</span><br><span class="line">			startActivity(navIntent);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="搭建云驱动的Android_Wear_Apps">搭建云驱动的Android Wear Apps</h1><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblog_androidwear_cloud.JPG" alt=""></p>
 <p>如图：</p>
 <ul>
@@ -1142,15 +1362,15 @@
 <p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/androidweargradpagerview.PNG" alt=""></p>
 <p>这里，我想重点讲一下 <code>GridViewPager(网格多面控件)</code> ,ta与主页流类似，大家可以用ta来设计界面，ta与多面控件相似，但是可以水平和垂直同时移动，第一步就是布局的规划，下面这几行代码就是你主行为所需要的全部内容：</p>
 <p><strong>res/layout/pager_example.xml</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?xml version = &#34;1.0&#34; encoding = &#34;utf-8&#34;?&#62;&#10;&#60;android.support.wearable.views.GridViewPager&#10;&#9;xmlns:android = &#34;http://schemas.android.com&#34;&#10;&#9;android:id = &#34;@+id/pager&#34;&#10;&#9;android:layout_width = &#34;match_parent&#34;&#10;&#9;android:layout_height = &#34;match_parent&#34;&#10;/&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version = "1.0" encoding = "utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">android.support.wearable.views.GridViewPager</span></span><br><span class="line">	<span class="attribute">xmlns:android</span> = "<span class="attribute">http:</span>//<span class="attribute">schemas.android.com</span>"</span><br><span class="line">	<span class="attribute">android:id</span> = "@+<span class="attribute">id</span>/<span class="attribute">pager</span>"</span><br><span class="line">	<span class="attribute">android:layout_width</span> = "<span class="attribute">match_parent</span>"</span><br><span class="line">	<span class="attribute">android:layout_height</span> = "<span class="attribute">match_parent</span>"</span><br><span class="line">/&gt;</span></span><br></pre></td></tr></table></figure>
 <p>在这里，配置多面控件的目的是用于扩展至整个屏幕的，下一步，我们需要一个衔接器（<code>Adapter</code>）</p>
 <p><strong>FragmentGridPagerAdapter</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int getRowCount()&#10;int getColumnCount(int row)&#10;Fragment getItem(int row , int column)&#10;&#10;int getCurrentColumnForRow(&#10;&#9;int row,int currentColum)</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getRowCount</span><span class="params">()</span></span><br><span class="line"><span class="keyword">int</span> <span class="title">getColumnCount</span><span class="params">(<span class="keyword">int</span> row)</span></span><br><span class="line">Fragment <span class="title">getItem</span><span class="params">(<span class="keyword">int</span> row , <span class="keyword">int</span> column)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> <span class="title">getCurrentColumnForRow</span><span class="params">(</span><br><span class="line">	<span class="keyword">int</span> row,<span class="keyword">int</span> currentColum)</span></span></span><br></pre></td></tr></table></figure>
 <p>而这几行代码则是在用户使用导航时为用户提供每张页面所呈现的内容，在这个例子中，我会从一个由片段支持的基本类来进行扩展，要创建一个运行的<code>Adapter</code>只需要这三个方法，前两种定义了内容行（<code>row</code>）与页的可用大小，注意 <code>column</code> 的数量取决与行参数<code>row</code>,原因就在于每行可能都有不同的列数量，它的特性就是其选项可以控制每行在页面哪个位置来放置，与固定好的网格布局相比，它给滚动条在平等滚动与垂直滚动间切换提供了可能，在这一布局中，为了实现这点，Google还想了一些办法，但结果看起来就是一个无缝对接，Google为什么要这么做？Google认为每行内容都是单独的存在，在主页流中，这些就成了提醒或Google Now卡片，用户要从一个行为页进入到目标页而进行上下滑动的操作时，如果有不同的项，那么用户在操作时就会迷惑，为了解决这个问题，上翻或下翻总会回到第一列，这个也是网格多面控件的默认模式，为了对此做出调整，你可以用另一种方式进行覆盖，这种方式称为：所想即所见（用户想了解某项信息时，该信息的页面就会呈现在当前页或下一页），它也会提供当前列的位置，为了返回固定的移动系统，你可以选择返回列，或许你还想保存该行上次浏览的那一列，以便下次选择改行时可以直接返回到那一列。最后，最重要的一点就是getItem了，这个就是你要在页面上呈现出片段的位置了，这里，你只需要返回到你的内容片段，然后剩下的事情就由多面控件来处理了。只要需要，内容片段可以长久存储，然后在合适的时候，要么删除，要么重新进入，在这种方式跟多面控件非常类似，只是加了一个垂直的维度而已。</p>
 <p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/androidwearcontentPage.PNG" alt=""></p>
 <p>为了帮助大家建立自己的页面内容，Google提供了卡片内容片段，它可以自动应用不同的风格,从而与系统卡片搭配一致，而你要做的只是提供内容就可以，这种内容片段也有许多附加特性，首先，如果你有超过一页的内容，它就会显示滚动条让你拖动到正确的位置，你也可以让它作为一个单独页面开始，这样就可以通过触按来放大到全屏了，在这个案例中，内容溢出会自动得到处理，在你代码样本和文档中会找到更多细节的，还有一些事情要记住：每个页面尽量只放一个单独的行为，如果可能的话，整张卡片应该做成一个触按目标，而需要运行的行为则应该清楚明白，现在，剩下需要做的就是把这些东西整合起来，转接类会处理所有内容片段操作,所以需要给片段管理来一个参数，把转接代码加入到页面代码中就行了。</p>
 <p><strong>SampleActivity.java</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;public void onCreate(Bundle savedInstanceState)&#123;&#10;&#9; setContentView(R.layout.pager_example);&#10;&#9; mPager = findViewById(R.id.pager);&#10;&#9; mAdapter = new ExampleGridPagerAdapter(getFragmentManager());&#10;&#9; mPager.setAdapter(mAdapter);&#9;&#10;&#9;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span></span>&#123;</span><br><span class="line">	 setContentView(R.layout.pager_example);</span><br><span class="line">	 mPager = findViewById(R.id.pager);</span><br><span class="line">	 mAdapter = <span class="keyword">new</span> ExampleGridPagerAdapter(getFragmentManager());</span><br><span class="line">	 mPager.setAdapter(mAdapter);	</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="Android_Wear_数据层API_DevBytes">Android Wear 数据层API DevBytes</h1><p>首先我们需要知道手机端和wear端的连接是基于Android Wear数据层API的，一旦出现任何变化，核心数据层API会让你的掌上设备，与可穿戴设备自动同步数据，这种进程能够让你的设备充当数据发送器或接收器，或兼而有之，发送器设备设置一些准备发送的数据，一旦这些数据发生变动，那么这些变动就会发送给接收器，接受数据的设备反过来会在检测变动之后，会启动一个反馈功能来告诉程序数据已更新，处于两种设备之间的核心对象被称为<strong>数据项</strong>，它能有效提供设备所需要的数据存储，从基础面来讲，数据项包含一个有效负载对象，它是用来负载实际的数据的，还有一个是路径对象，它为数据项提供唯一的标识符字符串，它在接收端很重要，来表明具体哪些数据得到了更新。</p>
 <p>数据项能在可穿戴设别与掌上设备间来回接受和发送小批量数据，例如使用可穿戴设备传感器来收集心率信息，并发送到用户的手机，与前14周的心率信息交叉想比较，并将结果图反映在手表上，因为电流限制的原因，数据项对象能承载小部分数据大约有100k，因此如果你希望数据项承载更大的数据量，你需要附加一个超大容量的对象，这样你就能发送大量的二进制数据到蓝牙传输，如图像，举个例子吧，用掌上设备应用软件下载一个图像，调整大小，然后发送到穿戴式设备上进行展示，掌上设备负责进程中所有的复杂的重量级操作，而穿戴式设备则呈现简单的结果，很不错的是，为了避免数据的重发，资产对象负责缓存数据和保存蓝牙带宽，这就意味着每个缓存的资产对象只能对应一种情况，如果你重复发送多次，也不会浪费带宽或者是电量，更简单的方面，数据有效载荷API也能提供信息API，这样就能完成普通任务，例如告知你的穿戴设备要执行<code>Activity</code>，或者是提醒手机切歌曲，在默认的情况下，这些信息可以通过远程过程调用，也就是说，一旦过程改变，则不能确保信息能被接收，但是如果你想要程序更复杂，可以将信息设置成提问（<code>request</code>）或回答（<code>response</code>）的形式，这样连接的另一方就会告知另外的设备，反过来，另外的设备会完成相关的工作，然后做出回答，相应地，提交答复。更多复杂的DataAPI细节可以到google android developer官网查看。</p>
 <h1 id="Android_Wear的提醒（Notification）新特性">Android Wear的提醒（Notification）新特性</h1><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_androidwear23.png" alt=""></p>
@@ -1167,35 +1387,35 @@
 <p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogmutinotifi2.PNG" alt=""></p>
 <p>要给一条提醒增加页面的话，使用可穿戴设计新拓展类来增加页面，如下代码段为内容增加了两页新页面：</p>
 <p><strong>Add pages to a notification</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;Notification page2 = ...&#10;Notification page3 = ...&#10;&#10;NotificationCompat.Builder builder = ...&#10;builder.extend(&#10;   new NotificationCompat.WearableExtender(&#10;&#9;.addPage(page2)&#10;&#9;.addPage(page3)&#10;&#9;.setBackground(bitmap)//&#35774;&#32622;&#20301;&#22270;&#10;&#9;.setHintShowBackgroundOnly(true));//&#38544;&#34255;&#22270;&#29255;&#10;NotificationManagerCompat.from(ctx)&#10;&#9;.notify(builder.build());&#10;&#10;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Notification page2 = ...</span><br><span class="line">Notification page3 = ...</span><br><span class="line"></span><br><span class="line">NotificationCompat.Builder builder = ...</span><br><span class="line">builder.extend(</span><br><span class="line">   <span class="keyword">new</span> NotificationCompat.WearableExtender(</span><br><span class="line">	.addPage(page2)</span><br><span class="line">	.addPage(page3)</span><br><span class="line">	.setBackground(bitmap)<span class="comment">//设置位图</span></span><br><span class="line">	.setHintShowBackgroundOnly(<span class="keyword">true</span>));<span class="comment">//隐藏图片</span></span><br><span class="line">NotificationManagerCompat.from(ctx)</span><br><span class="line">	.notify(builder.build());</span><br><span class="line"></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 <p>总计就是三张卡片了，此外，你可以添加一张全屏图像作为页面，就用不着卡片了，这种办法对地图或照片之类的内容来说非常实用。</p>
 <h2 id="提醒堆栈（Notification_Stacks）">提醒堆栈（Notification Stacks）</h2><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_myblognotifistack.PNG" alt=""></p>
 <p>它可以把多条提醒归类成一组，用户可以与整个堆栈交互，也可以进入到单独的项中，堆栈本身及子提醒也可以增加行为，这个特性对信息型APP来说非常方便，因为用户可能会一次性查看所有信息，或只看其中的一条，为了创建提醒堆栈，推送一条或多条子提醒，然后把它们全打上组密钥的标签，你可以采用<code>NotificationCompat.Builder</code>中的<code>setGroupMethod</code>（设置组方式）来实现这一点。来自同一APP相同组密钥的提醒推送会被归类到同一堆栈中，你也可以使用setSortKey(设置类密钥)来处理项，如果你喜欢为一个丛（<code>bundle</code>）选择背景图片和行为，你可以推送一个可选择的组概要提醒，在下面代码中，用户会看到为丛设置的“全部归档”行为，取保为每个提醒选择一个唯一的提醒ID或标签，以免它们在推送时会相互覆盖。</p>
 <p><strong>Post group child notifications</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;//for each child notification&#10;NotificationCompat.Builder builder = ...&#10;build.addAction(R.drawable.archive,&#10;&#9;&#34;Archive&#34;,pendingIntent)&#10;&#9;.setGroup(&#34;my-group&#34;)&#10;&#9;.setSortKey(&#34;sort-key&#34;);&#10;NotificationManagerCompat.from(ctx)&#10;&#9;.notify(builder.build());</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//for each child notification</span></span><br><span class="line">NotificationCompat.Builder builder = ...</span><br><span class="line">build.addAction(R.drawable.archive,</span><br><span class="line">	<span class="string">"Archive"</span>,pendingIntent)</span><br><span class="line">	.setGroup(<span class="string">"my-group"</span>)</span><br><span class="line">	.setSortKey(<span class="string">"sort-key"</span>);</span><br><span class="line">NotificationManagerCompat.from(ctx)</span><br><span class="line">	.notify(builder.build());</span><br></pre></td></tr></table></figure>
 <p>目前展示的提醒行为全部使用了默认设置，可以作为附加页面增加到相应卡片之中，下图左手的手表展示了这一设置,把主卡滑走就出现了“播放”行为，右手的手表则展示了直接把行为添加进当前卡片的行为，这样这张卡片就可以直接点击了，使用可穿戴扩展器中的setContentAction(设置内容行为)来为卡片添加行为。这些行为就不会作为单一页面来显示了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;//Action Notification&#10;NotificationCompat.Builder builder = ...&#10;build.addAction(R.drawable.pause,&#34;Pause&#34;,intent)&#10;build.extend(new NotificationCompat.WearableExtend)&#10;&#9;.setContentAction()</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//Action Notification</span></span><br><span class="line">NotificationCompat.Builder builder = ...</span><br><span class="line">build.addAction(R.drawable.pause,<span class="string">"Pause"</span>,intent)</span><br><span class="line">build.extend(<span class="keyword">new</span> NotificationCompat.WearableExtend)</span><br><span class="line">	.setContentAction()</span><br></pre></td></tr></table></figure>
 <p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogmusicstatus.PNG" alt=""></p>
 <p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogmusicstatus0.PNG" alt=""></p>
 <h2 id="远程输入（Remote_Input）">远程输入（Remote Input）</h2><p>远程输入则是提醒行为的另外一个新特性，在激活一个行为时，它可以让用户开启文本回复，设备会提供给用户一个短语或让用户从一些选项中进行选择，这种输入的结果就是将含有你意图的行为发送了出去，通过远程输入，AndroidWear与手机、平板或可穿戴设备的APP互动就变得非常简单了，下面的代码就显示出我们为回复行为增加了一个远程输入，用户在卡片流中点击这一行为时，系统就会在<code>Quick Reply</code>的标签下，提供给用户一个语音回复的行为，一旦文本回复转换完成而又得到了用户的同意，你的行为意图就会发出，而且目的已经包含在内了，</p>
 <p><strong>Add RemoteInput to a notification action</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String EXTRA_QUICK_REPLY = &#34;quick_reply&#34;;&#10;&#10;NotificationCompat.Builder builder=...&#10;builder.addAction(&#10;&#9;new NotificationCompat.Action.Builder(&#10;&#9;&#9;R.drawable.reply,&#34;Reply&#34;,pendingIntent&#10;&#9;.addRemoteInput(&#10;&#9;&#9;new RemoteInput.Builder(EXTRA_QUICK_REPLY)&#10;&#9;&#9;&#9;.setLabel(&#34;Quick reply&#34;).build())&#10;&#9;&#9;.build());&#10;...</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">String EXTRA_QUICK_REPLY = <span class="string">"quick_reply"</span>;</span><br><span class="line"></span><br><span class="line">NotificationCompat.Builder builder=...</span><br><span class="line">builder.addAction(</span><br><span class="line">	<span class="keyword">new</span> NotificationCompat.Action.Builder(</span><br><span class="line">		R.drawable.reply,<span class="string">"Reply"</span>,pendingIntent</span><br><span class="line">	.addRemoteInput(</span><br><span class="line">		<span class="keyword">new</span> RemoteInput.Builder(EXTRA_QUICK_REPLY)</span><br><span class="line">			.setLabel(<span class="string">"Quick reply"</span>).build())</span><br><span class="line">		.build());</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <p>你的意图接收器，可以是一个<code>Activity</code>，<code>Service</code>，<code>Broadcast</code>，就可以使用远程输入API意图功能中的<code>Get Results</code>，来重新恢复成目的文本了，在下面的代码中，quickReplyText变量会根据用户的输入来进行设置，在远程输入API中还有许多其他选项可以使用，支持的内容包括预设选择、允许或禁用、自由样式输入，还支持同一行为的多种输入等。</p>
 <p><strong>MyActivity.java</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">protected void onCreate(Bundle savedInstanceState)&#123;&#10;&#9;super.onCreate(savedInstanceState);&#10;&#9;Bundle results = RemoteInput.getResultsFromIntent(&#10;&#9;&#9;getIntent());&#10;&#9;if(results != null)&#123;&#10;&#9;&#9;CharSequence quickReplyText = &#10;&#9;&#9;&#9;results.getCharSequence(&#10;&#9;&#9;&#9;&#9;EXTRE_QUICK_REPLY);&#10;&#9;&#9;&#125;&#10;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span></span>&#123;</span><br><span class="line">	<span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">	Bundle results = RemoteInput.getResultsFromIntent(</span><br><span class="line">		getIntent());</span><br><span class="line">	<span class="keyword">if</span>(results != <span class="keyword">null</span>)&#123;</span><br><span class="line">		CharSequence quickReplyText = </span><br><span class="line">			results.getCharSequence(</span><br><span class="line">				EXTRE_QUICK_REPLY);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Custom_Display_Cards">Custom Display Cards</h2><p>标准的提醒模版或许并不足以展示你想在卡片中出现的内容，所以我们增加了一个API：set Display Intent（设置显示意图），它可以让你使用安卓活动来实时绘制提醒内容，这一特性只对可穿戴设备上运行的APP可用，而且这些APP所用的API需要20以上的版本，定义内嵌到自定义显示卡片的活动时，你必须首先把它标记为exported（导出），这个可以通过在活动中设置导出属性为true，或增加一个意图过滤器来完成，接下来，把这一新属性的“是否潜入”设置为true，这样可以防止活动嵌入到不该嵌入的事件中去，最后，设置关联任务<code>task Affinity</code>为空字符串，虽然触控输入并不会在信息流中传播，但这些活动与其他活动一样，可以包含相同内容，这样像按钮那样的控制就可能不再适合了，你的活动写入之后，你可以将其嵌入到信息流中来创建一条提醒，然后使用可穿戴扩展器中的<code>setDisplayIntent</code>（设置显示意图）方式来选择该活动，你可以为显示意图增加附加内容来通过活动所需要的任何数据。</p>
 <p><strong>AndroidMainifest.xml</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;activity&#10;&#9;android:name=&#34;com.example.MyDisplayActivity&#34;&#10;&#9;android:exported=&#34;true&#34;&#10;&#9;android:allowEmbeded=&#34;true&#34;&#10;&#9;android:taskAffinity=&#34;&#34; /&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">activity</span></span><br><span class="line">	<span class="attribute">android:name</span>=<span class="value">"com.example.MyDisplayActivity"</span></span><br><span class="line">	<span class="attribute">android:exported</span>=<span class="value">"true"</span></span><br><span class="line">	<span class="attribute">android:allowEmbeded</span>=<span class="value">"true"</span></span><br><span class="line">	<span class="attribute">android:taskAffinity</span>=<span class="value">""</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 <p>下面就是自定义显示提醒的一些模版，信息流中的标准提醒会基于内容自动调整大小，但是自定义显示提醒则需要在不想要默认大尺寸的情况下提供一个尺寸，你可以使用可穿戴拓展器中的设置自定义尺寸预设，或是设置自定义内容高度等方式来选择尺寸。</p>
 <p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_myblognotifiwearmoban.PNG" alt=""></p>
 <h2 id="Notification_Bridging">Notification Bridging</h2><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogmobile_wear_noti.PNG" alt=""></p>
 <p>通过设置这些自定义卡片，之前上面提到的<code>Notification API</code>可以同时用在可穿戴设备的APP的提醒创建，以及来自手机或平板APP上的提醒桥接，桥接过程在可穿戴设备上是自动进行的，但是这里还有<strong>几种新API是用来自定义桥接行为的</strong>，如下代码所示：首先，你可以使用提醒兼容设置中的新<code>set Local Only</code>（设置仅本地）来完全禁用提醒桥接，如果一个提醒仅相关当前设备，那它就很有用处了，第二个特效，就是增加提醒仅可穿戴设备可用的行为，它可以让你为手机和可穿戴设备选择单独的行为设置，仅可穿戴可用行为在可穿戴扩展器的类中添加。</p>
 <p><strong>Disable bridging for a notification</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NotificationCompat.Builder builder = ...&#10;builder.setLocalOnly(false);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NotificationCompat.Builder builder = ...</span><br><span class="line">builder.setLocalOnly(<span class="keyword">false</span>);</span><br></pre></td></tr></table></figure>
 <p><strong>Add an action for phones,tablets,and wearables</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NotificationCompat.Builder builder = ...&#10;builder.addAction(R.drawable.reply,&#34;Archive&#34;,pendingIntent);&#10;&#9;.addAction</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NotificationCompat.Builder builder = ...</span><br><span class="line">builder.addAction(R.drawable.reply,<span class="string">"Archive"</span>,pendingIntent);</span><br><span class="line">	.addAction</span><br></pre></td></tr></table></figure>
 <p><strong>Add an action for wearables only</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NotificationCompat.Builder builder = ...&#10;builder.extend(new NotificationCompat.WearableExtender()&#10;&#9;.addAction(new NotificationCompat.Action(&#10;&#9;&#9;R.drawable.reply,&#34;Reply&#34;,pendingIntent)));</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NotificationCompat.Builder builder = ...</span><br><span class="line">builder.extend(<span class="keyword">new</span> NotificationCompat.WearableExtender()</span><br><span class="line">	.addAction(<span class="keyword">new</span> NotificationCompat.Action(</span><br><span class="line">		R.drawable.reply,<span class="string">"Reply"</span>,pendingIntent)));</span><br></pre></td></tr></table></figure>
 <p>PS：这里有博主自己曾经写过的一个运行在Android手机上的Demo，用来展示Wear端的Notification新特性:<a href="https://github.com/AndroidWearDemo/AndroidWearNotification" target="_blank" rel="external">在Github上获取</a></p>
 <p>也可以参考国外大神的一个例子：<a href="http://code.tutsplus.com/tutorials/enhanced-and-wearable-ready-notifications-on-android--cms-21868" target="_blank" rel="external">Enhanced and Wearable-Ready Notifications on Android</a></p>
 <h1 id="Android_Wear下的全屏App设计理念">Android Wear下的全屏App设计理念</h1><p>为Android Wear设计APP的许多技术因素，你们会觉得非常熟悉，因为它们跟普通的Android APP运行原理是一样的，不过呢，这里主要讲的是<strong>两大不同点</strong>：</p>
@@ -1204,22 +1424,22 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60; style name =&#34;AppTheme&#34; parent = &#34;Theme.DeviceDefault&#34; &#62;&#10;&#9;&#60; item name = &#34;android.windowSwipeToDismiss&#34;&#62;true&#60; /item &#62;&#10;&#60; /style &#62;</span><br></pre></td></tr></table></figure>
 <p><strong>即窗口滑动属性</strong>，这种窗口属性可以运用在你具体的活动主题中，一旦窗口滑动退出属性设置为true，那么活动一旦从左滑动至右，它就会退出，这种滑动退出运行方式跟多面控件运行方式类似，如果活动中的内容本身就可以滚动，那么窗口就不会退出，除非用户滚动到该内容边缘后再次滑动，它可以让你创建一些非常出色、类似信息流的体验，这些体验也可以通过滑动来退出。所有的Android Wear APP要么使用设备默认主题，要么使用一个继承默认设备的主题，这样可以确保不同的主题风格都会在你的APP上正常运行，从而让它们在你的wear设备上看起来非常好，</p>
 <p><strong>You get it by default</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;activity&#10;&#9;android:name=&#34;.ControlRobotsActivity&#34;&#10;&#9;android:theme=&#34;Theme.DeviceDefault&#34;&#10;/&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">activity</span></span><br><span class="line">	<span class="attribute">android:name</span>=<span class="value">".ControlRobotsActivity"</span></span><br><span class="line">	<span class="attribute">android:theme</span>=<span class="value">"Theme.DeviceDefault"</span></span><br><span class="line">/&gt;</span></span><br></pre></td></tr></table></figure>
 <p>当然，我们知道，有些APP没办法使用滑动退出的功能，比如，无限移动的地图应用时永远没有边缘的，如果你不想使用滑动手势，那么你可以通过吧滑动的退出属性设置为false，来在你的主题中禁用ta。对于无法通过滑动来退出的APP。我们可以使用第二个属性：即<strong>长按退出功能</strong>。</p>
 <h3 id="长按退出">长按退出</h3><p>这就相当于是一个退出按钮的行为了，为了让用户知道你的APP可以长按退出，在APP首次运行时，你要给用户一个长按退出的提示。打开我们的wear设备，你会发现在屏幕任何地方出现长按行为，都会在APP上出现一个退出按钮。再按下那个按钮来退出活动，用户则会回到主页，为了让你的APP退出变得尽量容易，Google做了一个可以在大多数UI上运行的View,它叫退出覆盖视图。（dismiss overlay view）</p>
 <p><strong>activity_control_robots.xml</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;android.support.wearable.view.DismissOverlayView&#10;&#9;android:id=&#34;@+id/dismiss_overlay&#34;&#10;&#9;android:layout_height=&#34;match_parent&#34;&#10;      android:layout_width&#65309;&#34;match_parent&#34;&#10;     /&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">android.support.wearable.view.DismissOverlayView</span></span><br><span class="line">	<span class="attribute">android:id</span>=<span class="value">"@+id/dismiss_overlay"</span></span><br><span class="line">	<span class="attribute">android:layout_height</span>=<span class="value">"match_parent"</span></span><br><span class="line">      <span class="attribute">android:layout_width</span>＝"<span class="attribute">match_parent</span>"</span><br><span class="line">     /&gt;</span></span><br></pre></td></tr></table></figure>
 <p>为了把它集成到你的APP中，首先要把它添加进你的XML活动层中，确保它<strong>增加的位置一定是在其他布局之上的</strong>你还要确保该视图的尺寸能够覆盖整个屏幕，把它高度和宽度设置成与父框架相匹配，这样它就能够确保全屏，而且处于最顶层了，现在我们来看看java类里面怎么写：</p>
 <p><strong>ControlRobotsActivity.java</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public void onCreate(Bundle savedState)&#123;&#10;&#9;super.onCreate(savedState);&#10;&#9;setContentView(R.layout.activity_control_robots);  &#9;mDismissOverlay = (DismissOverlayView)findViewById(R.id.dismiss_overlay);&#10;&#9;mDismissOverlay.setIntroText(R.string.long_press_intro);&#10;&#9;mDismissOverlay.showIntroIfNecessary();&#10;     mDetector = new GestureDetector(this,new SimpleOnGestureListener()&#123;&#10;       public void onLongPress(MotionEvent ev)&#123;&#10;       &#9;mDismissOverlay.show();&#10;       &#125;&#10;     &#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedState)</span></span>&#123;</span><br><span class="line">	<span class="keyword">super</span>.onCreate(savedState);</span><br><span class="line">	setContentView(R.layout.activity_control_robots);  	mDismissOverlay = (DismissOverlayView)findViewById(R.id.dismiss_overlay);</span><br><span class="line">	mDismissOverlay.setIntroText(R.string.long_press_intro);</span><br><span class="line">	mDismissOverlay.showIntroIfNecessary();</span><br><span class="line">     mDetector = <span class="keyword">new</span> GestureDetector(<span class="keyword">this</span>,<span class="keyword">new</span> SimpleOnGestureListener()&#123;</span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLongPress</span><span class="params">(MotionEvent ev)</span></span>&#123;</span><br><span class="line">       	mDismissOverlay.show();</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;);</span><br></pre></td></tr></table></figure>
 <p> 接下来是<code>TouchEvent</code>。  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public boolean onTouchEvent(MotionEvent ev)&#123;&#10;&#9;return mDetector.onTouchEvent(ev) | | super.onTouchEvent(ev);&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent ev)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> mDetector.onTouchEvent(ev) | | <span class="keyword">super</span>.onTouchEvent(ev);&#125;</span><br></pre></td></tr></table></figure>
 <p>在它的<code>onCreate</code>中把退出层从你的布局层中拉出来，然后设置为内省文本，这个文本会在第一次运行活动时显示出来，而且会显示在APP其他内容之上，用来告诉用户可以通过长按来返回主页，然后，使用<code>showIntroIfNecessary</code>(必要时显示内省文本)，它会，也只会在第一次运行该APP时显示这个内省层，，接下来，如果用户长按了你的app，我们就需要让它激活，使用<code>GestureDectector</code>(手势检测器）和<code>SimpleOnGestureListener</code>（简易手势接收器）,使用这些框架类会确保所有app感应到手势的时长，在你长按返回时，会激活布局层显示退出行为，会显示一个退出按钮，如果用户点击了该按钮，你的活动就会被结束，但如果你没有点击该按钮，那么这个退出层就会自行隐藏，等着下次出现的命令，最后，还是在你的活动中覆盖一层 <code>onTouchEvent</code> (触控事件)，然后让<code>reveiveTouchEvents</code> (接受触控事件)连通到<code>GestureDectector</code>（手势检测器）,如果 <code>GestureDetector</code> 返回为true，你也真的返回主页了，而且不用触动 <code>onTouchEvent</code> 方式的正常活动,相反如果为false，那就可以继续使用正常活动的触控。</p>
 <h2 id="如何设计和运用你的APP，让ta看起来在圆形屏幕(Moto_360)上很不错。">如何设计和运用你的APP，让ta看起来在圆形屏幕(Moto 360)上很不错。</h2><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogmoto360_size.PNG" alt=""></p>
 <p>首先，我们来看看360的屏幕维度吧，这是一个直径为320px的圆圈，下方有30px的<code>chin</code>，因此系统会认为它的尺寸为320x290px，在我们自己开发的过程中，我们意识到chin会将一些非计划中的结果导入到现有的布局中，比如我们来看一下信息流中的行为卡片，我们希望给屏幕中央放置一个行为图标，但我们给中央垂直点加了一个层重力机制之后，结果这个蓝圆偏移了15px，但我们还是希望中间的这个蓝圆最好能够处于整个屏幕的中央，在我们之前提到过的默认主题中，<code>windowOverscan</code>属性已经设置了，而且整个视图分级结构的源是320X320px，这就导致了你的APP顶级结构视图，依然认为是320X320，而非320X290，然后再把你的局布如预想般放在屏幕中央，如何检测你的活动是运行在圆形屏幕中的呢？你的视图会请求应用窗口插入<code>insets</code>,然后会返回一个窗口插入目标，它会告诉你屏幕的形状，在Moto360中，它会告诉你下方插入的窗口为30px，在任何地方只要你要围绕这个<code>chin</code>来布局，你就需要经常使用这个值，这里所使用的插入值，会确保你的APP在以后任何可穿戴设备上看起来都很漂亮，为了节省大家敲打这些通用代码的时间，Google增加了一个叫<code>WatchViewStub</code>的视图，它可以让你根据APP运行的不同屏幕来扩充一两种不同的布局，如果你想在屏幕上看起来与众不同，就可以使用<code>WatchViewStub</code>来作为任何视图分级就够的源，要使用的话，先在你的活动或者onCreate碎片中创建一个新的源，完成之后，你就需要给你的源加上两层布局（<code>Round、Rect</code>）,但是有一个问题需要注意：因为这些布局在视图在附加进结构分级前，并没有进行扩充，你就没办法进入子一级的视图，相反，附加一个OnLayoutInflatedListener(布局扩充收听器)，它可以在布局内层进行不合适的扩充时使用，退出布局视图和这个WatchViewStub都可以在可穿戴支持库<code>Wearable Library</code>中找到，如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public WindowInsets onApplyWindowInsets(View view,WindowInsets windowInsets)&#123;&#10;&#9;if(windowInsets.isRound())&#123;&#10;&#9;&#9;Rect insets = windowInsets.getSystemWindowInsets();&#10;&#9;//insets.bottom = 30&#10;&#9;&#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> WindowInsets <span class="title">onApplyWindowInsets</span><span class="params">(View view,WindowInsets windowInsets)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(windowInsets.isRound())&#123;</span><br><span class="line">		Rect insets = windowInsets.getSystemWindowInsets();</span><br><span class="line">	<span class="comment">//insets.bottom = 30</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>ControlRobotsActivity.java</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public void onCreate(Bundle savedInstanceState)&#123;&#10;   WatchViewStub stub = new WatchViewStub(this);&#10;&#9;stub.setRectLayout(R.layout.activity_control_robots_rect);&#10;&#9;stub.setRoundLayout(R.layout.activity_control_robots_round);&#10;&#9;stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener()&#123;&#10;&#9;&#9;@Override public void onLayoutInflated(WatchViewStub stub)&#123;&#10;&#9;&#9;&#9;stub.findViewById(R.id.start_invasion).setOnClickListener(mClick);&#10;&#9;&#9;&#125;&#10;&#9;&#125;);&#10;&#9;setContentView(stub);&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span></span>&#123;</span><br><span class="line">   WatchViewStub stub = <span class="keyword">new</span> WatchViewStub(<span class="keyword">this</span>);</span><br><span class="line">	stub.setRectLayout(R.layout.activity_control_robots_rect);</span><br><span class="line">	stub.setRoundLayout(R.layout.activity_control_robots_round);</span><br><span class="line">	stub.setOnLayoutInflatedListener(<span class="keyword">new</span> WatchViewStub.OnLayoutInflatedListener()&#123;</span><br><span class="line">		<span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLayoutInflated</span><span class="params">(WatchViewStub stub)</span></span>&#123;</span><br><span class="line">			stub.findViewById(R.id.start_invasion).setOnClickListener(mClick);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">	setContentView(stub);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>该库同时也提供叫做<code>盒状插入布局的新布局管理器</code>，它拓展了框架布局，让开发师能够同时在方形与圆形屏幕上使用同一布局。</p>
 <h1 id="Android_Wear表盘（WatchFace）设计与开发">Android Wear表盘（WatchFace）设计与开发</h1><p>不得不承认，Google在表盘方面上还是很鼓励第三方开发者去自由创作的，有别于<br><a href="http://www.leikeji.com/article?2264" target="_blank" rel="external">Apple Watch不允许接入第三方watch face应用</a>的做法。</p>
 <p>要做一款WatchFace应用，你先需要拓展一下<code>CanvasWatchFaceService</code>及其引擎，</p>
@@ -1242,16 +1462,16 @@
 <li>选择灰色图片或者黑白双色。</li>
 <li><p>移除那些更新频率超过1分钟1次的屏幕元素（eg:秒针）</p>
 <p>要检测手表有没有进入环境模式，你可以覆盖<code>onAmbientModeChange</code>方式，RD会发送实例变量来表明手表处于环境模式下并使当前框架无效，这样会触发重新绘制机制， </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public void  onAmbientModeChanged&#10;(boolean inAmbientMode)&#123;&#10;// ...&#10;&#9;mAmient = inAmbientMode&#10;// ... &#9;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span>  <span class="title">onAmbientModeChanged</span></span><br><span class="line"><span class="params">(<span class="keyword">boolean</span> inAmbientMode)</span></span>&#123;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">	mAmient = inAmbientMode</span><br><span class="line"><span class="comment">// ... 	</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>然后，在下一次的<code>onDraw</code>中，RD可以决定他们去做什么。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> public void onDraw(Canvas canvas ,Rect rect)&#123;&#10;   //...draw code....&#10;   if(!mAmbient)&#123;&#10;   //additional drawing code....&#10;   &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDraw</span><span class="params">(Canvas canvas ,Rect rect)</span></span>&#123;</span><br><span class="line">   <span class="comment">//...draw code....</span></span><br><span class="line">   <span class="keyword">if</span>(!mAmbient)&#123;</span><br><span class="line">   <span class="comment">//additional drawing code....</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>当然AndroidWearWatchFace API还为开发者们提供 一些高级自定义的情景，来确保表盘在所有情况下都能流畅进行，特别说一下其中两个：</p>
 <ul>
 <li>第一个：一些Android Wear设置支持低比特率的环境模式，这就意味着只显示屏幕像素，甚至关掉它，只使用灰度设计，无法在这些屏幕上运行，这就是我们为什么要用黑白代替灰色设计的原因。为了判断设计是否支持低比特率，我们把<code>onPropertiesChange</code>进行覆盖。开发者可以查看手表是否支持低比特率的环境模式，</li>
 </ul>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> public void onPropertiesChanged(Bundle properties)&#10;&#123;&#10;&#9;super.onPropertiesChanged(properties);&#10;&#9;mLowBitAmbient=&#10;&#9;properties.getBoolean&#10;&#9;&#9;(PROPERTY_LOW_BIT_AMBIENT,false); &#10;&#125;</span><br></pre></td></tr></table></figure>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onPropertiesChanged</span><span class="params">(Bundle properties)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">super</span>.onPropertiesChanged(properties);</span><br><span class="line">	mLowBitAmbient=</span><br><span class="line">	properties.getBoolean</span><br><span class="line">		(PROPERTY_LOW_BIT_AMBIENT,<span class="keyword">false</span>); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>第二个：表盘能显示瞥视卡片在屏幕下方，我们通常会围绕卡片边缘onDraw一个透明矩形区域——TA可以确保你不会与表盘设计有很差的交互体验，而且在环境模式下尤其重要，要是没有它，卡片信息会被表盘底部的刻度线给遮挡。</p>
 <p>这里博主为大家提供了一些<a href="https://github.com/AndroidWearDemo/AndroidWearWatchface" target="_blank" rel="external">谷歌官方和自己编写的表盘Demo</a>。</p>
@@ -1353,11 +1573,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[我的一点看法关于市面上流行的Git托管服务社区]]></title>
-    <link href="http://daijiale.github.io/2015/04/27/%E6%88%91%E7%9A%84%E4%B8%80%E7%82%B9%E7%9C%8B%E6%B3%95%E5%85%B3%E4%BA%8E%E7%9B%AE%E5%89%8D%E5%B8%82%E9%9D%A2%E4%B8%8A%E6%B5%81%E8%A1%8C%E7%9A%84Git%E6%89%98%E7%AE%A1%E6%9C%8D%E5%8A%A1%E7%A4%BE%E5%8C%BA/"/>
-    <id>http://daijiale.github.io/2015/04/27/我的一点看法关于目前市面上流行的Git托管服务社区/</id>
+    <title><![CDATA[【个人】我的一点看法关于市面上流行的Git托管服务社区]]></title>
+    <link href="http://daijiale.github.io/2015/04/27/%E3%80%90%E4%B8%AA%E4%BA%BA%E3%80%91%E6%88%91%E7%9A%84%E4%B8%80%E7%82%B9%E7%9C%8B%E6%B3%95%E5%85%B3%E4%BA%8E%E7%9B%AE%E5%89%8D%E5%B8%82%E9%9D%A2%E4%B8%8A%E6%B5%81%E8%A1%8C%E7%9A%84Git%E6%89%98%E7%AE%A1%E6%9C%8D%E5%8A%A1%E7%A4%BE%E5%8C%BA/"/>
+    <id>http://daijiale.github.io/2015/04/27/【个人】我的一点看法关于目前市面上流行的Git托管服务社区/</id>
     <published>2015-04-27T03:39:09.000Z</published>
-    <updated>2015-10-30T16:40:59.000Z</updated>
+    <updated>2015-11-19T06:45:53.000Z</updated>
     <content type="html"><![CDATA[<p><code>git</code> 服务社区越来越多，无论是国外的还是国内的，免费公益的还是按需收费的，我们该如何选择呢？</p>
 <p>这里整理了一些我自己接触过的，给大家参考一下：</p>
 <a id="more"></a>
@@ -1394,11 +1614,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[单反自学笔记]]></title>
-    <link href="http://daijiale.github.io/2015/04/26/%E5%8D%95%E5%8F%8D%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/"/>
-    <id>http://daijiale.github.io/2015/04/26/单反自学笔记/</id>
+    <title><![CDATA[【摄影】单反自学笔记]]></title>
+    <link href="http://daijiale.github.io/2015/04/26/%E3%80%90%E6%91%84%E5%BD%B1%E3%80%91%E5%8D%95%E5%8F%8D%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/"/>
+    <id>http://daijiale.github.io/2015/04/26/【摄影】单反自学笔记/</id>
     <published>2015-04-26T13:26:09.000Z</published>
-    <updated>2015-10-30T16:40:59.000Z</updated>
+    <updated>2015-11-19T06:46:50.000Z</updated>
     <content type="html"><![CDATA[<p><strong>PS：</strong>2015年4月在<a href="http://mp.weixin.qq.com/s?__biz=MzAxMDM5MTIwMw==&amp;mid=204127766&amp;idx=1&amp;sn=7c6a4b87110f472a1ced270b6daafc10&amp;scene=5#rd" target="_blank" rel="external">胖哥（Axl、隔壁老王）</a>的唆使下，我入手了人身第一台<a href="http://baike.baidu.com/link?url=lUwpC5ksAq3Sh_zqGsNAZ4NmcxmiPul3P6SV-QXO5vdWItnvlm7GjvBreNyqoFYWoj-bbozDnDd0yU6lnqsKy7tsVn5qpNJ7BrEFqh_-k1Ml32XcaLvK0FlHUbbrL_eifzZoMYNglLhc-aX8K1XCd_" target="_blank" rel="external">单反</a>…（迈入继耳机之后的又一深坑）这篇Blog是最近学习新技能时做的笔记：</p>
 <h1 id="单反自学笔记_新人篇">单反自学笔记_新人篇</h1><ul>
 <li><a href="http://note.youdao.com/share/?id=48a8f388b8f5cb21ab3cd50d169a665f&amp;type=note" target="_blank" rel="external">新人第一课：井字构图法</a></li>
@@ -1436,11 +1656,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[百度第十二届Hackathon Coding Party小记]]></title>
-    <link href="http://daijiale.github.io/2015/04/15/%E7%99%BE%E5%BA%A6%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8AHackathon%20Coding%20Party%E5%B0%8F%E8%AE%B0/"/>
-    <id>http://daijiale.github.io/2015/04/15/百度第十二届Hackathon Coding Party小记/</id>
+    <title><![CDATA[【Hackathon】百度第十二届Hackathon Coding Party小记]]></title>
+    <link href="http://daijiale.github.io/2015/04/15/%E3%80%90Hackathon%E3%80%91%E7%99%BE%E5%BA%A6%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8AHackathon%20Coding%20Party%E5%B0%8F%E8%AE%B0/"/>
+    <id>http://daijiale.github.io/2015/04/15/【Hackathon】百度第十二届Hackathon Coding Party小记/</id>
     <published>2015-04-15T12:23:09.000Z</published>
-    <updated>2015-10-30T16:40:59.000Z</updated>
+    <updated>2015-11-19T06:47:55.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>时间：2015.4.11-2015.4.14</p>
 <p>地点：北京 百度大厦</p>
@@ -1507,11 +1727,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[AjaxReview]]></title>
-    <link href="http://daijiale.github.io/2015/04/09/AjaxReview/"/>
-    <id>http://daijiale.github.io/2015/04/09/AjaxReview/</id>
+    <title><![CDATA[【前端】AjaxReview]]></title>
+    <link href="http://daijiale.github.io/2015/04/09/%E3%80%90%E5%89%8D%E7%AB%AF%E3%80%91AjaxReview/"/>
+    <id>http://daijiale.github.io/2015/04/09/【前端】AjaxReview/</id>
     <published>2015-04-09T10:30:09.000Z</published>
-    <updated>2015-10-30T16:40:59.000Z</updated>
+    <updated>2015-11-19T13:18:02.000Z</updated>
     <content type="html"><![CDATA[<p><strong>PS：</strong>写这篇Blog主要有两个三个动机：</p>
 <ul>
 <li>对以前自己所学知识的一个系统化review</li>
@@ -1752,16 +1972,16 @@
     
       <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
     
-      <category term="Web开发日记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E6%97%A5%E8%AE%B0/"/>
+      <category term="Web开发笔记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[记我的高中——南昌二中]]></title>
-    <link href="http://daijiale.github.io/2015/04/03/%E8%AE%B0%E5%8D%97%E6%98%8C%E4%BA%8C%E4%B8%AD/"/>
-    <id>http://daijiale.github.io/2015/04/03/记南昌二中/</id>
+    <title><![CDATA[【个人】记我的高中——南昌二中]]></title>
+    <link href="http://daijiale.github.io/2015/04/03/%E3%80%90%E4%B8%AA%E4%BA%BA%E3%80%91%E8%AE%B0%E5%8D%97%E6%98%8C%E4%BA%8C%E4%B8%AD/"/>
+    <id>http://daijiale.github.io/2015/04/03/【个人】记南昌二中/</id>
     <published>2015-04-03T05:20:09.000Z</published>
-    <updated>2015-10-30T16:40:59.000Z</updated>
+    <updated>2015-11-19T06:45:30.000Z</updated>
     <content type="html"><![CDATA[<h1 id="硬件">硬件</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中在硬件上最大的特点就是壕！第一次来二中参加考试时便被壕气外露的红砖绿叶迷住了。还有人造草皮的足球场，三年一遇的游泳馆（三年就上过一次课），堆满了电脑随便用的图书馆。学校里四处都是花花草草，校门的花坛一月一换，班上的一体机切水果什么的信手拈来。就是任性就是壕！<br><a id="more"></a></p>
 <h1 id="师资">师资</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中的老师阵容十分强大，但随着这几年扩招老师资源也变得有些吃紧了。重点班尚能保证豪华阵容，在江西可以说不会逊色于任何学校的重点班，但平行班就会有很多刚进校不久的年轻老师了。当然不是说年轻老师一定不好，但是在高中尤其是高三，老师的经验与鼓舞对班级的提高是很有用的。所以二中这几年也在拼命招揽人才，目前一大批年轻老师已经走上一线，师资整体实力依然很强大。<br>3.理念：二中多年来一直重视综合素质教育，社团和各种活动巨多！学校也给很大的支持，每一届都会产生许多交际花。不过由于近年高考成绩不理想，15届开始进行了一些改革，加大了学业方面的侧重。所以未来二中也许会少一些交际花多一批学霸。</p>
 <h1 id="总结">总结</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中是一个神奇的地方，不论是在晨会上考试中挥斥方遒碾压众人的大神，还是走廊上树林旁对老师阿鲁巴时杀伐果断的凌厉，或是操场边天台上情侣基友看西山日落时的静谧，又抑或是顶楼学霸们在下课铃响时冲下楼梯直奔食堂的气势，它们一起组成了二中独一无二的体验。</p>
@@ -1783,11 +2003,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[从“主机搬家、第五次个人主站更新、第三次博客技术架构迁移”说起]]></title>
-    <link href="http://daijiale.github.io/2015/04/02/Blog%E8%BF%81%E7%A7%BB%E6%97%A5%E8%AE%B0/"/>
-    <id>http://daijiale.github.io/2015/04/02/Blog迁移日记/</id>
+    <title><![CDATA[【个人】从“主机搬家、第五次个人主站更新、第三次博客技术架构迁移”说起]]></title>
+    <link href="http://daijiale.github.io/2015/04/02/%E3%80%90%E4%B8%AA%E4%BA%BA%E3%80%91Blog%E8%BF%81%E7%A7%BB%E6%97%A5%E8%AE%B0/"/>
+    <id>http://daijiale.github.io/2015/04/02/【个人】Blog迁移日记/</id>
     <published>2015-04-02T15:30:09.000Z</published>
-    <updated>2015-10-30T16:40:59.000Z</updated>
+    <updated>2015-11-19T13:31:54.000Z</updated>
     <content type="html"><![CDATA[<p><strong>以下所指“更新”：均为Blog技术更新，非文章更新</strong></p>
 <h1 id="第一次更新_个人Blog">第一次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;说起自己的第一个Blog，要从小学刚开通QQ空间开始，具体几年级已经记不清了，那个时候刚甩掉纸质日记本，然后就迈入网络日志的深坑。以前倒是产出了不少优质日志，不过都是些多愁善感的随便，至今都已经封存进<em>私密日日记</em>中(如下图)：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpic_qqzonesec.PNG" alt=""><br><a id="more"></a></p>
 <h1 id="第二次更新_个人Blog">第二次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后面高中开始玩人人，Blog也顺势搬到人人。。。现在想来这搬迁史也很简单——围绕社交圈，毕竟Blog写出来是给人看的，而QQzone和人人都是一个很好的社交载体。当然，如今的人人，我早已放弃，一个月都不登一次的这种，blog数据也全部清除了，高中写的都是些没营养的东西，个人认为没有存在的价值。<br>最后留张图纪念一下曾经的人人帐号：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicrenren.PNG" alt=""></p>
@@ -1841,7 +2061,7 @@
     
       <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
     
-      <category term="Web开发日记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E6%97%A5%E8%AE%B0/"/>
+      <category term="Web开发笔记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   

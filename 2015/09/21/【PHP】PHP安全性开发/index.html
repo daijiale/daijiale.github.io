@@ -1,0 +1,733 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>【PHP】PHP安全性开发 | DaiJiale&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Jiale Dai">
+    
+
+    
+    <meta name="description" content="前言
+php给了开发者极大的灵活性，但是这也为安全问题带来了潜在的隐患，近期需要总结一下以往的问题，在这里借翻译一篇文章同时加上自己开发的一些感触总结一下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【PHP】PHP安全性开发">
+<meta property="og:url" content="http://daijiale.github.io/2015/09/21/【PHP】PHP安全性开发/index.html">
+<meta property="og:site_name" content="DaiJiale's Blog">
+<meta property="og:description" content="前言
+php给了开发者极大的灵活性，但是这也为安全问题带来了潜在的隐患，近期需要总结一下以往的问题，在这里借翻译一篇文章同时加上自己开发的一些感触总结一下。">
+<meta property="og:updated_time" content="2015-11-19T13:31:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【PHP】PHP安全性开发">
+<meta name="twitter:description" content="前言
+php给了开发者极大的灵活性，但是这也为安全问题带来了潜在的隐患，近期需要总结一下以往的问题，在这里借翻译一篇文章同时加上自己开发的一些感触总结一下。">
+
+    
+    <link rel="alternative" href="/atom.xml" title="DaiJiale&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="DaiJiale&#39;s Blog" title="DaiJiale&#39;s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="DaiJiale&#39;s Blog">DaiJiale&#39;s Blog</a></h1>
+				<h2 class="blog-motto">只有汗水不会欺骗你 || Only sweat will not fail you</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于我</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:daijiale.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/21/【PHP】PHP安全性开发/" title="【PHP】PHP安全性开发" itemprop="url">【PHP】PHP安全性开发</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jiale Dai" target="_blank" itemprop="author">Jiale Dai</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-21T13:21:11.000Z" itemprop="datePublished"> 发表于 2015-09-21</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#简介"><span class="toc-number">2.</span> <span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安全保护一般性要点"><span class="toc-number">2.1.</span> <span class="toc-text">安全保护一般性要点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#不相信表单"><span class="toc-number">2.1.1.</span> <span class="toc-text">不相信表单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不相信用户"><span class="toc-number">2.1.2.</span> <span class="toc-text">不相信用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关闭全局变量"><span class="toc-number">2.1.3.</span> <span class="toc-text">关闭全局变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL注入攻击"><span class="toc-number">2.1.4.</span> <span class="toc-text">SQL注入攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#防止基本的XSS攻击"><span class="toc-number">2.1.5.</span> <span class="toc-text">防止基本的XSS攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用SafeHTML防止XSS攻击"><span class="toc-number">2.1.6.</span> <span class="toc-text">使用SafeHTML防止XSS攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用mcrypt加密数据"><span class="toc-number">2.1.7.</span> <span class="toc-text">使用mcrypt加密数据</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#更多参考"><span class="toc-number">3.</span> <span class="toc-text">更多参考</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="前言">前言</h1><blockquote>
+<p>php给了开发者极大的灵活性，但是这也为安全问题带来了潜在的隐患，近期需要总结一下以往的问题，在这里借翻译一篇文章同时加上自己开发的一些感触总结一下。<br><a id="more"></a></p>
+</blockquote>
+<h1 id="简介">简介</h1><p>当开发一个互联网服务的时候，必须时刻牢记安全观念，并在开发的代码中体现。PHP脚本语言对安全问题并不关心，特别是对大多数没有经验的开发者来说。每当你讲任何涉及到钱财事务等交易问题时，需要特别注意安全问题的考虑，例如开发一个论坛或者是一个购物车等。</p>
+<h2 id="安全保护一般性要点">安全保护一般性要点</h2><h3 id="不相信表单">不相信表单</h3><p>对于一般的Javascript前台验证，由于无法得知用户的行为，例如关闭了浏览器的javascript引擎，这样通过POST恶意数据到服务器。需要在服务器端进行验证，对每个php脚本验证传递到的数据，防止XSS攻击和SQL注入</p>
+<h3 id="不相信用户">不相信用户</h3><p>要假设你的网站接收的每一条数据都是存在恶意代码的，存在隐藏的威胁，要对每一条数据都进行清理</p>
+<h3 id="关闭全局变量">关闭全局变量</h3><p>在php.ini文件中进行以下配置：</p>
+<p>register_globals = Off<br>如果这个配置选项打开之后，会出现很大的安全隐患。例如有一个process.php的脚本文件，会将接收到的数据插入到数据库，接收用户输入数据的表单可能如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">name</span>=<span class="value">"username"</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">size</span>=<span class="value">"15"</span> <span class="attribute">maxlength</span>=<span class="value">"64"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这样，当提交数据到<code>process.php</code>之后，php会注册一个<code>$username</code>变量，将这个变量数据提交到<code>process.php</code>，同时对于任何POST或GET请求参数，都会设置这样的变量。如果不是显示进行初始化那么就会出现下面的问题：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="comment">// Define $authorized = true only if user is authenticated</span></span><br><span class="line"><span class="keyword">if</span> (authenticated_user()) &#123;</span><br><span class="line">    <span class="variable">$authorized</span> = <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="preprocessor">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>此处，假设authenticated_user函数就是判断$authorized变量的值，如果开启了register_globals配置，那么任何用户都可以发送一个请求，来设置$authorized变量的值为任意值从而就能绕过这个验证。</p>
+<p>所有的这些提交数据都应该通过PHP预定义内置的全局数组来获取，包括$_POST、$_GET、$_FILES、$_SERVER、$_REQUEST等，其中$_REQUEST是一个$_GET/$_POST/$_COOKIE三个数组的联合变量，默认的顺序是$_COOKIE、$_POST、$_GET。</p>
+<p>推荐的安全配置选项<br>error_reporting设置为Off：不要暴露错误信息给用户，开发的时候可以设置为ON</p>
+<p>safe_mode设置为Off</p>
+<p>register_globals设置为Off</p>
+<p>将以下函数禁用：system、exec、passthru、shell_exec、proc_open、popen</p>
+<p>open_basedir设置为 /tmp ，这样可以让session信息有存储权限，同时设置单独的网站根目录</p>
+<p>expose_php设置为Off</p>
+<p>allow_url_fopen设置为Off</p>
+<p>allow_url_include设置为Off</p>
+<h3 id="SQL注入攻击">SQL注入攻击</h3><p>对于操作数据库的SQL语句，需要特别注意安全性，因为用户可能输入特定语句使得原有的SQL语句改变了功能。类似下面的例子：</p>
+<p>$sql = “select * from pinfo where product = ‘$product’”;<br>此时如果用户输入的$product参数为：</p>
+<p>39’; DROP pinfo; SELECT ‘FOO<br>那么最终SQL语句就变成了如下的样子：</p>
+<p>select product from pinfo where product = ‘39’; DROP pinfo; SELECT ‘FOO’<br>这样就会变成三条SQL语句，会造成pinfo表被删除，这样会造成严重的后果。</p>
+<p>这个问题可以简单的使用PHP的内置函数解决：</p>
+<p>$sql = ‘Select * from pinfo where product = ‘“‘<br>       mysql_real_escape_string($product) . ‘“‘;<br>防止SQL注入攻击需要做好两件事：</p>
+<p>对输入的参数总是进行类型验证</p>
+<p>对单引号、双引号、反引号等特殊字符总是使用mysql_real_escape_string函数进行转义</p>
+<p>但是，这里根据开发经验，不要开启php的Magic Quotes，这个特性在php6中已经废除，总是自己在需要的时候进行转义。</p>
+<h3 id="防止基本的XSS攻击">防止基本的XSS攻击</h3><p>XSS攻击不像其他攻击，这种攻击在客户端进行，最基本的XSS工具就是防止一段javascript脚本在用户待提交的表单页面，将用户提交的数据和cookie偷取过来。</p>
+<p>XSS工具比SQL注入更加难以防护，各大公司网站都被XSS攻击过，虽然这种攻击与php语言无关，但可以使用php来筛选用户数据达到保护用户数据的目的，这里主要使用的是对用户的数据进行过滤，一般过滤掉HTML标签，特别是a标签。下面是一个普通的过滤方法：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">transform_HTML</span><span class="params">(<span class="variable">$string</span>, <span class="variable">$length</span> = null)</span> </span>&#123;</span><br><span class="line"><span class="comment">// Helps prevent XSS attacks</span></span><br><span class="line">    <span class="comment">// Remove dead space.</span></span><br><span class="line">    <span class="variable">$string</span> = trim(<span class="variable">$string</span>);</span><br><span class="line">    <span class="comment">// Prevent potential Unicode codec problems.</span></span><br><span class="line">    <span class="variable">$string</span> = utf8_decode(<span class="variable">$string</span>);</span><br><span class="line">    <span class="comment">// HTMLize HTML-specific characters.</span></span><br><span class="line">    <span class="variable">$string</span> = htmlentities(<span class="variable">$string</span>, ENT_NOQUOTES);</span><br><span class="line">    <span class="variable">$string</span> = str_replace(<span class="string">"#"</span>, <span class="string">"#"</span>, <span class="variable">$string</span>);</span><br><span class="line">    <span class="variable">$string</span> = str_replace(<span class="string">"%"</span>, <span class="string">"%"</span>, <span class="variable">$string</span>);</span><br><span class="line">    <span class="variable">$length</span> = intval(<span class="variable">$length</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="variable">$string</span> = substr(<span class="variable">$string</span>, <span class="number">0</span>, <span class="variable">$length</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$string</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个函数将HTML的特殊字符转换为了HTML实体，浏览器在渲染这段文本的时候以纯文本形式显示。如<strong>bold</strong>会被显示为：</p>
+<p>&lt;STRONG&gt;BoldText&lt;/STRONG&gt;</p>
+<p>上述函数的核心就是htmlentities函数，这个函数将html特殊标签转换为html实体字符，这样可以过滤大部分的XSS攻击。</p>
+<p>但是对于有经验的XSS攻击者，有更加巧妙的办法进行攻击：将他们的恶意代码使用十六进制或者utf-8编码，而不是普通的ASCII文本，例如可以使用下面的方式进行：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"http://host/a.php?variable=%22%3e %3c%53%43%52%49%50%54%3e%44%6f%73%6f%6d%65%74%68%69%6e%67%6d%61%6c%69%63%69%6f%75%73%3c%2f%53%43%52%49%50%54%3e"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这样浏览器渲染的结果其实是：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"http://host/a.php?variable="</span>&gt;</span> <span class="tag">&lt;<span class="title">SCRIPT</span>&gt;</span><span class="undefined">Dosomethingmalicious</span><span class="tag">&lt;/<span class="title">SCRIPT</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这样就达到了攻击的目的。为了防止这种情况，需要在transform_HTML函数的基础上再将#和%转换为他们对应的实体符号，同时加上了$length参数来限制提交的数据的最大长度。</p>
+<h3 id="使用SafeHTML防止XSS攻击">使用SafeHTML防止XSS攻击</h3><p>上述关于XSS攻击的防护非常简单，但是不包含用户的所有标记，同时有上百种绕过过滤函数提交javascript代码的方法，也没有办法能完全阻止这个情况。</p>
+<p>目前，没有一个单一的脚本能保证不被攻击突破，但是总有相对来说防护程度更好的。一共有两个安全防护的方式：白名单和黑名单。其中白名单更加简单和有效。</p>
+<p>一种白名单解决方案就是SafeHTML，它足够智能能够识别有效的HTML，然后就可以去除任何危险的标签。这个需要基于HTMLSax包来进行解析。</p>
+<p>安装使用SafeHTML的方法：</p>
+<p>1、前往<a href="http://pixel-apes.com/safehtml/?page=safehtml" target="_blank" rel="external">http://pixel-apes.com/safehtml/?page=safehtml</a> 下载最新的SafeHTML</p>
+<p>2、将文件放入服务器的classes 目录，这个目录包含所有的SafeHTML和HTMLSax库</p>
+<p>3、在自己的脚本中包含SafeHTML类文件</p>
+<p>4、建立一个SafeHTML对象</p>
+<p>5、使用parse方法进行过滤</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="comment">/* If you're storing the HTMLSax3.php in the /classes directory, along</span><br><span class="line">   with the safehtml.php script, define XML_HTMLSAX3 as a null string. */</span></span><br><span class="line">define(XML_HTMLSAX3, <span class="string">''</span>);</span><br><span class="line"><span class="comment">// Include the class file.</span></span><br><span class="line"><span class="keyword">require_once</span>(<span class="string">'classes/safehtml.php'</span>);</span><br><span class="line"><span class="comment">// Define some sample bad code.</span></span><br><span class="line"><span class="variable">$data</span> = <span class="string">"This data would raise an alert &lt;script&gt;alert('XSS Attack')&lt;/script&gt;"</span>;</span><br><span class="line"><span class="comment">// Create a safehtml object.</span></span><br><span class="line"><span class="variable">$safehtml</span> = <span class="keyword">new</span> safehtml();</span><br><span class="line"><span class="comment">// Parse and sanitize the data.</span></span><br><span class="line"><span class="variable">$safe_data</span> = <span class="variable">$safehtml</span>-&gt;parse(<span class="variable">$data</span>);</span><br><span class="line"><span class="comment">// Display result.</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'The sanitized data is &lt;br /&gt;'</span> . <span class="variable">$safe_data</span>;</span><br><span class="line"><span class="preprocessor">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>SafeHTML并不能完全防止XSS攻击，只是一个相对复杂的脚本来检验的方式。</p>
+<p>使用单向HASH加密方式来保护数据</p>
+<p>单向hash加密保证对每个用户的密码都是唯一的，而且不能被破译的，只有最终用户知道密码，系统也是不知道原始密码的。这样的一个好处是在系统被攻击后攻击者也无法知道原始密码数据。</p>
+<p>加密和Hash是不同的两个过程。与加密不同，Hash是无法被解密的，是单向的；同时两个不同的字符串可能会得到同一个hash值，并不能保证hash值的唯一性。</p>
+<p>MD5函数处理过的hash值基本不能被破解，但是总是有可能性的，而且网上也有MD5的hash字典。</p>
+<h3 id="使用mcrypt加密数据">使用mcrypt加密数据</h3><p>MD5 hash函数可以在可读的表单中显示数据，但是对于存储用户的信用卡信息的时候，需要进行加密处理后存储，并且需要之后进行解密。</p>
+<p>最好的方法是使用mcrypt模块，这个模块包含了超过30中加密方式来保证只有加密者才能解密数据。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="variable">$data</span> = <span class="string">"Stuff you want encrypted"</span>;</span><br><span class="line"><span class="variable">$key</span> = <span class="string">"Secret passphrase used to encrypt your data"</span>;</span><br><span class="line"><span class="variable">$cipher</span> = <span class="string">"MCRYPT_SERPENT_256"</span>;</span><br><span class="line"><span class="variable">$mode</span> = <span class="string">"MCRYPT_MODE_CBC"</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">encrypt</span><span class="params">(<span class="variable">$data</span>, <span class="variable">$key</span>, <span class="variable">$cipher</span>, <span class="variable">$mode</span>)</span> </span>&#123;</span><br><span class="line"><span class="comment">// Encrypt data</span></span><br><span class="line"><span class="keyword">return</span> (string)</span><br><span class="line">            base64_encode</span><br><span class="line">                (</span><br><span class="line">                mcrypt_encrypt</span><br><span class="line">                    (</span><br><span class="line">                    <span class="variable">$cipher</span>,</span><br><span class="line">                    substr(md5(<span class="variable">$key</span>),<span class="number">0</span>,mcrypt_get_key_size(<span class="variable">$cipher</span>, <span class="variable">$mode</span>)),</span><br><span class="line">                    <span class="variable">$data</span>,</span><br><span class="line">                    <span class="variable">$mode</span>,</span><br><span class="line">                    substr(md5(<span class="variable">$key</span>),<span class="number">0</span>,mcrypt_get_block_size(<span class="variable">$cipher</span>, <span class="variable">$mode</span>))</span><br><span class="line">                    )</span><br><span class="line">                );</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">decrypt</span><span class="params">(<span class="variable">$data</span>, <span class="variable">$key</span>, <span class="variable">$cipher</span>, <span class="variable">$mode</span>)</span> </span>&#123;</span><br><span class="line"><span class="comment">// Decrypt data</span></span><br><span class="line">    <span class="keyword">return</span> (string)</span><br><span class="line">            mcrypt_decrypt</span><br><span class="line">                (</span><br><span class="line">                <span class="variable">$cipher</span>,</span><br><span class="line">                substr(md5(<span class="variable">$key</span>),<span class="number">0</span>,mcrypt_get_key_size(<span class="variable">$cipher</span>, <span class="variable">$mode</span>)),</span><br><span class="line">                base64_decode(<span class="variable">$data</span>),</span><br><span class="line">                <span class="variable">$mode</span>,</span><br><span class="line">                substr(md5(<span class="variable">$key</span>),<span class="number">0</span>,mcrypt_get_block_size(<span class="variable">$cipher</span>, <span class="variable">$mode</span>))</span><br><span class="line">                );</span><br><span class="line">&#125;</span><br><span class="line"><span class="preprocessor">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>mcrypt函数需要以下信息：</p>
+<p>1、待加密数据</p>
+<p>2、用来加密和解密数据的key</p>
+<p>3、用户选择的加密数据的特定算法（cipher：如 MCRYPT_TWOFISH192,MCRYPT_SERPENT_256， MCRYPT_RC2, MCRYPT_DES, and MCRYPT_LOKI97）</p>
+<p>4、用来加密的模式</p>
+<p>5、加密的种子，用来起始加密过程的数据，是一个额外的二进制数据用来初始化加密算法</p>
+<p>6、加密key和种子的长度，使用mcrypt_get_key_size函数和mcrypt_get_block_size函数可以获取</p>
+<p>如果数据和key都被盗取，那么攻击者可以遍历ciphers寻找开行的方式即可，因此我们需要将加密的key进行MD5一次后保证安全性。同时由于mcrypt函数返回的加密数据是一个二进制数据，这样保存到数据库字段中会引起其他错误，使用了base64encode将这些数据转换为了十六进制数方便保存。</p>
+<p><a href="http://www.codeproject.com/Articles/363897/PHP-Security" target="_blank" rel="external">参考文献：http://www.codeproject.com/Articles/363897/PHP-Security</a></p>
+<h1 id="更多参考">更多参考</h1><ul>
+<li><a href="http://php.net/manual/zh/" target="_blank" rel="external">PHP中文手册</a></li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/转载博文/">转载博文</a>►<a class="article-category-link" href="/categories/转载博文/Web开发分享/">Web开发分享</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/PHP/">PHP</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://daijiale.github.io/2015/09/21/【PHP】PHP安全性开发/" data-title="【PHP】PHP安全性开发 | DaiJiale&#39;s Blog" data-tsina="3173290371" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/09/21/【PHP】PHP_cURL/" title="【PHP】cURL使用之PHP">
+  <strong>上一篇：</strong><br/>
+  <span>
+  【PHP】cURL使用之PHP</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/07/21/【Android】Android求职知识点Review/"  title="【Android-持续更新】Android求职知识点Review">
+ <strong>下一篇：</strong><br/> 
+ <span>【Android-持续更新】Android求职知识点Review
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/09/21/【PHP】PHP安全性开发/" data-title="【PHP】PHP安全性开发" data-url="http://daijiale.github.io/2015/09/21/【PHP】PHP安全性开发/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#简介"><span class="toc-number">2.</span> <span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安全保护一般性要点"><span class="toc-number">2.1.</span> <span class="toc-text">安全保护一般性要点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#不相信表单"><span class="toc-number">2.1.1.</span> <span class="toc-text">不相信表单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不相信用户"><span class="toc-number">2.1.2.</span> <span class="toc-text">不相信用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关闭全局变量"><span class="toc-number">2.1.3.</span> <span class="toc-text">关闭全局变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL注入攻击"><span class="toc-number">2.1.4.</span> <span class="toc-text">SQL注入攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#防止基本的XSS攻击"><span class="toc-number">2.1.5.</span> <span class="toc-text">防止基本的XSS攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用SafeHTML防止XSS攻击"><span class="toc-number">2.1.6.</span> <span class="toc-text">使用SafeHTML防止XSS攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用mcrypt加密数据"><span class="toc-number">2.1.7.</span> <span class="toc-text">使用mcrypt加密数据</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#更多参考"><span class="toc-number">3.</span> <span class="toc-text">更多参考</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/原创博文/Android开发笔记/" title="Android开发笔记">Android开发笔记<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/转载博文/Web开发分享/" title="Web开发分享">Web开发分享<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/原创博文/Web开发笔记/" title="Web开发笔记">Web开发笔记<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/原创博文/单反自学笔记/" title="单反自学笔记">单反自学笔记<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/原创博文/" title="原创博文">原创博文<sup>17</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/转载博文/" title="转载博文">转载博文<sup>3</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/个人故事/" title="个人故事">个人故事<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/PHP/" title="PHP">PHP<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php/" title="php">php<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html5/" title="html5">html5<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/拍照摄影/" title="拍照摄影">拍照摄影<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Ajax/" title="Ajax">Ajax<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Json/" title="Json">Json<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据库/" title="数据库">数据库<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/代码托管/" title="代码托管">代码托管<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/智能可穿戴/" title="智能可穿戴">智能可穿戴<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Blog/" title="Blog">Blog<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Amaze-UI/" title="Amaze UI">Amaze UI<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hackathon/" title="hackathon">hackathon<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hackathon/" title="Hackathon">Hackathon<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AndroidWear/" title="AndroidWear">AndroidWear<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.daijiale.cn" target="_blank" title="DaiJiale的个人简历页">DaiJiale的个人站点</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://c2pblog.sinaapp.com/" target="_blank" title="Baiduer刘神的Blog">LiuKaiNing的Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.linzhihao.cn" target="_blank" title="我师父的Blog">MasterLin的Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://charles-xiao.github.io/" target="_blank" title="好友肖勇Blog">CharlesXiao的Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://lizhuolun.com/" target="_blank" title="好友卓伦Blog">lizhuolun的Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://leuisken.github.io/index.html" target="_blank" title="学弟嘉讯Blog">leuisken的Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.php-note.com/" target="_blank" title="神一样的PHPer">钱途无梁的PHP-Note</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://stormzhang.com/" target="_blank" title="偶像的Blog（Android_CN OG级人物）">StormZhang的Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me/" target="_blank" title="jacman原创博主">Jark&#39;s Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.developerclub.cn" target="_blank" title="博主自己独立开发的：一个面向电子科技大学开发者的网上社区">电子科技大学开发者俱乐部</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://uestc.xyz" target="_blank" title="一个面向电子科技大学Linux开发者的社区">电子科技大学Linux开源社区</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.newstacksoft.com/" target="_blank" title="2016届百度新人交流社区贡献者">NewBaiduer2016社区</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://tongji.cnzz.com/main.php?c=site&a=show&siteid=1254856612" target="_blank" title=" 站点数据统计">站长统计</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Jiale Dai in UESTC. <br/>
+			Welcome To My World.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/3173290371" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/daijiale" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="https://www.zhihu.com/people/dai-jia-le-35" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:daijiale6239@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by Hexo and Theme Rebuilt From Jacman By</a> © 2015 
+		
+		<a href="http://www.daijiale.cn">Jiale Dai</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"daijiale"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254856612'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1254856612' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

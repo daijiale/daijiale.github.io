@@ -1,0 +1,684 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>【PHP】PHP跟踪错误7大步骤 | DaiJiale&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Jiale Dai">
+    
+
+    
+    <meta name="description" content="这个话题老生长谈了，在面试中必然考核的能力中，我个人认为解决问题能力是排第一位的，比学习能力优先级更高。解决问题的能力既能看出程序员的思维能力，应变能力，探索能力等，又可以看出他的经验。如果解决问题能力不佳是无法通过面试的。
+这里举个例子，假如我执行了一个PHP的脚本，如php test.php，预期是可以返回一个字符串。但执行后没有任何信息输出，这时候通过什么方法能知道程序错在哪里？这里可以将解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【PHP】PHP跟踪错误7大步骤">
+<meta property="og:url" content="http://daijiale.github.io/2015/10/10/【PHP】PHP跟踪错误7大步骤/index.html">
+<meta property="og:site_name" content="DaiJiale's Blog">
+<meta property="og:description" content="这个话题老生长谈了，在面试中必然考核的能力中，我个人认为解决问题能力是排第一位的，比学习能力优先级更高。解决问题的能力既能看出程序员的思维能力，应变能力，探索能力等，又可以看出他的经验。如果解决问题能力不佳是无法通过面试的。
+这里举个例子，假如我执行了一个PHP的脚本，如php test.php，预期是可以返回一个字符串。但执行后没有任何信息输出，这时候通过什么方法能知道程序错在哪里？这里可以将解">
+<meta property="og:updated_time" content="2015-11-19T06:48:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【PHP】PHP跟踪错误7大步骤">
+<meta name="twitter:description" content="这个话题老生长谈了，在面试中必然考核的能力中，我个人认为解决问题能力是排第一位的，比学习能力优先级更高。解决问题的能力既能看出程序员的思维能力，应变能力，探索能力等，又可以看出他的经验。如果解决问题能力不佳是无法通过面试的。
+这里举个例子，假如我执行了一个PHP的脚本，如php test.php，预期是可以返回一个字符串。但执行后没有任何信息输出，这时候通过什么方法能知道程序错在哪里？这里可以将解">
+
+    
+    <link rel="alternative" href="/atom.xml" title="DaiJiale&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="DaiJiale&#39;s Blog" title="DaiJiale&#39;s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="DaiJiale&#39;s Blog">DaiJiale&#39;s Blog</a></h1>
+				<h2 class="blog-motto">只有汗水不会欺骗你 || Only sweat will not fail you</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于我</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:daijiale.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/10/10/【PHP】PHP跟踪错误7大步骤/" title="【PHP】PHP跟踪错误7大步骤" itemprop="url">【PHP】PHP跟踪错误7大步骤</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jiale Dai" target="_blank" itemprop="author">Jiale Dai</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-10T04:34:21.000Z" itemprop="datePublished"> 发表于 2015-10-10</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Lv0_查看PHP错误信息"><span class="toc-number">1.</span> <span class="toc-text">Lv0 查看PHP错误信息</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lv2_var_dump/die打印变量值信息单步调试"><span class="toc-number">2.</span> <span class="toc-text">Lv2 var_dump/die打印变量值信息单步调试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lv3_使用strace工具跟踪程序执行"><span class="toc-number">3.</span> <span class="toc-text">Lv3 使用strace工具跟踪程序执行</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#"><span class="toc-number">4.</span> <span class="toc-text"> </span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lv4_使用tcpdump工具分析网络通信过程"><span class="toc-number">5.</span> <span class="toc-text">Lv4 使用tcpdump工具分析网络通信过程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lv5_统计函数调用的耗时和成功率"><span class="toc-number">6.</span> <span class="toc-text">Lv5 统计函数调用的耗时和成功率</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lv6_gdb使用"><span class="toc-number">7.</span> <span class="toc-text">Lv6 gdb使用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lv7_查看PHP内核和扩展源码"><span class="toc-number">8.</span> <span class="toc-text">Lv7 查看PHP内核和扩展源码</span></a></li></ol>
+		
+		</div>
+		
+		<blockquote>
+<p>这个话题老生长谈了，在面试中必然考核的能力中，我个人认为解决问题能力是排第一位的，比学习能力优先级更高。解决问题的能力既能看出程序员的思维能力，应变能力，探索能力等，又可以看出他的经验。如果解决问题能力不佳是无法通过面试的。</p>
+<p>这里举个例子，假如我执行了一个PHP的脚本，如php test.php，预期是可以返回一个字符串。但执行后没有任何信息输出，这时候通过什么方法能知道程序错在哪里？这里可以将解决问题能力分为8个等级，越到后面的表示能力越强。</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="Lv0_查看PHP错误信息">Lv0 查看PHP错误信息</h1><p>程序没有达到预期效果，证明代码出错了，看PHP的错误信息是第一步。如果直接忽略错误信息，表明这个人不适合担任专业的程序员岗位。有些情况下php.ini配置中关闭了错误显示，需要修改php.ini打开错误信息，或者错误信息被导出到了日志文件，这种情况可以直接tailf php_error.log来看错误信息。</p>
+<p>拿到错误信息后直接定位到程序代码问题，或者到Google/百度搜索，即可解决问题。</p>
+<p>注：打开错误显示的方法是</p>
+<p>php.ini中display_errors / display_startup_errors 设置为On<br>php.ini中error_reporting 设置为E_ALL<br>PHP代码中设置error_reporting(E_ALL)<br>Lv1 存在多个版本的php或php-cli与php-fpm加载不同的配置</p>
+<p>存在多个版本的php，懂得通过which php来看是哪个PHP，或者加绝对路径制定php版本。表示此PHPer通过了此层级的50%考验。</p>
+<p>另外一个情况就是php-cli与php-fpm得到的执行情况不一样，如在web浏览器中执行是对的，cli下执行是错的。这时候可能是2个环境加载的php.ini不同所致。cli下通过php -i |grep php.ini得到加载了哪个php.ini。而fpm下通过phpinfo()函数可以得到php.ini的绝对路径。</p>
+<h1 id="Lv2_var_dump/die打印变量值信息单步调试">Lv2 var_dump/die打印变量值信息单步调试</h1><p>这是惯用的程序调试手段，也是最简单粗暴有效的解决问题方法。高级一点的手段是使用PHP的Trace类/日志类，花哨一点的可以借助phpstorm+xdebug在IDE工具里进行Debug。</p>
+<p>Trace工具还可以分析脚本的耗时，进行PHP程序的性能优化。</p>
+<p>这3个考验全部通过，表明此程序员已经具备了专业PHP程序员应该有的解决问题能力了。PHP程序员只要过了这个等级，就足以应多大部分情况，在中小型网站中毫无压力。</p>
+<h1 id="Lv3_使用strace工具跟踪程序执行">Lv3 使用strace工具跟踪程序执行</h1><p>strace可以用来查看系统调用的执行，使用strace php test.php，或者strace -p 进程ID。strace就可以帮助你透过现象看本质，掌握程序执行的过程。这个手段是在大型网站，大公司里最常用的。如果没掌握strace，这里只能说抱歉了，我们不接受不会strace的PHPer。</p>
+<p>strace其实也是对程序员基础的考验，如果不懂操作操作系统，完全不懂底层，肯定也达不到会用strace的程度。当然strace对于PHP代码里的死循环是解决不了的。比如你发现一个php-fpm进程CPU100%了，strace恐怕是解决不了的。因为strace是看系统调用，一般都是IO类操作，既然是IO密集，那CPU一定不可能是100%。</p>
+<h1 id=""> </h1><h1 id="Lv4_使用tcpdump工具分析网络通信过程">Lv4 使用tcpdump工具分析网络通信过程</h1><p>tcpdump可以抓到网卡的数据通信过程，甚至数据内容也可以抓到。使用tcpdump可以看到网络通信过程是什么样的，如何时发起了TCP SYN3次握手，何时发送FIN包，何时发送RST包。这是一个基本功，如果不懂tcpdump，证明不具备网络问题解决能力。</p>
+<h1 id="Lv5_统计函数调用的耗时和成功率">Lv5 统计函数调用的耗时和成功率</h1><p>使用xhporf/xdebug导出PHP请求的调用过程，然后分析每个函数调用的过程和耗时。能够分析PHP程序的性能瓶颈，找出可以优化的点。</p>
+<p>另外一个对于网络服务的调用，如mysql查询，curl，其他API调用等，通过记录起始和结束时microtime，返回的是不是false，可以得到调用是否成功，耗时多少。如果可以汇总数据，整理出调用的成功率，失败率，平均延时，证明此程序员对接口质量敏感，有大型网站项目经验。</p>
+<h1 id="Lv6_gdb使用">Lv6 gdb使用</h1><p>gdb是C/C++调试程序的利器，需要具备一定C/C++功底的程序员才会能熟练使用gdb。上面说的strace无法跟踪php程序CPU100%，而gdb是可以跟踪的。另外gdb也可以解决php程序core dump的问题。</p>
+<p>通过gdb -p 进程ID，再配合php-src的.gdbinit zbacktrace等工具，可以很方便地跟踪PHP程序的执行。像上面的CPU100%往往是PHP程序中发生死循环了，gdb进行多次查看，就大致可以得到死循环的位置。具备gdb解决问题能力的PHP程序员少之又少。如果能使用gdb解决PHP问题，这个PHPer百分之百可以通过面试，并且可以拿到较高的技术评级。</p>
+<h1 id="Lv7_查看PHP内核和扩展源码">Lv7 查看PHP内核和扩展源码</h1><p>如果能熟悉PHP内核和扩展的源码，遇到PHP程序中最复杂的内存错误，也可以有解决的能力。这类PHP程序员就是凤毛麟角了。配合gdb工具和对PHP源码的熟悉，可以查看opcode的信息，execute_data的内存，全局变量的状态等。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/转载博文/">转载博文</a>►<a class="article-category-link" href="/categories/转载博文/Web开发分享/">Web开发分享</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/PHP/">PHP</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://daijiale.github.io/2015/10/10/【PHP】PHP跟踪错误7大步骤/" data-title="【PHP】PHP跟踪错误7大步骤 | DaiJiale&#39;s Blog" data-tsina="3173290371" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/11/08/【个人】为何选择做程序猿（媛）之家/" title="【个人】为什么选择做“程序猿（媛）之家”">
+  <strong>上一篇：</strong><br/>
+  <span>
+  【个人】为什么选择做“程序猿（媛）之家”</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/09/21/【PHP】PHP_cURL/"  title="【PHP】cURL使用之PHP">
+ <strong>下一篇：</strong><br/> 
+ <span>【PHP】cURL使用之PHP
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/10/10/【PHP】PHP跟踪错误7大步骤/" data-title="【PHP】PHP跟踪错误7大步骤" data-url="http://daijiale.github.io/2015/10/10/【PHP】PHP跟踪错误7大步骤/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Lv0_查看PHP错误信息"><span class="toc-number">1.</span> <span class="toc-text">Lv0 查看PHP错误信息</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lv2_var_dump/die打印变量值信息单步调试"><span class="toc-number">2.</span> <span class="toc-text">Lv2 var_dump/die打印变量值信息单步调试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lv3_使用strace工具跟踪程序执行"><span class="toc-number">3.</span> <span class="toc-text">Lv3 使用strace工具跟踪程序执行</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#"><span class="toc-number">4.</span> <span class="toc-text"> </span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lv4_使用tcpdump工具分析网络通信过程"><span class="toc-number">5.</span> <span class="toc-text">Lv4 使用tcpdump工具分析网络通信过程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lv5_统计函数调用的耗时和成功率"><span class="toc-number">6.</span> <span class="toc-text">Lv5 统计函数调用的耗时和成功率</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lv6_gdb使用"><span class="toc-number">7.</span> <span class="toc-text">Lv6 gdb使用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lv7_查看PHP内核和扩展源码"><span class="toc-number">8.</span> <span class="toc-text">Lv7 查看PHP内核和扩展源码</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/原创博文/Android开发笔记/" title="Android开发笔记">Android开发笔记<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/转载博文/Web开发分享/" title="Web开发分享">Web开发分享<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/原创博文/Web开发笔记/" title="Web开发笔记">Web开发笔记<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/原创博文/单反自学笔记/" title="单反自学笔记">单反自学笔记<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/原创博文/" title="原创博文">原创博文<sup>17</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/转载博文/" title="转载博文">转载博文<sup>3</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/个人故事/" title="个人故事">个人故事<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/PHP/" title="PHP">PHP<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php/" title="php">php<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html5/" title="html5">html5<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/拍照摄影/" title="拍照摄影">拍照摄影<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Ajax/" title="Ajax">Ajax<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Json/" title="Json">Json<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据库/" title="数据库">数据库<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/代码托管/" title="代码托管">代码托管<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/智能可穿戴/" title="智能可穿戴">智能可穿戴<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Blog/" title="Blog">Blog<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Amaze-UI/" title="Amaze UI">Amaze UI<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hackathon/" title="hackathon">hackathon<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hackathon/" title="Hackathon">Hackathon<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AndroidWear/" title="AndroidWear">AndroidWear<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.daijiale.cn" target="_blank" title="DaiJiale的个人简历页">DaiJiale的个人站点</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://c2pblog.sinaapp.com/" target="_blank" title="Baiduer刘神的Blog">LiuKaiNing的Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.linzhihao.cn" target="_blank" title="我师父的Blog">MasterLin的Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://charles-xiao.github.io/" target="_blank" title="好友肖勇Blog">CharlesXiao的Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://lizhuolun.com/" target="_blank" title="好友卓伦Blog">lizhuolun的Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://leuisken.github.io/index.html" target="_blank" title="学弟嘉讯Blog">leuisken的Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.php-note.com/" target="_blank" title="神一样的PHPer">钱途无梁的PHP-Note</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://stormzhang.com/" target="_blank" title="偶像的Blog（Android_CN OG级人物）">StormZhang的Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me/" target="_blank" title="jacman原创博主">Jark&#39;s Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.developerclub.cn" target="_blank" title="博主自己独立开发的：一个面向电子科技大学开发者的网上社区">电子科技大学开发者俱乐部</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://uestc.xyz" target="_blank" title="一个面向电子科技大学Linux开发者的社区">电子科技大学Linux开源社区</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.newstacksoft.com/" target="_blank" title="2016届百度新人交流社区贡献者">NewBaiduer2016社区</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://tongji.cnzz.com/main.php?c=site&a=show&siteid=1254856612" target="_blank" title=" 站点数据统计">站长统计</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Jiale Dai in UESTC. <br/>
+			Welcome To My World.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/3173290371" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/daijiale" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="https://www.zhihu.com/people/dai-jia-le-35" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:daijiale6239@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by Hexo and Theme Rebuilt From Jacman By</a> © 2015 
+		
+		<a href="http://www.daijiale.cn">Jiale Dai</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"daijiale"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254856612'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1254856612' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
