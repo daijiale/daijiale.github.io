@@ -4,7 +4,7 @@
   <subtitle><![CDATA[只有汗水不会欺骗你 || Only sweat will not fail you]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://daijiale.github.io/"/>
-  <updated>2015-11-19T13:18:40.000Z</updated>
+  <updated>2015-12-10T11:37:58.000Z</updated>
   <id>http://daijiale.github.io/</id>
   
   <author>
@@ -15,11 +15,85 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[【个人】个人主页/Blog迁移日记]]></title>
+    <link href="http://daijiale.github.io/2015/12/10/%E3%80%90%E4%B8%AA%E4%BA%BA%E3%80%91Blog%E8%BF%81%E7%A7%BB%E6%97%A5%E8%AE%B0/"/>
+    <id>http://daijiale.github.io/2015/12/10/【个人】Blog迁移日记/</id>
+    <published>2015-12-10T11:37:09.000Z</published>
+    <updated>2015-12-10T11:37:58.000Z</updated>
+    <content type="html"><![CDATA[<p><strong>以下所指“更新”：均为Blog技术更新，非文章更新</strong></p>
+<h1 id="第一次更新_个人Blog">第一次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;说起自己的第一个Blog，要从小学刚开通QQ空间开始，具体几年级已经记不清了，那个时候刚甩掉纸质日记本，然后就迈入网络日志的深坑。以前倒是产出了不少优质日志，不过都是些多愁善感的随便，至今都已经封存进<em>私密日日记</em>中(如下图)：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpic_qqzonesec.PNG" alt=""><br><a id="more"></a></p>
+<h1 id="第二次更新_个人Blog">第二次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后面高中开始玩人人，Blog也顺势搬到人人。。。现在想来这搬迁史也很简单——围绕社交圈，毕竟Blog写出来是给人看的，而QQzone和人人都是一个很好的社交载体。当然，如今的人人，我早已放弃，一个月都不登一次的这种，blog数据也全部清除了，高中写的都是些没营养的东西，个人认为没有存在的价值。<br>最后留张图纪念一下曾经的人人帐号：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicrenren.PNG" alt=""></p>
+<h1 id="第三次更新_个人Blog">第三次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后面因为大学专业性质原因，再加上由于个人兴趣先接触的知识是Web开发，所以打算通过自己编写代码，建立带有自己专属域名的独立Blog全站（其实是不知道做什么内容。。。就以Blog为题材了，而且身为一个程序猿，Blog是撑脸面的东西）。正如很多刚入门的小白一样：最初选用的技术框架是 <code>PHP+MySQL</code>，边学边写，坚持了一段时间后发现根本没法拿出手，在人生导师 <code>@阔空晴云</code>（亦师亦友的关系，大学同学，年级传奇….我Blog友情链接有他的Blog..但是，为保留他的个人隐私，我就不透露<strong>林志豪</strong>的<strong>真名</strong>了）的建议下，<br>后来选用了知名度很大的 <code>wordpress</code> 框架去快速开发能拿得出手的Blog，那也是我第一次接触框架类的东西，在那之前都是直接C++和C做底层开发，js和html也都是从新建文件开始码起，—&gt;你懂得…从大众空间到自己独立虚拟主机空间，也算是第一次技术迁移了！网站是托管在人生导师的虚拟主机上，记得刚拍下<a href="http://www.daijiale.cn" target="_blank" rel="external">www.daijiale.cn</a>个人域名，挂到上线的时候是这样子的:<br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_daijialewebsiteworkshop.png" alt=""></p>
+<p>嗯，对于一个大一上刚学会做站点的小虾开发者来说，还是感觉Geek满满的。</p>
+<h1 id="第四次更新_个人Blog">第四次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;自上一次大更新以后的两年多里，都没有什么大的起伏（主要是太懒，或者忙其他项目去了），直到后面阴差阳错侥幸获得了这个证书：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/SAEDeveloper.jpg" alt="">,新浪每月给我SAE上打的云豆工单根本用都用不完了，so，我打算把Blog全部迁移到 <code>SAE上</code> （毕竟老放在人生导师那也不太好）。顺便更新了下Blog的界面和交互，增加了首页响应式效果（方便宣传嘛，嘿嘿）,自己设计和编码水平的提高也让每次迭代后的Blog页面颜值更高：<br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/daijialeweb_personalsite.png" alt=""></p>
+<h1 id="第五次更新_个人Blog">第五次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这次改动比较大，也就是目前大家看到的这个站点：<a href="http://daijiale.github.io/">http://daijiale.github.io/</a>（域名换了，因为托管原因，把原来的<a href="http://www.daijiale.cn" target="_blank" rel="external">www.daijiale.cn</a>改成了简历页和入口页，其实也挺不错，性质不一样，刚好趁着这次技术整改实现了分布式控制），整个技术体系和空间都搬家+大改了，这次的技术架构没有采用市面上被大家广泛使用的常见技术，<strong>没有服务器脚本语言的参合，没有数据库，没有进行数据存储优化</strong>，简而言之就是，妈的！这逼网站<strong>居然没有后台</strong>（其实我心里一开始是拒绝的）。是的，你没听错，这特么就是个伪静态Blog，但是…这丝毫不影响ta的逼格大增,so let’s see it：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;技术框架选用的是 <code>Hexo+Node.js+ejs+bootstrap+markdown+GithubPage</code>，为什么会采用这套剑走偏锋的框架？其实，是受到了周围小伙伴的影响，越来越多的朋友为了解决成本和增加B格，将Blog结合 <code>GithubPage</code> 托管在 <a href="https://github.com/" target="_blank" rel="external"><code>github</code></a>（程序猿的facebook，我也是从2014年才开始玩的）上，具体这套架构的<strong>优点</strong>和<strong>搭建教程</strong>请参考如下博文：</p>
+<ul>
+<li><p><a href="http://note.youdao.com/share/?id=0dc251a2004362d10d7ce520fecdcbff&amp;type=note" target="_blank" rel="external">Blog搭建之Hexo+Node.js+ejs+bootstrap+markdown+GithubPage</a></p>
+<p>这里主要提一下 <code>Hexo</code> 和 <code>Jacman</code>：</p>
+</li>
+<li><p>Hexo：</p>
+<ul>
+<li>风一般的速度：<code>Hexo</code> 基于 <code>Node.js</code> ，支持多进程，几百篇文章也可以秒生成。</li>
+<li>流畅的撰写：支持 <code>GitHub</code> <code>Flavored</code> <code>Markdown</code> 和所有 <code>Octopress</code> 的插件。</li>
+<li>扩展性：<code>Hexo</code>支持 <code>EJS</code>、 <code>Swig</code>和 <code>Stylus</code>。通过插件支持 <code>Haml</code>、 <code>Jade</code>和 <code>Less</code>.</li>
+<li>More：<a href="http://hexo.io/" target="_blank" rel="external">请参见官网</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>Jacman：<code>Hexo</code> 的一个 <code>ejs</code>模版主题，来源于民间大神<strong>WuChong</strong>（<a href="http://note.youdao.com/share/?id=d93d060ce27c0d085021c9c0192c9e08&amp;type=note" target="_blank" rel="external">更多详细用法传送门</a>），在所有Hexo官网主题中个人比较倾向于他的风格，但是对于这个主题，我还是不太满意，挺多瑕疵需要我自己慢慢修改，后面我的Blog主题也会自己改成一个新的原创主题，到时候再开源出来，给更多的 <code>hexo</code> 开发者使用。现在正在往 <code>Low Poly Style</code>发展。</p>
+</li>
+<li><p>图床：</p>
+<ul>
+<li><a href="http://www.qiniu.com/?utm_source=BAIDU&amp;utm_medium=cpc&amp;utm_term=%E4%BA%91%E5%AD%98%E5%82%A8&amp;utm_content=chanpinlei&amp;utm_campaign=qiniu-ceshi" target="_blank" rel="external">七牛云存储</a>（大图用七牛，加速给力）</li>
+<li><a href="http://baichuan.taobao.com/portal/doc?articleId=329" target="_blank" rel="external">TAE</a>(小图用TAE，百川Hackathon接触到的，还不错)</li>
+</ul>
+</li>
+<li><p>音床：<a href="http://music.163.com/#" target="_blank" rel="external">网易云音乐</a>（个人认为是目前市场上最好的全端音乐软件，不服来辩）</p>
+</li>
+<li><p>视频床：自己Coding把。。。（博主暂时只找到<a href="http://v.qq.com/" target="_blank" rel="external">腾讯视频</a>的漏洞，亲测可用）</p>
+</li>
+</ul>
+<h1 id="第六次更新_主页更新">第六次更新_主页更新</h1><p>直接上图吧：<br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlBlogDaiJiale0.gif" alt=""><br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlBlogDaiJiale1.gif" alt=""><br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlBlogDaiJiale2.gif" alt=""></p>
+<ul>
+<li>这次更新主要以彰显个人设计风格为主，更加简约化了，以全新的姿态准备进入职场。</li>
+<li>特效基于<code>wow.js</code>和<code>tipso.js</code>，后面会写一篇博文，详细讲解<code>wow.js</code>和<code>tipso.js</code>的用法。</li>
+<li>增加了<a href="http://daijiale.github.io/2015/11/08/%E3%80%90%E4%B8%AA%E4%BA%BA%E3%80%91%E4%B8%BA%E4%BD%95%E9%80%89%E6%8B%A9%E5%81%9A%E7%A8%8B%E5%BA%8F%E7%8C%BF%EF%BC%88%E5%AA%9B%EF%BC%89%E4%B9%8B%E5%AE%B6/"><code>小枫特卖</code></a>  ,<a href=""><code>小枫街舞</code></a>,<a href="http://daijialewebdesign.sinaapp.com/XiaoFengSheYing/index.html" target="_blank" rel="external"><code>小枫摄影</code></a>等个人兴趣爱好主题站点，感兴趣的朋友可以看一下。</li>
+<li>现在的<a href="http://www.daijiale.cn" target="_blank" rel="external">www.daijiale.cn</a>已经是这次更新后的风格，以前的风格转存在这两个URL下<ul>
+<li><a href="http://daijialewebdesign.sinaapp.com/DaiJialeHomePage2/index.html" target="_blank" rel="external">小枫主页2.0</a>。</li>
+<li><a href="http://daijialewebdesign.sinaapp.com/DaiJialeHomePage1/index.html" target="_blank" rel="external">小枫主页1.0</a>。</li>
+</ul>
+</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>持续更新中</strong></p>
+<embed src="http://music.163.com/style/swf/widget.swf?sid=26390073&type=2&auto=1&width=320&height=66" width="340" height="86" allownetworking="all">]]></content>
+    <summary type="html">
+    <![CDATA[<p><strong>以下所指“更新”：均为Blog技术更新，非文章更新</strong></p>
+<h1 id="第一次更新_个人Blog">第一次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;说起自己的第一个Blog，要从小学刚开通QQ空间开始，具体几年级已经记不清了，那个时候刚甩掉纸质日记本，然后就迈入网络日志的深坑。以前倒是产出了不少优质日志，不过都是些多愁善感的随便，至今都已经封存进<em>私密日日记</em>中(如下图)：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpic_qqzonesec.PNG" alt=""><br>]]>
+    
+    </summary>
+    
+      <category term="Blog" scheme="http://daijiale.github.io/tags/Blog/"/>
+    
+      <category term="Hexo" scheme="http://daijiale.github.io/tags/Hexo/"/>
+    
+      <category term="Node.js" scheme="http://daijiale.github.io/tags/Node-js/"/>
+    
+      <category term="个人故事" scheme="http://daijiale.github.io/tags/%E4%B8%AA%E4%BA%BA%E6%95%85%E4%BA%8B/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+      <category term="Web开发笔记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[【数据库-持续更新】数据库设计心得：]]></title>
     <link href="http://daijiale.github.io/2015/11/19/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%91%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E5%BF%83%E5%BE%97/"/>
     <id>http://daijiale.github.io/2015/11/19/【数据库】数据库设计心得/</id>
     <published>2015-11-19T11:23:01.000Z</published>
-    <updated>2015-11-19T13:18:40.000Z</updated>
+    <updated>2015-11-20T16:15:57.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>PS：从大学课设小项目到外包大型项目，再到实习时候参与过的千万级用户后台架构设计。对后端的数据库设计有了一些自己的心得体会，这里记录一些现在这个阶段的所想所得，后面随着level不断提升，持续更新。</p>
 </blockquote>
@@ -187,19 +261,39 @@
 </ul>
 <h3 id="维护优化：">维护优化：</h3><p>新的需求进行建表，索引优化，大表拆分</p>
 <ul>
-<li>1、维护数据字典<ul>
+<li><p>1、维护数据字典</p>
+<ul>
 <li>使用第三方工具对 数据字典进行维护（待补充）</li>
 <li>利用数据库本身的备注字段来维护数据字典。以MySQL为例：</li>
+<li>导出数据字典。     </li>
 </ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> customer(</span><br><span class="line">    cust_id <span class="built_in">INT</span> AUTO_INCREMENT <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">'自增ID'</span>,</span><br><span class="line">    cust_name <span class="built_in">VARCHAR</span>(<span class="number">10</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">' 客户姓名'</span>,</span><br><span class="line">    <span class="keyword">PRIMARY</span> <span class="keyword">KEY</span>(cust_id)</span><br><span class="line">)COMMENT <span class="string">'客户表'</span></span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
 <ul>
-<li><p>2、维护索引</p>
-</li>
+<li>2、维护索引</li>
+</ul>
+<p>如何选择合适的列做索引：</p>
+<pre><code>-<span class="ruby"> 出现在<span class="constant">WHERE</span>从句，<span class="constant">GROUP</span> <span class="constant">BY</span>从句，<span class="constant">ORDER</span> <span class="constant">BY</span>从句中的列。
+</span>-<span class="ruby"> 可选择性高的列要放到索引的前面。
+</span>-<span class="ruby"> 索引中不要包括太长的数据类型。</span>
+</code></pre><p>注意：</p>
+<pre><code>-<span class="ruby"> 索引并不是越多越好，过多的索引不但会降低写效率而且会降低读效率。
+</span>-<span class="ruby"> 定期维护索引碎片。
+</span>-<span class="ruby"> 在<span class="constant">SQL</span>语句中不要使用强制索引关键字。</span>
+</code></pre><ul>
 <li><p>3、维护表结构</p>
+<ul>
+<li>使用在线变更表结构的工具，例如MySQL5.5之前可以使用pt-online-schema-change，MySQL5.6之后本身支持在线表结构的变更。</li>
+<li>同时对数据字典进行维护。</li>
+<li>控制表的宽度和大小。</li>
+</ul>
 </li>
-<li><p>4、在适当的时候对表进行水平拆分或垂直拆分</p>
+<li><p>4、为了控制表的大小/宽度,在适当的时候对表进行水平拆分/垂直拆分</p>
+<ul>
+<li>经常一起查询的列放到一起</li>
+<li>text，blob等大字段拆分出到附加表中</li>
+</ul>
 </li>
 </ul>
 ]]></content>
@@ -223,7 +317,7 @@
     <link href="http://daijiale.github.io/2015/11/08/%E3%80%90%E4%B8%AA%E4%BA%BA%E3%80%91%E4%B8%BA%E4%BD%95%E9%80%89%E6%8B%A9%E5%81%9A%E7%A8%8B%E5%BA%8F%E7%8C%BF%EF%BC%88%E5%AA%9B%EF%BC%89%E4%B9%8B%E5%AE%B6/"/>
     <id>http://daijiale.github.io/2015/11/08/【个人】为何选择做程序猿（媛）之家/</id>
     <published>2015-11-08T03:43:09.000Z</published>
-    <updated>2015-11-19T13:49:18.000Z</updated>
+    <updated>2015-11-20T15:37:31.000Z</updated>
     <content type="html"><![CDATA[<h1 id="为何选择做“程序猿（媛）之家”">为何选择做“程序猿（媛）之家”</h1><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/CXYZJ6666.jpg" alt=""></p>
 <blockquote>
 <p>引言：其实，”程序猿（媛）之家”的前身起源于“小枫特卖”，眼尖的小伙伴们肯定立马就Get到了两个关键点，一是“小枫”，二是“特卖”…….那么问题来了——“小枫是谁？”、“特卖，卖得有什么特别？”<br><a id="more"></a></p>
@@ -247,19 +341,6 @@
 <p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/CXYZJcxyzj-微店.jpg" alt=""></p>
 <p><strong>Android客户端：</strong>正在开发中</p>
 <p><strong>IOS客户端：</strong>正在开发中</p>
-<p>title:【Hackathon】 阿里百川Hackathon小记</p>
-<p>date: 2015-11-28 22:23:09<br>tags:</p>
-<ul>
-<li>Hackathon</li>
-<li>个人故事</li>
-<li>Android</li>
-</ul>
-<p>categories:</p>
-<ul>
-<li>原创博文</li>
-<li>Android开发笔记</li>
-</ul>
-<hr>
 ]]></content>
     <summary type="html">
     <![CDATA[<h1 id="为何选择做“程序猿（媛）之家”">为何选择做“程序猿（媛）之家”</h1><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/CXYZJ6666.jpg" alt=""></p>
@@ -1041,6 +1122,47 @@
       <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
     
       <category term="Android开发笔记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Android%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[【数据库-持续更新】MySQL学习笔记]]></title>
+    <link href="http://daijiale.github.io/2015/05/19/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%91MySQL%E5%85%A5%E9%97%A8/"/>
+    <id>http://daijiale.github.io/2015/05/19/【数据库】MySQL入门/</id>
+    <published>2015-05-19T07:23:01.000Z</published>
+    <updated>2015-11-20T17:13:01.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>PS：来自一些参考书和视频的MySQL学习笔记，在这里集中整理一下，持续更新中。</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="概述">概述</h1><ul>
+<li>MySQL基础</li>
+<li>安装MySQL</li>
+<li>配置MySQL</li>
+<li>使用MySQL</li>
+</ul>
+<p>MySQL基础：</p>
+<ul>
+<li><p>最早由瑞典MySQL AB公司开发，目前属于Oracle公司。</p>
+</li>
+<li><p>MySQL是一个开源的关系型数据库管理系统。</p>
+</li>
+<li><p>MySQL分为企业版（付费）和社区版（免费）</p>
+</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>PS：来自一些参考书和视频的MySQL学习笔记，在这里集中整理一下，持续更新中。</p>
+</blockquote>]]>
+    
+    </summary>
+    
+      <category term="数据库" scheme="http://daijiale.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+      <category term="Web开发笔记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
@@ -1999,69 +2121,6 @@
       <category term="个人故事" scheme="http://daijiale.github.io/tags/%E4%B8%AA%E4%BA%BA%E6%95%85%E4%BA%8B/"/>
     
       <category term="转载博文" scheme="http://daijiale.github.io/categories/%E8%BD%AC%E8%BD%BD%E5%8D%9A%E6%96%87/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[【个人】从“主机搬家、第五次个人主站更新、第三次博客技术架构迁移”说起]]></title>
-    <link href="http://daijiale.github.io/2015/04/02/%E3%80%90%E4%B8%AA%E4%BA%BA%E3%80%91Blog%E8%BF%81%E7%A7%BB%E6%97%A5%E8%AE%B0/"/>
-    <id>http://daijiale.github.io/2015/04/02/【个人】Blog迁移日记/</id>
-    <published>2015-04-02T15:30:09.000Z</published>
-    <updated>2015-11-19T13:31:54.000Z</updated>
-    <content type="html"><![CDATA[<p><strong>以下所指“更新”：均为Blog技术更新，非文章更新</strong></p>
-<h1 id="第一次更新_个人Blog">第一次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;说起自己的第一个Blog，要从小学刚开通QQ空间开始，具体几年级已经记不清了，那个时候刚甩掉纸质日记本，然后就迈入网络日志的深坑。以前倒是产出了不少优质日志，不过都是些多愁善感的随便，至今都已经封存进<em>私密日日记</em>中(如下图)：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpic_qqzonesec.PNG" alt=""><br><a id="more"></a></p>
-<h1 id="第二次更新_个人Blog">第二次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后面高中开始玩人人，Blog也顺势搬到人人。。。现在想来这搬迁史也很简单——围绕社交圈，毕竟Blog写出来是给人看的，而QQzone和人人都是一个很好的社交载体。当然，如今的人人，我早已放弃，一个月都不登一次的这种，blog数据也全部清除了，高中写的都是些没营养的东西，个人认为没有存在的价值。<br>最后留张图纪念一下曾经的人人帐号：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicrenren.PNG" alt=""></p>
-<h1 id="第三次更新_个人Blog">第三次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后面因为大学专业性质原因，再加上由于个人兴趣先接触的知识是Web开发，所以打算通过自己编写代码，建立带有自己专属域名的独立Blog全站（其实是不知道做什么内容。。。就以Blog为题材了，而且身为一个程序猿，Blog是撑脸面的东西）。正如很多刚入门的小白一样：最初选用的技术框架是 <code>PHP+MySQL</code>，边学边写，坚持了一段时间后发现根本没法拿出手，在人生导师 <code>@阔空晴云</code>（亦师亦友的关系，大学同学，年级传奇….我Blog友情链接有他的Blog..但是，为保留他的个人隐私，我就不透露<strong>林志豪</strong>的<strong>真名</strong>了）的建议下，<br>后来选用了知名度很大的 <code>wordpress</code> 框架去快速开发能拿得出手的Blog，那也是我第一次接触框架类的东西，在那之前都是直接C++和C做底层开发，js和html也都是从新建文件开始码起，—&gt;你懂得…从大众空间到自己独立虚拟主机空间，也算是第一次技术迁移了！网站是托管在人生导师的虚拟主机上，记得刚拍下<a href="http://www.daijiale.cn" target="_blank" rel="external">www.daijiale.cn</a>个人域名，挂到上线的时候是这样子的:<br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/github_daijialewebsiteworkshop.png" alt=""></p>
-<p>嗯，对于一个大一上刚学会做站点的小虾开发者来说，还是感觉Geek满满的。</p>
-<h1 id="第四次更新_个人Blog">第四次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;自上一次大更新以后的两年多里，都没有什么大的起伏（主要是太懒，或者忙其他项目去了），直到后面阴差阳错侥幸获得了这个证书：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/SAEDeveloper.jpg" alt="">,新浪每月给我SAE上打的云豆工单根本用都用不完了，so，我打算把Blog全部迁移到 <code>SAE上</code> （毕竟老放在人生导师那也不太好）。顺便更新了下Blog的界面和交互，增加了首页响应式效果（方便宣传嘛，嘿嘿）,自己设计和编码水平的提高也让每次迭代后的Blog页面颜值更高：<br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/daijialeweb_personalsite.png" alt=""></p>
-<h1 id="第五次更新_个人Blog">第五次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这次改动比较大，也就是目前大家看到的这个站点：<a href="http://daijiale.github.io/">http://daijiale.github.io/</a>（域名换了，因为托管原因，把原来的<a href="http://www.daijiale.cn" target="_blank" rel="external">www.daijiale.cn</a>改成了简历页和入口页，其实也挺不错，性质不一样，刚好趁着这次技术整改实现了分布式控制），整个技术体系和空间都搬家+大改了，这次的技术架构没有采用市面上被大家广泛使用的常见技术，<strong>没有服务器脚本语言的参合，没有数据库，没有进行数据存储优化</strong>，简而言之就是，妈的！这逼网站<strong>居然没有后台</strong>（其实我心里一开始是拒绝的）。是的，你没听错，这特么就是个伪静态Blog，但是…这丝毫不影响ta的逼格大增,so let’s see it：</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;技术框架选用的是 <code>Hexo+Node.js+ejs+bootstrap+markdown+GithubPage</code>，为什么会采用这套剑走偏锋的框架？其实，是受到了周围小伙伴的影响，越来越多的朋友为了解决成本和增加B格，将Blog结合 <code>GithubPage</code> 托管在 <a href="https://github.com/" target="_blank" rel="external"><code>github</code></a>（程序猿的facebook，我也是从2014年才开始玩的）上，具体这套架构的<strong>优点</strong>和<strong>搭建教程</strong>请参考如下博文：</p>
-<ul>
-<li><p><a href="http://note.youdao.com/share/?id=0dc251a2004362d10d7ce520fecdcbff&amp;type=note" target="_blank" rel="external">Blog搭建之Hexo+Node.js+ejs+bootstrap+markdown+GithubPage</a></p>
-<p>这里主要提一下 <code>Hexo</code> 和 <code>Jacman</code>：</p>
-</li>
-<li><p>Hexo：</p>
-<ul>
-<li>风一般的速度：<code>Hexo</code> 基于 <code>Node.js</code> ，支持多进程，几百篇文章也可以秒生成。</li>
-<li>流畅的撰写：支持 <code>GitHub</code> <code>Flavored</code> <code>Markdown</code> 和所有 <code>Octopress</code> 的插件。</li>
-<li>扩展性：<code>Hexo</code>支持 <code>EJS</code>、 <code>Swig</code>和 <code>Stylus</code>。通过插件支持 <code>Haml</code>、 <code>Jade</code>和 <code>Less</code>.</li>
-<li>More：<a href="http://hexo.io/" target="_blank" rel="external">请参见官网</a></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>Jacman：<code>Hexo</code> 的一个 <code>ejs</code>模版主题，来源于民间大神<strong>WuChong</strong>（<a href="http://note.youdao.com/share/?id=d93d060ce27c0d085021c9c0192c9e08&amp;type=note" target="_blank" rel="external">更多详细用法传送门</a>），在所有Hexo官网主题中个人比较倾向于他的风格，但是对于这个主题，我还是不太满意，挺多瑕疵需要我自己慢慢修改，后面我的Blog主题也会自己改成一个新的原创主题，到时候再开源出来，给更多的 <code>hexo</code> 开发者使用。现在正在往 <code>Low Poly Style</code>发展。</p>
-</li>
-<li><p>图床：</p>
-<ul>
-<li><a href="http://www.qiniu.com/?utm_source=BAIDU&amp;utm_medium=cpc&amp;utm_term=%E4%BA%91%E5%AD%98%E5%82%A8&amp;utm_content=chanpinlei&amp;utm_campaign=qiniu-ceshi" target="_blank" rel="external">七牛云存储</a>（大图用七牛，加速给力）</li>
-<li><a href="http://baichuan.taobao.com/portal/doc?articleId=329" target="_blank" rel="external">TAE</a>(小图用TAE，百川Hackathon接触到的，还不错)</li>
-</ul>
-</li>
-<li><p>音床：<a href="http://music.163.com/#" target="_blank" rel="external">网易云音乐</a>（个人认为是目前市场上最好的全端音乐软件，不服来辩）</p>
-</li>
-<li><p>视频床：自己Coding把。。。（博主暂时只找到<a href="http://v.qq.com/" target="_blank" rel="external">腾讯视频</a>的漏洞，亲测可用）</p>
-</li>
-</ul>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>持续更新中</strong></p>
-<embed src="http://music.163.com/style/swf/widget.swf?sid=29717271&type=2&auto=1&width=320&height=66" width="340" height="86" allownetworking="all">]]></content>
-    <summary type="html">
-    <![CDATA[<p><strong>以下所指“更新”：均为Blog技术更新，非文章更新</strong></p>
-<h1 id="第一次更新_个人Blog">第一次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;说起自己的第一个Blog，要从小学刚开通QQ空间开始，具体几年级已经记不清了，那个时候刚甩掉纸质日记本，然后就迈入网络日志的深坑。以前倒是产出了不少优质日志，不过都是些多愁善感的随便，至今都已经封存进<em>私密日日记</em>中(如下图)：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpic_qqzonesec.PNG" alt=""><br>]]>
-    
-    </summary>
-    
-      <category term="Blog" scheme="http://daijiale.github.io/tags/Blog/"/>
-    
-      <category term="Hexo" scheme="http://daijiale.github.io/tags/Hexo/"/>
-    
-      <category term="Node.js" scheme="http://daijiale.github.io/tags/Node-js/"/>
-    
-      <category term="个人故事" scheme="http://daijiale.github.io/tags/%E4%B8%AA%E4%BA%BA%E6%95%85%E4%BA%8B/"/>
-    
-      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
-    
-      <category term="Web开发笔记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   

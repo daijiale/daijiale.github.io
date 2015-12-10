@@ -19,7 +19,7 @@
 <meta property="og:description" content="PS：从大学课设小项目到外包大型项目，再到实习时候参与过的千万级用户后台架构设计。对后端的数据库设计有了一些自己的心得体会，这里记录一些现在这个阶段的所想所得，后面随着level不断提升，持续更新。">
 <meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/djlBlogerpic.png">
 <meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/djlBlogSQL存储引擎.png">
-<meta property="og:updated_time" content="2015-11-19T13:18:40.000Z">
+<meta property="og:updated_time" content="2015-11-20T16:15:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【数据库-持续更新】数据库设计心得：">
 <meta name="twitter:description" content="PS：从大学课设小项目到外包大型项目，再到实习时候参与过的千万级用户后台架构设计。对后端的数据库设计有了一些自己的心得体会，这里记录一些现在这个阶段的所想所得，后面随着level不断提升，持续更新。">
@@ -269,19 +269,39 @@
 </ul>
 <h3 id="维护优化：">维护优化：</h3><p>新的需求进行建表，索引优化，大表拆分</p>
 <ul>
-<li>1、维护数据字典<ul>
+<li><p>1、维护数据字典</p>
+<ul>
 <li>使用第三方工具对 数据字典进行维护（待补充）</li>
 <li>利用数据库本身的备注字段来维护数据字典。以MySQL为例：</li>
+<li>导出数据字典。     </li>
 </ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> customer(</span><br><span class="line">    cust_id <span class="built_in">INT</span> AUTO_INCREMENT <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">'自增ID'</span>,</span><br><span class="line">    cust_name <span class="built_in">VARCHAR</span>(<span class="number">10</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">' 客户姓名'</span>,</span><br><span class="line">    <span class="keyword">PRIMARY</span> <span class="keyword">KEY</span>(cust_id)</span><br><span class="line">)COMMENT <span class="string">'客户表'</span></span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
 <ul>
-<li><p>2、维护索引</p>
-</li>
+<li>2、维护索引</li>
+</ul>
+<p>如何选择合适的列做索引：</p>
+<pre><code>-<span class="ruby"> 出现在<span class="constant">WHERE</span>从句，<span class="constant">GROUP</span> <span class="constant">BY</span>从句，<span class="constant">ORDER</span> <span class="constant">BY</span>从句中的列。
+</span>-<span class="ruby"> 可选择性高的列要放到索引的前面。
+</span>-<span class="ruby"> 索引中不要包括太长的数据类型。</span>
+</code></pre><p>注意：</p>
+<pre><code>-<span class="ruby"> 索引并不是越多越好，过多的索引不但会降低写效率而且会降低读效率。
+</span>-<span class="ruby"> 定期维护索引碎片。
+</span>-<span class="ruby"> 在<span class="constant">SQL</span>语句中不要使用强制索引关键字。</span>
+</code></pre><ul>
 <li><p>3、维护表结构</p>
+<ul>
+<li>使用在线变更表结构的工具，例如MySQL5.5之前可以使用pt-online-schema-change，MySQL5.6之后本身支持在线表结构的变更。</li>
+<li>同时对数据字典进行维护。</li>
+<li>控制表的宽度和大小。</li>
+</ul>
 </li>
-<li><p>4、在适当的时候对表进行水平拆分或垂直拆分</p>
+<li><p>4、为了控制表的大小/宽度,在适当的时候对表进行水平拆分/垂直拆分</p>
+<ul>
+<li>经常一起查询的列放到一起</li>
+<li>text，blob等大字段拆分出到附加表中</li>
+</ul>
 </li>
 </ul>
   
@@ -319,6 +339,14 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2015/12/10/【个人】Blog迁移日记/" title="【个人】个人主页/Blog迁移日记">
+  <strong>上一篇：</strong><br/>
+  <span>
+  【个人】个人主页/Blog迁移日记</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2015/11/08/【个人】为何选择做程序猿（媛）之家/"  title="【个人】为什么选择做“程序猿（媛）之家”">
@@ -364,7 +392,7 @@
 		  
 		
 		  
-			<li><a href="/categories/原创博文/Web开发笔记/" title="Web开发笔记">Web开发笔记<sup>7</sup></a></li>
+			<li><a href="/categories/原创博文/Web开发笔记/" title="Web开发笔记">Web开发笔记<sup>8</sup></a></li>
 		  
 		
 		  
@@ -372,7 +400,7 @@
 		  
 		
 		  
-			<li><a href="/categories/原创博文/" title="原创博文">原创博文<sup>17</sup></a></li>
+			<li><a href="/categories/原创博文/" title="原创博文">原创博文<sup>18</sup></a></li>
 		  
 		
 		  
@@ -405,11 +433,11 @@
 			
 		
 			
-				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>2</sup></a></li>
+				<li><a href="/tags/数据库/" title="数据库">数据库<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/php/" title="php">php<sup>1</sup></a></li>
+				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>2</sup></a></li>
 			
 		
 			
@@ -429,7 +457,7 @@
 			
 		
 			
-				<li><a href="/tags/数据库/" title="数据库">数据库<sup>1</sup></a></li>
+				<li><a href="/tags/智能可穿戴/" title="智能可穿戴">智能可穿戴<sup>1</sup></a></li>
 			
 		
 			
@@ -441,7 +469,7 @@
 			
 		
 			
-				<li><a href="/tags/智能可穿戴/" title="智能可穿戴">智能可穿戴<sup>1</sup></a></li>
+				<li><a href="/tags/Amaze-UI/" title="Amaze UI">Amaze UI<sup>1</sup></a></li>
 			
 		
 			
@@ -453,7 +481,7 @@
 			
 		
 			
-				<li><a href="/tags/Amaze-UI/" title="Amaze UI">Amaze UI<sup>1</sup></a></li>
+				<li><a href="/tags/php/" title="php">php<sup>1</sup></a></li>
 			
 		
 			
