@@ -1,5 +1,5 @@
-title: 【个人】从“主机搬家、第五次个人主站更新、第三次博客技术架构迁移”说起
-date: 2015-4-2 23:30:09
+title: 【个人】个人主页/Blog迁移日记
+date: 2015-12-10 19:37:09
 
 tags:
 
@@ -65,7 +65,23 @@ categories:
  
  - 视频床：自己Coding把。。。（博主暂时只找到[腾讯视频](http://v.qq.com/)的漏洞，亲测可用）
 
+
+#第六次更新_主页更新
+
+直接上图吧：
+![](http://7xi6qz.com1.z0.glb.clouddn.com/djlBlogDaiJiale0.gif)
+![](http://7xi6qz.com1.z0.glb.clouddn.com/djlBlogDaiJiale1.gif)
+![](http://7xi6qz.com1.z0.glb.clouddn.com/djlBlogDaiJiale2.gif)
+
+
+- 这次更新主要以彰显个人设计风格为主，更加简约化了，以全新的姿态准备进入职场。
+- 特效基于`wow.js`和`tipso.js`，后面会写一篇博文，详细讲解`wow.js`和`tipso.js`的用法。
+- 增加了[`小枫特卖`](http://daijiale.github.io/2015/11/08/%E3%80%90%E4%B8%AA%E4%BA%BA%E3%80%91%E4%B8%BA%E4%BD%95%E9%80%89%E6%8B%A9%E5%81%9A%E7%A8%8B%E5%BA%8F%E7%8C%BF%EF%BC%88%E5%AA%9B%EF%BC%89%E4%B9%8B%E5%AE%B6/)  ,[`小枫街舞`](),[`小枫摄影`](http://daijialewebdesign.sinaapp.com/XiaoFengSheYing/index.html)等个人兴趣爱好主题站点，感兴趣的朋友可以看一下。
+- 现在的[www.daijiale.cn](http://www.daijiale.cn)已经是这次更新后的风格，以前的风格转存在这两个URL下
+     - [小枫主页2.0](http://daijialewebdesign.sinaapp.com/DaiJialeHomePage2/index.html)。
+     - [小枫主页1.0](http://daijialewebdesign.sinaapp.com/DaiJialeHomePage1/index.html)。
+
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**持续更新中**
 
-
-<embed src="http://music.163.com/style/swf/widget.swf?sid=29717271&type=2&auto=1&width=320&height=66" width="340" height="86"  allowNetworking="all"></embed>
+<embed src="http://music.163.com/style/swf/widget.swf?sid=26390073&type=2&auto=1&width=320&height=66" width="340" height="86"  allowNetworking="all"></embed>
