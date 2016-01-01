@@ -4,7 +4,7 @@
   <subtitle><![CDATA[只有汗水不会欺骗你 || Only sweat will not fail you]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://daijiale.github.io/"/>
-  <updated>2015-12-10T11:37:58.000Z</updated>
+  <updated>2016-01-01T18:17:08.000Z</updated>
   <id>http://daijiale.github.io/</id>
   
   <author>
@@ -13,6 +13,94 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[【个人】2015 to 2016]]></title>
+    <link href="http://daijiale.github.io/2015/12/31/%E3%80%90%E4%B8%AA%E4%BA%BA%E3%80%912015to2016/"/>
+    <id>http://daijiale.github.io/2015/12/31/【个人】2015to2016/</id>
+    <published>2015-12-31T13:37:09.000Z</published>
+    <updated>2016-01-01T18:17:08.000Z</updated>
+    <content type="html"><![CDATA[<p>2015这一年发生了太多事，自己飞速地成长，也是毕业季的开始，走在又一个十字路口，总有些话想在跨年夜说。<br><a id="more"></a></p>
+<h1 id="2015上半年">2015上半年</h1><p>上半年在经历北漂，真的很感谢当时团队里的导师和同事们，很幸运能遇见你们，让我在百度这样的顶级互联网公司里可以扎根成长。直到现在，仍然很怀念那段<a href="http://daijiale.github.io/2015/06/29/%E3%80%90%E4%B8%AA%E4%BA%BA%E3%80%91%E5%9C%A8%E7%99%BE%E5%BA%A6%E5%AE%9E%E4%B9%A0%E7%9A%84%E9%82%A3%E4%BA%9B%E6%97%A5%E5%AD%90/">在百度实习的日子</a>。</p>
+<h1 id="2015下半年">2015下半年</h1><ul>
+<li>下半年刚回到学校就开始着手准备校招。7-8月一边消化之前的实习成果，一边帮朋友公司做了一个婚庆主题的创业项目，挣了一些旅游费，最近听说这个项目在朋友手里越做越大了，实体店成立后更拿了千万投资，野蛮生长中…</li>
+</ul>
+<p><img src="" alt=""></p>
+<ul>
+<li>9月-10月校招季，拿了百度、腾讯、小米三家的offer后就不再跑招聘会了，这里真的要感谢之前实习团队的Boss们，给我留了一个HC。参加了校招，你才能体会到自己和研究生大军们的能力差距，就拿自己腾讯QQ音乐的offer来讲，本科生只凭借校招面试就可以得到BAT的认可，真得很不容易。最后因为城市和团队的原因，我选择了去北京，去百度。一是很珍惜以前的Boss和团队，二是觉得在北京可以更好的发展自己的兴趣爱好。</li>
+</ul>
+<p><img src="" alt=""></p>
+<ul>
+<li>之前上半年，自己把自己养成了一个小胖子，回到学校后，重新制定了自己的训练计划：跑步、健身、跳舞。3个月减了15斤，塑形效果也好了很多，更养成了很好的生活习惯，挺佩服自己的，下面是几张对比图。</li>
+</ul>
+<p><img src="" alt=""><br><img src="" alt=""><br><img src="" alt=""></p>
+<ul>
+<li><p>校招忙完后，玩耍之余，也自己异想天开地想做做电子商务（<a href="http://weidian.com/?userid=760541744&amp;infoType=1" target="_blank" rel="external">程序猿之家</a>），1个月的时间——筹划、跑货、搭建微店、运营、推广、研发、编辑、美工、财务…所有角色统统都经历了一遍，很丰富，很历练，感谢身边支持我的朋友们，小试牛刀后，结果还不错，基本的东西已经筹备好了，试营了一个月，也有上千流水。等以后回北京，工作生活稳定后，业余再弄。<br><img src="" alt=""><br><img src="" alt=""></p>
+</li>
+<li><p>年末10-12月，好好锻炼了一下自己的摄影和舞蹈水平，感觉又上了一个台阶，也认识了这两个领域里很多厉害的朋友。参加了一次成都的poppin比赛，16进8的成绩也让自己很满意，Keep on！</p>
+</li>
+<li><p>2016期许：更好的利用起时间，回家看看父母，Keep coding、fitting and dancing。和朋友们一起enjoy life！</p>
+</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>2015这一年发生了太多事，自己飞速地成长，也是毕业季的开始，走在又一个十字路口，总有些话想在跨年夜说。<br>]]>
+    
+    </summary>
+    
+      <category term="个人故事" scheme="http://daijiale.github.io/tags/%E4%B8%AA%E4%BA%BA%E6%95%85%E4%BA%8B/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[【PHP】PhpStorm使用入门+Mac下PHP工作开发流搭建]]></title>
+    <link href="http://daijiale.github.io/2015/12/25/%E3%80%90PHP%E3%80%91PHPStorm%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8+Mac%E4%B8%8BPHP%E5%B7%A5%E4%BD%9C%E5%BC%80%E5%8F%91%E6%B5%81%E6%90%AD%E5%BB%BA/"/>
+    <id>http://daijiale.github.io/2015/12/25/【PHP】PHPStorm使用入门+Mac下PHP工作开发流搭建/</id>
+    <published>2015-12-25T03:56:11.000Z</published>
+    <updated>2015-12-24T08:16:16.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="前言">前言</h1><blockquote>
+<p>换了RetineMacPro2015之后，还没怎么做PHP的大型项目，之前很多小的Web后端都使用的MAMP来进行PHP开发，因为项目小，基本都不要太多调试，所以MAMP还挺满足需求的，但是也受够了只能通过<code>echo</code>,<code>print</code>来行调试的窘境。所以有了这篇博客，也为了帮助以后有需要的童鞋们可以少走弯路。<br><a id="more"></a></p>
+</blockquote>
+<h1 id="Brew安装">Brew安装</h1><blockquote>
+<p>玩过ubuntu的童鞋应该都很清楚：在使用ubuntu的过程中apt-get是一个及其重要的工具，负责了几乎所有软件的安装、卸载、更新工作。使用简单但功能强大。如果使用Mac OS，开启<code>终端</code>（觉得终端也不好用的，可以看看这个——<a href="https://www.zhihu.com/question/29442452" target="_blank" rel="external">如何善加利用 Mac 下的 Terminal ？</a>,博主现在用的是<a href="https://github.com/robbyrussell/oh-my-zsh" target="_blank" rel="external">Zsh</a>），之后发现一些好用的命令行工具都没有，比如wget或unrar，这很郁闷。然而，令人兴奋的是：<code>Brew</code>是<code>apt-get</code>的一个替代品，这也是为什么我要在这篇博客里先强调要安装<code>Brew</code>的原因。</p>
+</blockquote>
+<ul>
+<li><a href="http://brew.sh/index_zh-cn.html" target="_blank" rel="external">官网安装说明</a></li>
+</ul>
+<h1 id="Phpstorm安装">Phpstorm安装</h1><p>为什么选用<code>Phpstorm</code>，因为博主有新版强迫症（Linux下还是建议直接<code>Vim</code>）。大家可以结合自己的调研和猿性来选择最称手的IDE，下面有篇博文参考：<a href="http://www.cnblogs.com/lishiyun19/p/4297791.html" target="_blank" rel="external">PHP集成开发环境对比</a>。</p>
+<ul>
+<li><a href="http://pan.baidu.com/s/1gdWJJXL" target="_blank" rel="external">Phpstorm10.0.2 for OSX 以及破解方法打包下载</a></li>
+</ul>
+<p>注意：因为Phpstorm执行调试程序需要指定Php版本，而Mac系统自带安装的PHP是5.5.x版本，位于usr/bin/php目录下，此目录并无php.ini以及更多php扩展库文件，所以需要我们用到之前安装的<code>Brew</code>来进行自定义的PHP版本下载，默认下载路径到usr/local/etc/php/下。</p>
+<h1 id="Brew_安装PHP和PHP扩展库">Brew 安装PHP和PHP扩展库</h1><p>打开终端：<br>参看如下步骤：<a href="http://www.phperz.com/article/14/0819/18934.html" target="_blank" rel="external">安装指南</a></p>
+<p>注意：因为brew版本更新原因：可能会出现如下问题：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error: Formulae found in multiple taps:&#10; * homebrew/php/php53&#10; * josegonzalez/php/php53&#10;Please use the fully-qualified name e.g. homebrew/php/php53 to refer the formula.</span><br></pre></td></tr></table></figure>
+<p>博主的解决方案是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew untap josegonzalez/php&#10;brew tap --repair&#10;brew update</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlBlogbrew_fix_bug.png" alt=""></p>
+<h1 id="PhpStorm构建Xdebug进行调试">PhpStorm构建Xdebug进行调试</h1><ul>
+<li>首先在Phpstorm中指定好刚下载好的自定义Php版本路径（含有php.int和其他扩展库）。</li>
+<li><a href="http://www.cnblogs.com/lishiyun19/p/4470086.html" target="_blank" rel="external">参考教程</a>，配置Xdebug。</li>
+<li></li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="前言">前言</h1><blockquote>
+<p>换了RetineMacPro2015之后，还没怎么做PHP的大型项目，之前很多小的Web后端都使用的MAMP来进行PHP开发，因为项目小，基本都不要太多调试，所以MAMP还挺满足需求的，但是也受够了只能通过<code>echo</code>,<code>print</code>来行调试的窘境。所以有了这篇博客，也为了帮助以后有需要的童鞋们可以少走弯路。<br>]]>
+    
+    </summary>
+    
+      <category term="PHP" scheme="http://daijiale.github.io/tags/PHP/"/>
+    
+      <category term="PhpStorm" scheme="http://daijiale.github.io/tags/PhpStorm/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+      <category term="Web开发笔记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[【个人】个人主页/Blog迁移日记]]></title>
@@ -1009,11 +1097,12 @@
     <link href="http://daijiale.github.io/2015/06/09/%E3%80%90%E5%89%8D%E7%AB%AF%E3%80%91JavaScript%E7%BB%8F%E5%85%B8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93/"/>
     <id>http://daijiale.github.io/2015/06/09/【前端】JavaScript经典设计模式总结/</id>
     <published>2015-06-09T03:29:31.000Z</published>
-    <updated>2015-11-19T13:18:10.000Z</updated>
+    <updated>2015-12-24T03:25:29.000Z</updated>
     <content type="html"><![CDATA[<h1 id="前言">前言</h1><blockquote>
 <p>在百度即将离职的最后一个月里，我被派往新项目担任FE的角色，借此机会也重新review一下大一大二的老本行——Web前端开发。这篇Blog是对自己所学2年JS的一个设计模式总结，也是实际编码中经常用到的很多经典Case，希望能帮助到更多JS开发者，也给那些还活跃在 <code>JS API</code> 层的同学打开一个新的学习思路。<br>PS：本篇Blog侧重点在于JS的设计模式，如果只是期望了解JS语法，请直接戳<a href="http://www.w3school.com.cn/js/index.asp" target="_blank" rel="external">W3C传送门</a>！<br><a id="more"></a></p>
 </blockquote>
-<h1 id="一、JS基础">一、JS基础</h1><h2 id="动态类型语言和鸭子类型">动态类型语言和鸭子类型</h2><h2 id="this、call、apply">this、call、apply</h2><p>Javascript 的<code>this</code>总是指向一个对象，而具体指向哪个对象是在运行时基于函数的执行环境动态绑定的，而不是函数被声明时的环境。</p>
+<h1 id="一、JS基础">一、JS基础</h1><h2 id="动态类型语言和鸭子类型">动态类型语言和鸭子类型</h2><p>静态类型语言：在编译时便已经确定变量的类型。<br>动态类型语言：要到程序运行时候，待某个变量被赋值之后才具有特定的类型。</p>
+<h2 id="this、call、apply">this、call、apply</h2><p>Javascript 的<code>this</code>总是指向一个对象，而具体指向哪个对象是在运行时基于函数的执行环境动态绑定的，而不是函数被声明时的环境。</p>
 <h3 id="this的指向">this的指向</h3><p>除去不常用的<code>with</code>和<code>eval</code>情况。</p>
 <h4 id="1、作为对象的方法调用">1、作为对象的方法调用</h4><p>当函数作为对象的方法被调用时候，this指向该对象：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;&#10;a: 1,&#10;getA: function()&#123;&#10;&#9;alert( this === obj); // &#36755;&#20986;:true&#10;&#9;alert( this .a); //&#36755;&#20986;:1&#10;&#9;&#65373;&#10;&#125;;&#10;obj.getA();</span><br></pre></td></tr></table></figure>
@@ -2121,6 +2210,93 @@
       <category term="个人故事" scheme="http://daijiale.github.io/tags/%E4%B8%AA%E4%BA%BA%E6%95%85%E4%BA%8B/"/>
     
       <category term="转载博文" scheme="http://daijiale.github.io/categories/%E8%BD%AC%E8%BD%BD%E5%8D%9A%E6%96%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[【舞蹈】关于PoppinDance的一点心得]]></title>
+    <link href="http://daijiale.github.io/2015/04/03/%E3%80%90%E8%88%9E%E8%B9%88%E3%80%91poppin%20dance/"/>
+    <id>http://daijiale.github.io/2015/04/03/【舞蹈】poppin dance/</id>
+    <published>2015-04-03T05:20:09.000Z</published>
+    <updated>2015-12-24T09:32:46.000Z</updated>
+    <content type="html"><![CDATA[<p> <strong>Author:</strong> <a href="http://www.daijiale.cn" target="_blank" rel="external">Dancer小枫</a></p>
+<p><strong>舞龄：</strong>2年</p>
+<p><strong>舞种：</strong>poppin</p>
+<p>这里是小枫这几年跳舞的心得，持续更新中。</p>
+<a id="more"></a>
+<h3 id="一、关于听音乐的方式和方法">一、关于听音乐的方式和方法</h3><ul>
+<li><p>不要听音乐的时候觉得这首歌好听，就一直放着，然后脑子里就去想其他的事去了。这样只会浪费时间，没有任何意义。一步一步来，先听出来它的feeling，是funky的，是soft的，是smooth的，是light的，还是heavy的，或者是robot的。然后认真的听beat，即使是没听过的歌也要争取在八拍之内，听清楚它的beat，不要乱做pop。最后，听清楚它的音效，就是八拍，八拍的倍数拍必然出现特殊音效。 </p>
+</li>
+<li><p>认真的去听，音乐不是拿给你听起娱乐的。 锻炼自己听音乐的能力，没听过的一样可以跳。就像hozin说的，没听过就凭经验跳就是这么回事。</p>
+</li>
+</ul>
+<h3 id="二、关于poppin的立体化">二、关于poppin的立体化</h3><ul>
+<li><p>battle的时候，对面是对手，右边是观众，左边是judge。所以要立体，改掉自己在镜子前面跳的，只有一个面的习惯，poppin一定是立体的。 面有左右，有前后，有高低。全部都要做到。用walk out，用flex，用neck of klex，用pop go。用wave等等都可以换面。 </p>
+</li>
+<li><p>高级一点的，是用roll来带，全身的都可以，cobra，snake都是后话了。重心变化很重要，参照古冲轴思想。 </p>
+</li>
+<li><p>dino说的很好，立体就是，跳了左边就要有右边，跳了上面就一定有下面，有快的就一定有慢的。 </p>
+</li>
+<li><p>还有，变化你的拍子。不是一直都一拍一拍得跳，有时候可以慢下来，做做两拍的。也是立体的一个方面。</p>
+</li>
+</ul>
+<h3 id="三、关于poppin与music结合（三个阶段）">三、关于poppin与music结合（三个阶段）</h3><ul>
+<li><p>第一阶段，dance to the beat。跳的时候，把歌里的所有beat都卡住，大的，小的，强的，弱的，全部都要。或许有些快速的pop你跟不上，你就多练pop的速度，多练哈double pop。直到你可以随便卡一首歌里面的所有pop。 </p>
+</li>
+<li><p>第二阶段，dance to the music。跳的时候，多给自己找，跳八拍的感觉，也就是多听音乐，听到吐了还是要继续。用各种基础和元素去做音效，wave，roll，pop，都可以。和pop的质感一样，用身体去模拟音效，主要是卡音效的timin。 </p>
+</li>
+</ul>
+<ul>
+<li><p>关于卡歌词，不是卡它唱的什么，也是卡timin。但是也有特殊的，比较明显的歌词可以卡，比如yeah之类的，具体参照kod6，dino vs kite，第一个round的dino的ending pose。<br>但是beat不能不做，既要做beat，也要做音效出来。这就是所谓的把音乐跳满，也就是最简单的切分音乐。 </p>
+<ul>
+<li>第三阶段，这个比较难，dance to the feeling。一听到歌，就知道自己用怎样的风格去跳。我喜欢的funky，你喜欢的smooth，还有heavy等等，多去听，去体会这首歌的feeling，然后跳出它的feeling来。<br>依然要带感情去跳，才不空洞。sad的，流畅的，要听得出来，看廖博的我怀念的你就明白了吧。 </li>
+</ul>
+</li>
+<li><p>无论跳什么，都要灌上你的feeling，无论是pop，wave，还是roll，walk out等等。<br>要明确自己不是用跳舞来表现这首歌，而是自己跳出来的东西就是一首歌。我原来说过，舞蹈和音乐是一体的。 只有这样，才能每次跳出来都是新的东西，不会重复，不会让人感觉无聊。 你也记得上次hozin说过的吧，那些进不了海选的就是没有feeling，或者一直是一种feeling的人。 即使不喜欢，也要去尝试跳不同的音乐，不同的feeling</p>
+</li>
+</ul>
+<h3 id="四、pop的质感">四、pop的质感</h3><ul>
+<li><p>歌里的pop是什么样子的，就要把自己的pop做成什么样子。不是每次做pop都是strong的，也有小一点的，用自己的身体去模拟歌里头pop的质感。 参照arab gangsta beat和beat 6里面的“砰”，就不是你只是简单地用pop的强与弱能表达的。</p>
+</li>
+<li><p>包括last one stand 2011里头的歌，也就是LA的曲子，参照Linguistic_Feat_Stray。 也包括用tick去模拟pop之类的。 “啪”也有很多种，有干脆的，也有没收音的。自己仔细听，不要忽略质感这个重要的东西。</p>
+</li>
+</ul>
+<h3 id="五、关于三种风格（跳舞的模式）">五、关于三种风格（跳舞的模式）</h3><ul>
+<li><p>跳poppin有三种风格，animation，boogaloo，poppin。</p>
+</li>
+<li><p>三种风格的运用，一开始可以是animation感觉的，做点控制，也可以用tick，灌animation感觉来做一些基础walk out，flex，king tut之类的，再换boogaloo的感觉来跳基础和一些基本的元素，再换poppin感觉的。这样，就算你做一个walk out，也可以做出三种感觉来，更何况walk out只是个框架，再加点roll进去，怎么可能没有动作跳？ </p>
+</li>
+<li><p>用不同的风格去做同样的基础，就是不同的感觉，不同的味道。不至于让人看你一直在做重复的动作，干巴巴的。 要找到自己跳舞的模式，不要出来就乱跳，不知道自己要跳什么，跟了一会儿beat，累了，不跟了。听到音效来了，又手忙脚乱的做音效，这样跳出来内行看了就知道你不行，或许外行看了觉得你厉害，又在做音效，又在跟beat。要有个很清晰的思路来跳，这几个八拍我要做animation的东西，Isolation什么的。下几个八拍我就做boogaloo的东西，在哪里又开始变成poppin。要有思路和模式来跳舞。舞佳舞的大神们虽然卡同一个音效的动作不一样，但是他们卡音效的理念是一样的。这个就是思路和模式。</p>
+</li>
+<li><p>跳poppin，无论是solo还是battle，你都要把这些东西跳完。不要battle的时候，上去1分半钟，就做个一分半钟的poppin或者animation什么的，不对的。即使你的控制很牛B，你一分半全部都robot了，全场炸翻了，judge还是会判你输。因为你的poppin是片面的，不完整的。 根本就不存在什么没动作跳之类的。</p>
+<h3 id="六、关于感情变化（高潮和低潮）">六、关于感情变化（高潮和低潮）</h3></li>
+<li><p>上场不要急于做pop之类的，先做做up&amp;down，带点groovin，把自己的律动打开。 </p>
+</li>
+<li><p>要跳出高潮和，低潮。一共一分半，不能一直是一个频率的，一个节奏的，自己要很好的区分开来。 可以先做做两拍，然后变一拍。 </p>
+</li>
+<li><p>根据歌的feeling来做感情变化。 </p>
+</li>
+<li><p>我们平时听的funkymusic其实一般分为两种，p funk和g funk。我们平时经常听的和喜欢听的，大多是p funk，有高潮低潮的，节奏变化也明显，所以做这个感情变化也比较容易的。但是g funk完全不同，参照专辑Return To The G Style - Slick Dogg，每个八拍的音效和beat都一模一样，就比较难跳出不一样的东西来，但是也要尽量做到4个八拍就一变化</p>
+<h3 id="七、关于牛B和不牛B">七、关于牛B和不牛B</h3></li>
+<li>整个在poppin的过程中，舞蹈是以一种很顺畅的方式在流动的，所以对流畅度的要求特别高。 </li>
+<li>你要做的beat和音效是完全包含在你的舞蹈里的，不是说你为了刻意去卡一个音效，抛弃你开始很流畅的舞蹈，卡完这个音效后再去做一舞蹈，没错，你卡了音效，但是你不牛B。一直很流畅的，让人一看就觉得是音效来配合你的舞蹈，这个才牛B。参照KOD5决赛，dino vs 古冲 第二个round。</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p> <strong>Author:</strong> <a href="http://www.daijiale.cn">Dancer小枫</a></p>
+<p><strong>舞龄：</strong>2年</p>
+<p><strong>舞种：</strong>poppin</p>
+<p>这里是小枫这几年跳舞的心得，持续更新中。</p>]]>
+    
+    </summary>
+    
+      <category term="poppin" scheme="http://daijiale.github.io/tags/poppin/"/>
+    
+      <category term="街舞" scheme="http://daijiale.github.io/tags/%E8%A1%97%E8%88%9E/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+      <category term="关于舞蹈" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/%E5%85%B3%E4%BA%8E%E8%88%9E%E8%B9%88/"/>
     
   </entry>
   
