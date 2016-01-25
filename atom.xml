@@ -4,7 +4,7 @@
   <subtitle><![CDATA[只有汗水不会欺骗你 || Only sweat will not fail you]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://daijiale.github.io/"/>
-  <updated>2016-01-01T18:17:08.000Z</updated>
+  <updated>2016-01-25T12:11:16.000Z</updated>
   <id>http://daijiale.github.io/</id>
   
   <author>
@@ -15,21 +15,138 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[【前端】FIS3应用小记]]></title>
+    <link href="http://daijiale.github.io/2016/01/28/%E3%80%90%E5%89%8D%E7%AB%AF%E3%80%91FIS3%E5%BA%94%E7%94%A8%E5%B0%8F%E8%AE%B0/"/>
+    <id>http://daijiale.github.io/2016/01/28/【前端】FIS3应用小记/</id>
+    <published>2016-01-28T08:30:09.000Z</published>
+    <updated>2016-01-25T12:11:16.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>接触FIS是在2014年11月左右，当时大二，在准备百度实习面试的时候网上迷路了，偶遇了FIS的官网，当时用了一下，觉得是一个基于Node.js的前端自动化解决方案，没太在意…后面在百度遇见了一些前端的小伙伴，才明白FIS的潜能，现在不管是自己的项目，还是以后公司的前端项目，都快离不来TA了，之前听一个学弟说最近他也在使用，并且存在不少问题，所以想写篇博文，给需要的小伙伴们。PS：我自己用的是MacOS系统，博文所述的FIS版本采用最新的FIS3。</p>
+<a id="more"></a>
+</blockquote>
+<h1 id="【前端】FIS3应用小记">【前端】FIS3应用小记</h1><h2 id="FIS3">FIS3</h2><p>FIS3：面向前端的工程构建工具，一套来自度厂的比较完整的前端开发解决方案，类似于<a href="http://www.gruntjs.net/" target="_blank" rel="external"><code>grunt</code></a>。</p>
+<h2 id="FIS3安装">FIS3安装</h2><ul>
+<li>请戳：<a href="http://fis.baidu.com/fis3/docs/beginning/install.html" target="_blank" rel="external">安装教程</a>。</li>
+<li>注意：UNIX系统的终端在输入安装命令时请+<code>sudo</code>。</li>
+<li>NPM被墙，慢出翔，请使用国内镜像安装。</li>
+<li>安装遇见Bug不慌：<a href="https://github.com/fex-team/fis/issues/565" target="_blank" rel="external">常见问题解决方案</a>。</li>
+<li>安装成功后记得<code>fis -v</code>check一下。</li>
+</ul>
+<h2 id="FIS3构建项目">FIS3构建项目</h2><h3 id="资源定位">资源定位</h3><p>如下图，切换至项目<code>fis-conf.js</code>所在根目录下，键入<code>fis release -d &lt;path&gt;</code>,构建发布到项目目录的<code>&lt;path&gt;</code>目录下（可以是子目录，也可以是父目录，e.g.：<code>./output_son</code>,<code>../output_father</code>）。</p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlBlogfis1.png" alt=""></p>
+<h3 id="配置文件">配置文件</h3><p>默认配置文件为 <code>fis-conf.js</code>，FIS3 编译的整个流程都是通过配置来控制的：</p>
+<ul>
+<li><p><a href="http://fis.baidu.com/fis3/docs/api/config.html" target="_blank" rel="external">配置指南（Demo）</a></p>
+</li>
+<li><p><a href="http://fis.baidu.com/fis3/docs/api/config-props.html" target="_blank" rel="external">常用配置（套路）</a></p>
+</li>
+<li><p><a href="http://fis.baidu.com/fis3/docs/api/config-props.html" target="_blank" rel="external">配置属性（API）</a></p>
+</li>
+</ul>
+<h3 id="文件指纹">文件指纹</h3><p>文件指纹：唯一标识一个文件。在开启强缓存的情况下，如果文件的 URL 不发生变化，无法刷新浏览器缓存。一般都需要通过一些手段来强刷缓存，一种方式是添加时间戳，每次上线更新文件，给这个资源文件的 URL 添加上时间戳。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">img</span> <span class="attribute">src</span>=<span class="value">"a.png?t=12012121"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>而 FIS3 选择的是添加 MD5 戳，直接修改文件的 URL，而不是在其后添加 query。<br>对 js、css、png 图片引用 URL 添加 md5 戳，配置如下；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//清除其他配置，只剩下如下配置</span></span><br><span class="line">fis.match(<span class="string">'*.&#123;js,css,png&#125;'</span>, &#123;</span><br><span class="line">  useHash: <span class="literal">true</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="string">``</span><span class="string">`	</span><br><span class="line"></span><br><span class="line">### 压缩资源</span><br><span class="line">为了减少资源网络传输的大小，通过压缩器对 js、css、图片进行压缩是一直以来前端工程优化的选择。在 FIS3 中这个过程非常简单，通过给文件配置压缩器即可。</span><br><span class="line"></span><br><span class="line">`</span><span class="string">``</span>javascript</span><br><span class="line"><span class="comment">// 清除其他配置，只保留如下配置</span></span><br><span class="line">fis.match(<span class="string">'*.js'</span>, &#123;</span><br><span class="line">  <span class="comment">// fis-optimizer-uglify-js 插件进行压缩，已内置</span></span><br><span class="line">  optimizer: fis.plugin(<span class="string">'uglify-js'</span>)</span><br><span class="line">&#125;);</span><br><span class="line">fis.match(<span class="string">'*.css'</span>, &#123;</span><br><span class="line">  <span class="comment">// fis-optimizer-clean-css 插件进行压缩，已内置</span></span><br><span class="line">  optimizer: fis.plugin(<span class="string">'clean-css'</span>)</span><br><span class="line">&#125;);</span><br><span class="line">fis.match(<span class="string">'*.png'</span>, &#123;</span><br><span class="line">  <span class="comment">// fis-optimizer-png-compressor 插件进行压缩，已内置</span></span><br><span class="line">  optimizer: fis.plugin(<span class="string">'png-compressor'</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="图片合并">图片合并</h3><p>压缩了静态资源，我们还可以对图片进行CssSprite合并，来减少请求数量。<br>FIS3 提供了比较简易、使用方便的图片合并工具。通过配置即可调用此工具并对资源进行合并。<br>FIS3 构建会对 CSS 中，路径带 ?__sprite 的图片进行合并。为了节省编译的时间，分配到 useSprite: true 的 CSS 文件才会被处理。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">li.list-1::before &#123;</span><br><span class="line">  background-image: url('./img/list-1.png?__sprite');</span><br><span class="line">&#125;</span><br><span class="line">li.list-2::before &#123;</span><br><span class="line">  background-image: url('./img/list-2.png?__sprite');</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>启用 fis-spriter-csssprites 插件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 启用 fis-spriter-csssprites 插件</span></span><br><span class="line">fis.match(<span class="string">'::package'</span>, &#123;</span><br><span class="line">  spriter: fis.plugin(<span class="string">'csssprites'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 对 CSS 进行图片合并</span></span><br><span class="line">fis.match(<span class="string">'*.css'</span>, &#123;</span><br><span class="line">  <span class="comment">// 给匹配到的文件分配属性 `useSprite`</span></span><br><span class="line">  useSprite: <span class="literal">true</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://github.com/fex-team/fis-spriter-csssprites" target="_blank" rel="external">CssSprites 详细配置参见</a></p>
+<h3 id="功能组合">功能组合</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 加 md5</span></span><br><span class="line"><span class="comment">// fis.match('*.&#123;js,css,png&#125;', &#123;</span></span><br><span class="line"><span class="comment">//   useHash: true</span></span><br><span class="line"><span class="comment">// &#125;);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 启用 fis-spriter-csssprites 插件</span></span><br><span class="line"><span class="comment">// fis.match('::package', &#123;</span></span><br><span class="line"><span class="comment">//   spriter: fis.plugin('csssprites')</span></span><br><span class="line"><span class="comment">// &#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 对 CSS 进行图片合并</span></span><br><span class="line"><span class="comment">// fis.match('*.css', &#123;</span></span><br><span class="line"><span class="comment">//   // 给匹配到的文件分配属性 `useSprite`</span></span><br><span class="line"><span class="comment">//   useSprite: true</span></span><br><span class="line"><span class="comment">// &#125;);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// fis.match('*.js', &#123;</span></span><br><span class="line"><span class="comment">//   // fis-optimizer-uglify-js 插件进行压缩，已内置</span></span><br><span class="line"><span class="comment">//   optimizer: fis.plugin('uglify-js')</span></span><br><span class="line"><span class="comment">// &#125;);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// fis.match('*.css', &#123;</span></span><br><span class="line"><span class="comment">//   // fis-optimizer-clean-css 插件进行压缩，已内置</span></span><br><span class="line"><span class="comment">//   optimizer: fis.plugin('clean-css')</span></span><br><span class="line"><span class="comment">// &#125;);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// fis.match('*.png', &#123;</span></span><br><span class="line"><span class="comment">//   // fis-optimizer-png-compressor 插件进行压缩，已内置</span></span><br><span class="line"><span class="comment">//   optimizer: fis.plugin('png-compressor')</span></span><br><span class="line"><span class="comment">// &#125;);</span></span><br><span class="line"><span class="comment">// </span></span><br><span class="line"> </span><br><span class="line"><span class="comment">// fis.media() 接口提供多种状态功能，比如有些配置是仅供开发环境下使用，有些则是仅供生产环境使用的。</span></span><br><span class="line"><span class="comment">// fis.media() 可以使配置文件变为多份（多个状态，一个状态一份配置）。</span></span><br><span class="line"><span class="comment">// fis3 release rd push 到 RD 的远端机器上</span></span><br><span class="line"><span class="comment">// fis3 release qa push 到 QA 的远端机器上</span></span><br><span class="line"><span class="comment">// fis.media('rd').match('*', &#123;</span></span><br><span class="line"><span class="comment">//   deploy: fis.plugin('http-push', &#123;</span></span><br><span class="line"><span class="comment">//     receiver: 'http://remote-rd-host/receiver.php'</span></span><br><span class="line"><span class="comment">//   &#125;)</span></span><br><span class="line"><span class="comment">// &#125;);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// fis.media('qa').match('*', &#123;</span></span><br><span class="line"><span class="comment">//   deploy: fis.plugin('http-push', &#123;</span></span><br><span class="line"><span class="comment">//     receiver: 'http://remote-qa-host/receiver.php'</span></span><br><span class="line"><span class="comment">//   &#125;)</span></span><br><span class="line"><span class="comment">// &#125;);</span></span><br><span class="line"><span class="comment">// </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//启用 fis-spriter-csssprites 插件</span></span><br><span class="line">fis.match(<span class="string">'::package'</span>, &#123;</span><br><span class="line">  spriter: fis.plugin(<span class="string">'csssprites'</span>)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">fis.match(<span class="string">'*.js'</span>,&#123;</span><br><span class="line">	useHash:<span class="literal">false</span>,</span><br><span class="line">	optimizer: fis.plugin(<span class="string">'uglify-js'</span>)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">fis.match(<span class="string">'*.css'</span>,&#123;</span><br><span class="line">	useHash:<span class="literal">false</span>,</span><br><span class="line">	optimizer: fis.plugin(<span class="string">'clean-css'</span>),</span><br><span class="line">	<span class="comment">// 对 CSS 进行图片合并</span></span><br><span class="line">	<span class="comment">// 给匹配到的文件分配属性 `useSprite`</span></span><br><span class="line">	useSprite: <span class="literal">true</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">fis.match(<span class="string">'*.png'</span>,&#123;</span><br><span class="line">	useHash:<span class="literal">false</span>,</span><br><span class="line">	optimizer: fis.plugin(<span class="string">'png-compressor'</span>)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可能有时候开发的时候不需要压缩、合并图片、也不需要 hash。那么给上面配置追加如下配置；</span></span><br><span class="line"><span class="comment">// fis release debug 启用 media debug 的配置，覆盖上面的配置，把诸多功能关掉。</span></span><br><span class="line"></span><br><span class="line">fis.media(<span class="string">'debug'</span>).match(<span class="string">'*.&#123;js,css,png&#125;'</span>, &#123;</span><br><span class="line">  useHash: <span class="literal">false</span>,</span><br><span class="line">  useSprite: <span class="literal">false</span>,</span><br><span class="line">  optimizer: <span class="literal">null</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="FIS3调试">FIS3调试</h2><h2 id="FIS3使用">FIS3使用</h2><h2 id="参考文献">参考文献</h2><ul>
+<li><p><a href="http://fis.baidu.com/fis3/docs/beginning/intro.html" target="_blank" rel="external">FIS3官网</a></p>
+</li>
+<li><p><a href="http://www.imooc.com/learn/220" target="_blank" rel="external">FIS使用初级视频操作教程</a></p>
+</li>
+<li><p><a href="http://fis.baidu.com/fis3/docs/user-dev/extlang.html" target="_blank" rel="external">FIS3内置语法</a> </p>
+</li>
+<li><a href="http://fis.baidu.com/fis3/docs/api/command.html" target="_blank" rel="external">FIS3接口文档</a></li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>接触FIS是在2014年11月左右，当时大二，在准备百度实习面试的时候网上迷路了，偶遇了FIS的官网，当时用了一下，觉得是一个基于Node.js的前端自动化解决方案，没太在意…后面在百度遇见了一些前端的小伙伴，才明白FIS的潜能，现在不管是自己的项目，还是以后公司的前端项目，都快离不来TA了，之前听一个学弟说最近他也在使用，并且存在不少问题，所以想写篇博文，给需要的小伙伴们。PS：我自己用的是MacOS系统，博文所述的FIS版本采用最新的FIS3。</p>]]>
+    
+    </summary>
+    
+      <category term="Javascript" scheme="http://daijiale.github.io/tags/Javascript/"/>
+    
+      <category term="Node.js" scheme="http://daijiale.github.io/tags/Node-js/"/>
+    
+      <category term="前端自动化工具" scheme="http://daijiale.github.io/tags/%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+      <category term="Web开发笔记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[【转载】什么才算真正的编程能力？]]></title>
+    <link href="http://daijiale.github.io/2016/01/25/%E3%80%90%E8%BD%AC%E8%BD%BD%E3%80%91%E4%BB%80%E4%B9%88%E6%89%8D%E7%AE%97%E7%9C%9F%E6%AD%A3%E7%9A%84%E7%BC%96%E7%A8%8B%E8%83%BD%E5%8A%9B%EF%BC%9F/"/>
+    <id>http://daijiale.github.io/2016/01/25/【转载】什么才算真正的编程能力？/</id>
+    <published>2016-01-25T11:20:32.000Z</published>
+    <updated>2016-01-25T12:07:51.000Z</updated>
+    <content type="html"><![CDATA[<p>靠谷歌和复制别人的轮子，虽然我做出了很多东西，可是我并不觉得自己能力上有提升，倒是利用搜索引擎的能力的确提升了不少。而学校里另外一部分在搞ACM的人，他们每天都在刷题练算法，但单凭我个人的感受感觉他们似乎对工程上有些东西并不了解，或许算法的能力才算是实打实的编程能力？那”胶水”的能力和整合轮子的能力算不算编程能力呢?所以我现在就很困惑，所谓的编程能力到底是什么，我该如何提升自己的编程能力？什么才算真正的编程能力？<br><a id="more"></a></p>
+<blockquote>
+<p>来源：知乎</p>
+<p>链接：<a href="https://www.zhihu.com/question/31034164/" target="_blank" rel="external">https://www.zhihu.com/question/31034164/</a></p>
+</blockquote>
+<h2 id="本文综合整理自知乎同名问答帖。题主的问题补充如下：">本文综合整理自知乎同名问答帖。题主的问题补充如下：</h2><p>还在读书，也在实验室帮忙做了些东西，自己也搭过几个网站。在周围人看来似乎好像我很厉害，做了那么多东西，但是我发现这些东西虽然是我做的，但是实际上我手把手自己写的代码却并没有多少，很多都是用开源的东西，我写的代码无非是把别人的东西整合下，类似于胶水一样的工作。</p>
+<p>我之前所认为的编程是全手动一行一行敲代码，但是现在我发现哪怕是工程上，也有很多人是复制黏贴来解决问题的，并且提倡不要重复造轮子。</p>
+<p>但是靠谷歌和复制别人的轮子，虽然我做出了很多东西，可是我并不觉得自己能力上有提升，倒是利用搜索引擎的能力的确提升了不少。而学校里另外一部分在搞ACM的人，他们每天都在刷题练算法，但单凭我个人的感受感觉他们似乎对工程上有些东西并不了解，或许算法的能力才算是实打实的编程能力？那”胶水”的能力和整合轮子的能力算不算编程能力呢?</p>
+<p>所以我现在就很困惑，所谓的编程能力到底是什么，我该如何提升自己的编程能力？</p>
+<h2 id="下面是_刘贺_的回复：（已征得同意）">下面是 刘贺 的回复：（已征得同意）</h2><p>非常好的一个问题。这可能是我在知乎见到过的问编程有关的问题中问得最好的一个了。我非常喜欢这个问题。</p>
+<p>计算机科学有两类根本问题。一类是理论：算法，数据结构，复杂度，机器学习，模式识别，等等等。一类是系统：操作系统，网络系统，分布式系统，存储系统，游戏引擎，等等等等。</p>
+<p>理论走的是深度，是在追问在给定的计算能力约束下如何把一个问题解决得更快更好。而系统走的是广度，是在追问对于一个现实的需求如何在众多的技术中设计出最多快好省的技术组合。</p>
+<p>搞ACM的人，只练第一类。像你这样的更偏向于第二类。其实挺难得的，但很可惜的是第二类能力没有简单高效的测量考察方法，不像算法和数据结构有ACM竞赛，所以很多系统的苗子都因为缺少激励和正确引导慢慢就消隐了。</p>
+<p>所以比尔盖茨才会说，看到现在学编程的人经常都把编程看作解各种脑筋急转弯的问题，他觉得很遗憾。</p>
+<p>做系统，确实不提倡“重复发明轮子”。但注意，是不提倡“重复发明”，不是不提倡“重新制造”。恰恰相反的，我以为，系统的编程能力正体现在“重新制造”的能力。</p>
+<p>能把已有的部件接起来，这很好。但当你恰好缺一种关键的胶水的时候，你能写出来吗？当一个已有的部件不完全符合你的需求的时候，你能改进它吗？如果你用的部件中有bug，你能把它修好吗？在网上繁多的类似功能的部件中，谁好谁坏？为什么？差别本质吗？一个开源代码库，你能把它从一个语言翻译到另一个语言吗？从一个平台移植到另一个平台吗？能准确估计自己翻译和移植的过程需要多少时间吗？能准确估计翻译和移植之后性能是会有提升还是会有所下降吗？</p>
+<p>系统编程能力体现在把已有的代码拿来并变成更好的代码，体现在把没用的代码拿来并变成有用的代码，体现在把一个做好的轮子拿来能画出来轮子的设计蓝图，并用道理解释出设计蓝图中哪些地方是关键的，哪些地方是次要的，哪些地方是不容触碰的，哪些地方是还可以改进的。</p>
+<p>如果你一点不懂理论，还是应该学点的。对于系统性能的设计上，算法和数据结构就像在自己手头的钱一样，它们不是万能的，但不懂是万万不行的。</p>
+<p>怎么提高系统编程能力呢？土办法：多造轮子。就像学画画要画鸡蛋一样，不是这世界上没有人会画鸡蛋，但画鸡蛋能驯服手指，感受阴影线条和笔触。所以，自己多写点东西吧。写个编译器？渲染器？操作系统？web服务器？web浏览器？部件都一个个换成自己手写的，然后和已有的现成部件比一比，看看谁的性能好，谁的易用性好？好在哪儿？差在哪儿？为什么？</p>
+<p>更聪明一点的办法：多拆轮子。多研究别人的代码是怎么写的。然而这个实践起来经常很难。原因：大部分工业上用的轮子可能设计上的思想和技术是好的，都设计和制造过程都很烂，里面乱成一团，让人乍一看毫无头绪，导致其对新手来说非常难拆。这种状况其实非常糟糕。所以，此办法一般只对比较简单的轮子好使，对于复杂的轮子，请量力而行。</p>
+<p>轮子不好拆，其实是一个非常严重的问题。重复发明轮子固然是时间的浪费，但当轮子复杂而又不好拆的时候，尤其是原来造轮子的人已经不在场的时候，重新发明和建造轮子往往会成为无奈之下最好的选择。这是为什么工业界在明知道重复发明/制造轮子非常不好的情况下还在不断重复发明/制造轮子的根本原因。</p>
+<p>程序本质是逻辑演绎的形式化表达，记载的是人类对这个世界的数字化理解。不能拆的轮子就像那一篇篇丢了曲谱的宋词一样，能读，却不能唱。</p>
+<p>鄙人不才，正在自己研究怎么设计建造一种既好用又好拆的轮子。您没那么幸运，恐怕是等不到鄙人的技术做出来并发扬光大了。在那之前，多造轮子，多拆好拆的小轮子，应该是提高编程能力最好的办法了。</p>
+<p><strong>（小编转注：<a href="http://zhuanlan.zhihu.com/shanhu" target="_blank" rel="external">http://zhuanlan.zhihu.com/shanhu</a> 这是刘贺的专栏。）</strong></p>
+<h2 id="下面是_mu_mu_的回复：（已征得同意）">下面是 mu mu 的回复：（已征得同意）</h2><p>懂得取舍。</p>
+<p>在有限的时间内，几乎没有系统可以做到完美。要快，要安全，高并发，易扩展，效率高，容易读，高内聚，低耦合…</p>
+<p>大到一个网站，小到几个class，工程师都要清楚，要取什么，舍什么，这并不是那么容易的事。我们都有自己的性格，有的求新，有的求稳，有的求快，但具体到一个项目时，知道如何取舍对这个项目最好，很重要。</p>
+<p>学校里的作业，没人在意你是不是写在一个大的main()里面，能跑就行。但做项目的时候，太多的东西要考虑，有时候，宁可简单易读，也不用快那么一点点；有时候，要做太多看不到的工作，却丝毫马虎不得；有时候，写了不如不写，留白也是一个学问。</p>
+<p>曾经接手个项目，里面几乎所有的class，每个都有interface，各种继承，各种实现，理由是灵活性高，易扩展。真的易扩展吗？</p>
+<p>我不知道。没多久，客户的需求就改了，各种拎不清的继承实现都化为乌有，一大半要重写。</p>
+<p>问题在哪里？</p>
+<p>不是编程不好，而是取舍的不好。在那个阶段，为30%的需求，花200%的努力，追求设计的滴水不漏，却舍弃快速实现，取得反馈的时机，这就是失误。需求总会变，客户看到越早，修改越早，影响越小。</p>
+<p>很聪明的人，也可能做出很难用的系统，不一定是编程不好，可能是不愿，或不屑于取舍。不同的阶段，不同的项目，要取舍的东西也不同。编程只是手段，目的是解决问题，能力高不高，要看问题解决的好不好。不在于使用了什么高端算法，或是复杂的框架。</p>
+<p>懂得如何取舍并不容易，需要对问题。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>靠谷歌和复制别人的轮子，虽然我做出了很多东西，可是我并不觉得自己能力上有提升，倒是利用搜索引擎的能力的确提升了不少。而学校里另外一部分在搞ACM的人，他们每天都在刷题练算法，但单凭我个人的感受感觉他们似乎对工程上有些东西并不了解，或许算法的能力才算是实打实的编程能力？那”胶水”的能力和整合轮子的能力算不算编程能力呢?所以我现在就很困惑，所谓的编程能力到底是什么，我该如何提升自己的编程能力？什么才算真正的编程能力？<br>]]>
+    
+    </summary>
+    
+      <category term="程序猿素养" scheme="http://daijiale.github.io/tags/%E7%A8%8B%E5%BA%8F%E7%8C%BF%E7%B4%A0%E5%85%BB/"/>
+    
+      <category term="转载博文" scheme="http://daijiale.github.io/categories/%E8%BD%AC%E8%BD%BD%E5%8D%9A%E6%96%87/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[【个人】2015 to 2016]]></title>
     <link href="http://daijiale.github.io/2015/12/31/%E3%80%90%E4%B8%AA%E4%BA%BA%E3%80%912015to2016/"/>
     <id>http://daijiale.github.io/2015/12/31/【个人】2015to2016/</id>
     <published>2015-12-31T13:37:09.000Z</published>
-    <updated>2016-01-01T18:17:08.000Z</updated>
+    <updated>2016-01-02T09:39:34.000Z</updated>
     <content type="html"><![CDATA[<p>2015这一年发生了太多事，自己飞速地成长，也是毕业季的开始，走在又一个十字路口，总有些话想在跨年夜说。<br><a id="more"></a></p>
 <h1 id="2015上半年">2015上半年</h1><p>上半年在经历北漂，真的很感谢当时团队里的导师和同事们，很幸运能遇见你们，让我在百度这样的顶级互联网公司里可以扎根成长。直到现在，仍然很怀念那段<a href="http://daijiale.github.io/2015/06/29/%E3%80%90%E4%B8%AA%E4%BA%BA%E3%80%91%E5%9C%A8%E7%99%BE%E5%BA%A6%E5%AE%9E%E4%B9%A0%E7%9A%84%E9%82%A3%E4%BA%9B%E6%97%A5%E5%AD%90/">在百度实习的日子</a>。</p>
 <h1 id="2015下半年">2015下半年</h1><ul>
-<li>下半年刚回到学校就开始着手准备校招。7-8月一边消化之前的实习成果，一边帮朋友公司做了一个婚庆主题的创业项目，挣了一些旅游费，最近听说这个项目在朋友手里越做越大了，实体店成立后更拿了千万投资，野蛮生长中…</li>
+<li>下半年刚回到学校就开始着手准备校招。7-8月一边消化之前的实习成果，一边帮朋友公司做了一个婚庆主题的创业项目，挣了一些旅游费，最近听说这个项目在朋友手里越做越大了，实体店成立后更拿了500万投资，野蛮生长中…</li>
 </ul>
-<p><img src="" alt=""></p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/zhenxijuwaibao.png" alt=""></p>
 <ul>
 <li>9月-10月校招季，拿了百度、腾讯、小米三家的offer后就不再跑招聘会了，这里真的要感谢之前实习团队的Boss们，给我留了一个HC。参加了校招，你才能体会到自己和研究生大军们的能力差距，就拿自己腾讯QQ音乐的offer来讲，本科生只凭借校招面试就可以得到BAT的认可，真得很不容易。最后因为城市和团队的原因，我选择了去北京，去百度。一是很珍惜以前的Boss和团队，二是觉得在北京可以更好的发展自己的兴趣爱好。</li>
 </ul>
-<p><img src="" alt=""></p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlBlogbaiduoffer.png" alt=""></p>
 <ul>
 <li>之前上半年，自己把自己养成了一个小胖子，回到学校后，重新制定了自己的训练计划：跑步、健身、跳舞。3个月减了15斤，塑形效果也好了很多，更养成了很好的生活习惯，挺佩服自己的，下面是几张对比图。</li>
 </ul>
@@ -37,7 +154,7 @@
 <ul>
 <li><p>校招忙完后，玩耍之余，也自己异想天开地想做做电子商务（<a href="http://weidian.com/?userid=760541744&amp;infoType=1" target="_blank" rel="external">程序猿之家</a>），1个月的时间——筹划、跑货、搭建微店、运营、推广、研发、编辑、美工、财务…所有角色统统都经历了一遍，很丰富，很历练，感谢身边支持我的朋友们，小试牛刀后，结果还不错，基本的东西已经筹备好了，试营了一个月，也有上千流水。等以后回北京，工作生活稳定后，业余再弄。<br><img src="" alt=""><br><img src="" alt=""></p>
 </li>
-<li><p>年末10-12月，好好锻炼了一下自己的摄影和舞蹈水平，感觉又上了一个台阶，也认识了这两个领域里很多厉害的朋友。参加了一次成都的poppin比赛，16进8的成绩也让自己很满意，Keep on！</p>
+<li><p>年末10-12月，好好锻炼了一下自己的摄影和舞蹈水平，感觉又上了一个台阶，也认识了这两个领域里很多厉害的朋友。参加了一次成都的poppin比赛, 一次跨年荧光跑比赛，16进8的成绩也让自己很满意，Keep on！</p>
 </li>
 <li><p>2016期许：更好的利用起时间，回家看看父母，Keep coding、fitting and dancing。和朋友们一起enjoy life！</p>
 </li>
@@ -59,7 +176,7 @@
     <link href="http://daijiale.github.io/2015/12/25/%E3%80%90PHP%E3%80%91PHPStorm%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8+Mac%E4%B8%8BPHP%E5%B7%A5%E4%BD%9C%E5%BC%80%E5%8F%91%E6%B5%81%E6%90%AD%E5%BB%BA/"/>
     <id>http://daijiale.github.io/2015/12/25/【PHP】PHPStorm使用入门+Mac下PHP工作开发流搭建/</id>
     <published>2015-12-25T03:56:11.000Z</published>
-    <updated>2015-12-24T08:16:16.000Z</updated>
+    <updated>2016-01-22T16:22:22.000Z</updated>
     <content type="html"><![CDATA[<h1 id="前言">前言</h1><blockquote>
 <p>换了RetineMacPro2015之后，还没怎么做PHP的大型项目，之前很多小的Web后端都使用的MAMP来进行PHP开发，因为项目小，基本都不要太多调试，所以MAMP还挺满足需求的，但是也受够了只能通过<code>echo</code>,<code>print</code>来行调试的窘境。所以有了这篇博客，也为了帮助以后有需要的童鞋们可以少走弯路。<br><a id="more"></a></p>
 </blockquote>
@@ -107,7 +224,7 @@
     <link href="http://daijiale.github.io/2015/12/10/%E3%80%90%E4%B8%AA%E4%BA%BA%E3%80%91Blog%E8%BF%81%E7%A7%BB%E6%97%A5%E8%AE%B0/"/>
     <id>http://daijiale.github.io/2015/12/10/【个人】Blog迁移日记/</id>
     <published>2015-12-10T11:37:09.000Z</published>
-    <updated>2015-12-10T11:37:58.000Z</updated>
+    <updated>2016-01-02T09:19:01.000Z</updated>
     <content type="html"><![CDATA[<p><strong>以下所指“更新”：均为Blog技术更新，非文章更新</strong></p>
 <h1 id="第一次更新_个人Blog">第一次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;说起自己的第一个Blog，要从小学刚开通QQ空间开始，具体几年级已经记不清了，那个时候刚甩掉纸质日记本，然后就迈入网络日志的深坑。以前倒是产出了不少优质日志，不过都是些多愁善感的随便，至今都已经封存进<em>私密日日记</em>中(如下图)：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpic_qqzonesec.PNG" alt=""><br><a id="more"></a></p>
 <h1 id="第二次更新_个人Blog">第二次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后面高中开始玩人人，Blog也顺势搬到人人。。。现在想来这搬迁史也很简单——围绕社交圈，毕竟Blog写出来是给人看的，而QQzone和人人都是一个很好的社交载体。当然，如今的人人，我早已放弃，一个月都不登一次的这种，blog数据也全部清除了，高中写的都是些没营养的东西，个人认为没有存在的价值。<br>最后留张图纪念一下曾经的人人帐号：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicrenren.PNG" alt=""></p>
@@ -181,7 +298,7 @@
     <link href="http://daijiale.github.io/2015/11/19/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%91%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E5%BF%83%E5%BE%97/"/>
     <id>http://daijiale.github.io/2015/11/19/【数据库】数据库设计心得/</id>
     <published>2015-11-19T11:23:01.000Z</published>
-    <updated>2015-11-20T16:15:57.000Z</updated>
+    <updated>2016-01-02T09:19:01.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>PS：从大学课设小项目到外包大型项目，再到实习时候参与过的千万级用户后台架构设计。对后端的数据库设计有了一些自己的心得体会，这里记录一些现在这个阶段的所想所得，后面随着level不断提升，持续更新。</p>
 </blockquote>
@@ -405,7 +522,7 @@
     <link href="http://daijiale.github.io/2015/11/08/%E3%80%90%E4%B8%AA%E4%BA%BA%E3%80%91%E4%B8%BA%E4%BD%95%E9%80%89%E6%8B%A9%E5%81%9A%E7%A8%8B%E5%BA%8F%E7%8C%BF%EF%BC%88%E5%AA%9B%EF%BC%89%E4%B9%8B%E5%AE%B6/"/>
     <id>http://daijiale.github.io/2015/11/08/【个人】为何选择做程序猿（媛）之家/</id>
     <published>2015-11-08T03:43:09.000Z</published>
-    <updated>2015-11-20T15:37:31.000Z</updated>
+    <updated>2016-01-02T09:19:01.000Z</updated>
     <content type="html"><![CDATA[<h1 id="为何选择做“程序猿（媛）之家”">为何选择做“程序猿（媛）之家”</h1><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/CXYZJ6666.jpg" alt=""></p>
 <blockquote>
 <p>引言：其实，”程序猿（媛）之家”的前身起源于“小枫特卖”，眼尖的小伙伴们肯定立马就Get到了两个关键点，一是“小枫”，二是“特卖”…….那么问题来了——“小枫是谁？”、“特卖，卖得有什么特别？”<br><a id="more"></a></p>
@@ -448,7 +565,7 @@
     <link href="http://daijiale.github.io/2015/10/10/%E3%80%90PHP%E3%80%91PHP%E8%B7%9F%E8%B8%AA%E9%94%99%E8%AF%AF7%E5%A4%A7%E6%AD%A5%E9%AA%A4/"/>
     <id>http://daijiale.github.io/2015/10/10/【PHP】PHP跟踪错误7大步骤/</id>
     <published>2015-10-10T04:34:21.000Z</published>
-    <updated>2015-11-19T06:48:34.000Z</updated>
+    <updated>2016-01-02T09:19:01.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>这个话题老生长谈了，在面试中必然考核的能力中，我个人认为解决问题能力是排第一位的，比学习能力优先级更高。解决问题的能力既能看出程序员的思维能力，应变能力，探索能力等，又可以看出他的经验。如果解决问题能力不佳是无法通过面试的。</p>
 <p>这里举个例子，假如我执行了一个PHP的脚本，如php test.php，预期是可以返回一个字符串。但执行后没有任何信息输出，这时候通过什么方法能知道程序错在哪里？这里可以将解决问题能力分为8个等级，越到后面的表示能力越强。</p>
@@ -493,7 +610,7 @@
     <link href="http://daijiale.github.io/2015/09/21/%E3%80%90PHP%E3%80%91PHP_cURL/"/>
     <id>http://daijiale.github.io/2015/09/21/【PHP】PHP_cURL/</id>
     <published>2015-09-21T13:21:11.000Z</published>
-    <updated>2015-11-19T13:18:17.000Z</updated>
+    <updated>2016-01-02T09:19:01.000Z</updated>
     <content type="html"><![CDATA[<h1 id="前言">前言</h1><blockquote>
 <p>cURL(Client URL Library Functions): curl is a command line tool for transferring data with URL syntax,即使用URL语法传输数据的命令行工具。<br><a id="more"></a></p>
 </blockquote>
@@ -556,7 +673,7 @@
     <link href="http://daijiale.github.io/2015/09/21/%E3%80%90PHP%E3%80%91PHP%E5%AE%89%E5%85%A8%E6%80%A7%E5%BC%80%E5%8F%91/"/>
     <id>http://daijiale.github.io/2015/09/21/【PHP】PHP安全性开发/</id>
     <published>2015-09-21T13:21:11.000Z</published>
-    <updated>2015-11-19T13:31:07.000Z</updated>
+    <updated>2016-01-02T09:19:01.000Z</updated>
     <content type="html"><![CDATA[<h1 id="前言">前言</h1><blockquote>
 <p>php给了开发者极大的灵活性，但是这也为安全问题带来了潜在的隐患，近期需要总结一下以往的问题，在这里借翻译一篇文章同时加上自己开发的一些感触总结一下。<br><a id="more"></a></p>
 </blockquote>
@@ -648,7 +765,7 @@
     <link href="http://daijiale.github.io/2015/07/21/%E3%80%90Android%E3%80%91Android%E6%B1%82%E8%81%8C%E7%9F%A5%E8%AF%86%E7%82%B9Review/"/>
     <id>http://daijiale.github.io/2015/07/21/【Android】Android求职知识点Review/</id>
     <published>2015-07-21T07:13:09.000Z</published>
-    <updated>2015-11-19T06:47:33.000Z</updated>
+    <updated>2016-01-02T09:19:01.000Z</updated>
     <content type="html"><![CDATA[<h1 id="JAVA">JAVA</h1><h2 id="1-_举例说明多态和重载区别">1. 举例说明多态和重载区别</h2><pre><code><span class="keyword">*</span><span class="keyword">*</span> 重载<span class="keyword">*</span><span class="keyword">*</span>
 </code></pre> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;&#10;void Aa(int a )&#123;....&#125;&#10;void Aa (int a,int b)&#123;...&#125; &#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>虽然Aa定义了2个 但是因为他们注册的参数不同所以 看作为2个不同的方法</p>
@@ -721,7 +838,7 @@
     <link href="http://daijiale.github.io/2015/07/10/%E3%80%90Android%E3%80%91Android%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/"/>
     <id>http://daijiale.github.io/2015/07/10/【Android】Android开发常用知识点总结/</id>
     <published>2015-07-10T07:13:09.000Z</published>
-    <updated>2015-11-19T06:47:41.000Z</updated>
+    <updated>2016-01-02T09:19:01.000Z</updated>
     <content type="html"><![CDATA[<h1 id="Android开发常用知识点总结：">Android开发常用知识点总结：</h1><a id="more"></a>
 <h2 id="Android异步加载：">Android异步加载：</h2><p>  用异步的方式去加载数据（主要是图像，不解释），可以让用户在刷新数据时候不用经历太多卡顿，这也是Google官方要求我们去做的一种方式。</p>
 <ul>
@@ -780,7 +897,7 @@
     <link href="http://daijiale.github.io/2015/07/06/%E3%80%90Node.js%E3%80%91Node.js%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
     <id>http://daijiale.github.io/2015/07/06/【Node.js】Node.js学习开发笔记/</id>
     <published>2015-07-06T11:21:11.000Z</published>
-    <updated>2015-11-19T13:18:36.000Z</updated>
+    <updated>2016-01-02T09:19:01.000Z</updated>
     <content type="html"><![CDATA[<h1 id="前言">前言</h1><blockquote>
 <p>第一次接触Node.js是大二在四川长虹实习期间，距现在已经1年多了，在自己的一些项目中有用到，积累了一些经验，但是想更加系统的学习一下这门技术（主要这两年发展的太火了。。），同时也想把一些开发过程中的问题和案例分享出来， 特为此撰写一篇博客笔记…<br><a id="more"></a></p>
 </blockquote>
@@ -819,7 +936,7 @@
     <link href="http://daijiale.github.io/2015/06/29/%E3%80%90%E4%B8%AA%E4%BA%BA%E3%80%91%E5%9C%A8%E7%99%BE%E5%BA%A6%E5%AE%9E%E4%B9%A0%E7%9A%84%E9%82%A3%E4%BA%9B%E6%97%A5%E5%AD%90/"/>
     <id>http://daijiale.github.io/2015/06/29/【个人】在百度实习的那些日子/</id>
     <published>2015-06-29T11:13:09.000Z</published>
-    <updated>2015-11-19T06:46:06.000Z</updated>
+    <updated>2016-01-02T09:19:01.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>时间：2014.11.19-2015.6.24</p>
 <p>地点：北京海淀区上地东路鹏寰国际大厦</p>
@@ -946,7 +1063,7 @@
     <link href="http://daijiale.github.io/2015/06/10/%E3%80%90%E5%89%8D%E7%AB%AF%E3%80%91%E5%9F%BA%E4%BA%8E%E7%99%BE%E5%BA%A6ODP%E7%9A%84%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
     <id>http://daijiale.github.io/2015/06/10/【前端】基于百度ODP的前端开发/</id>
     <published>2015-06-10T03:03:09.000Z</published>
-    <updated>2015-11-19T13:17:55.000Z</updated>
+    <updated>2016-01-02T09:19:01.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>ODP，即Online Develop Platform，是为百度Web业务提供完善且高度集成的基础环境、框架、基础库和工具，统一规范模式。</p>
 <p>个人认为，这套PHP开发框架和TP类似，但是安全性和效率性方便远胜于TP</p>
@@ -1097,7 +1214,7 @@
     <link href="http://daijiale.github.io/2015/06/09/%E3%80%90%E5%89%8D%E7%AB%AF%E3%80%91JavaScript%E7%BB%8F%E5%85%B8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93/"/>
     <id>http://daijiale.github.io/2015/06/09/【前端】JavaScript经典设计模式总结/</id>
     <published>2015-06-09T03:29:31.000Z</published>
-    <updated>2015-12-24T03:25:29.000Z</updated>
+    <updated>2016-01-02T09:19:01.000Z</updated>
     <content type="html"><![CDATA[<h1 id="前言">前言</h1><blockquote>
 <p>在百度即将离职的最后一个月里，我被派往新项目担任FE的角色，借此机会也重新review一下大一大二的老本行——Web前端开发。这篇Blog是对自己所学2年JS的一个设计模式总结，也是实际编码中经常用到的很多经典Case，希望能帮助到更多JS开发者，也给那些还活跃在 <code>JS API</code> 层的同学打开一个新的学习思路。<br>PS：本篇Blog侧重点在于JS的设计模式，如果只是期望了解JS语法，请直接戳<a href="http://www.w3school.com.cn/js/index.asp" target="_blank" rel="external">W3C传送门</a>！<br><a id="more"></a></p>
 </blockquote>
@@ -1141,7 +1258,7 @@
     <link href="http://daijiale.github.io/2015/05/28/%E3%80%90Hackathon%E3%80%91%E9%98%BF%E9%87%8C%E7%99%BE%E5%B7%9DHackathon/"/>
     <id>http://daijiale.github.io/2015/05/28/【Hackathon】阿里百川Hackathon/</id>
     <published>2015-05-28T03:43:09.000Z</published>
-    <updated>2015-11-19T13:47:22.000Z</updated>
+    <updated>2016-01-02T09:19:01.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>时间：2015.5.21-2015.5.24</p>
 <p>地点：杭州 阿里百川海创大厦</p>
@@ -1219,7 +1336,7 @@
     <link href="http://daijiale.github.io/2015/05/19/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%91MySQL%E5%85%A5%E9%97%A8/"/>
     <id>http://daijiale.github.io/2015/05/19/【数据库】MySQL入门/</id>
     <published>2015-05-19T07:23:01.000Z</published>
-    <updated>2015-11-20T17:13:01.000Z</updated>
+    <updated>2016-01-02T09:19:01.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>PS：来自一些参考书和视频的MySQL学习笔记，在这里集中整理一下，持续更新中。</p>
 </blockquote>
@@ -1260,7 +1377,7 @@
     <link href="http://daijiale.github.io/2015/05/06/%E3%80%90Android%E3%80%91ADB%E5%B8%B8%E7%94%A8Shell%E5%91%BD%E4%BB%A4/"/>
     <id>http://daijiale.github.io/2015/05/06/【Android】ADB常用Shell命令/</id>
     <published>2015-05-06T08:23:09.000Z</published>
-    <updated>2015-11-19T06:47:07.000Z</updated>
+    <updated>2016-01-02T09:19:01.000Z</updated>
     <content type="html"><![CDATA[<h1 id="实用Adb_Shell命令演示">实用Adb Shell命令演示</h1><blockquote>
 <p>一些灵巧方便的Adb Shell命令笔记</p>
 </blockquote>
@@ -1423,7 +1540,7 @@
     <link href="http://daijiale.github.io/2015/05/04/%E3%80%90Android%E3%80%91%E6%9C%80%E5%85%A8%E7%9A%84AndroidWear%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
     <id>http://daijiale.github.io/2015/05/04/【Android】最全的AndroidWear开发笔记/</id>
     <published>2015-05-04T08:23:09.000Z</published>
-    <updated>2015-11-19T13:15:09.000Z</updated>
+    <updated>2016-01-02T09:19:01.000Z</updated>
     <content type="html"><![CDATA[<h1 id="本文作者">本文作者</h1><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicslrme.jpg" alt=""></p>
 <h2 id="Jiale_Dai"><a href="http://www.daijiale.cn" target="_blank" rel="external">Jiale Dai</a></h2><p>成都 电子科技大学 本科生( 其实还没毕业，目前大三 ）</p>
 <p>从14年开始一直专研于AndroidWear开发</p>
@@ -1788,7 +1905,7 @@
     <link href="http://daijiale.github.io/2015/04/27/%E3%80%90%E4%B8%AA%E4%BA%BA%E3%80%91%E6%88%91%E7%9A%84%E4%B8%80%E7%82%B9%E7%9C%8B%E6%B3%95%E5%85%B3%E4%BA%8E%E7%9B%AE%E5%89%8D%E5%B8%82%E9%9D%A2%E4%B8%8A%E6%B5%81%E8%A1%8C%E7%9A%84Git%E6%89%98%E7%AE%A1%E6%9C%8D%E5%8A%A1%E7%A4%BE%E5%8C%BA/"/>
     <id>http://daijiale.github.io/2015/04/27/【个人】我的一点看法关于目前市面上流行的Git托管服务社区/</id>
     <published>2015-04-27T03:39:09.000Z</published>
-    <updated>2015-11-19T06:45:53.000Z</updated>
+    <updated>2016-01-02T09:19:01.000Z</updated>
     <content type="html"><![CDATA[<p><code>git</code> 服务社区越来越多，无论是国外的还是国内的，免费公益的还是按需收费的，我们该如何选择呢？</p>
 <p>这里整理了一些我自己接触过的，给大家参考一下：</p>
 <a id="more"></a>
@@ -1829,7 +1946,7 @@
     <link href="http://daijiale.github.io/2015/04/26/%E3%80%90%E6%91%84%E5%BD%B1%E3%80%91%E5%8D%95%E5%8F%8D%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/"/>
     <id>http://daijiale.github.io/2015/04/26/【摄影】单反自学笔记/</id>
     <published>2015-04-26T13:26:09.000Z</published>
-    <updated>2015-11-19T06:46:50.000Z</updated>
+    <updated>2016-01-02T09:19:01.000Z</updated>
     <content type="html"><![CDATA[<p><strong>PS：</strong>2015年4月在<a href="http://mp.weixin.qq.com/s?__biz=MzAxMDM5MTIwMw==&amp;mid=204127766&amp;idx=1&amp;sn=7c6a4b87110f472a1ced270b6daafc10&amp;scene=5#rd" target="_blank" rel="external">胖哥（Axl、隔壁老王）</a>的唆使下，我入手了人身第一台<a href="http://baike.baidu.com/link?url=lUwpC5ksAq3Sh_zqGsNAZ4NmcxmiPul3P6SV-QXO5vdWItnvlm7GjvBreNyqoFYWoj-bbozDnDd0yU6lnqsKy7tsVn5qpNJ7BrEFqh_-k1Ml32XcaLvK0FlHUbbrL_eifzZoMYNglLhc-aX8K1XCd_" target="_blank" rel="external">单反</a>…（迈入继耳机之后的又一深坑）这篇Blog是最近学习新技能时做的笔记：</p>
 <h1 id="单反自学笔记_新人篇">单反自学笔记_新人篇</h1><ul>
 <li><a href="http://note.youdao.com/share/?id=48a8f388b8f5cb21ab3cd50d169a665f&amp;type=note" target="_blank" rel="external">新人第一课：井字构图法</a></li>
@@ -1871,7 +1988,7 @@
     <link href="http://daijiale.github.io/2015/04/15/%E3%80%90Hackathon%E3%80%91%E7%99%BE%E5%BA%A6%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8AHackathon%20Coding%20Party%E5%B0%8F%E8%AE%B0/"/>
     <id>http://daijiale.github.io/2015/04/15/【Hackathon】百度第十二届Hackathon Coding Party小记/</id>
     <published>2015-04-15T12:23:09.000Z</published>
-    <updated>2015-11-19T06:47:55.000Z</updated>
+    <updated>2016-01-02T09:19:01.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>时间：2015.4.11-2015.4.14</p>
 <p>地点：北京 百度大厦</p>
@@ -1942,7 +2059,7 @@
     <link href="http://daijiale.github.io/2015/04/09/%E3%80%90%E5%89%8D%E7%AB%AF%E3%80%91AjaxReview/"/>
     <id>http://daijiale.github.io/2015/04/09/【前端】AjaxReview/</id>
     <published>2015-04-09T10:30:09.000Z</published>
-    <updated>2015-11-19T13:18:02.000Z</updated>
+    <updated>2016-01-02T09:19:01.000Z</updated>
     <content type="html"><![CDATA[<p><strong>PS：</strong>写这篇Blog主要有两个三个动机：</p>
 <ul>
 <li>对以前自己所学知识的一个系统化review</li>
@@ -2192,7 +2309,7 @@
     <link href="http://daijiale.github.io/2015/04/03/%E3%80%90%E4%B8%AA%E4%BA%BA%E3%80%91%E8%AE%B0%E5%8D%97%E6%98%8C%E4%BA%8C%E4%B8%AD/"/>
     <id>http://daijiale.github.io/2015/04/03/【个人】记南昌二中/</id>
     <published>2015-04-03T05:20:09.000Z</published>
-    <updated>2015-11-19T06:45:30.000Z</updated>
+    <updated>2016-01-02T09:19:01.000Z</updated>
     <content type="html"><![CDATA[<h1 id="硬件">硬件</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中在硬件上最大的特点就是壕！第一次来二中参加考试时便被壕气外露的红砖绿叶迷住了。还有人造草皮的足球场，三年一遇的游泳馆（三年就上过一次课），堆满了电脑随便用的图书馆。学校里四处都是花花草草，校门的花坛一月一换，班上的一体机切水果什么的信手拈来。就是任性就是壕！<br><a id="more"></a></p>
 <h1 id="师资">师资</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中的老师阵容十分强大，但随着这几年扩招老师资源也变得有些吃紧了。重点班尚能保证豪华阵容，在江西可以说不会逊色于任何学校的重点班，但平行班就会有很多刚进校不久的年轻老师了。当然不是说年轻老师一定不好，但是在高中尤其是高三，老师的经验与鼓舞对班级的提高是很有用的。所以二中这几年也在拼命招揽人才，目前一大批年轻老师已经走上一线，师资整体实力依然很强大。<br>3.理念：二中多年来一直重视综合素质教育，社团和各种活动巨多！学校也给很大的支持，每一届都会产生许多交际花。不过由于近年高考成绩不理想，15届开始进行了一些改革，加大了学业方面的侧重。所以未来二中也许会少一些交际花多一批学霸。</p>
 <h1 id="总结">总结</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中是一个神奇的地方，不论是在晨会上考试中挥斥方遒碾压众人的大神，还是走廊上树林旁对老师阿鲁巴时杀伐果断的凌厉，或是操场边天台上情侣基友看西山日落时的静谧，又抑或是顶楼学霸们在下课铃响时冲下楼梯直奔食堂的气势，它们一起组成了二中独一无二的体验。</p>
@@ -2218,7 +2335,7 @@
     <link href="http://daijiale.github.io/2015/04/03/%E3%80%90%E8%88%9E%E8%B9%88%E3%80%91poppin%20dance/"/>
     <id>http://daijiale.github.io/2015/04/03/【舞蹈】poppin dance/</id>
     <published>2015-04-03T05:20:09.000Z</published>
-    <updated>2015-12-24T09:32:46.000Z</updated>
+    <updated>2016-01-02T09:19:01.000Z</updated>
     <content type="html"><![CDATA[<p> <strong>Author:</strong> <a href="http://www.daijiale.cn" target="_blank" rel="external">Dancer小枫</a></p>
 <p><strong>舞龄：</strong>2年</p>
 <p><strong>舞种：</strong>poppin</p>
