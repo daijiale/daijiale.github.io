@@ -19,7 +19,12 @@
 <meta property="og:description" content="前言：这是一篇图像识别OCR技术、机器学习、以及简易搜索引擎构建相关的技术Blog，是自己在做毕设的同时，每天不断记录研究成果和心得的地方。">
 <meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/%E6%AF%95%E8%AE%BE%E5%AD%97%E4%BD%93%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E-%E7%94%A8%E4%BE%8B%E5%9B%BE%E5%88%9D%E7%A8%BF.png">
 <meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/%E6%AF%95%E8%AE%BE%E5%AD%97%E4%BD%93%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E.png">
-<meta property="og:updated_time" content="2016-03-02T09:18:14.000Z">
+<meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/%E6%AF%95%E8%AE%BEtesseract%E5%AE%89%E8%A3%85.png">
+<meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/%E6%AF%95%E8%AE%BEtesseract%E5%AE%89%E8%A3%852.png">
+<meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/%E6%AF%95%E8%AE%BEtesseract%E5%AE%89%E8%A3%853.png">
+<meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/%E6%AF%95%E8%AE%BEtess%E5%AE%89%E8%A3%854.png">
+<meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/%E6%AF%95%E8%AE%BEocr-php-test.png">
+<meta property="og:updated_time" content="2016-03-08T10:14:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【OCR/机器学习】基于 Tesseract的字体搜索引擎">
 <meta name="twitter:description" content="前言：这是一篇图像识别OCR技术、机器学习、以及简易搜索引擎构建相关的技术Blog，是自己在做毕设的同时，每天不断记录研究成果和心得的地方。">
@@ -98,7 +103,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言："><span class="toc-number">1.</span> <span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#选题背景"><span class="toc-number">2.</span> <span class="toc-text">选题背景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#需求分析"><span class="toc-number">3.</span> <span class="toc-text">需求分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#用例设计"><span class="toc-number">4.</span> <span class="toc-text">用例设计</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#应用领域"><span class="toc-number">5.</span> <span class="toc-text">应用领域</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#架构设计"><span class="toc-number">6.</span> <span class="toc-text">架构设计</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#技术点分析"><span class="toc-number">7.</span> <span class="toc-text">技术点分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#工程实现"><span class="toc-number">8.</span> <span class="toc-text">工程实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#测试数据"><span class="toc-number">9.</span> <span class="toc-text">测试数据</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#心得体会"><span class="toc-number">10.</span> <span class="toc-text">心得体会</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考文献"><span class="toc-number">11.</span> <span class="toc-text">参考文献</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言："><span class="toc-number">1.</span> <span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#选题背景"><span class="toc-number">2.</span> <span class="toc-text">选题背景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#需求分析"><span class="toc-number">3.</span> <span class="toc-text">需求分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#用例设计"><span class="toc-number">4.</span> <span class="toc-text">用例设计</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#应用领域"><span class="toc-number">5.</span> <span class="toc-text">应用领域</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#架构设计"><span class="toc-number">6.</span> <span class="toc-text">架构设计</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#技术点分析"><span class="toc-number">7.</span> <span class="toc-text">技术点分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#工程实现"><span class="toc-number">8.</span> <span class="toc-text">工程实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Tesseract-OCR中间件实现"><span class="toc-number">8.1.</span> <span class="toc-text">Tesseract-OCR中间件实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-先翻墙"><span class="toc-number">8.1.1.</span> <span class="toc-text">1.先翻墙</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-打开Mac_OS的终端，键入"><span class="toc-number">8.1.2.</span> <span class="toc-text">2.打开Mac OS的终端，键入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-如果未同意Xcode协议许可，需要先键入协议许可，同意。"><span class="toc-number">8.1.3.</span> <span class="toc-text">3.如果未同意Xcode协议许可，需要先键入协议许可，同意。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-继续使用Homebrew安装"><span class="toc-number">8.1.4.</span> <span class="toc-text">4.继续使用Homebrew安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-安装成功后，进行测试，看Tesseract能否在Mac_OS上正常运行,如下图所示。"><span class="toc-number">8.1.5.</span> <span class="toc-text">5.安装成功后，进行测试，看Tesseract能否在Mac OS上正常运行,如下图所示。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-这里解释下Tesseract终端下的用法："><span class="toc-number">8.1.6.</span> <span class="toc-text">6.这里解释下Tesseract终端下的用法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-现在我们来使用测试一下，如下图"><span class="toc-number">8.1.7.</span> <span class="toc-text">7.现在我们来使用测试一下，如下图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-现在我们来建立字体库以及字体数据的训练"><span class="toc-number">8.1.8.</span> <span class="toc-text">8.现在我们来建立字体库以及字体数据的训练</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#字体库建立的官方原版说明："><span class="toc-number">8.1.8.1.</span> <span class="toc-text">字体库建立的官方原版说明：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如何进行机器学习，训练自定义新数据："><span class="toc-number">8.1.8.2.</span> <span class="toc-text">如何进行机器学习，训练自定义新数据：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实践过程："><span class="toc-number">8.1.8.3.</span> <span class="toc-text">实践过程：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后端工程实现"><span class="toc-number">8.2.</span> <span class="toc-text">后端工程实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搜索引擎中间件实现"><span class="toc-number">8.3.</span> <span class="toc-text">搜索引擎中间件实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#前端工程实现"><span class="toc-number">8.4.</span> <span class="toc-text">前端工程实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#移动端工程实现"><span class="toc-number">8.5.</span> <span class="toc-text">移动端工程实现</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#测试数据"><span class="toc-number">9.</span> <span class="toc-text">测试数据</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#心得体会"><span class="toc-number">10.</span> <span class="toc-text">心得体会</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考文献"><span class="toc-number">11.</span> <span class="toc-text">参考文献</span></a></li></ol>
 		
 		</div>
 		
@@ -117,7 +122,48 @@
 <li>考古发现</li>
 </ul>
 <h1 id="架构设计">架构设计</h1><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/%E6%AF%95%E8%AE%BE%E5%AD%97%E4%BD%93%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E.png" alt=""></p>
-<h1 id="技术点分析">技术点分析</h1><h1 id="工程实现">工程实现</h1><h1 id="测试数据">测试数据</h1><h1 id="心得体会">心得体会</h1><h1 id="参考文献">参考文献</h1><ul>
+<h1 id="技术点分析">技术点分析</h1><h1 id="工程实现">工程实现</h1><h2 id="Tesseract-OCR中间件实现">Tesseract-OCR中间件实现</h2><h3 id="1-先翻墙">1.先翻墙</h3><h3 id="2-打开Mac_OS的终端，键入">2.打开Mac OS的终端，键入</h3><pre><code><span class="comment"><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install tesseract</span><br></pre></td></tr></table></figure></span>
+</code></pre><h3 id="3-如果未同意Xcode协议许可，需要先键入协议许可，同意。">3.如果未同意Xcode协议许可，需要先键入协议许可，同意。</h3><pre><code><span class="comment"><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo xcodebuild -license&#10;&#10;...&#10;&#10;agree</span><br></pre></td></tr></table></figure></span>
+</code></pre><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/%E6%AF%95%E8%AE%BEtesseract%E5%AE%89%E8%A3%85.png" alt=""></p>
+<h3 id="4-继续使用Homebrew安装">4.继续使用Homebrew安装</h3><pre><code><span class="comment"><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install tesseract</span><br></pre></td></tr></table></figure></span>
+</code></pre><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/%E6%AF%95%E8%AE%BEtesseract%E5%AE%89%E8%A3%852.png" alt=""></p>
+<h3 id="5-安装成功后，进行测试，看Tesseract能否在Mac_OS上正常运行,如下图所示。">5.安装成功后，进行测试，看Tesseract能否在Mac OS上正常运行,如下图所示。</h3><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/%E6%AF%95%E8%AE%BEtesseract%E5%AE%89%E8%A3%853.png" alt=""></p>
+<h3 id="6-这里解释下Tesseract终端下的用法：">6.这里解释下Tesseract终端下的用法：</h3><pre><code><span class="comment"><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#9;Usage:tesseract imagename outputbase [-l lang] [-psm pagesegmode] [configfile...]&#10;pagesegmode values are:&#10;0 = Orientation and script detection (OSD) only.&#10;1 = Automatic page segmentation with OSD.&#10;2 = Automatic page segmentation, but no OSD, or OCR&#10;3 = Fully automatic page segmentation, but no OSD. (Default)&#10;4 = Assume a single column of text of variable sizes.&#10;5 = Assume a single uniform block of vertically aligned text.&#10;6 = Assume a single uniform block of text.&#10;7 = Treat the image as a single text line.&#10;8 = Treat the image as a single word.&#10;9 = Treat the image as a single word in a circle.&#10;10 = Treat the image as a single character.&#10;-l lang and/or -psm pagesegmode must occur before anyconfigfile.</span><br></pre></td></tr></table></figure></span>
+</code></pre><ul>
+<li><p>其中：    </p>
+  <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tesseract imagename outputbase [-l lang] [-psm pagesegmode] [configfile...]</span><br></pre></td></tr></table></figure>
+<p> 表示 <code>tesseract    图片名  输出文件名 -l 字库文件 -psm pagesegmode 配置文件</code>。</p>
+</li>
+<li><p>例如：<code>tesseract code.jpg result  -l chi_sim -psm 7 nobatch</code></p>
+<ul>
+<li><code>-l chi_sim</code> 表示用简体中文字库（需要下载中文字库文件，解压后，存放到<code>tessdata</code>目录下去,字库文件扩展名为 <code>.raineddata</code>简体中文字库文件名为:  <code>chi_sim.traineddata</code>）。</li>
+<li><code>-psm 7</code>表示告诉tesseract <code>code.jpg</code>图片是一行文本  这个参数可以减少识别错误率.  默认为 <code>3</code>。</li>
+<li>configfile 参数值为tessdata\configs 和  tessdata\tessconfigs 目录下的文件名。</li>
+</ul>
+</li>
+</ul>
+<h3 id="7-现在我们来使用测试一下，如下图">7.现在我们来使用测试一下，如下图</h3><p><strong>英文字体测试：</strong><br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/%E6%AF%95%E8%AE%BEtess%E5%AE%89%E8%A3%854.png" alt=""></p>
+<p><strong>中文字体测试：</strong><br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/%E6%AF%95%E8%AE%BEocr-php-test.png" alt=""></p>
+<h3 id="8-现在我们来建立字体库以及字体数据的训练">8.现在我们来建立字体库以及字体数据的训练</h3><h4 id="字体库建立的官方原版说明：">字体库建立的官方原版说明：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">**font_properties (new in 3.01)**&#10;&#10;A new requirement for training in 3.01 is a font_properties file. The purpose of this file is to provide font style information that will appear in the output when the font is recognized. The font_properties file is a text file specified by the -F filename option to mftraining.&#10;&#10;Each line of the font_properties file is formatted as follows:&#10;&#10;&#60;fontname&#62; &#60;italic&#62; &#60;bold&#62; &#60;fixed&#62; &#60;serif&#62; &#60;fraktur&#62;&#10;where &#60;fontname&#62; is a string naming the font (no spaces allowed!), and &#60;italic&#62;, &#60;bold&#62;, &#60;fixed&#62;, &#60;serif&#62; and &#60;fraktur&#62; are all simple 0 or 1 flags indicating whether the font has the named property.&#10;&#10;When running mftraining, each .tr filename must match an entry in the font_properties file, or mftraining will abort. At some point, possibly before the release of 3.01, this matching requirement is likely to shift to the font name in the .tr file itself. The name of the .tr file may be either fontname.tr or [lang].[fontname].exp[num].tr.&#10;&#10;**Example:**&#10;&#10;font_properties file:&#10;&#10;timesitalic 1 0 0 1 0&#10;shapeclustering -F font_properties -U unicharset eng.timesitalic.exp0.tr&#10;mftraining -F font_properties -U unicharset -O eng.unicharset eng.timesitalic.exp0.tr &#10;Note that in 3.03, there is a default font_properties file, that covers 3000 fonts (not necessarily accurately) in training/langdata/font_properties.&#10;&#10;**Clustering**&#10;&#10;When the character features of all the training pages have been extracted, we need to cluster them to create the prototypes.&#10;&#10;The character shape features can be clustered using the shapeclustering, mftraining and cntraining programs:&#10;&#10;**shapeclustering (new in 3.02)**&#10;&#10;shapeclustering should not be used except for the Indic languages.&#10;&#10;shapeclustering -F font_properties -U unicharset lang.fontname.exp0.tr lang.fontname.exp1.tr ...&#10;shapeclustering creates a master shape table by shape clustering and writes it to a file named shapetable.&#10;&#10;**mftraining**&#10;&#10;mftraining -F font_properties -U unicharset -O lang.unicharset lang.fontname.exp0.tr lang.fontname.exp1.tr ...&#10;The -U file is the unicharset generated by unicharset_extractor above, and lang.unicharset is the output unicharset that will be given to combine_tessdata.&#10;&#10;mftraining will output two other data files: inttemp (the shape prototypes) and pffmtable (the number of expected features for each character). In versions 3.00/3.01, a third file called Microfeat is also written by this program, but it is not used. Later versions don&#39;t produce this file.&#10;&#10;NOTE: mftraining will produce a shapetable file if you didn&#39;t run shapeclustering. You must include this shapetable in your traineddata file, whether or not shapeclustering was used.&#10;&#10;**cntraining**&#10;&#10;cntraining lang.fontname.exp0.tr lang.fontname.exp1.tr ...&#10;This will output the normproto data file (the character normalization sensitivity prototypes).</span><br></pre></td></tr></table></figure>
+<h4 id="如何进行机器学习，训练自定义新数据：">如何进行机器学习，训练自定义新数据：</h4><ul>
+<li><a href="https://github.com/tesseract-ocr/tesseract/wiki/TrainingTesseract" target="_blank" rel="external">官方wiki</a></li>
+</ul>
+<ul>
+<li><a href="http://wangjunle23.blog.163.com/blog/static/117838171201323031458171/" target="_blank" rel="external">中文指导</a></li>
+</ul>
+<h4 id="实践过程：">实践过程：</h4><ul>
+<li>首先可以从Tesseract官方Github上下载官方的语言包进行参考：<a href="https://github.com/tesseract-ocr/tessdata" target="_blank" rel="external">传送门</a></li>
+</ul>
+<ul>
+<li></li>
+</ul>
+<h2 id="后端工程实现">后端工程实现</h2><p>后端的架构，主要分为三块：Tesseract-OCR-PHP中间件，PHP图片传输中间件，PHP云检索中间件。</p>
+<p>开源库：使用<a href="">Composer</a> 依赖 <a href="http://silex.sensiolabs.org/doc/intro.html" target="_blank" rel="external">Silex framework </a>、<a href="https://github.com/thiagoalessio/tesseract-ocr-for-php" target="_blank" rel="external">thiagoalessio</a></p>
+<h2 id="搜索引擎中间件实现">搜索引擎中间件实现</h2><h2 id="前端工程实现">前端工程实现</h2><h2 id="移动端工程实现">移动端工程实现</h2><h1 id="测试数据">测试数据</h1><h1 id="心得体会">心得体会</h1><h1 id="参考文献">参考文献</h1><ul>
+<li><a href="http://blog.csdn.net/viewcode/article/details/7917320" target="_blank" rel="external"> tesseract OCR的多语言，多字体字符识别</a></li>
+<li><a href="http://linusp.github.io/2015/04/17/tesseract-install-usage.html" target="_blank" rel="external">Tesseract:安装与命令行使用</a></li>
+<li><a href="https://liuzhichao.com/p/1940.html" target="_blank" rel="external">Mac下使用Vagrant打造本地开发环境</a></li>
+<li><a href="http://www.codeceo.com/article/php-ocr-tesseract-get-text.html?url_type=39&amp;object_type=webpage&amp;pos=1" target="_blank" rel="external">PHP OCR实战：用Tesseract从图像中读取文字</a></li>
 <li><a href="https://github.com/tesseract-ocr" target="_blank" rel="external">Github—Tesseract-OCR</a></li>
 <li><a href="http://blog.csdn.net/firehood_/article/details/8433077" target="_blank" rel="external"> Tesseract-OCR 字符识别—-样本训练</a></li>
 <li><a href="http://bbs.aardio.com/forum.php?mod=viewthread&amp;tid=12601" target="_blank" rel="external">开源图文识别引擎实现验证码识别 </a></li>
@@ -163,6 +209,14 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2016/03/08/【PHP】 Composer入门实践/" title="【PHP】Composer入门实践">
+  <strong>上一篇：</strong><br/>
+  <span>
+  【PHP】Composer入门实践</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2016/02/19/【前端】以后前端妹子再问你页面为何加载慢，请告诉她这几个套路/"  title="【前端】以后前端妹子再问你页面为何加载慢，请告诉她这几个套路">
@@ -186,7 +240,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言："><span class="toc-number">1.</span> <span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#选题背景"><span class="toc-number">2.</span> <span class="toc-text">选题背景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#需求分析"><span class="toc-number">3.</span> <span class="toc-text">需求分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#用例设计"><span class="toc-number">4.</span> <span class="toc-text">用例设计</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#应用领域"><span class="toc-number">5.</span> <span class="toc-text">应用领域</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#架构设计"><span class="toc-number">6.</span> <span class="toc-text">架构设计</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#技术点分析"><span class="toc-number">7.</span> <span class="toc-text">技术点分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#工程实现"><span class="toc-number">8.</span> <span class="toc-text">工程实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#测试数据"><span class="toc-number">9.</span> <span class="toc-text">测试数据</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#心得体会"><span class="toc-number">10.</span> <span class="toc-text">心得体会</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考文献"><span class="toc-number">11.</span> <span class="toc-text">参考文献</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言："><span class="toc-number">1.</span> <span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#选题背景"><span class="toc-number">2.</span> <span class="toc-text">选题背景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#需求分析"><span class="toc-number">3.</span> <span class="toc-text">需求分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#用例设计"><span class="toc-number">4.</span> <span class="toc-text">用例设计</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#应用领域"><span class="toc-number">5.</span> <span class="toc-text">应用领域</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#架构设计"><span class="toc-number">6.</span> <span class="toc-text">架构设计</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#技术点分析"><span class="toc-number">7.</span> <span class="toc-text">技术点分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#工程实现"><span class="toc-number">8.</span> <span class="toc-text">工程实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Tesseract-OCR中间件实现"><span class="toc-number">8.1.</span> <span class="toc-text">Tesseract-OCR中间件实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-先翻墙"><span class="toc-number">8.1.1.</span> <span class="toc-text">1.先翻墙</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-打开Mac_OS的终端，键入"><span class="toc-number">8.1.2.</span> <span class="toc-text">2.打开Mac OS的终端，键入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-如果未同意Xcode协议许可，需要先键入协议许可，同意。"><span class="toc-number">8.1.3.</span> <span class="toc-text">3.如果未同意Xcode协议许可，需要先键入协议许可，同意。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-继续使用Homebrew安装"><span class="toc-number">8.1.4.</span> <span class="toc-text">4.继续使用Homebrew安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-安装成功后，进行测试，看Tesseract能否在Mac_OS上正常运行,如下图所示。"><span class="toc-number">8.1.5.</span> <span class="toc-text">5.安装成功后，进行测试，看Tesseract能否在Mac OS上正常运行,如下图所示。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-这里解释下Tesseract终端下的用法："><span class="toc-number">8.1.6.</span> <span class="toc-text">6.这里解释下Tesseract终端下的用法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-现在我们来使用测试一下，如下图"><span class="toc-number">8.1.7.</span> <span class="toc-text">7.现在我们来使用测试一下，如下图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-现在我们来建立字体库以及字体数据的训练"><span class="toc-number">8.1.8.</span> <span class="toc-text">8.现在我们来建立字体库以及字体数据的训练</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#字体库建立的官方原版说明："><span class="toc-number">8.1.8.1.</span> <span class="toc-text">字体库建立的官方原版说明：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如何进行机器学习，训练自定义新数据："><span class="toc-number">8.1.8.2.</span> <span class="toc-text">如何进行机器学习，训练自定义新数据：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实践过程："><span class="toc-number">8.1.8.3.</span> <span class="toc-text">实践过程：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后端工程实现"><span class="toc-number">8.2.</span> <span class="toc-text">后端工程实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搜索引擎中间件实现"><span class="toc-number">8.3.</span> <span class="toc-text">搜索引擎中间件实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#前端工程实现"><span class="toc-number">8.4.</span> <span class="toc-text">前端工程实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#移动端工程实现"><span class="toc-number">8.5.</span> <span class="toc-text">移动端工程实现</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#测试数据"><span class="toc-number">9.</span> <span class="toc-text">测试数据</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#心得体会"><span class="toc-number">10.</span> <span class="toc-text">心得体会</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考文献"><span class="toc-number">11.</span> <span class="toc-text">参考文献</span></a></li></ol>
  
   </div>
 
@@ -208,7 +262,7 @@
 		  
 		
 		  
-			<li><a href="/categories/原创博文/Web开发笔记/" title="Web开发笔记">Web开发笔记<sup>12</sup></a></li>
+			<li><a href="/categories/原创博文/Web开发笔记/" title="Web开发笔记">Web开发笔记<sup>13</sup></a></li>
 		  
 		
 		  
@@ -220,7 +274,7 @@
 		  
 		
 		  
-			<li><a href="/categories/原创博文/" title="原创博文">原创博文<sup>25</sup></a></li>
+			<li><a href="/categories/原创博文/" title="原创博文">原创博文<sup>26</sup></a></li>
 		  
 		
 		  
@@ -249,7 +303,7 @@
 			
 		
 			
-				<li><a href="/tags/PHP/" title="PHP">PHP<sup>5</sup></a></li>
+				<li><a href="/tags/PHP/" title="PHP">PHP<sup>6</sup></a></li>
 			
 		
 			
