@@ -4,26 +4,32 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>【Node.js-持续更新】Node.js学习开发笔记 | DaiJiale&#39;s Blog</title>
+    <title>【个人】关于百度地图加油业务的切身体验 | DaiJiale&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Jiale Dai">
     
 
     
-    <meta name="description" content="前言
-第一次接触Node.js是大二在四川长虹实习期间，距现在已经1年多了，在自己的一些项目中有用到，积累了一些经验，但是想更加系统的学习一下这门技术（主要这两年发展的太火了。。），同时也想把一些开发过程中的问题和案例分享出来， 特为此撰写一篇博客笔记…">
+    <meta name="description" content="在今年3月入职百度前，因HR的问题，Delay了一周，但同时也得到了一个在北京龙禹加油站兼职的机会，可以提前切身体会一下团队的产品成果，帮助自己以后更好地融入后续产品开发过程，感谢马总和君威的关照，感谢团队提供的机会，这里分享和梳理一下这几天的体会心得。。。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【Node.js-持续更新】Node.js学习开发笔记">
-<meta property="og:url" content="http://daijiale.github.io/2015/07/06/【Node.js】Node.js学习开发笔记/index.html">
+<meta property="og:title" content="【个人】关于百度地图加油业务的切身体验">
+<meta property="og:url" content="http://daijiale.github.io/2016/03/22/【个人】关于百度地图加油新业务的切身体验/index.html">
 <meta property="og:site_name" content="DaiJiale's Blog">
-<meta property="og:description" content="前言
-第一次接触Node.js是大二在四川长虹实习期间，距现在已经1年多了，在自己的一些项目中有用到，积累了一些经验，但是想更加系统的学习一下这门技术（主要这两年发展的太火了。。），同时也想把一些开发过程中的问题和案例分享出来， 特为此撰写一篇博客笔记…">
-<meta property="og:updated_time" content="2016-03-08T10:27:06.000Z">
+<meta property="og:description" content="在今年3月入职百度前，因HR的问题，Delay了一周，但同时也得到了一个在北京龙禹加油站兼职的机会，可以提前切身体会一下团队的产品成果，帮助自己以后更好地融入后续产品开发过程，感谢马总和君威的关照，感谢团队提供的机会，这里分享和梳理一下这几天的体会心得。。。">
+<meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogIMG_2178.PNG">
+<meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogIMG_2179.PNG">
+<meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogIMG_2180.PNG">
+<meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogIMG_2181.PNG">
+<meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogIMG_2182.PNG">
+<meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogIMG_2183.PNG">
+<meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogIMG_2184.PNG">
+<meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogIMG_2186.PNG">
+<meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogIMG_2187.PNG">
+<meta property="og:updated_time" content="2016-03-22T12:41:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【Node.js-持续更新】Node.js学习开发笔记">
-<meta name="twitter:description" content="前言
-第一次接触Node.js是大二在四川长虹实习期间，距现在已经1年多了，在自己的一些项目中有用到，积累了一些经验，但是想更加系统的学习一下这门技术（主要这两年发展的太火了。。），同时也想把一些开发过程中的问题和案例分享出来， 特为此撰写一篇博客笔记…">
+<meta name="twitter:title" content="【个人】关于百度地图加油业务的切身体验">
+<meta name="twitter:description" content="在今年3月入职百度前，因HR的问题，Delay了一周，但同时也得到了一个在北京龙禹加油站兼职的机会，可以提前切身体会一下团队的产品成果，帮助自己以后更好地融入后续产品开发过程，感谢马总和君威的关照，感谢团队提供的机会，这里分享和梳理一下这几天的体会心得。。。">
 
     
     <link rel="alternative" href="/atom.xml" title="DaiJiale&#39;s Blog" type="application/atom+xml">
@@ -83,14 +89,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/07/06/【Node.js】Node.js学习开发笔记/" title="【Node.js-持续更新】Node.js学习开发笔记" itemprop="url">【Node.js-持续更新】Node.js学习开发笔记</a>
+      <a href="/2016/03/22/【个人】关于百度地图加油新业务的切身体验/" title="【个人】关于百度地图加油业务的切身体验" itemprop="url">【个人】关于百度地图加油业务的切身体验</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Jiale Dai" target="_blank" itemprop="author">Jiale Dai</a>
 		
   <p class="article-time">
-    <time datetime="2015-07-06T11:21:11.000Z" itemprop="datePublished"> 发表于 2015-07-06</time>
+    <time datetime="2016-03-22T11:12:11.000Z" itemprop="datePublished"> 发表于 2016-03-22</time>
     
   </p>
 </header>
@@ -99,27 +105,56 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#学习篇"><span class="toc-number">2.</span> <span class="toc-text">学习篇</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Node-js相比于PHP、Java、Python的优势"><span class="toc-number">2.1.</span> <span class="toc-text">Node.js相比于PHP、Java、Python的优势</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Node-js的版本"><span class="toc-number">2.2.</span> <span class="toc-text">Node.js的版本</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#开发篇"><span class="toc-number">3.</span> <span class="toc-text">开发篇</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#3月17日"><span class="toc-number">1.</span> <span class="toc-text">3月17日</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#在和用户交流时遇到的问题:"><span class="toc-number">1.1.</span> <span class="toc-text">在和用户交流时遇到的问题:</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3月18日"><span class="toc-number">2.</span> <span class="toc-text">3月18日</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#在和用户交流时遇到的问题:-1"><span class="toc-number">2.1.</span> <span class="toc-text">在和用户交流时遇到的问题:</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3月21日"><span class="toc-number">3.</span> <span class="toc-text">3月21日</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#在和用户交流时遇到的问题:-2"><span class="toc-number">3.1.</span> <span class="toc-text">在和用户交流时遇到的问题:</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#百度加油使用步骤"><span class="toc-number">4.</span> <span class="toc-text">百度加油使用步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一步:下载百度地图APP到你的手机"><span class="toc-number">4.1.</span> <span class="toc-text">第一步:下载百度地图APP到你的手机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二步:打开百度地图APP，点开底部的“发现周边服务”"><span class="toc-number">4.2.</span> <span class="toc-text">第二步:打开百度地图APP，点开底部的“发现周边服务”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三步:默认显示的是“吃喝玩乐”，切换到旁边的“车主服务”，对，没错，就是右上角还标红了大写的“加油”的那个。"><span class="toc-number">4.3.</span> <span class="toc-text">第三步:默认显示的是“吃喝玩乐”，切换到旁边的“车主服务”，对，没错，就是右上角还标红了大写的“加油”的那个。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第四步:进入到“车主服务”后，六宫格菜单的第一个按钮就是“加油业务”入口，点击即可。"><span class="toc-number">4.4.</span> <span class="toc-text">第四步:进入到“车主服务”后，六宫格菜单的第一个按钮就是“加油业务”入口，点击即可。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第五步:进入到“加油业务”后，你就能看到如下的订单页面。"><span class="toc-number">4.5.</span> <span class="toc-text">第五步:进入到“加油业务”后，你就能看到如下的订单页面。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第六步:下单支付"><span class="toc-number">4.6.</span> <span class="toc-text">第六步:下单支付</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<h1 id="前言">前言</h1><blockquote>
-<p>第一次接触Node.js是大二在四川长虹实习期间，距现在已经1年多了，在自己的一些项目中有用到，积累了一些经验，但是想更加系统的学习一下这门技术（主要这两年发展的太火了。。），同时也想把一些开发过程中的问题和案例分享出来， 特为此撰写一篇博客笔记…<br><a id="more"></a></p>
-</blockquote>
-<h1 id="学习篇">学习篇</h1><h2 id="Node-js相比于PHP、Java、Python的优势">Node.js相比于PHP、Java、Python的优势</h2><ul>
-<li><p><a href="http://www.zhihu.com/question/20961574" target="_blank" rel="external">Node.js和Python优势对比</a></p>
+		<p>在今年3月入职百度前，因HR的问题，Delay了一周，但同时也得到了一个在北京龙禹加油站兼职的机会，可以提前切身体会一下团队的产品成果，帮助自己以后更好地融入后续产品开发过程，感谢马总和君威的关照，感谢团队提供的机会，这里分享和梳理一下这几天的体会心得。。。<br><a id="more"></a></p>
+<h1 id="3月17日">3月17日</h1><p>第一天驻场，10点前到加油站，正值早高峰末期，认识了君威、销售老白和加油站的众多蓝衣小伙，人都很nice。</p>
+<h2 id="在和用户交流时遇到的问题:">在和用户交流时遇到的问题:</h2><ul>
+<li><p>1.基于地图的加油入口不明显，很多车主用户（还是经常使用百度地图的车主）都无法自己找到入口，需要地推人员帮忙，虽然目前有两种方式，一是通过搜索框，直接输入“加油”进去，二是通过底部的周边服务菜单-&gt;车主服务，但是对于车主用户（一般60、70后居多），都是很难上手的。</p>
 </li>
-<li><p><a href="http://note.youdao.com/share/?id=a83b62577821d670122f8d08a67d8fd4&amp;type=note" target="_blank" rel="external">Node.js和PHP的优势对比</a></p>
-<ul>
-<li><a href="http://www.admin10000.com/document/6536.html" target="_blank" rel="external">Node.js和PHP的优势对比2</a></li>
-</ul>
+<li><p>2.有部分用户的百度地图App版本过低，导致出现有意愿使用缺无法找到服务的情况。</p>
+</li>
+<li><p>3.对于支付方式，部分用户期望除了“百度钱包、支付宝、网银”之外还能有微信支付。</p>
+</li>
+<li><p>4.车主用户里有一部分专业司机（滴滴、Uber专车司机），存在心存刷单的心理，他们一般有多个手机号，希望通过更换手机登陆账号，来获得更多油劵红包奖励（毕竟新用户首单送30元油劵），但是无法找到用户注销和切换登陆的入口，可以在我的账号那增加入口，方便这类用户。</p>
 </li>
 </ul>
-<h2 id="Node-js的版本">Node.js的版本</h2><ul>
-<li>偶数位为稳定版本（-0.6x   -0.8x  -0.10.x）</li>
-<li>奇数为非稳定版本（-0.7x   -0.9x  -0.11.x）</li>
+<h1 id="3月18日">3月18日</h1><p>认识了新人，一大三校园兼职哥们，人也很不错。</p>
+<h2 id="在和用户交流时遇到的问题:-1">在和用户交流时遇到的问题:</h2><ul>
+<li>1.有一些用户地图版本太低，无法使用加油服务。有些无“周边服务”，可以通过框来搜索“加油”进入，有些是连搜索 “加油” 都无法进入。</li>
+<li><p>2.接着第一条，很多用户想使用加油服务，但是因为用户更新百度地图和下载最新百度地图App需要耗费100M多的流量和3-5分钟时间，所以导致放弃使用。建议提供一个H5应用入口，通过扫一扫就可以直接使用我们的服务，让未安装/更新百度地图App的新用户可以快速使用，因为有时候加油站的车流很多，等待时间就是决定性因素（微信支付/支付宝之所以可以快速占领便利店和超市，就是因为一个字：快）。</p>
+</li>
+<li><p>3.接着第二条，很多人都会把传单上领卷的扫一扫通道误解为只要扫一扫就可以进入我们的加油服务。。。结果被运营和地推同学告知需要下载APP-有网银….等等接下来的一系列操作，心里落差太大，接受不了，对比之下会觉得很反锁，很排斥，所以就立刻粉转黑了。。。（唉，唉，唉，可惜）</p>
+</li>
 </ul>
-<h1 id="开发篇">开发篇</h1>  
+<h1 id="3月21日">3月21日</h1><p>这周换到了太阳宫的新合作油站，刚好对比一下。</p>
+<h2 id="在和用户交流时遇到的问题:-2">在和用户交流时遇到的问题:</h2><ul>
+<li>1.针对油站工作人员用户，历史订单可以再多加一个每日订单总计功能，不然在冲单过程中，需要工作人员一个一个去数单量，效率低，且体验不友好。</li>
+<li>2.大部分用户是通过看到加油站的海报，才知道百度加油业务的，当然也有通过百度地图导流过来的，不过数量很少，不太清楚地图这块的推送策略，如果能准确定位用户人群，多次推送（比如：a.油卷快过期的前三天，推送一下；b.检索北京加油站的用户，推送一下；c.导航到合作油站附近其他地点的，推送一下；等等，这样是不是效果会更好？）</li>
+</ul>
+<h1 id="百度加油使用步骤">百度加油使用步骤</h1><p>最后打个广告，也图文并茂地介绍下百度地图加油业务的使用步骤：</p>
+<h2 id="第一步:下载百度地图APP到你的手机">第一步:下载百度地图APP到你的手机</h2><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogIMG_2178.PNG" alt=""></p>
+<h2 id="第二步:打开百度地图APP，点开底部的“发现周边服务”">第二步:打开百度地图APP，点开底部的“发现周边服务”</h2><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogIMG_2179.PNG" alt=""></p>
+<h2 id="第三步:默认显示的是“吃喝玩乐”，切换到旁边的“车主服务”，对，没错，就是右上角还标红了大写的“加油”的那个。">第三步:默认显示的是“吃喝玩乐”，切换到旁边的“车主服务”，对，没错，就是右上角还标红了大写的“加油”的那个。</h2><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogIMG_2180.PNG" alt=""></p>
+<h2 id="第四步:进入到“车主服务”后，六宫格菜单的第一个按钮就是“加油业务”入口，点击即可。">第四步:进入到“车主服务”后，六宫格菜单的第一个按钮就是“加油业务”入口，点击即可。</h2><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogIMG_2181.PNG" alt=""></p>
+<h2 id="第五步:进入到“加油业务”后，你就能看到如下的订单页面。">第五步:进入到“加油业务”后，你就能看到如下的订单页面。</h2><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogIMG_2182.PNG" alt=""></p>
+<h2 id="第六步:下单支付">第六步:下单支付</h2><p>-&gt;选择油站（一般会自动帮用户定位最近的合作油站）</p>
+<p>-&gt;填写所加油量金额</p>
+<p>-&gt;选择油品类型和油枪号</p>
+<p>-&gt;注册百度账号-&gt;使用油卷（支付时候抵扣对应金额）</p>
+<p>-&gt;前去支付</p>
+<p>-&gt;<strong>支付方式可以使用<code>百度钱包</code>/<code>支付宝</code>/<code>网银</code></strong></p>
+<p>-&gt;支付成功</p>
+<p>-&gt;油站工作人员确认</p>
+<p>-&gt;打印出票</p>
+<p>-&gt;<strong>最后，潇洒离去（纳尼？忘带钱包，忘带油卡也能加油？特么真方便！）</strong></p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogIMG_2183.PNG" alt=""></p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogIMG_2184.PNG" alt=""></p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogIMG_2186.PNG" alt=""></p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogIMG_2187.PNG" alt=""></p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -130,18 +165,13 @@
 </div>
 
 
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Javascript/">Javascript</a><a href="/tags/Node-js/">Node.js</a>
-  </div>
-
 </div>
 
 
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://daijiale.github.io/2015/07/06/【Node.js】Node.js学习开发笔记/" data-title="【Node.js-持续更新】Node.js学习开发笔记 | DaiJiale&#39;s Blog" data-tsina="3173290371" class="share clearfix">
+	  <div data-url="http://daijiale.github.io/2016/03/22/【个人】关于百度地图加油新业务的切身体验/" data-title="【个人】关于百度地图加油业务的切身体验 | DaiJiale&#39;s Blog" data-tsina="3173290371" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -154,19 +184,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/07/10/【Android】Android开发常用知识点总结/" title="【Android-持续更新】Android开发常用知识点总结">
-  <strong>上一篇：</strong><br/>
-  <span>
-  【Android-持续更新】Android开发常用知识点总结</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/06/29/【个人】在百度实习的那些日子/"  title="【个人】在百度实习的那些日子">
+<a href="/2016/03/08/【PHP】 Composer入门实践/"  title="【PHP】Composer入门实践">
  <strong>下一篇：</strong><br/> 
- <span>【个人】在百度实习的那些日子
+ <span>【PHP】Composer入门实践
 </span>
 </a>
 </div>
@@ -175,7 +197,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/07/06/【Node.js】Node.js学习开发笔记/" data-title="【Node.js-持续更新】Node.js学习开发笔记" data-url="http://daijiale.github.io/2015/07/06/【Node.js】Node.js学习开发笔记/"></div>
+	<div class="ds-thread" data-thread-key="2016/03/22/【个人】关于百度地图加油新业务的切身体验/" data-title="【个人】关于百度地图加油业务的切身体验" data-url="http://daijiale.github.io/2016/03/22/【个人】关于百度地图加油新业务的切身体验/"></div>
 </section>
 
 
@@ -185,7 +207,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#学习篇"><span class="toc-number">2.</span> <span class="toc-text">学习篇</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Node-js相比于PHP、Java、Python的优势"><span class="toc-number">2.1.</span> <span class="toc-text">Node.js相比于PHP、Java、Python的优势</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Node-js的版本"><span class="toc-number">2.2.</span> <span class="toc-text">Node.js的版本</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#开发篇"><span class="toc-number">3.</span> <span class="toc-text">开发篇</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#3月17日"><span class="toc-number">1.</span> <span class="toc-text">3月17日</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#在和用户交流时遇到的问题:"><span class="toc-number">1.1.</span> <span class="toc-text">在和用户交流时遇到的问题:</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3月18日"><span class="toc-number">2.</span> <span class="toc-text">3月18日</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#在和用户交流时遇到的问题:-1"><span class="toc-number">2.1.</span> <span class="toc-text">在和用户交流时遇到的问题:</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3月21日"><span class="toc-number">3.</span> <span class="toc-text">3月21日</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#在和用户交流时遇到的问题:-2"><span class="toc-number">3.1.</span> <span class="toc-text">在和用户交流时遇到的问题:</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#百度加油使用步骤"><span class="toc-number">4.</span> <span class="toc-text">百度加油使用步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一步:下载百度地图APP到你的手机"><span class="toc-number">4.1.</span> <span class="toc-text">第一步:下载百度地图APP到你的手机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二步:打开百度地图APP，点开底部的“发现周边服务”"><span class="toc-number">4.2.</span> <span class="toc-text">第二步:打开百度地图APP，点开底部的“发现周边服务”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三步:默认显示的是“吃喝玩乐”，切换到旁边的“车主服务”，对，没错，就是右上角还标红了大写的“加油”的那个。"><span class="toc-number">4.3.</span> <span class="toc-text">第三步:默认显示的是“吃喝玩乐”，切换到旁边的“车主服务”，对，没错，就是右上角还标红了大写的“加油”的那个。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第四步:进入到“车主服务”后，六宫格菜单的第一个按钮就是“加油业务”入口，点击即可。"><span class="toc-number">4.4.</span> <span class="toc-text">第四步:进入到“车主服务”后，六宫格菜单的第一个按钮就是“加油业务”入口，点击即可。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第五步:进入到“加油业务”后，你就能看到如下的订单页面。"><span class="toc-number">4.5.</span> <span class="toc-text">第五步:进入到“加油业务”后，你就能看到如下的订单页面。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第六步:下单支付"><span class="toc-number">4.6.</span> <span class="toc-text">第六步:下单支付</span></a></li></ol></li></ol>
  
   </div>
 
