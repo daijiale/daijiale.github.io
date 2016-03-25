@@ -72,7 +72,12 @@ brew update
 
 - 首先在Phpstorm中指定好刚下载好的自定义Php版本路径（含有php.int和其他扩展库）。
 - [参考教程](http://www.cnblogs.com/lishiyun19/p/4470086.html)，配置Xdebug。
-- 
+
+
+# PhpStorm构建MAMP服务器测试环境
+
+- [参考教程](http://blog.sina.com.cn/s/blog_a30629730102v6sc.html) 配置，成功后，测试如下图所示：
+![](http://7xi6qz.com1.z0.glb.clouddn.com/djlBlog_phpstormtest.png)
 
 
 
