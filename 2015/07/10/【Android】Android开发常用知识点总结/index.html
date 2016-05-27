@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://daijiale.github.io/2015/07/10/【Android】Android开发常用知识点总结/index.html">
 <meta property="og:site_name" content="DaiJiale's Blog">
 <meta property="og:description" content="Android开发常用知识点总结：">
-<meta property="og:updated_time" content="2016-03-08T10:27:06.000Z">
+<meta property="og:updated_time" content="2016-03-24T07:49:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【Android-持续更新】Android开发常用知识点总结">
 <meta name="twitter:description" content="Android开发常用知识点总结：">
@@ -32,7 +32,7 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
   <body>
@@ -110,28 +110,28 @@
 <p>  2.将URL传入下面<code>AsyncTask</code>中的<code>getJsonData()</code>。</p>
 <p>  3.再通过<code>getJsonData()</code>中的Json解析操作，将网络Json数据存储到程序里封装的<code>NewsBean</code>数据项对象 (和 <code>Json Obj</code>格式一一对应的关系) 中。</p>
 <p>  4.在<code>AsyncTask</code>的<code>onPostExecute</code>方法中，将<code>NewsBean</code>数据传递给<code>NewsAdapter</code>，来构造出<code>ListView</code>的数据源。</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class NewAsyncTask extend AsyncTask&#60;String,Void,List&#60;NewsBean&#62;&#62;&#123;&#10;&#9;protected List&#60;NewsBean&#62;doInBackground(...)&#123;&#10;&#9;&#9;return getJsonData(params[0]);&#10;&#9;&#125;&#10;&#9;&#10;&#9;protected onPostExecute(List&#60;NewsBean&#62; newsBean)&#123;&#10;&#9;&#9;super.onPostExecute(newsBean);&#10;&#9;&#9;NewsAdapter adapter = new Newsadapter(MainActivity.this,newsBean);&#10;&#9;&#9;mListView.setAdapter(adapter);  &#9;&#10;&#9;&#125;&#10;&#9;  &#9;&#10;&#125;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class NewAsyncTask extend AsyncTask&lt;String,Void,List&lt;NewsBean&gt;&gt;&#123;</span><br><span class="line">	protected List&lt;NewsBean&gt;doInBackground(...)&#123;</span><br><span class="line">		return getJsonData(params[0]);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	protected onPostExecute(List&lt;NewsBean&gt; newsBean)&#123;</span><br><span class="line">		super.onPostExecute(newsBean);</span><br><span class="line">		NewsAdapter adapter = new Newsadapter(MainActivity.this,newsBean);</span><br><span class="line">		mListView.setAdapter(adapter);  	</span><br><span class="line">	&#125;</span><br><span class="line">	  	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="图像异步加载">图像异步加载</h4><h5 id="多线程方式">多线程方式</h5><p>1.新建<code>ImageLoader</code>类，使用多线程去加载图片，引入<code>showImageByThread(ImageView imageView,String url)</code>方法，去通过<code>URL</code>获取图片数据，并转化成<code>Bitmap</code>数据，并在<code>Adapter</code>中调用该方法.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;public class ImageLoad &#123;&#10;&#9;public void showImageByThread(ImageView imageView,String url) &#123;&#9;&#9;new Thread()&#123;&#10;&#9;&#9;&#9;public void run()&#123;&#10;&#9;&#9;&#9;super.run();&#10;&#9;&#9;&#9;&#10;&#9;&#9;&#125;&#9;&#9;&#10;&#9;&#125;.start();&#10;&#125;&#10;&#9;public Bitmap getBitmapFromURL(String urlString)&#123;&#10;&#9;&#9;Bitmap bitmap;&#10;&#9;&#9;InputStream is;&#10;&#9;&#9;try &#123;&#10;&#9;&#9;&#9;URL url = new URL&#65288;urlString&#65289;&#65307;&#10;&#9;&#9;&#9;HttpURLConnection connection = (HttpURLConnection)url.openConnection();&#10;&#9;&#9;&#9;is = new BufferedInputStream(connection.getInputStream());&#10;&#9;&#9;&#9;bitmap = BitmapFactory.decodeStream(is);&#10;&#9;&#9;&#9;connection.disconnect();&#10;&#9;&#9;&#9;return bitmap;&#10;&#9;&#9;&#125;catch(java.io.IOException e)&#123;&#10;&#9;&#9;&#9;e.printStackTrace();&#10;&#9;&#9;&#125;finally&#123;&#10;&#9;&#9;&#9;is.close();&#10;&#9;&#9;&#125;&#10;&#9;&#9;return null;&#10;&#9;&#125;&#10;  &#10;  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class ImageLoad &#123;</span><br><span class="line">	public void showImageByThread(ImageView imageView,String url) &#123;		new Thread()&#123;</span><br><span class="line">			public void run()&#123;</span><br><span class="line">			super.run();</span><br><span class="line">			</span><br><span class="line">		&#125;		</span><br><span class="line">	&#125;.start();</span><br><span class="line">&#125;</span><br><span class="line">	public Bitmap getBitmapFromURL(String urlString)&#123;</span><br><span class="line">		Bitmap bitmap;</span><br><span class="line">		InputStream is;</span><br><span class="line">		try &#123;</span><br><span class="line">			URL url = new URL（urlString）；</span><br><span class="line">			HttpURLConnection connection = (HttpURLConnection)url.openConnection();</span><br><span class="line">			is = new BufferedInputStream(connection.getInputStream());</span><br><span class="line">			bitmap = BitmapFactory.decodeStream(is);</span><br><span class="line">			connection.disconnect();</span><br><span class="line">			return bitmap;</span><br><span class="line">		&#125;catch(java.io.IOException e)&#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;finally&#123;</span><br><span class="line">			is.close();</span><br><span class="line">		&#125;</span><br><span class="line">		return null;</span><br><span class="line">	&#125;</span><br><span class="line">  </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 <p>2.在<code>NewsAdapter</code>类中设置<code>xml</code>文件对应的<code>ImageView</code>控件ID和<code>showImageByThread</code>绑定。</p>
 <p>3.在子线程中去执行<code>bitmap</code>获取函数，并设置<code>handler</code>来绑定<code>ImageView</code></p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public class ImageLoad &#123;&#10;       &#10;       private ImageView mImageView;&#10;       private Handler handler = new Handler()&#123;&#10;       &#9;&#9;&#10;       &#9;&#9;public void handleMessage(Message msg)&#123;&#10;       &#9;&#9;&#9;super.handleMessage(msg);&#10;       &#9;&#9;&#9;&#10;       &#9;&#9;&#9;//&#23558;&#28040;&#24687;&#20256;&#36882;&#26469;&#30340;bitmap&#21462;&#20986;&#65292;&#35774;&#32622;&#32473;imageview&#10;       &#9;&#9;&#9;&#10;       &#9;&#9;&#9;mImageView.setImageBitmap((Bitmap)msg.obj);      &#9;&#9;&#9;&#10;       &#9;&#9;&#125;&#10;       &#10;       &#125;;&#10;  &#10;&#10;&#9;public void showImageByThread(ImageView imageView,final String url) &#123;&#10;&#9;&#9;&#9;mImageView = imageView;&#10;&#9;&#9;&#9;new Thread()&#123;&#10;&#9;&#9;&#9;&#9;public void run()&#123;&#10;&#9;&#9;&#9;&#9;&#9;super.run();&#10;&#9;&#9;&#9;&#9;&#9;Bitmap&#9;bitmap = getBitmapFromURL(url);&#10;&#9;&#9;&#9;/* &#34429;&#28982;&#25105;&#20204;&#36825;&#37324;&#26377;&#20102;&#19968;&#20010;bitmap&#65292;&#20294;&#26159;&#30001;&#20110;Android&#30340;&#21333;&#32447;&#31243;&#27169;&#22411;&#65288;&#38750;&#20027;&#32447;&#31243;&#26159;&#19981;&#33021;&#30452;&#25509;&#21435;&#32534;&#36753;UI&#30340;&#65289;&#65292;&#25105;&#20204;&#26080;&#27861;&#30452;&#25509;&#25226;bitmap&#36171;&#20540;&#32473;ImageView&#12290;&#25152;&#20197;&#36825;&#37324;&#25105;&#20204;&#38656;&#35201;&#21551;&#19968;&#20010;Handler&#21435;&#20570;&#28040;&#24687;&#30340;&#20256;&#36882;&#12290;*/&#10;&#9;&#9;&#9;&#9;&#9;Message message = Message.obtain();  //&#20351;&#29992;&#20808;&#29992;&#24050;&#32463;&#22238;&#25910;&#30340;message&#65292;&#25552;&#39640;Android&#31995;&#32479;&#25928;&#29575;&#10;&#9;&#9;&#9;&#9;&#9;message.obj = bitmap;&#10;&#9;&#9;&#9;&#9;&#9;handler.sendMessage(message);&#10;&#9;&#9;&#9;&#9;&#125;&#9;&#9;&#10;&#9;&#9;&#9;&#125;.start();&#10;&#125;&#10;&#9;public Bitmap getBitmapFromURL(String urlString)&#123;...&#125;&#10;  &#10;  &#125;</span><br></pre></td></tr></table></figure>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">public class ImageLoad &#123;</span><br><span class="line">       </span><br><span class="line">       private ImageView mImageView;</span><br><span class="line">       private Handler handler = new Handler()&#123;</span><br><span class="line">       		</span><br><span class="line">       		public void handleMessage(Message msg)&#123;</span><br><span class="line">       			super.handleMessage(msg);</span><br><span class="line">       			</span><br><span class="line">       			//将消息传递来的bitmap取出，设置给imageview</span><br><span class="line">       			</span><br><span class="line">       			mImageView.setImageBitmap((Bitmap)msg.obj);      			</span><br><span class="line">       		&#125;</span><br><span class="line">       </span><br><span class="line">       &#125;;</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">	public void showImageByThread(ImageView imageView,final String url) &#123;</span><br><span class="line">			mImageView = imageView;</span><br><span class="line">			new Thread()&#123;</span><br><span class="line">				public void run()&#123;</span><br><span class="line">					super.run();</span><br><span class="line">					Bitmap	bitmap = getBitmapFromURL(url);</span><br><span class="line">			/* 虽然我们这里有了一个bitmap，但是由于Android的单线程模型（非主线程是不能直接去编辑UI的），我们无法直接把bitmap赋值给ImageView。所以这里我们需要启一个Handler去做消息的传递。*/</span><br><span class="line">					Message message = Message.obtain();  //使用先用已经回收的message，提高Android系统效率</span><br><span class="line">					message.obj = bitmap;</span><br><span class="line">					handler.sendMessage(message);</span><br><span class="line">				&#125;		</span><br><span class="line">			&#125;.start();</span><br><span class="line">&#125;</span><br><span class="line">	public Bitmap getBitmapFromURL(String urlString)&#123;...&#125;</span><br><span class="line">  </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 <p>4.最后注意<code>ListView的缓存机制</code>：<code>ListView</code>会重用<code>ConvertView</code>，每次下拉刷新后会从缓冲池中重用旧的图片。为了解决这个问题，我们需要在<code>Adapter</code>中增加<code>Tag</code>，在<code>handler</code>中来进行身份判定,确定<code>handle</code>接收到的<code>Tag</code>和传进的<code>URL</code>是相同的时候，才设置<code>Bitmap</code>，使得正确的<code>Item</code>显示正确的数据。（这是处理异步加载错乱常用的一种方式，另一种是：用成员变量，对数据进行缓冲来消除由于网络获取时间不确定导致时序顺序错误。）</p>
 <p>NewsAdapter类中：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//&#22312;NewsAdapter&#20013;&#65292;&#35774;&#32622;&#22270;&#29255;UrlTag&#29992;&#20316;&#21028;&#23450;&#26465;&#20214;&#10;String url = mList.getr(position).newsIconUrl;&#10;viewHolder.ivIcon.setTag(url);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//在NewsAdapter中，设置图片UrlTag用作判定条件</span><br><span class="line">String url = mList.getr(position).newsIconUrl;</span><br><span class="line">viewHolder.ivIcon.setTag(url);</span><br></pre></td></tr></table></figure>
 <p>ImageLoad类中：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;//&#22312;ImageLoad&#20013;&#65292;&#22686;&#21152;`handler`&#20013;`bitmap`&#32465;&#23450;`ImageView`&#30340;&#21028;&#23450;&#26465;&#20214;&#10;&#10; private ImageView mImageView;&#10;       private Handler handler = new Handler()&#123;&#10;       &#9;&#9;&#10;       &#9;&#9;public void handleMessage(Message msg)&#123;&#10;       &#9;&#9;&#9;super.handleMessage(msg);&#10;       &#9;&#9;&#9;&#10;       &#9;&#9;&#9;//&#23558;&#28040;&#24687;&#20256;&#36882;&#26469;&#30340;bitmap&#21462;&#20986;&#65292;&#35774;&#32622;&#32473;imageview&#10;       &#9;&#9;&#9;if(mImageView.getTag().equals(url))&#123;&#10;       &#9;&#9;&#9;&#9;mImageView.setImageBitmap((Bitmap)msg.obj);      &#9;&#9;&#9;&#125;&#10;       &#9;&#9;&#125;&#10;       &#10;       &#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//在ImageLoad中，增加`handler`中`bitmap`绑定`ImageView`的判定条件</span><br><span class="line"></span><br><span class="line"> private ImageView mImageView;</span><br><span class="line">       private Handler handler = new Handler()&#123;</span><br><span class="line">       		</span><br><span class="line">       		public void handleMessage(Message msg)&#123;</span><br><span class="line">       			super.handleMessage(msg);</span><br><span class="line">       			</span><br><span class="line">       			//将消息传递来的bitmap取出，设置给imageview</span><br><span class="line">       			if(mImageView.getTag().equals(url))&#123;</span><br><span class="line">       				mImageView.setImageBitmap((Bitmap)msg.obj);      			&#125;</span><br><span class="line">       		&#125;</span><br><span class="line">       </span><br><span class="line">       &#125;;</span><br></pre></td></tr></table></figure>
 <h5 id="AsyncTask方式">AsyncTask方式</h5><p>1.在<code>Adapter</code>中新建<code>showImageByAsyncTask(ImageView imageView,String url)</code>方法</p>
 <p>2.紧接着，在<code>Adapter</code>中创建<code>NewsAsyncTask extend AsyncTask</code>去加载<code>ImageView</code>并绑定</p>
 <p>3.在<code>AsyncTask</code>的<code>onPostExecute</code>方法中，设置<code>Bitmap</code>绑定到<code>imageVIew</code>上，即：<code>mImageView.setImageBitmap(bitmap)</code>;</p>
 <p>4.最后注意增加Tag来解决异步加载错乱的问题:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if(mImageView.getTag().equals(mUrl))&#123;&#10;&#9;mImageView.setImageBitmap(bitmap);&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if(mImageView.getTag().equals(mUrl))&#123;</span><br><span class="line">	mImageView.setImageBitmap(bitmap);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="网络加载优化">网络加载优化</h4><h5 id="优化原因">优化原因</h5><p>图片资源过大，最好不要一滑动就重复加载。为了解决这个问题，我们增加缓存机制，提高用户体验。</p>
 <h5 id="Lru算法">Lru算法</h5><ul>
 <li>Lru: Least Recently Used 近期最少使用算法。</li>
 <li>Android提供了LruCache类来实现这个缓存算法。</li>
 </ul>
-<h5 id="使用方法">使用方法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private LruCache&#60;String,Bitmap&#62; mCaches;&#10;&#10;public ImageLoader ( ) &#123;&#10;&#9;int maxMemory = (int) Runtime.getRuntime().maxMemory();//&#33719;&#21462;&#26368;&#22823;&#21487;&#29992;&#20869;&#23384;&#10;&#9;int cacheSize = maxMemory / 4;&#10;&#9;mCaches = new LruCache&#60;String , Bitmap&#62;(cacheSize)&#123;&#10;&#9;&#9;protected int sizeof(String key,Bitmap value)&#123;&#10;&#9;&#9;//&#27599;&#27425;&#23384;&#20837;&#32531;&#23384;&#30340;&#26102;&#20505;&#35843;&#29992;&#10;&#9;&#9;&#9;return value.getByteCount();&#10;&#9;&#9;&#125;&#10;&#9;&#125;;&#10;&#125;&#10;&#10;//&#22686;&#21152;&#21040;&#32531;&#23384;&#10;public void addBitmapToCache(String url,Bitmap bitmap)&#123;&#10;&#9;if(getBitmapFromCache(url) == null )&#123;&#10;&#9;&#9;mCaches.put(url,bitmap);&#10;&#9;&#10;&#9;&#125;&#10;&#125;&#10;&#10;//&#20174;&#32531;&#23384;&#20013;&#21462;&#20986;&#25968;&#25454;&#10;public Bitmap getBitmapFromCache(String url)&#123;&#10;&#9;return mCaches.get(url);&#10;&#125;&#10;&#10;//&#20197;AsyncTask&#20026;&#20363;&#65292;&#20043;&#21518;&#25105;&#20204;&#38656;&#35201;&#20808;&#21028;&#26029;&#19968;&#19979;&#32531;&#23384;&#20013;&#26159;&#21542;&#24050;&#32463;&#26377;&#20102;&#19968;&#20010;URL&#23545;&#24212;&#30340;&#22270;&#29255;&#12290;&#10;&#10;public void showImageByAsyncTask(ImageView imageView,String url)&#123;&#10;&#9;&#9;//&#20174;&#32531;&#23384;&#20013;&#21462;&#20986;&#22270;&#29255;&#10;&#9; Bitmap bitmap = getBitmapFromCache(url);&#10; &#9;&#9;if(bitmap == null)&#123;&#10; &#9;&#9;//&#22914;&#26524;&#32531;&#23384;&#20013;&#27809;&#26377;&#65292;&#21017;&#24517;&#39035;&#21435;&#32593;&#32476;&#24322;&#27493;&#19979;&#36733;&#10; &#9;&#9;&#9;new NewsAsyncTask(imageView,url).execute(url);&#10; &#9;&#9;&#125;else&#123;&#10; &#9;&#9;&#9;imageView.setImageBitmap(bitmap);&#10; &#9;&#125;&#10;&#10;&#125;&#10;&#10;&#10;//&#20462;&#25913;NewsAsyncTask&#26041;&#27861;&#65292;&#23558;&#32593;&#32476;&#24322;&#27493;&#19979;&#36733;&#19979;&#30340;&#22270;&#29255;&#20445;&#23384;&#21040;LruCache&#20013;&#12290;&#10;&#10;private class NewsAsyncTasks extends AsyncTask&#60;String,Void,Bitmap&#62;&#123;&#10;&#9;&#10;&#9;private ImageView mImageView;&#10;&#9;private String mUrl;&#10;&#9;&#10;&#9;public NewsAsyncTask(ImageView imageView,String url)&#123;&#10;&#9;&#9;mImageView = imageView;&#10;&#9;&#9;mUrl = url;&#9;&#10;&#9;&#125;&#10;&#9;&#10;&#9;protected Bitmap doInBackground(String...params)&#123;&#10;&#9;&#9;String url = params[0];&#10;&#9;&#9;//&#20174;&#32593;&#32476;&#19978;&#33719;&#21462;&#22270;&#29255;&#10;&#9;&#9;Bitmap bitmap &#65309; getBitmapFromURL&#65288;url&#65289;&#65307;&#10;&#9;&#9;&#10;&#9;&#9;if ( bitmap ! = null ) &#123;&#10;&#9;&#9;//&#23558;&#19981;&#22312;&#32531;&#23384;&#30340;&#22270;&#29255;&#21152;&#20837;&#32531;&#23384;&#10;&#9;&#9;addBitmapToCache(url,bitmap);&#10;&#9;&#9;&#125;&#10;&#9;&#9;return bitmap;&#10;&#9;&#125;&#10;&#9;&#10;&#9;......&#10;&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="使用方法">使用方法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">private LruCache&lt;String,Bitmap&gt; mCaches;</span><br><span class="line"></span><br><span class="line">public ImageLoader ( ) &#123;</span><br><span class="line">	int maxMemory = (int) Runtime.getRuntime().maxMemory();//获取最大可用内存</span><br><span class="line">	int cacheSize = maxMemory / 4;</span><br><span class="line">	mCaches = new LruCache&lt;String , Bitmap&gt;(cacheSize)&#123;</span><br><span class="line">		protected int sizeof(String key,Bitmap value)&#123;</span><br><span class="line">		//每次存入缓存的时候调用</span><br><span class="line">			return value.getByteCount();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//增加到缓存</span><br><span class="line">public void addBitmapToCache(String url,Bitmap bitmap)&#123;</span><br><span class="line">	if(getBitmapFromCache(url) == null )&#123;</span><br><span class="line">		mCaches.put(url,bitmap);</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//从缓存中取出数据</span><br><span class="line">public Bitmap getBitmapFromCache(String url)&#123;</span><br><span class="line">	return mCaches.get(url);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//以AsyncTask为例，之后我们需要先判断一下缓存中是否已经有了一个URL对应的图片。</span><br><span class="line"></span><br><span class="line">public void showImageByAsyncTask(ImageView imageView,String url)&#123;</span><br><span class="line">		//从缓存中取出图片</span><br><span class="line">	 Bitmap bitmap = getBitmapFromCache(url);</span><br><span class="line"> 		if(bitmap == null)&#123;</span><br><span class="line"> 		//如果缓存中没有，则必须去网络异步下载</span><br><span class="line"> 			new NewsAsyncTask(imageView,url).execute(url);</span><br><span class="line"> 		&#125;else&#123;</span><br><span class="line"> 			imageView.setImageBitmap(bitmap);</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//修改NewsAsyncTask方法，将网络异步下载下的图片保存到LruCache中。</span><br><span class="line"></span><br><span class="line">private class NewsAsyncTasks extends AsyncTask&lt;String,Void,Bitmap&gt;&#123;</span><br><span class="line">	</span><br><span class="line">	private ImageView mImageView;</span><br><span class="line">	private String mUrl;</span><br><span class="line">	</span><br><span class="line">	public NewsAsyncTask(ImageView imageView,String url)&#123;</span><br><span class="line">		mImageView = imageView;</span><br><span class="line">		mUrl = url;	</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	protected Bitmap doInBackground(String...params)&#123;</span><br><span class="line">		String url = params[0];</span><br><span class="line">		//从网络上获取图片</span><br><span class="line">		Bitmap bitmap ＝ getBitmapFromURL（url）；</span><br><span class="line">		</span><br><span class="line">		if ( bitmap ! = null ) &#123;</span><br><span class="line">		//将不在缓存的图片加入缓存</span><br><span class="line">		addBitmapToCache(url,bitmap);</span><br><span class="line">		&#125;</span><br><span class="line">		return bitmap;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Android字符流">Android字符流</h2><p>  注意用InputStream去读取字节流时候需要用InputStreamReader转化成为UTF8字符流传入BufferedReader，再通过定义string content 去循环接收BufferedReader的字符流数据。</p>
 <h2 id="Android-util-Log">Android.util.Log</h2><p>  android.util.Log常用的方法有以下5个：Log.v() Log.d() Log.i() Log.w() 以及 Log.e() 。根据首字母对应VERBOSE，DEBUG,INFO, WARN，ERROR。</p>
 <p>1、Log.v 的调试颜色为黑色的，任何消息都会输出，这里的v代表verbose啰嗦的意思，平时使用就是Log.v(“”,””);</p>
@@ -264,11 +264,11 @@
 			
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>6</sup></a></li>
+				<li><a href="/tags/PHP/" title="PHP">PHP<sup>7</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/PHP/" title="PHP">PHP<sup>6</sup></a></li>
+				<li><a href="/tags/Android/" title="Android">Android<sup>6</sup></a></li>
 			
 		
 			
@@ -276,11 +276,15 @@
 			
 		
 			
+				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/html5/" title="html5">html5<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>3</sup></a></li>
+				<li><a href="/tags/Hackathon/" title="Hackathon">Hackathon<sup>2</sup></a></li>
 			
 		
 			
@@ -288,35 +292,19 @@
 			
 		
 			
-				<li><a href="/tags/poppin/" title="poppin">poppin<sup>1</sup></a></li>
+				<li><a href="/tags/搜索引擎/" title="搜索引擎">搜索引擎<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Amaze-UI/" title="Amaze UI">Amaze UI<sup>1</sup></a></li>
+				<li><a href="/tags/Nutch/" title="Nutch">Nutch<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/智能可穿戴/" title="智能可穿戴">智能可穿戴<sup>1</sup></a></li>
+				<li><a href="/tags/Tesseract/" title="Tesseract">Tesseract<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/拍照摄影/" title="拍照摄影">拍照摄影<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端性能优化/" title="前端性能优化">前端性能优化<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/街舞/" title="街舞">街舞<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端自动化工具/" title="前端自动化工具">前端自动化工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Ajax/" title="Ajax">Ajax<sup>1</sup></a></li>
+				<li><a href="/tags/Solr/" title="Solr">Solr<sup>1</sup></a></li>
 			
 		
 			
@@ -324,19 +312,31 @@
 			
 		
 			
-				<li><a href="/tags/工具神器/" title="工具神器">工具神器<sup>1</sup></a></li>
+				<li><a href="/tags/OCR/" title="OCR">OCR<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+				<li><a href="/tags/Composer/" title="Composer">Composer<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/代码托管/" title="代码托管">代码托管<sup>1</sup></a></li>
+				<li><a href="/tags/AndroidWear/" title="AndroidWear">AndroidWear<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+				<li><a href="/tags/智能可穿戴/" title="智能可穿戴">智能可穿戴<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/机器学习/" title="机器学习">机器学习<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Blog/" title="Blog">Blog<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/PhpStorm/" title="PhpStorm">PhpStorm<sup>1</sup></a></li>
 			
 		
 		</ul>

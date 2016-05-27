@@ -11,19 +11,20 @@
     
 
     
-    <meta name="description" content="接触FIS是在2014年11月左右，当时大二，在准备百度实习面试的时候网上迷路了，偶遇了FIS的官网，当时用了一下，觉得是一个基于Node.js的前端自动化解决方案，没太在意…后面在百度遇见了一些前端的小伙伴，才明白FIS的潜能，现在不管是自己的项目，还是以后公司的前端项目，都快离不来TA了，之前听一个学弟说最近他也在使用，并且存在不少问题，所以想写篇博文，给需要的小伙伴们。PS：我自己用的是Ma">
+    <meta name="description" content="接触FIS是在2014年11月左右，当时大二，在准备百度实习面试的时候网上迷路了，偶遇了FIS的官网，当时用了一下，觉得是一个基于Node.js的前端自动化解决方案，没太在意…后面在百度遇见了一些前端的小伙伴，才明白FIS的潜能，现在不管是自己的项目，还是以后公司的前端项目，都快离不来TA了，之前听一个学弟说最近他也在使用，并且存在不少问题，所以想写篇博文，给需要的小伙伴们。PS：我自己用的是M">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【前端】FIS3应用小记">
 <meta property="og:url" content="http://daijiale.github.io/2016/02/10/【前端】FIS3应用小记/index.html">
 <meta property="og:site_name" content="DaiJiale's Blog">
-<meta property="og:description" content="接触FIS是在2014年11月左右，当时大二，在准备百度实习面试的时候网上迷路了，偶遇了FIS的官网，当时用了一下，觉得是一个基于Node.js的前端自动化解决方案，没太在意…后面在百度遇见了一些前端的小伙伴，才明白FIS的潜能，现在不管是自己的项目，还是以后公司的前端项目，都快离不来TA了，之前听一个学弟说最近他也在使用，并且存在不少问题，所以想写篇博文，给需要的小伙伴们。PS：我自己用的是Ma">
+<meta property="og:description" content="接触FIS是在2014年11月左右，当时大二，在准备百度实习面试的时候网上迷路了，偶遇了FIS的官网，当时用了一下，觉得是一个基于Node.js的前端自动化解决方案，没太在意…后面在百度遇见了一些前端的小伙伴，才明白FIS的潜能，现在不管是自己的项目，还是以后公司的前端项目，都快离不来TA了，之前听一个学弟说最近他也在使用，并且存在不少问题，所以想写篇博文，给需要的小伙伴们。PS：我自己用的是M">
 <meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/djlBlogfis1.png">
 <meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/djlBlogfis2.png">
 <meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/djlBlogfis3.png">
-<meta property="og:updated_time" content="2016-03-08T10:27:06.000Z">
+<meta property="og:updated_time" content="2016-03-24T07:49:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【前端】FIS3应用小记">
-<meta name="twitter:description" content="接触FIS是在2014年11月左右，当时大二，在准备百度实习面试的时候网上迷路了，偶遇了FIS的官网，当时用了一下，觉得是一个基于Node.js的前端自动化解决方案，没太在意…后面在百度遇见了一些前端的小伙伴，才明白FIS的潜能，现在不管是自己的项目，还是以后公司的前端项目，都快离不来TA了，之前听一个学弟说最近他也在使用，并且存在不少问题，所以想写篇博文，给需要的小伙伴们。PS：我自己用的是Ma">
+<meta name="twitter:description" content="接触FIS是在2014年11月左右，当时大二，在准备百度实习面试的时候网上迷路了，偶遇了FIS的官网，当时用了一下，觉得是一个基于Node.js的前端自动化解决方案，没太在意…后面在百度遇见了一些前端的小伙伴，才明白FIS的潜能，现在不管是自己的项目，还是以后公司的前端项目，都快离不来TA了，之前听一个学弟说最近他也在使用，并且存在不少问题，所以想写篇博文，给需要的小伙伴们。PS：我自己用的是M">
+<meta name="twitter:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/djlBlogfis1.png">
 
     
     <link rel="alternative" href="/atom.xml" title="DaiJiale&#39;s Blog" type="application/atom+xml">
@@ -35,7 +36,7 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
   <body>
@@ -126,7 +127,7 @@
 <li><p><a href="http://fis.baidu.com/fis3/docs/api/config-props.html" target="_blank" rel="external">配置属性（API）</a></p>
 </li>
 </ul>
-<h3 id="文件指纹">文件指纹</h3><p>文件指纹：唯一标识一个文件。在开启强缓存的情况下，如果文件的 URL 不发生变化，无法刷新浏览器缓存。一般都需要通过一些手段来强刷缓存，一种方式是添加时间戳，每次上线更新文件，给这个资源文件的 URL 添加上时间戳。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">img</span> <span class="attribute">src</span>=<span class="value">"a.png?t=12012121"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="文件指纹">文件指纹</h3><p>文件指纹：唯一标识一个文件。在开启强缓存的情况下，如果文件的 URL 不发生变化，无法刷新浏览器缓存。一般都需要通过一些手段来强刷缓存，一种方式是添加时间戳，每次上线更新文件，给这个资源文件的 URL 添加上时间戳。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"a.png?t=12012121"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>而 FIS3 选择的是添加 MD5 戳，直接修改文件的 URL，而不是在其后添加 query。<br>对 js、css、png 图片引用 URL 添加 md5 戳，配置如下；</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//清除其他配置，只剩下如下配置</span></span><br><span class="line">fis.match(<span class="string">'*.&#123;js,css,png&#125;'</span>, &#123;</span><br><span class="line">  useHash: <span class="literal">true</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="string">``</span><span class="string">`	</span><br><span class="line">### 压缩资源</span><br><span class="line">为了减少资源网络传输的大小，通过压缩器对 js、css、图片进行压缩是一直以来前端工程优化的选择。在 FIS3 中这个过程非常简单，通过给文件配置压缩器即可。</span><br><span class="line"></span><br><span class="line">`</span><span class="string">``</span>javascript</span><br><span class="line"><span class="comment">// 清除其他配置，只保留如下配置</span></span><br><span class="line">fis.match(<span class="string">'*.js'</span>, &#123;</span><br><span class="line">  <span class="comment">// fis-optimizer-uglify-js 插件进行压缩，已内置</span></span><br><span class="line">  optimizer: fis.plugin(<span class="string">'uglify-js'</span>)</span><br><span class="line">&#125;);</span><br><span class="line">fis.match(<span class="string">'*.css'</span>, &#123;</span><br><span class="line">  <span class="comment">// fis-optimizer-clean-css 插件进行压缩，已内置</span></span><br><span class="line">  optimizer: fis.plugin(<span class="string">'clean-css'</span>)</span><br><span class="line">&#125;);</span><br><span class="line">fis.match(<span class="string">'*.png'</span>, &#123;</span><br><span class="line">  <span class="comment">// fis-optimizer-png-compressor 插件进行压缩，已内置</span></span><br><span class="line">  optimizer: fis.plugin(<span class="string">'png-compressor'</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <h3 id="图片合并">图片合并</h3><p>压缩了静态资源，我们还可以对图片进行CssSprite合并，来减少请求数量。<br>FIS3 提供了比较简易、使用方便的图片合并工具。通过配置即可调用此工具并对资源进行合并。<br>FIS3 构建会对 CSS 中，路径带 ?__sprite 的图片进行合并。为了节省编译的时间，分配到 useSprite: true 的 CSS 文件才会被处理。</p>
@@ -151,7 +152,7 @@
 <h3 id="发布到远端机器">发布到远端机器</h3><p>开发项目后，需要发布到测试机（联调机），一般可以通过如 SMB、FTP 等上传代码。FIS3 默认支持使用 HTTP 上传代码，首先需要在测试机部署上传接收脚本（或者服务），这个脚本非常简单，下面的<code>receiver.php</code>给出了 php 的实现版本，可以把它放到测试机上某个 Web 服务根目录，并且配置一个 url 能访问到即可。<br>示例脚本是 php 脚本，测试机 Web 需要支持 PHP 的解析，如果需要其他语言实现，请参考这个 php 脚本实现。（假定这个 URL 是：<a href="http://cq.01.p.p.baidu.com:8888/receiver.php）" target="_blank" rel="external">http://cq.01.p.p.baidu.com:8888/receiver.php）</a><br>那么我们只需要在配置文件配置：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fis.match(<span class="string">'*'</span>, &#123;</span><br><span class="line">  deploy: fis.plugin(<span class="string">'http-push'</span>, &#123;</span><br><span class="line">    receiver: <span class="string">'http://cq.01.p.p.baidu.com:8888/receiver.php'</span>,</span><br><span class="line">    to: <span class="string">'/home/work/htdocs'</span> <span class="comment">// 注意这个是指的是测试机器的路径，而非本地机器</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p><strong>receiver.php</strong>:</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line">@error_reporting(E_ALL &amp; ~E_NOTICE &amp; ~E_WARNING);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mkdirs</span><span class="params">(<span class="variable">$path</span>, <span class="variable">$mod</span> = <span class="number">0777</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (is_dir(<span class="variable">$path</span>)) &#123;</span><br><span class="line">        <span class="keyword">return</span> chmod(<span class="variable">$path</span>, <span class="variable">$mod</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable">$old</span> = umask(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">if</span>(mkdir(<span class="variable">$path</span>, <span class="variable">$mod</span>, <span class="keyword">true</span>) &amp;&amp; is_dir(<span class="variable">$path</span>))&#123;</span><br><span class="line">            umask(<span class="variable">$old</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            umask(<span class="variable">$old</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$_POST</span>[<span class="string">'to'</span>])&#123;</span><br><span class="line">    <span class="variable">$to</span> = urldecode(<span class="variable">$_POST</span>[<span class="string">'to'</span>]);</span><br><span class="line">    <span class="keyword">if</span>(is_dir(<span class="variable">$to</span>) || <span class="variable">$_FILES</span>[<span class="string">"file"</span>][<span class="string">"error"</span>] &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        header(<span class="string">"Status: 500 Internal Server Error"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(file_exists(<span class="variable">$to</span>))&#123;</span><br><span class="line">            unlink(<span class="variable">$to</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="variable">$dir</span> = dirname(<span class="variable">$to</span>);</span><br><span class="line">            <span class="keyword">if</span>(!file_exists(<span class="variable">$dir</span>))&#123;</span><br><span class="line">                mkdirs(<span class="variable">$dir</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">echo</span> move_uploaded_file(<span class="variable">$_FILES</span>[<span class="string">"file"</span>][<span class="string">"tmp_name"</span>], <span class="variable">$to</span>) ? <span class="number">0</span> : <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'I\'m ready for that, you know.'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">@error_reporting(E_ALL &amp; ~E_NOTICE &amp; ~E_WARNING);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mkdirs</span><span class="params">($path, $mod = <span class="number">0777</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (is_dir($path)) &#123;</span><br><span class="line">        <span class="keyword">return</span> chmod($path, $mod);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        $old = umask(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">if</span>(mkdir($path, $mod, <span class="keyword">true</span>) &amp;&amp; is_dir($path))&#123;</span><br><span class="line">            umask($old);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            umask($old);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>($_POST[<span class="string">'to'</span>])&#123;</span><br><span class="line">    $to = urldecode($_POST[<span class="string">'to'</span>]);</span><br><span class="line">    <span class="keyword">if</span>(is_dir($to) || $_FILES[<span class="string">"file"</span>][<span class="string">"error"</span>] &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        header(<span class="string">"Status: 500 Internal Server Error"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(file_exists($to))&#123;</span><br><span class="line">            unlink($to);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            $dir = dirname($to);</span><br><span class="line">            <span class="keyword">if</span>(!file_exists($dir))&#123;</span><br><span class="line">                mkdirs($dir);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">echo</span> move_uploaded_file($_FILES[<span class="string">"file"</span>][<span class="string">"tmp_name"</span>], $to) ? <span class="number">0</span> : <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'I\'m ready for that, you know.'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="替代内置Server">替代内置Server</h3><p>FIS3 内置了一个 Web Server 提供给构建后的代码进行调试。如果你自己启动了你自己的 Web Server 依然可以使用它们。</p>
 <p>假设你的 Web Server 的根目录是 <code>/Users/my-name/work/htdocs</code>，那么发布时只需要设置产出目录到这个目录即可。</p>
 <p><code>fis3 release -d /Users/my-name/work/htdocs</code><br>如果想执行 fis3 release 直接发布到此目录下，可在配置文件配置；</p>
@@ -301,11 +302,11 @@
 			
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>6</sup></a></li>
+				<li><a href="/tags/PHP/" title="PHP">PHP<sup>7</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/PHP/" title="PHP">PHP<sup>6</sup></a></li>
+				<li><a href="/tags/Android/" title="Android">Android<sup>6</sup></a></li>
 			
 		
 			
@@ -313,11 +314,15 @@
 			
 		
 			
+				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/html5/" title="html5">html5<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>3</sup></a></li>
+				<li><a href="/tags/Hackathon/" title="Hackathon">Hackathon<sup>2</sup></a></li>
 			
 		
 			
@@ -325,35 +330,19 @@
 			
 		
 			
-				<li><a href="/tags/poppin/" title="poppin">poppin<sup>1</sup></a></li>
+				<li><a href="/tags/搜索引擎/" title="搜索引擎">搜索引擎<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Amaze-UI/" title="Amaze UI">Amaze UI<sup>1</sup></a></li>
+				<li><a href="/tags/Nutch/" title="Nutch">Nutch<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/智能可穿戴/" title="智能可穿戴">智能可穿戴<sup>1</sup></a></li>
+				<li><a href="/tags/Tesseract/" title="Tesseract">Tesseract<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/拍照摄影/" title="拍照摄影">拍照摄影<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端性能优化/" title="前端性能优化">前端性能优化<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/街舞/" title="街舞">街舞<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端自动化工具/" title="前端自动化工具">前端自动化工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Ajax/" title="Ajax">Ajax<sup>1</sup></a></li>
+				<li><a href="/tags/Solr/" title="Solr">Solr<sup>1</sup></a></li>
 			
 		
 			
@@ -361,19 +350,31 @@
 			
 		
 			
-				<li><a href="/tags/工具神器/" title="工具神器">工具神器<sup>1</sup></a></li>
+				<li><a href="/tags/OCR/" title="OCR">OCR<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+				<li><a href="/tags/Composer/" title="Composer">Composer<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/代码托管/" title="代码托管">代码托管<sup>1</sup></a></li>
+				<li><a href="/tags/AndroidWear/" title="AndroidWear">AndroidWear<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+				<li><a href="/tags/智能可穿戴/" title="智能可穿戴">智能可穿戴<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/机器学习/" title="机器学习">机器学习<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Blog/" title="Blog">Blog<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/PhpStorm/" title="PhpStorm">PhpStorm<sup>1</sup></a></li>
 			
 		
 		</ul>

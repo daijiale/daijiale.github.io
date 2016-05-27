@@ -19,7 +19,7 @@ php给了开发者极大的灵活性，但是这也为安全问题带来了潜�
 <meta property="og:site_name" content="DaiJiale's Blog">
 <meta property="og:description" content="前言
 php给了开发者极大的灵活性，但是这也为安全问题带来了潜在的隐患，近期需要总结一下以往的问题，在这里借翻译一篇文章同时加上自己开发的一些感触总结一下。">
-<meta property="og:updated_time" content="2016-03-08T10:27:06.000Z">
+<meta property="og:updated_time" content="2016-03-24T07:49:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【PHP】PHP安全性开发">
 <meta name="twitter:description" content="前言
@@ -35,7 +35,7 @@ php给了开发者极大的灵活性，但是这也为安全问题带来了潜�
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
   <body>
@@ -111,9 +111,9 @@ php给了开发者极大的灵活性，但是这也为安全问题带来了潜�
 <h3 id="不相信用户">不相信用户</h3><p>要假设你的网站接收的每一条数据都是存在恶意代码的，存在隐藏的威胁，要对每一条数据都进行清理</p>
 <h3 id="关闭全局变量">关闭全局变量</h3><p>在php.ini文件中进行以下配置：</p>
 <p>register_globals = Off<br>如果这个配置选项打开之后，会出现很大的安全隐患。例如有一个process.php的脚本文件，会将接收到的数据插入到数据库，接收用户输入数据的表单可能如下：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">name</span>=<span class="value">"username"</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">size</span>=<span class="value">"15"</span> <span class="attribute">maxlength</span>=<span class="value">"64"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">size</span>=<span class="string">"15"</span> <span class="attr">maxlength</span>=<span class="string">"64"</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这样，当提交数据到<code>process.php</code>之后，php会注册一个<code>$username</code>变量，将这个变量数据提交到<code>process.php</code>，同时对于任何POST或GET请求参数，都会设置这样的变量。如果不是显示进行初始化那么就会出现下面的问题：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="comment">// Define $authorized = true only if user is authenticated</span></span><br><span class="line"><span class="keyword">if</span> (authenticated_user()) &#123;</span><br><span class="line">    <span class="variable">$authorized</span> = <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="preprocessor">?&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// Define $authorized = true only if user is authenticated</span></span><br><span class="line"><span class="keyword">if</span> (authenticated_user()) &#123;</span><br><span class="line">    $authorized = <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 <p>此处，假设authenticated_user函数就是判断$authorized变量的值，如果开启了register_globals配置，那么任何用户都可以发送一个请求，来设置$authorized变量的值为任意值从而就能绕过这个验证。</p>
 <p>所有的这些提交数据都应该通过PHP预定义内置的全局数组来获取，包括$_POST、$_GET、$_FILES、$_SERVER、$_REQUEST等，其中$_REQUEST是一个$_GET/$_POST/$_COOKIE三个数组的联合变量，默认的顺序是$_COOKIE、$_POST、$_GET。</p>
 <p>推荐的安全配置选项<br>error_reporting设置为Off：不要暴露错误信息给用户，开发的时候可以设置为ON</p>
@@ -135,14 +135,14 @@ php给了开发者极大的灵活性，但是这也为安全问题带来了潜�
 <p>但是，这里根据开发经验，不要开启php的Magic Quotes，这个特性在php6中已经废除，总是自己在需要的时候进行转义。</p>
 <h3 id="防止基本的XSS攻击">防止基本的XSS攻击</h3><p>XSS攻击不像其他攻击，这种攻击在客户端进行，最基本的XSS工具就是防止一段javascript脚本在用户待提交的表单页面，将用户提交的数据和cookie偷取过来。</p>
 <p>XSS工具比SQL注入更加难以防护，各大公司网站都被XSS攻击过，虽然这种攻击与php语言无关，但可以使用php来筛选用户数据达到保护用户数据的目的，这里主要使用的是对用户的数据进行过滤，一般过滤掉HTML标签，特别是a标签。下面是一个普通的过滤方法：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">transform_HTML</span><span class="params">(<span class="variable">$string</span>, <span class="variable">$length</span> = null)</span> </span>&#123;</span><br><span class="line"><span class="comment">// Helps prevent XSS attacks</span></span><br><span class="line">    <span class="comment">// Remove dead space.</span></span><br><span class="line">    <span class="variable">$string</span> = trim(<span class="variable">$string</span>);</span><br><span class="line">    <span class="comment">// Prevent potential Unicode codec problems.</span></span><br><span class="line">    <span class="variable">$string</span> = utf8_decode(<span class="variable">$string</span>);</span><br><span class="line">    <span class="comment">// HTMLize HTML-specific characters.</span></span><br><span class="line">    <span class="variable">$string</span> = htmlentities(<span class="variable">$string</span>, ENT_NOQUOTES);</span><br><span class="line">    <span class="variable">$string</span> = str_replace(<span class="string">"#"</span>, <span class="string">"#"</span>, <span class="variable">$string</span>);</span><br><span class="line">    <span class="variable">$string</span> = str_replace(<span class="string">"%"</span>, <span class="string">"%"</span>, <span class="variable">$string</span>);</span><br><span class="line">    <span class="variable">$length</span> = intval(<span class="variable">$length</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="variable">$string</span> = substr(<span class="variable">$string</span>, <span class="number">0</span>, <span class="variable">$length</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$string</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">transform_HTML</span><span class="params">($string, $length = null)</span> </span>&#123;</span><br><span class="line"><span class="comment">// Helps prevent XSS attacks</span></span><br><span class="line">    <span class="comment">// Remove dead space.</span></span><br><span class="line">    $string = trim($string);</span><br><span class="line">    <span class="comment">// Prevent potential Unicode codec problems.</span></span><br><span class="line">    $string = utf8_decode($string);</span><br><span class="line">    <span class="comment">// HTMLize HTML-specific characters.</span></span><br><span class="line">    $string = htmlentities($string, ENT_NOQUOTES);</span><br><span class="line">    $string = str_replace(<span class="string">"#"</span>, <span class="string">"#"</span>, $string);</span><br><span class="line">    $string = str_replace(<span class="string">"%"</span>, <span class="string">"%"</span>, $string);</span><br><span class="line">    $length = intval($length);</span><br><span class="line">    <span class="keyword">if</span> ($length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        $string = substr($string, <span class="number">0</span>, $length);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> $string;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这个函数将HTML的特殊字符转换为了HTML实体，浏览器在渲染这段文本的时候以纯文本形式显示。如<strong>bold</strong>会被显示为：</p>
 <p>&lt;STRONG&gt;BoldText&lt;/STRONG&gt;</p>
 <p>上述函数的核心就是htmlentities函数，这个函数将html特殊标签转换为html实体字符，这样可以过滤大部分的XSS攻击。</p>
 <p>但是对于有经验的XSS攻击者，有更加巧妙的办法进行攻击：将他们的恶意代码使用十六进制或者utf-8编码，而不是普通的ASCII文本，例如可以使用下面的方式进行：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"http://host/a.php?variable=%22%3e %3c%53%43%52%49%50%54%3e%44%6f%73%6f%6d%65%74%68%69%6e%67%6d%61%6c%69%63%69%6f%75%73%3c%2f%53%43%52%49%50%54%3e"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://host/a.php?variable=%22%3e %3c%53%43%52%49%50%54%3e%44%6f%73%6f%6d%65%74%68%69%6e%67%6d%61%6c%69%63%69%6f%75%73%3c%2f%53%43%52%49%50%54%3e"</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这样浏览器渲染的结果其实是：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"http://host/a.php?variable="</span>&gt;</span> <span class="tag">&lt;<span class="title">SCRIPT</span>&gt;</span><span class="undefined">Dosomethingmalicious</span><span class="tag">&lt;/<span class="title">SCRIPT</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://host/a.php?variable="</span>&gt;</span> <span class="tag">&lt;<span class="name">SCRIPT</span>&gt;</span><span class="undefined">Dosomethingmalicious</span><span class="tag">&lt;/<span class="name">SCRIPT</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这样就达到了攻击的目的。为了防止这种情况，需要在transform_HTML函数的基础上再将#和%转换为他们对应的实体符号，同时加上了$length参数来限制提交的数据的最大长度。</p>
 <h3 id="使用SafeHTML防止XSS攻击">使用SafeHTML防止XSS攻击</h3><p>上述关于XSS攻击的防护非常简单，但是不包含用户的所有标记，同时有上百种绕过过滤函数提交javascript代码的方法，也没有办法能完全阻止这个情况。</p>
 <p>目前，没有一个单一的脚本能保证不被攻击突破，但是总有相对来说防护程度更好的。一共有两个安全防护的方式：白名单和黑名单。其中白名单更加简单和有效。</p>
@@ -153,7 +153,7 @@ php给了开发者极大的灵活性，但是这也为安全问题带来了潜�
 <p>3、在自己的脚本中包含SafeHTML类文件</p>
 <p>4、建立一个SafeHTML对象</p>
 <p>5、使用parse方法进行过滤</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="comment">/* If you're storing the HTMLSax3.php in the /classes directory, along</span><br><span class="line">   with the safehtml.php script, define XML_HTMLSAX3 as a null string. */</span></span><br><span class="line">define(XML_HTMLSAX3, <span class="string">''</span>);</span><br><span class="line"><span class="comment">// Include the class file.</span></span><br><span class="line"><span class="keyword">require_once</span>(<span class="string">'classes/safehtml.php'</span>);</span><br><span class="line"><span class="comment">// Define some sample bad code.</span></span><br><span class="line"><span class="variable">$data</span> = <span class="string">"This data would raise an alert &lt;script&gt;alert('XSS Attack')&lt;/script&gt;"</span>;</span><br><span class="line"><span class="comment">// Create a safehtml object.</span></span><br><span class="line"><span class="variable">$safehtml</span> = <span class="keyword">new</span> safehtml();</span><br><span class="line"><span class="comment">// Parse and sanitize the data.</span></span><br><span class="line"><span class="variable">$safe_data</span> = <span class="variable">$safehtml</span>-&gt;parse(<span class="variable">$data</span>);</span><br><span class="line"><span class="comment">// Display result.</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'The sanitized data is &lt;br /&gt;'</span> . <span class="variable">$safe_data</span>;</span><br><span class="line"><span class="preprocessor">?&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/* If you're storing the HTMLSax3.php in the /classes directory, along</span><br><span class="line">   with the safehtml.php script, define XML_HTMLSAX3 as a null string. */</span></span><br><span class="line">define(XML_HTMLSAX3, <span class="string">''</span>);</span><br><span class="line"><span class="comment">// Include the class file.</span></span><br><span class="line"><span class="keyword">require_once</span>(<span class="string">'classes/safehtml.php'</span>);</span><br><span class="line"><span class="comment">// Define some sample bad code.</span></span><br><span class="line">$data = <span class="string">"This data would raise an alert &lt;script&gt;alert('XSS Attack')&lt;/script&gt;"</span>;</span><br><span class="line"><span class="comment">// Create a safehtml object.</span></span><br><span class="line">$safehtml = <span class="keyword">new</span> safehtml();</span><br><span class="line"><span class="comment">// Parse and sanitize the data.</span></span><br><span class="line">$safe_data = $safehtml-&gt;parse($data);</span><br><span class="line"><span class="comment">// Display result.</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'The sanitized data is &lt;br /&gt;'</span> . $safe_data;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 <p>SafeHTML并不能完全防止XSS攻击，只是一个相对复杂的脚本来检验的方式。</p>
 <p>使用单向HASH加密方式来保护数据</p>
 <p>单向hash加密保证对每个用户的密码都是唯一的，而且不能被破译的，只有最终用户知道密码，系统也是不知道原始密码的。这样的一个好处是在系统被攻击后攻击者也无法知道原始密码数据。</p>
@@ -161,7 +161,7 @@ php给了开发者极大的灵活性，但是这也为安全问题带来了潜�
 <p>MD5函数处理过的hash值基本不能被破解，但是总是有可能性的，而且网上也有MD5的hash字典。</p>
 <h3 id="使用mcrypt加密数据">使用mcrypt加密数据</h3><p>MD5 hash函数可以在可读的表单中显示数据，但是对于存储用户的信用卡信息的时候，需要进行加密处理后存储，并且需要之后进行解密。</p>
 <p>最好的方法是使用mcrypt模块，这个模块包含了超过30中加密方式来保证只有加密者才能解密数据。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="variable">$data</span> = <span class="string">"Stuff you want encrypted"</span>;</span><br><span class="line"><span class="variable">$key</span> = <span class="string">"Secret passphrase used to encrypt your data"</span>;</span><br><span class="line"><span class="variable">$cipher</span> = <span class="string">"MCRYPT_SERPENT_256"</span>;</span><br><span class="line"><span class="variable">$mode</span> = <span class="string">"MCRYPT_MODE_CBC"</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">encrypt</span><span class="params">(<span class="variable">$data</span>, <span class="variable">$key</span>, <span class="variable">$cipher</span>, <span class="variable">$mode</span>)</span> </span>&#123;</span><br><span class="line"><span class="comment">// Encrypt data</span></span><br><span class="line"><span class="keyword">return</span> (string)</span><br><span class="line">            base64_encode</span><br><span class="line">                (</span><br><span class="line">                mcrypt_encrypt</span><br><span class="line">                    (</span><br><span class="line">                    <span class="variable">$cipher</span>,</span><br><span class="line">                    substr(md5(<span class="variable">$key</span>),<span class="number">0</span>,mcrypt_get_key_size(<span class="variable">$cipher</span>, <span class="variable">$mode</span>)),</span><br><span class="line">                    <span class="variable">$data</span>,</span><br><span class="line">                    <span class="variable">$mode</span>,</span><br><span class="line">                    substr(md5(<span class="variable">$key</span>),<span class="number">0</span>,mcrypt_get_block_size(<span class="variable">$cipher</span>, <span class="variable">$mode</span>))</span><br><span class="line">                    )</span><br><span class="line">                );</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">decrypt</span><span class="params">(<span class="variable">$data</span>, <span class="variable">$key</span>, <span class="variable">$cipher</span>, <span class="variable">$mode</span>)</span> </span>&#123;</span><br><span class="line"><span class="comment">// Decrypt data</span></span><br><span class="line">    <span class="keyword">return</span> (string)</span><br><span class="line">            mcrypt_decrypt</span><br><span class="line">                (</span><br><span class="line">                <span class="variable">$cipher</span>,</span><br><span class="line">                substr(md5(<span class="variable">$key</span>),<span class="number">0</span>,mcrypt_get_key_size(<span class="variable">$cipher</span>, <span class="variable">$mode</span>)),</span><br><span class="line">                base64_decode(<span class="variable">$data</span>),</span><br><span class="line">                <span class="variable">$mode</span>,</span><br><span class="line">                substr(md5(<span class="variable">$key</span>),<span class="number">0</span>,mcrypt_get_block_size(<span class="variable">$cipher</span>, <span class="variable">$mode</span>))</span><br><span class="line">                );</span><br><span class="line">&#125;</span><br><span class="line"><span class="preprocessor">?&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$data = <span class="string">"Stuff you want encrypted"</span>;</span><br><span class="line">$key = <span class="string">"Secret passphrase used to encrypt your data"</span>;</span><br><span class="line">$cipher = <span class="string">"MCRYPT_SERPENT_256"</span>;</span><br><span class="line">$mode = <span class="string">"MCRYPT_MODE_CBC"</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">encrypt</span><span class="params">($data, $key, $cipher, $mode)</span> </span>&#123;</span><br><span class="line"><span class="comment">// Encrypt data</span></span><br><span class="line"><span class="keyword">return</span> (string)</span><br><span class="line">            base64_encode</span><br><span class="line">                (</span><br><span class="line">                mcrypt_encrypt</span><br><span class="line">                    (</span><br><span class="line">                    $cipher,</span><br><span class="line">                    substr(md5($key),<span class="number">0</span>,mcrypt_get_key_size($cipher, $mode)),</span><br><span class="line">                    $data,</span><br><span class="line">                    $mode,</span><br><span class="line">                    substr(md5($key),<span class="number">0</span>,mcrypt_get_block_size($cipher, $mode))</span><br><span class="line">                    )</span><br><span class="line">                );</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">decrypt</span><span class="params">($data, $key, $cipher, $mode)</span> </span>&#123;</span><br><span class="line"><span class="comment">// Decrypt data</span></span><br><span class="line">    <span class="keyword">return</span> (string)</span><br><span class="line">            mcrypt_decrypt</span><br><span class="line">                (</span><br><span class="line">                $cipher,</span><br><span class="line">                substr(md5($key),<span class="number">0</span>,mcrypt_get_key_size($cipher, $mode)),</span><br><span class="line">                base64_decode($data),</span><br><span class="line">                $mode,</span><br><span class="line">                substr(md5($key),<span class="number">0</span>,mcrypt_get_block_size($cipher, $mode))</span><br><span class="line">                );</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 <p>mcrypt函数需要以下信息：</p>
 <p>1、待加密数据</p>
 <p>2、用来加密和解密数据的key</p>
@@ -299,11 +299,11 @@ php给了开发者极大的灵活性，但是这也为安全问题带来了潜�
 			
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>6</sup></a></li>
+				<li><a href="/tags/PHP/" title="PHP">PHP<sup>7</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/PHP/" title="PHP">PHP<sup>6</sup></a></li>
+				<li><a href="/tags/Android/" title="Android">Android<sup>6</sup></a></li>
 			
 		
 			
@@ -311,11 +311,15 @@ php给了开发者极大的灵活性，但是这也为安全问题带来了潜�
 			
 		
 			
+				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/html5/" title="html5">html5<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>3</sup></a></li>
+				<li><a href="/tags/Hackathon/" title="Hackathon">Hackathon<sup>2</sup></a></li>
 			
 		
 			
@@ -323,35 +327,19 @@ php给了开发者极大的灵活性，但是这也为安全问题带来了潜�
 			
 		
 			
-				<li><a href="/tags/poppin/" title="poppin">poppin<sup>1</sup></a></li>
+				<li><a href="/tags/搜索引擎/" title="搜索引擎">搜索引擎<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Amaze-UI/" title="Amaze UI">Amaze UI<sup>1</sup></a></li>
+				<li><a href="/tags/Nutch/" title="Nutch">Nutch<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/智能可穿戴/" title="智能可穿戴">智能可穿戴<sup>1</sup></a></li>
+				<li><a href="/tags/Tesseract/" title="Tesseract">Tesseract<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/拍照摄影/" title="拍照摄影">拍照摄影<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端性能优化/" title="前端性能优化">前端性能优化<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/街舞/" title="街舞">街舞<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端自动化工具/" title="前端自动化工具">前端自动化工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Ajax/" title="Ajax">Ajax<sup>1</sup></a></li>
+				<li><a href="/tags/Solr/" title="Solr">Solr<sup>1</sup></a></li>
 			
 		
 			
@@ -359,19 +347,31 @@ php给了开发者极大的灵活性，但是这也为安全问题带来了潜�
 			
 		
 			
-				<li><a href="/tags/工具神器/" title="工具神器">工具神器<sup>1</sup></a></li>
+				<li><a href="/tags/OCR/" title="OCR">OCR<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+				<li><a href="/tags/Composer/" title="Composer">Composer<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/代码托管/" title="代码托管">代码托管<sup>1</sup></a></li>
+				<li><a href="/tags/AndroidWear/" title="AndroidWear">AndroidWear<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+				<li><a href="/tags/智能可穿戴/" title="智能可穿戴">智能可穿戴<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/机器学习/" title="机器学习">机器学习<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Blog/" title="Blog">Blog<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/PhpStorm/" title="PhpStorm">PhpStorm<sup>1</sup></a></li>
 			
 		
 		</ul>

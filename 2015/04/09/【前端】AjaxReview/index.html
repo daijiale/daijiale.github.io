@@ -25,7 +25,7 @@
 对以前自己所学知识的一个系统化review
 刚好给徒弟漫漫制作一份比较全面的Ajax教程
 帮助更多的，对此知识有需要的童鞋">
-<meta property="og:updated_time" content="2016-03-08T10:27:06.000Z">
+<meta property="og:updated_time" content="2016-03-24T07:49:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【前端】AjaxReview">
 <meta name="twitter:description" content="PS：写这篇Blog主要有两个三个动机：
@@ -44,7 +44,7 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
   <body>
@@ -145,9 +145,9 @@
 </ul>
 <p><strong>PS</strong>：（这些都不会就可以不用往下看了）</p>
 <h1 id="XHR的使用">XHR的使用</h1><p>首先声明XHR对象</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var request = new XMLHttpRequest//&#19981;&#25903;&#25345;IE5 IE6</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var request = new XMLHttpRequest//不支持IE5 IE6</span><br></pre></td></tr></table></figure>
 <p><code>珍爱生命，远离IE</code>（虽然嘴上是这样说）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var request;&#10;if&#65288;windowXMLHttpRequest&#65289;&#123;&#10; &#9;request = new XMLHttpRequest();//IE7+;Firefox;Chrome,Opera,Safari...&#10;&#9;&#125; else &#123;&#10;&#9;&#9;request=new ActiveXObject(&#34;Microsoft.XMLHTTP&#34;);//IE5,IE6&#10;&#9;&#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var request;</span><br><span class="line">if（windowXMLHttpRequest）&#123;</span><br><span class="line"> 	request = new XMLHttpRequest();//IE7+;Firefox;Chrome,Opera,Safari...</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		request=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);//IE5,IE6</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="这里再简单介绍下HTTP：">这里再简单介绍下HTTP：</h2><p>其实就是一群 <code>叫兽</code> 研究出来的一套计算机通信规则。</p>
 <p>它的特点需要我们注意：</p>
 <ul>
@@ -203,9 +203,9 @@
 <li>2.响应头，包含服务器类型，日期时间，内容类型和长度等</li>
 <li>3.响应体，也就是响应正文</li>
 </ul>
-<h2 id="XHR发送请求">XHR发送请求</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.open(method,url,async);&#10;request.send(string);</span><br></pre></td></tr></table></figure>
-<p><strong>eg:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.open(&#34;POST&#34;,&#34;127.0.0.1/post.php&#34;,true);&#10;request.setRequestHeader(&#34;Content-type&#34;,&#34;application/x-www-form-urlencoded&#34;);&#10;request.send(&#34;name=daijiale&#38;sex=man&#34;);</span><br></pre></td></tr></table></figure></p>
-<h2 id="XHR取得响应">XHR取得响应</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">responseText//&#33719;&#24471;&#23383;&#31526;&#20018;&#24418;&#24335;&#30340;&#21709;&#24212;&#25968;&#25454;&#10;responseXML//&#33719;&#24471;XML&#24418;&#24335;&#30340;&#21709;&#24212;&#25968;&#25454;&#10;status//&#20197;&#25968;&#23383;&#24418;&#24335;&#36820;&#22238;HTTP&#29366;&#24577;&#30721;&#10;statusText//&#20197;&#25991;&#26412;&#24418;&#24335;&#36820;&#22238;HTTP&#29366;&#24577;&#30721;&#10;getALLResponseHeader()//&#33719;&#21462;&#25152;&#26377;&#21709;&#24212;&#25253;&#22836;&#10;getResponseHeader()//&#26597;&#35810;&#21709;&#24212;&#20013;&#30340;&#26576;&#20010;&#23383;&#27573;&#30340;&#20540;</span><br></pre></td></tr></table></figure>
+<h2 id="XHR发送请求">XHR发送请求</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">request.open(method,url,async);</span><br><span class="line">request.send(string);</span><br></pre></td></tr></table></figure>
+<p><strong>eg:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">request.open(&quot;POST&quot;,&quot;127.0.0.1/post.php&quot;,true);</span><br><span class="line">request.setRequestHeader(&quot;Content-type&quot;,&quot;application/x-www-form-urlencoded&quot;);</span><br><span class="line">request.send(&quot;name=daijiale&amp;sex=man&quot;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="XHR取得响应">XHR取得响应</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">responseText//获得字符串形式的响应数据</span><br><span class="line">responseXML//获得XML形式的响应数据</span><br><span class="line">status//以数字形式返回HTTP状态码</span><br><span class="line">statusText//以文本形式返回HTTP状态码</span><br><span class="line">getALLResponseHeader()//获取所有响应报头</span><br><span class="line">getResponseHeader()//查询响应中的某个字段的值</span><br></pre></td></tr></table></figure>
 <p>这里重点需要关注下 <code>readyState</code> 属性</p>
 <ul>
 <li>0：请求未初始化，open还没有调用</li>
@@ -214,7 +214,7 @@
 <li>3：请求处理中，也就是接收到响应主体了</li>
 <li>4：请求已完成，且响应已就绪，也就是响应完成了</li>
 </ul>
-<p>因此，通过监听此属性的值，可以得到对应响应结果。方法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var request = new XMLHttpRequest();&#10;request.open(&#34;GET&#34;,&#34;127.0.0.1/get.php&#34;,true);&#10;request.send();&#10;request.onreadystatechange = function()&#123;&#10;if(request.readyState===4 &#38;&#38; request.status===200&#65289;&#65371;&#10;//do some thing here &#10;//request.responseText&#10;&#9;&#125;&#10;&#65373;</span><br></pre></td></tr></table></figure></p>
+<p>因此，通过监听此属性的值，可以得到对应响应结果。方法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var request = new XMLHttpRequest();</span><br><span class="line">request.open(&quot;GET&quot;,&quot;127.0.0.1/get.php&quot;,true);</span><br><span class="line">request.send();</span><br><span class="line">request.onreadystatechange = function()&#123;</span><br><span class="line">if(request.readyState===4 &amp;&amp; request.status===200）｛</span><br><span class="line">//do some thing here </span><br><span class="line">//request.responseText</span><br><span class="line">	&#125;</span><br><span class="line">｝</span><br></pre></td></tr></table></figure></p>
 <h1 id="Ajax_Demo">Ajax Demo</h1><ul>
 <li><a href="http://www.w3school.com.cn/tiy/t.asp?f=ajax_httprequest_js" target="_blank" rel="external">Ajax加载XML</a></li>
 <li><a href="http://www.w3school.com.cn/ajax/ajax_example_suggest.asp" target="_blank" rel="external">Ajax实现Web通信 </a></li>
@@ -231,11 +231,11 @@
 <li><strong>综上： <code>jQuery</code> 对 <code>Ajax</code> 进行了又一次的封装，使得其主体功能用起来更为方便，简单，现在大部分开发者都很少直接用js写原生ajax，都是引入了jquery ajax方法。但是由于依赖于<code>jQuery</code>，导致不灵活，有其局限性。</strong></li>
 </ul>
 <h2 id="JQuery_Ajax的使用方法">JQuery Ajax的使用方法</h2><p>基本语法格式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;$(document).ready(function()&#123;&#10;  $(&#34;#button_name&#34;).click(function()&#123;&#10;   $.ajax(&#123;&#10;&#9;&#9;type:&#34;POST&#34;,&#10;&#9;&#9;url:&#34;127.0.0.1/get.php&#34;,&#10;        data:&#123;&#10;&#9;&#9;    name:$(&#34;#staffname&#34;).val(),&#10;&#9;&#9;&#9;password:$(&#34;#staffpassword&#34;).val(),&#10;&#9;&#9;&#125;,&#10;        dataType:&#34;json&#34;,&#10;&#9;&#9;success:function(data)&#123;&#10;&#9;&#9;&#9;if(data.success)&#123;&#10;&#9;&#9;&#9;&#9;$(&#34;#button_click_result&#34;).html(data.msg);&#10;&#9;&#9;&#9;&#9;&#125;else&#123;&#10;&#9;&#9;&#9;&#9;$(&#34;#button_click_result&#34;).html(&#34;error&#34;+data.msg);&#10;&#9;&#9;&#9;&#9;&#125;&#10;&#9;&#9;&#9;&#125;,&#10;&#9;&#9;error:function(jqXHR)&#123;&#10;&#9;&#9;&#9;alert(&#34;error&#65306;&#34;+jqXHR.status);&#10;&#9;&#9;&#9;&#125;&#10;&#9;&#9;&#125;)&#10;&#9;&#125;)&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$(document).ready(function()&#123;</span><br><span class="line">  $(&quot;#button_name&quot;).click(function()&#123;</span><br><span class="line">   $.ajax(&#123;</span><br><span class="line">		type:&quot;POST&quot;,</span><br><span class="line">		url:&quot;127.0.0.1/get.php&quot;,</span><br><span class="line">        data:&#123;</span><br><span class="line">		    name:$(&quot;#staffname&quot;).val(),</span><br><span class="line">			password:$(&quot;#staffpassword&quot;).val(),</span><br><span class="line">		&#125;,</span><br><span class="line">        dataType:&quot;json&quot;,</span><br><span class="line">		success:function(data)&#123;</span><br><span class="line">			if(data.success)&#123;</span><br><span class="line">				$(&quot;#button_click_result&quot;).html(data.msg);</span><br><span class="line">				&#125;else&#123;</span><br><span class="line">				$(&quot;#button_click_result&quot;).html(&quot;error&quot;+data.msg);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;,</span><br><span class="line">		error:function(jqXHR)&#123;</span><br><span class="line">			alert(&quot;error：&quot;+jqXHR.status);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>jQuery load()//简单而强大</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(selector).load(URL,data,callback);</span><br></pre></td></tr></table></figure>
 <p>load()方法直接从服务器加载数据，并把返回的数据放入被选元素中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;!DOCTYPE html&#62;&#10;&#60;html&#62;&#10;&#60;head&#62;&#10;&#60;script src=&#34;/jquery/jquery-1.11.1.min.js&#34;&#62;&#60;/script&#62;&#10;&#60;script&#62;&#10;$(document).ready(function()&#123;&#10;  $(&#34;button&#34;).click(function()&#123;&#10;$(&#34;#div1&#34;).load(&#34;/example/jquery/demo_test.txt&#34;,function(responseTxt,statusTxt,xhr)&#123;&#10;  if(statusTxt==&#34;success&#34;)&#10;alert(&#34;&#22806;&#37096;&#20869;&#23481;&#21152;&#36733;&#25104;&#21151;&#65281;&#34;);&#10;  if(statusTxt==&#34;error&#34;)&#10;alert(&#34;Error: &#34;+xhr.status+&#34;: &#34;+xhr.statusText);&#10;&#125;);&#10;  &#125;);&#10;&#125;);&#10;&#60;/script&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#10;&#60;div id=&#34;div1&#34;&#62;&#60;h2&#62;&#20351;&#29992; jQuery AJAX &#26469;&#25913;&#21464;&#25991;&#26412;&#60;/h2&#62;&#60;/div&#62;&#10;&#60;button&#62;&#33719;&#24471;&#22806;&#37096;&#20869;&#23481;&#60;/button&#62;&#10;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;script src=&quot;/jquery/jquery-1.11.1.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">$(document).ready(function()&#123;</span><br><span class="line">  $(&quot;button&quot;).click(function()&#123;</span><br><span class="line">$(&quot;#div1&quot;).load(&quot;/example/jquery/demo_test.txt&quot;,function(responseTxt,statusTxt,xhr)&#123;</span><br><span class="line">  if(statusTxt==&quot;success&quot;)</span><br><span class="line">alert(&quot;外部内容加载成功！&quot;);</span><br><span class="line">  if(statusTxt==&quot;error&quot;)</span><br><span class="line">alert(&quot;Error: &quot;+xhr.status+&quot;: &quot;+xhr.statusText);</span><br><span class="line">&#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;div id=&quot;div1&quot;&gt;&lt;h2&gt;使用 jQuery AJAX 来改变文本&lt;/h2&gt;&lt;/div&gt;</span><br><span class="line">&lt;button&gt;获得外部内容&lt;/button&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 <p>本例<a href="http://www.w3school.com.cn/tiy/t.asp?f=jquery_ajax_load_callback" target="_blank" rel="external">Demo效果</a></p>
 <p>更多请参见 <a href="http://www.w3school.com.cn/jquery/jquery_ref_ajax.asp" target="_blank" rel="external">jQuery Ajax操作函数表</a></p>
 <h1 id="JSON">JSON</h1><p> 这里补充一下这个知识，和xml一样，经常在ajax数据传输中用到，没什么难的，看看就会了：</p>
@@ -295,11 +295,11 @@
 <h3 id="二、JSONP">二、JSONP</h3><p><code>JSONP</code> 可用于解决<strong>主流</strong>浏览器的跨域数据访问的问题。</p>
 <p><strong>eg：</strong></p>
 <p>在www.aaa.com页面中：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;script&#62;&#10;function jsonp(json)&#123;&#10;&#10;&#9;alert(json[&#34;name&#34;]):&#10;&#125;&#10;&#60;/script&#62;&#10;&#60;script src=&#34;http://www.bbb.com/jsonp.js&#34;&#62;&#60;/script&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">function jsonp(json)&#123;</span><br><span class="line"></span><br><span class="line">	alert(json[&quot;name&quot;]):</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;http://www.bbb.com/jsonp.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 <p>在www.bbb.com页面中：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jsonp(&#123;&#39;name&#39;:&#39;&#27946;&#19971;&#39;,&#39;age&#39;:24&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jsonp(&#123;&apos;name&apos;:&apos;洪七&apos;,&apos;age&apos;:24&#125;);</span><br></pre></td></tr></table></figure>
 <p>JSONP只支持 <code>GET</code> 请求，存在局限性：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;$(document).ready(function()&#123;&#10;  $(&#34;#button_name&#34;).click(function()&#123;&#10;   $.ajax(&#123;&#10;&#9;&#9;type:&#34;GET&#34;,//JSONP&#21482;&#25903;&#25345;GET,&#23384;&#22312;&#23616;&#38480;&#24615;&#10;&#9;&#9;url:&#34;127.0.0.1/get.php&#34;,&#10;        dataType:&#34;jsonp&#34;,//&#20027;&#35201;&#20462;&#25913;&#36825;&#10;&#9;&#9;jsonp:&#34;callback&#34;,//&#21069;&#31471;&#33050;&#26412;&#35821;&#35328;&#38656;&#35201;&#26032;&#24314;&#21464;&#37327;&#23545;&#35937;&#26469;&#33719;&#21462;&#21517;&#20026;&#8220;callback&#8221;&#30340;jsonp&#10;&#9;&#9;success:function(data)&#123;&#10;&#9;&#9;&#9;if(data.success)&#123;&#10;&#9;&#9;&#9;&#9;$(&#34;#button_click_result&#34;).html(data.msg);&#10;&#9;&#9;&#9;&#9;&#125;else&#123;&#10;&#9;&#9;&#9;&#9;$(&#34;#button_click_result&#34;).html(&#34;error&#34;+data.msg);&#10;&#9;&#9;&#9;&#9;&#125;&#10;&#9;&#9;&#9;&#125;,&#10;&#9;&#9;error:function(jqXHR)&#123;&#10;&#9;&#9;&#9;alert(&#34;error&#65306;&#34;+jqXHR.status);&#10;&#9;&#9;&#9;&#125;&#10;&#9;&#9;&#125;)&#10;&#9;&#125;)&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$(document).ready(function()&#123;</span><br><span class="line">  $(&quot;#button_name&quot;).click(function()&#123;</span><br><span class="line">   $.ajax(&#123;</span><br><span class="line">		type:&quot;GET&quot;,//JSONP只支持GET,存在局限性</span><br><span class="line">		url:&quot;127.0.0.1/get.php&quot;,</span><br><span class="line">        dataType:&quot;jsonp&quot;,//主要修改这</span><br><span class="line">		jsonp:&quot;callback&quot;,//前端脚本语言需要新建变量对象来获取名为“callback”的jsonp</span><br><span class="line">		success:function(data)&#123;</span><br><span class="line">			if(data.success)&#123;</span><br><span class="line">				$(&quot;#button_click_result&quot;).html(data.msg);</span><br><span class="line">				&#125;else&#123;</span><br><span class="line">				$(&quot;#button_click_result&quot;).html(&quot;error&quot;+data.msg);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;,</span><br><span class="line">		error:function(jqXHR)&#123;</span><br><span class="line">			alert(&quot;error：&quot;+jqXHR.status);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="三、XHR2">三、XHR2</h3><ul>
 <li>html5提供的XMLHttpRequest Level2 已经实现了跨域访问以及其他的一些新功能</li>
 <li>IE10以下版本不支持</li>
@@ -347,7 +347,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Ajax/">Ajax</a><a href="/tags/Javascript/">Javascript</a><a href="/tags/Json/">Json</a>
+  <span></span> <a href="/tags/Javascript/">Javascript</a><a href="/tags/Ajax/">Ajax</a><a href="/tags/Json/">Json</a>
   </div>
 
 </div>
@@ -459,11 +459,11 @@
 			
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>6</sup></a></li>
+				<li><a href="/tags/PHP/" title="PHP">PHP<sup>7</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/PHP/" title="PHP">PHP<sup>6</sup></a></li>
+				<li><a href="/tags/Android/" title="Android">Android<sup>6</sup></a></li>
 			
 		
 			
@@ -471,11 +471,15 @@
 			
 		
 			
+				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/html5/" title="html5">html5<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>3</sup></a></li>
+				<li><a href="/tags/Hackathon/" title="Hackathon">Hackathon<sup>2</sup></a></li>
 			
 		
 			
@@ -483,35 +487,19 @@
 			
 		
 			
-				<li><a href="/tags/poppin/" title="poppin">poppin<sup>1</sup></a></li>
+				<li><a href="/tags/搜索引擎/" title="搜索引擎">搜索引擎<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Amaze-UI/" title="Amaze UI">Amaze UI<sup>1</sup></a></li>
+				<li><a href="/tags/Nutch/" title="Nutch">Nutch<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/智能可穿戴/" title="智能可穿戴">智能可穿戴<sup>1</sup></a></li>
+				<li><a href="/tags/Tesseract/" title="Tesseract">Tesseract<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/拍照摄影/" title="拍照摄影">拍照摄影<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端性能优化/" title="前端性能优化">前端性能优化<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/街舞/" title="街舞">街舞<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端自动化工具/" title="前端自动化工具">前端自动化工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Ajax/" title="Ajax">Ajax<sup>1</sup></a></li>
+				<li><a href="/tags/Solr/" title="Solr">Solr<sup>1</sup></a></li>
 			
 		
 			
@@ -519,19 +507,31 @@
 			
 		
 			
-				<li><a href="/tags/工具神器/" title="工具神器">工具神器<sup>1</sup></a></li>
+				<li><a href="/tags/OCR/" title="OCR">OCR<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+				<li><a href="/tags/Composer/" title="Composer">Composer<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/代码托管/" title="代码托管">代码托管<sup>1</sup></a></li>
+				<li><a href="/tags/AndroidWear/" title="AndroidWear">AndroidWear<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+				<li><a href="/tags/智能可穿戴/" title="智能可穿戴">智能可穿戴<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/机器学习/" title="机器学习">机器学习<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Blog/" title="Blog">Blog<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/PhpStorm/" title="PhpStorm">PhpStorm<sup>1</sup></a></li>
 			
 		
 		</ul>

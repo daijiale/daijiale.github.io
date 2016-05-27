@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="DaiJiale's Blog">
 <meta property="og:description" content="前言
 在百度即将离职的最后一个月里，我被派往新项目担任FE的角色，借此机会也重新review一下大一大二的老本行——Web前端开发。这篇Blog是对自己所学2年JS的一个设计模式总结，也是实际编码中经常用到的很多经典Case，希望能帮助到更多JS开发者，也给那些还活跃在 JS API 层的同学打开一个新的学习思路。PS：本篇Blog侧重点在于JS的设计模式，如果只是期望了解JS语法，请直接戳W3C">
-<meta property="og:updated_time" content="2016-03-08T10:27:06.000Z">
+<meta property="og:updated_time" content="2016-03-24T07:49:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【前端】JavaScript经典设计模式总结">
 <meta name="twitter:description" content="前言
@@ -35,7 +35,7 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
   <body>
@@ -110,19 +110,19 @@
 <h2 id="this、call、apply">this、call、apply</h2><p>Javascript 的<code>this</code>总是指向一个对象，而具体指向哪个对象是在运行时基于函数的执行环境动态绑定的，而不是函数被声明时的环境。</p>
 <h3 id="this的指向">this的指向</h3><p>除去不常用的<code>with</code>和<code>eval</code>情况。</p>
 <h4 id="1、作为对象的方法调用">1、作为对象的方法调用</h4><p>当函数作为对象的方法被调用时候，this指向该对象：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;&#10;a: 1,&#10;getA: function()&#123;&#10;&#9;alert( this === obj); // &#36755;&#20986;:true&#10;&#9;alert( this .a); //&#36755;&#20986;:1&#10;&#9;&#65373;&#10;&#125;;&#10;obj.getA();</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">a: 1,</span><br><span class="line">getA: function()&#123;</span><br><span class="line">	alert( this === obj); // 输出:true</span><br><span class="line">	alert( this .a); //输出:1</span><br><span class="line">	｝</span><br><span class="line">&#125;;</span><br><span class="line">obj.getA();</span><br></pre></td></tr></table></figure>
 <h4 id="2、作为普通函数调用">2、作为普通函数调用</h4><p>即普通函数方式：this总是指向全局对象，在浏览器的JavaScript中，这个全局对象是window对象。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.name = &#39;globalName&#39; ;&#10;&#10;var myObject = &#123;&#10;&#9;&#9;name: &#39;daijiale&#39; , &#10;&#9;&#9;getName = function()&#123;&#10;&#9;&#9;return this.name;&#10;&#9;&#9;&#125;&#10;&#125;;&#10;var getName = myObject.getName;&#10;console.log( getName() ); //&#36755;&#20986;: globalName</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">window.name = &apos;globalName&apos; ;</span><br><span class="line"></span><br><span class="line">var myObject = &#123;</span><br><span class="line">		name: &apos;daijiale&apos; , </span><br><span class="line">		getName = function()&#123;</span><br><span class="line">		return this.name;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line">var getName = myObject.getName;</span><br><span class="line">console.log( getName() ); //输出: globalName</span><br></pre></td></tr></table></figure>
 <p>注：<br>有时候我们在某个标签，例如“div”节点的事件函数内部，有一个局部的callback方法，callback被作为普通函数调用时，callback内部的this指向了window，如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;html&#62;&#10;&#9;&#9;&#60;body&#62;&#10;&#9;&#9;&#9;&#60;div id = &#34;div1&#34;&#62;&#25105;&#26159;&#19968;&#20010;div&#60;/div&#62;&#10;&#9;&#9;&#60;/body&#62;&#10;&#9;&#9;&#10;&#9;&#9;&#60;script&#62;&#10;&#9;&#9;&#10;&#9;&#9;window.id = &#39;window&#39; ;&#10;&#9;&#9;&#10;&#9;&#9;document.getElementById( &#39;div1&#39; ).onclick = function()&#123;&#10;&#9;&#9;&#9;alert(this.id); //&#36755;&#20986;&#65306;&#39;div1&#39;&#10;&#9;&#9;&#9;var callback = function()&#123;&#10;&#9;&#9;&#9;&#9;alert(this .id); //&#36755;&#20986;:&#39;window&#39;&#10;&#9;&#9;&#9;&#125;&#10;&#9;&#9;&#9;callback();&#10;&#9;&#9;&#125;;&#10;&#9;&#9;&#60;/script&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">		&lt;body&gt;</span><br><span class="line">			&lt;div id = &quot;div1&quot;&gt;我是一个div&lt;/div&gt;</span><br><span class="line">		&lt;/body&gt;</span><br><span class="line">		</span><br><span class="line">		&lt;script&gt;</span><br><span class="line">		</span><br><span class="line">		window.id = &apos;window&apos; ;</span><br><span class="line">		</span><br><span class="line">		document.getElementById( &apos;div1&apos; ).onclick = function()&#123;</span><br><span class="line">			alert(this.id); //输出：&apos;div1&apos;</span><br><span class="line">			var callback = function()&#123;</span><br><span class="line">				alert(this .id); //输出:&apos;window&apos;</span><br><span class="line">			&#125;</span><br><span class="line">			callback();</span><br><span class="line">		&#125;;</span><br><span class="line">		&lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 <p>但我们往往是想让他指向div节点，解决办法：可以用一个变量保存div节点的引用：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById(&#39;div1&#39;).onclick = function()&#123;&#10;&#9;&#9;var that = this; //&#20445;&#23384;div&#30340;&#24341;&#29992;&#10;&#9;&#9;var callback = function()&#123;&#10;&#9;&#9;&#9;&#9;alert(that.id);&#9;//&#36755;&#20986;&#65306; &#8216;div1&#8217;&#10;&#9;&#9;&#10;&#9;&#125;&#10;&#9;callback();&#10;&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById(&apos;div1&apos;).onclick = function()&#123;</span><br><span class="line">		var that = this; //保存div的引用</span><br><span class="line">		var callback = function()&#123;</span><br><span class="line">				alert(that.id);	//输出： ‘div1’</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	callback();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h4 id="3、构造器调用">3、构造器调用</h4><p>JavaScript中没有类，但是可以从构造器中创建对象，同时也提供了ne运算符，使得构造器看起来更像一个类。<br>当用new运算符调用函数时，该函数总会返回一个对象，通常情况下，构造器里的this就指向返回的这个对象，见如下代码:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var MyClass &#65309; function()&#123;&#10;&#9;&#9;this.name = &#39; daijiale&#39;;&#10;&#9;&#9;&#9;&#9;&#10;&#125;&#65307;&#10;&#10;var obj = new MyClass();&#10;alert(obj.name); //&#36755;&#20986;daijiale;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var MyClass ＝ function()&#123;</span><br><span class="line">		this.name = &apos; daijiale&apos;;</span><br><span class="line">				</span><br><span class="line">&#125;；</span><br><span class="line"></span><br><span class="line">var obj = new MyClass();</span><br><span class="line">alert(obj.name); //输出daijiale;</span><br></pre></td></tr></table></figure>
 <p>注:<br>如果构造器显式地返回了一个object类型的对象，那么此次运算结果最终会返回这个对象，而不是我们之前期待的this:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var MyClass = function()&#123;&#10;&#9;this.name = &#39;daijiale&#39;;&#10;       return &#123;  //&#26174;&#31034;&#22320;&#36820;&#22238;&#19968;&#20010;&#23545;&#35937;&#10;         name:&#39;daijiale2&#39;&#10;       &#125;&#9;&#10;&#125;;&#10;&#10;var obj = new MyClass();&#10;alert(obj.name); //&#36755;&#20986;daijiale2</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var MyClass = function()&#123;</span><br><span class="line">	this.name = &apos;daijiale&apos;;</span><br><span class="line">       return &#123;  //显示地返回一个对象</span><br><span class="line">         name:&apos;daijiale2&apos;</span><br><span class="line">       &#125;	</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var obj = new MyClass();</span><br><span class="line">alert(obj.name); //输出daijiale2</span><br></pre></td></tr></table></figure>
 <h4 id="4、Function-prototype-call_或_Function-prototype-apply调用">4、Function.prototype.call 或 Function.prototype.apply调用</h4><p>跟普通的函数调用相比，用Function.prototype.call或 Function.prototype.apply可以动态的改变传入函数的this:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var obj1 = &#123;&#10;&#9;name : &#39;daijiale&#39;,&#10;&#9;getName: function()&#123;&#10;&#9;&#9;return this.name;&#10;&#9;&#125;&#10;&#125;;&#10;&#10;var obj2 = &#123;&#10;&#9;name: &#39;daijiale2&#39;&#10;&#125;;&#10;&#10;console.log(obj1.getName());//&#36755;&#20986;&#65306;daijiale&#10;console.log(obj1.getName.call(obj2));//&#36755;&#20986;:daijiale2</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var obj1 = &#123;</span><br><span class="line">	name : &apos;daijiale&apos;,</span><br><span class="line">	getName: function()&#123;</span><br><span class="line">		return this.name;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var obj2 = &#123;</span><br><span class="line">	name: &apos;daijiale2&apos;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(obj1.getName());//输出：daijiale</span><br><span class="line">console.log(obj1.getName.call(obj2));//输出:daijiale2</span><br></pre></td></tr></table></figure>
 <h1 id="最后汇总一些比较好的技术文章和其他资料">最后汇总一些比较好的技术文章和其他资料</h1><ul>
 <li><a href="http://www.w3cfuns.com/blog-5465288-5408787.html" target="_blank" rel="external">javascript异步编程的4种方法</a></li>
 </ul>
@@ -251,11 +251,11 @@
 			
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>6</sup></a></li>
+				<li><a href="/tags/PHP/" title="PHP">PHP<sup>7</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/PHP/" title="PHP">PHP<sup>6</sup></a></li>
+				<li><a href="/tags/Android/" title="Android">Android<sup>6</sup></a></li>
 			
 		
 			
@@ -263,11 +263,15 @@
 			
 		
 			
+				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/html5/" title="html5">html5<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>3</sup></a></li>
+				<li><a href="/tags/Hackathon/" title="Hackathon">Hackathon<sup>2</sup></a></li>
 			
 		
 			
@@ -275,35 +279,19 @@
 			
 		
 			
-				<li><a href="/tags/poppin/" title="poppin">poppin<sup>1</sup></a></li>
+				<li><a href="/tags/搜索引擎/" title="搜索引擎">搜索引擎<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Amaze-UI/" title="Amaze UI">Amaze UI<sup>1</sup></a></li>
+				<li><a href="/tags/Nutch/" title="Nutch">Nutch<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/智能可穿戴/" title="智能可穿戴">智能可穿戴<sup>1</sup></a></li>
+				<li><a href="/tags/Tesseract/" title="Tesseract">Tesseract<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/拍照摄影/" title="拍照摄影">拍照摄影<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端性能优化/" title="前端性能优化">前端性能优化<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/街舞/" title="街舞">街舞<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端自动化工具/" title="前端自动化工具">前端自动化工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Ajax/" title="Ajax">Ajax<sup>1</sup></a></li>
+				<li><a href="/tags/Solr/" title="Solr">Solr<sup>1</sup></a></li>
 			
 		
 			
@@ -311,19 +299,31 @@
 			
 		
 			
-				<li><a href="/tags/工具神器/" title="工具神器">工具神器<sup>1</sup></a></li>
+				<li><a href="/tags/OCR/" title="OCR">OCR<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+				<li><a href="/tags/Composer/" title="Composer">Composer<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/代码托管/" title="代码托管">代码托管<sup>1</sup></a></li>
+				<li><a href="/tags/AndroidWear/" title="AndroidWear">AndroidWear<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+				<li><a href="/tags/智能可穿戴/" title="智能可穿戴">智能可穿戴<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/机器学习/" title="机器学习">机器学习<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Blog/" title="Blog">Blog<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/PhpStorm/" title="PhpStorm">PhpStorm<sup>1</sup></a></li>
 			
 		
 		</ul>

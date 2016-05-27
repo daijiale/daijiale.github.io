@@ -12,27 +12,27 @@
 
     
     <meta name="description" content="JAVA1. 举例说明多态和重载区别** 重载**
- 1class A&amp;#123;&amp;#10;void Aa(int a )&amp;#123;....&amp;#125;&amp;#10;void Aa (int a,int b)&amp;#123;...&amp;#125; &amp;#10;&amp;#125;
+ 1234class A&amp;#123;void Aa(int a )&amp;#123;....&amp;#125;void Aa (int a,int b)&amp;#123;...&amp;#125; &amp;#125;
 虽然Aa定义了2个 但是因为他们注册的参数不同所以 看作为2个不同的方法
 多态
-1interface A &amp;#10;&amp;#123; &amp;#10">
+123456789101112interface A &amp;#123; void Aa">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【Android-持续更新】Android求职知识点Review">
 <meta property="og:url" content="http://daijiale.github.io/2015/07/21/【Android】Android求职知识点Review/index.html">
 <meta property="og:site_name" content="DaiJiale's Blog">
 <meta property="og:description" content="JAVA1. 举例说明多态和重载区别** 重载**
- 1class A&amp;#123;&amp;#10;void Aa(int a )&amp;#123;....&amp;#125;&amp;#10;void Aa (int a,int b)&amp;#123;...&amp;#125; &amp;#10;&amp;#125;
+ 1234class A&amp;#123;void Aa(int a )&amp;#123;....&amp;#125;void Aa (int a,int b)&amp;#123;...&amp;#125; &amp;#125;
 虽然Aa定义了2个 但是因为他们注册的参数不同所以 看作为2个不同的方法
 多态
-1interface A &amp;#10;&amp;#123; &amp;#10">
-<meta property="og:updated_time" content="2016-03-08T10:27:06.000Z">
+123456789101112interface A &amp;#123; void Aa">
+<meta property="og:updated_time" content="2016-03-24T07:49:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【Android-持续更新】Android求职知识点Review">
 <meta name="twitter:description" content="JAVA1. 举例说明多态和重载区别** 重载**
- 1class A&amp;#123;&amp;#10;void Aa(int a )&amp;#123;....&amp;#125;&amp;#10;void Aa (int a,int b)&amp;#123;...&amp;#125; &amp;#10;&amp;#125;
+ 1234class A&amp;#123;void Aa(int a )&amp;#123;....&amp;#125;void Aa (int a,int b)&amp;#123;...&amp;#125; &amp;#125;
 虽然Aa定义了2个 但是因为他们注册的参数不同所以 看作为2个不同的方法
 多态
-1interface A &amp;#10;&amp;#123; &amp;#10">
+123456789101112interface A &amp;#123; void Aa">
 
     
     <link rel="alternative" href="/atom.xml" title="DaiJiale&#39;s Blog" type="application/atom+xml">
@@ -44,7 +44,7 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
   <body>
@@ -113,10 +113,10 @@
 		</div>
 		
 		<h1 id="JAVA">JAVA</h1><h2 id="1-_举例说明多态和重载区别">1. 举例说明多态和重载区别</h2><pre><code><span class="keyword">*</span><span class="keyword">*</span> 重载<span class="keyword">*</span><span class="keyword">*</span>
-</code></pre> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;&#10;void Aa(int a )&#123;....&#125;&#10;void Aa (int a,int b)&#123;...&#125; &#10;&#125;</span><br></pre></td></tr></table></figure>
+</code></pre> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;</span><br><span class="line">void Aa(int a )&#123;....&#125;</span><br><span class="line">void Aa (int a,int b)&#123;...&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>虽然Aa定义了2个 但是因为他们注册的参数不同所以 看作为2个不同的方法</p>
 <p><strong>多态</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">interface A &#10;&#123; &#10;void Aa();&#10;&#125;&#10;class B implement A&#10;&#123;&#10;void Aa()&#123; System.out.println(&#34;123123&#34;); &#125;&#10;&#125;&#10;class C implement A&#10;&#123;&#10;void Aa()&#123; System.out.println(&#34;abcabc&#34;); &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">interface A </span><br><span class="line">&#123; </span><br><span class="line">void Aa();</span><br><span class="line">&#125;</span><br><span class="line">class B implement A</span><br><span class="line">&#123;</span><br><span class="line">void Aa()&#123; System.out.println(&quot;123123&quot;); &#125;</span><br><span class="line">&#125;</span><br><span class="line">class C implement A</span><br><span class="line">&#123;</span><br><span class="line">void Aa()&#123; System.out.println(&quot;abcabc&quot;); &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>多态就是可以理解一个方法被不同实现后 展现不同的效果及状态</p>
 <h2 id="2-_堆栈">2. 堆栈</h2><p><a href="http://zhidao.baidu.com/link?url=nPxYN0s7pcGMl30_IhoQw_K7MykYYQOgiHNIzzeXZt-cLPQAbzJqVOYZvy3aNZayeYpEnHuBA98zXFpJzRa8sq" target="_blank" rel="external">广义堆栈数据结构</a></p>
 <p><a href="http://blog.csdn.net/chengyingzhilian/article/details/7781858" target="_blank" rel="external">Java中的堆栈</a></p>
@@ -283,11 +283,11 @@
 			
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>6</sup></a></li>
+				<li><a href="/tags/PHP/" title="PHP">PHP<sup>7</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/PHP/" title="PHP">PHP<sup>6</sup></a></li>
+				<li><a href="/tags/Android/" title="Android">Android<sup>6</sup></a></li>
 			
 		
 			
@@ -295,11 +295,15 @@
 			
 		
 			
+				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/html5/" title="html5">html5<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>3</sup></a></li>
+				<li><a href="/tags/Hackathon/" title="Hackathon">Hackathon<sup>2</sup></a></li>
 			
 		
 			
@@ -307,35 +311,19 @@
 			
 		
 			
-				<li><a href="/tags/poppin/" title="poppin">poppin<sup>1</sup></a></li>
+				<li><a href="/tags/搜索引擎/" title="搜索引擎">搜索引擎<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Amaze-UI/" title="Amaze UI">Amaze UI<sup>1</sup></a></li>
+				<li><a href="/tags/Nutch/" title="Nutch">Nutch<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/智能可穿戴/" title="智能可穿戴">智能可穿戴<sup>1</sup></a></li>
+				<li><a href="/tags/Tesseract/" title="Tesseract">Tesseract<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/拍照摄影/" title="拍照摄影">拍照摄影<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端性能优化/" title="前端性能优化">前端性能优化<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/街舞/" title="街舞">街舞<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端自动化工具/" title="前端自动化工具">前端自动化工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Ajax/" title="Ajax">Ajax<sup>1</sup></a></li>
+				<li><a href="/tags/Solr/" title="Solr">Solr<sup>1</sup></a></li>
 			
 		
 			
@@ -343,19 +331,31 @@
 			
 		
 			
-				<li><a href="/tags/工具神器/" title="工具神器">工具神器<sup>1</sup></a></li>
+				<li><a href="/tags/OCR/" title="OCR">OCR<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+				<li><a href="/tags/Composer/" title="Composer">Composer<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/代码托管/" title="代码托管">代码托管<sup>1</sup></a></li>
+				<li><a href="/tags/AndroidWear/" title="AndroidWear">AndroidWear<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+				<li><a href="/tags/智能可穿戴/" title="智能可穿戴">智能可穿戴<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/机器学习/" title="机器学习">机器学习<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Blog/" title="Blog">Blog<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/PhpStorm/" title="PhpStorm">PhpStorm<sup>1</sup></a></li>
 			
 		
 		</ul>

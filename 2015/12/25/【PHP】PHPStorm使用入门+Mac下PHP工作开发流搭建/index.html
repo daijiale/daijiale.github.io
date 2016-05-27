@@ -20,11 +20,13 @@
 <meta property="og:description" content="前言
 换了RetineMacPro2015之后，还没怎么做PHP的大型项目，之前很多小的Web后端都使用的MAMP来进行PHP开发，因为项目小，基本都不要太多调试，所以MAMP还挺满足需求的，但是也受够了只能通过echo,print来行调试的窘境。所以有了这篇博客，也为了帮助以后有需要的童鞋们可以少走弯路。">
 <meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/djlBlogbrew_fix_bug.png">
-<meta property="og:updated_time" content="2016-03-08T10:27:06.000Z">
+<meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/djlBlog_phpstormtest.png">
+<meta property="og:updated_time" content="2016-03-25T10:35:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【PHP】PhpStorm使用入门+Mac下PHP工作开发流搭建">
 <meta name="twitter:description" content="前言
 换了RetineMacPro2015之后，还没怎么做PHP的大型项目，之前很多小的Web后端都使用的MAMP来进行PHP开发，因为项目小，基本都不要太多调试，所以MAMP还挺满足需求的，但是也受够了只能通过echo,print来行调试的窘境。所以有了这篇博客，也为了帮助以后有需要的童鞋们可以少走弯路。">
+<meta name="twitter:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/djlBlogbrew_fix_bug.png">
 
     
     <link rel="alternative" href="/atom.xml" title="DaiJiale&#39;s Blog" type="application/atom+xml">
@@ -36,7 +38,7 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
   <body>
@@ -100,7 +102,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Brew安装"><span class="toc-number">2.</span> <span class="toc-text">Brew安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Phpstorm安装"><span class="toc-number">3.</span> <span class="toc-text">Phpstorm安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Brew_安装PHP和PHP扩展库"><span class="toc-number">4.</span> <span class="toc-text">Brew 安装PHP和PHP扩展库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PhpStorm构建Xdebug进行调试"><span class="toc-number">5.</span> <span class="toc-text">PhpStorm构建Xdebug进行调试</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Brew安装"><span class="toc-number">2.</span> <span class="toc-text">Brew安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Phpstorm安装"><span class="toc-number">3.</span> <span class="toc-text">Phpstorm安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Brew_安装PHP和PHP扩展库"><span class="toc-number">4.</span> <span class="toc-text">Brew 安装PHP和PHP扩展库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PhpStorm构建Xdebug进行调试"><span class="toc-number">5.</span> <span class="toc-text">PhpStorm构建Xdebug进行调试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PhpStorm构建MAMP服务器测试环境"><span class="toc-number">6.</span> <span class="toc-text">PhpStorm构建MAMP服务器测试环境</span></a></li></ol>
 		
 		</div>
 		
@@ -120,14 +122,16 @@
 <p>注意：因为Phpstorm执行调试程序需要指定Php版本，而Mac系统自带安装的PHP是5.5.x版本，位于usr/bin/php目录下，此目录并无php.ini以及更多php扩展库文件，所以需要我们用到之前安装的<code>Brew</code>来进行自定义的PHP版本下载，默认下载路径到usr/local/etc/php/下。</p>
 <h1 id="Brew_安装PHP和PHP扩展库">Brew 安装PHP和PHP扩展库</h1><p>打开终端：<br>参看如下步骤：<a href="http://www.phperz.com/article/14/0819/18934.html" target="_blank" rel="external">安装指南</a></p>
 <p>注意：因为brew版本更新原因：可能会出现如下问题：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error: Formulae found in multiple taps:&#10; * homebrew/php/php53&#10; * josegonzalez/php/php53&#10;Please use the fully-qualified name e.g. homebrew/php/php53 to refer the formula.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Error: Formulae found in multiple taps:</span><br><span class="line"> * homebrew/php/php53</span><br><span class="line"> * josegonzalez/php/php53</span><br><span class="line">Please use the fully-qualified name e.g. homebrew/php/php53 to refer the formula.</span><br></pre></td></tr></table></figure>
 <p>博主的解决方案是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew untap josegonzalez/php&#10;brew tap --repair&#10;brew update</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">brew untap josegonzalez/php</span><br><span class="line">brew tap --repair</span><br><span class="line">brew update</span><br></pre></td></tr></table></figure>
 <p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlBlogbrew_fix_bug.png" alt=""></p>
 <h1 id="PhpStorm构建Xdebug进行调试">PhpStorm构建Xdebug进行调试</h1><ul>
 <li>首先在Phpstorm中指定好刚下载好的自定义Php版本路径（含有php.int和其他扩展库）。</li>
 <li><a href="http://www.cnblogs.com/lishiyun19/p/4470086.html" target="_blank" rel="external">参考教程</a>，配置Xdebug。</li>
-<li></li>
+</ul>
+<h1 id="PhpStorm构建MAMP服务器测试环境">PhpStorm构建MAMP服务器测试环境</h1><ul>
+<li><a href="http://blog.sina.com.cn/s/blog_a30629730102v6sc.html" target="_blank" rel="external">参考教程</a> 配置，成功后，测试如下图所示：<br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlBlog_phpstormtest.png" alt=""></li>
 </ul>
   
 	</div>
@@ -195,7 +199,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Brew安装"><span class="toc-number">2.</span> <span class="toc-text">Brew安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Phpstorm安装"><span class="toc-number">3.</span> <span class="toc-text">Phpstorm安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Brew_安装PHP和PHP扩展库"><span class="toc-number">4.</span> <span class="toc-text">Brew 安装PHP和PHP扩展库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PhpStorm构建Xdebug进行调试"><span class="toc-number">5.</span> <span class="toc-text">PhpStorm构建Xdebug进行调试</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Brew安装"><span class="toc-number">2.</span> <span class="toc-text">Brew安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Phpstorm安装"><span class="toc-number">3.</span> <span class="toc-text">Phpstorm安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Brew_安装PHP和PHP扩展库"><span class="toc-number">4.</span> <span class="toc-text">Brew 安装PHP和PHP扩展库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PhpStorm构建Xdebug进行调试"><span class="toc-number">5.</span> <span class="toc-text">PhpStorm构建Xdebug进行调试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PhpStorm构建MAMP服务器测试环境"><span class="toc-number">6.</span> <span class="toc-text">PhpStorm构建MAMP服务器测试环境</span></a></li></ol>
  
   </div>
 
@@ -254,11 +258,11 @@
 			
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>6</sup></a></li>
+				<li><a href="/tags/PHP/" title="PHP">PHP<sup>7</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/PHP/" title="PHP">PHP<sup>6</sup></a></li>
+				<li><a href="/tags/Android/" title="Android">Android<sup>6</sup></a></li>
 			
 		
 			
@@ -266,11 +270,15 @@
 			
 		
 			
+				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/html5/" title="html5">html5<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>3</sup></a></li>
+				<li><a href="/tags/Hackathon/" title="Hackathon">Hackathon<sup>2</sup></a></li>
 			
 		
 			
@@ -278,35 +286,19 @@
 			
 		
 			
-				<li><a href="/tags/poppin/" title="poppin">poppin<sup>1</sup></a></li>
+				<li><a href="/tags/搜索引擎/" title="搜索引擎">搜索引擎<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Amaze-UI/" title="Amaze UI">Amaze UI<sup>1</sup></a></li>
+				<li><a href="/tags/Nutch/" title="Nutch">Nutch<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/智能可穿戴/" title="智能可穿戴">智能可穿戴<sup>1</sup></a></li>
+				<li><a href="/tags/Tesseract/" title="Tesseract">Tesseract<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/拍照摄影/" title="拍照摄影">拍照摄影<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端性能优化/" title="前端性能优化">前端性能优化<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/街舞/" title="街舞">街舞<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端自动化工具/" title="前端自动化工具">前端自动化工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Ajax/" title="Ajax">Ajax<sup>1</sup></a></li>
+				<li><a href="/tags/Solr/" title="Solr">Solr<sup>1</sup></a></li>
 			
 		
 			
@@ -314,19 +306,31 @@
 			
 		
 			
-				<li><a href="/tags/工具神器/" title="工具神器">工具神器<sup>1</sup></a></li>
+				<li><a href="/tags/OCR/" title="OCR">OCR<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+				<li><a href="/tags/Composer/" title="Composer">Composer<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/代码托管/" title="代码托管">代码托管<sup>1</sup></a></li>
+				<li><a href="/tags/AndroidWear/" title="AndroidWear">AndroidWear<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+				<li><a href="/tags/智能可穿戴/" title="智能可穿戴">智能可穿戴<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/机器学习/" title="机器学习">机器学习<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Blog/" title="Blog">Blog<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/PhpStorm/" title="PhpStorm">PhpStorm<sup>1</sup></a></li>
 			
 		
 		</ul>
