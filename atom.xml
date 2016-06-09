@@ -4,7 +4,7 @@
   <subtitle><![CDATA[只有汗水不会欺骗你 || Only sweat will not fail you]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://daijiale.github.io/"/>
-  <updated>2016-03-24T07:49:18.000Z</updated>
+  <updated>2016-06-09T01:17:17.000Z</updated>
   <id>http://daijiale.github.io/</id>
   
   <author>
@@ -15,11 +15,144 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[【开发工具】敏捷开发Scrum极其应用工具]]></title>
+    <link href="http://daijiale.github.io/2016/06/08/%E3%80%90%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E3%80%91%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91Scrum%E6%9E%81%E5%85%B6%E5%BA%94%E7%94%A8%E5%B7%A5%E5%85%B7/"/>
+    <id>http://daijiale.github.io/2016/06/08/【开发工具】敏捷开发Scrum极其应用工具/</id>
+    <published>2016-06-08T13:34:01.000Z</published>
+    <updated>2016-06-09T01:17:17.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>PS：记录之前BIT学院培训后的积累，梳理了敏捷开发之Scrum的知识，并且推荐一些对于初创团队低成本高可用的团队协作工具。</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="Scrum？">Scrum？</h1><p>Scrum的英文意思是橄榄球运动的一个专业术语，表示“争球”的动作；把一个开发流程的名字取名为Scrum，我想你一定能想象出你的开发团队在开发一个项目时，大家像打橄榄球一样迅速、富有战斗激情、人人你争我抢地完成它，你一定会感到非常兴奋的。</p>
+<p>它是一种开发方法，也就是一种软件开发的流程，它会指导我们用规定的环节去一步一步完成项目的开发；而这种开发方式的主要驱动核心是人；它采用的是迭代式开发。</p>
+<h1 id="Sprint？">Sprint？</h1><p>Sprint是短距离赛跑的意思，这里面指的是一次迭代，而一次迭代的周期是1个月时间（即4个星期），也就是我们要把一次迭代的开发内容以最快的速度完成它，这个过程我们称它为Sprint。</p>
+<h1 id="3Roles">3Roles</h1><h2 id="产品负责人（Product_Owner）">产品负责人（Product Owner）</h2><p>主要负责确定产品的功能和达到要求的标准，指定软件的发布日期和交付的内容，同时有权力接受或拒绝开发团队的工作成果。</p>
+<h2 id="流程管理员（Scrum_Master）">流程管理员（Scrum Master）</h2><p>主要负责整个Scrum流程在项目中的顺利实施和进行，以及清除挡在客户和开发工作之间的沟通障碍，使得客户可以直接驱动开发。</p>
+<h2 id="开发团队（Scrum_Team）">开发团队（Scrum Team）</h2><p>主要负责软件产品在Scrum规定流程下进行开发工作，人数控制在5~10人左右，每个成员可能负责不同的技术方面，但要求每成员必须要有很强的自我管理能力，同时具有一定的表达能力；成员可以采用任何工作方式，只要能达到Sprint的目标。</p>
+<h1 id="4Meetings">4Meetings</h1><h2 id="Sprint_Planning">Sprint Planning</h2><h3 id="目标">目标</h3><ul>
+<li>关键里程碑</li>
+<li>确定产品发布周期</li>
+<li>确定Sprint周期</li>
+</ul>
+<h3 id="步骤">步骤</h3><ul>
+<li>PO讲解需求 </li>
+<li>估算Story相对工作量</li>
+<li>评估优先级</li>
+<li>确定迭代Backlog</li>
+</ul>
+<h2 id="Daily_Scrum">Daily Scrum</h2><h3 id="每日例会：对Sprint进行检查和调整。">每日例会：对Sprint进行检查和调整。</h3><ul>
+<li>每天15分钟的状态汇报会议。</li>
+<li>每天在同一个时间同一个地点。</li>
+<li>每人三个问题：<ul>
+<li>上次会议之后做了什么。</li>
+<li>下次会议之前要做什么。</li>
+<li>有什么困难？</li>
+</ul>
+</li>
+<li>团队更新Sprint Backlog和Sprint燃尽图。</li>
+<li>对所有人开放，但是只有PO可以说话。</li>
+</ul>
+<h2 id="Showcase">Showcase</h2><h3 id="Sprint_评审会议：对产品的检查和调整。">Sprint 评审会议：对产品的检查和调整。</h3><ul>
+<li>团队演示完成的工作和未完成的工作。</li>
+<li>从产品负责人和干系人那里得到反馈。</li>
+<li>更新产品Backlog和发布燃尽图。</li>
+</ul>
+<h2 id="Retro">Retro</h2><h3 id="Sprint_回顾会议：对流程的检查和调整。">Sprint 回顾会议：对流程的检查和调整。</h3><ul>
+<li>团队对过去一个Sprint中的人、关系、流程和工具做检查。</li>
+<li>团队确定可能的改进并对这些改进在下一个Sprint的度量标准达成共识。</li>
+</ul>
+<h1 id="3Tools">3Tools</h1><h2 id="Product_Backlog">Product Backlog</h2><p>产品功能需求列表：</p>
+<ul>
+<li>演进的，排序的，预估的。</li>
+<li>越高优先级越详细。</li>
+<li>产品负责人来维护，但是任何人都可以贡献想法。</li>
+<li>每个产品一个列表。</li>
+</ul>
+<h2 id="Sprint_Backlog">Sprint Backlog</h2><p>能够把product backlog变成可用产品功能的任务。</p>
+<ul>
+<li>由团队创建并在sprint中维护。</li>
+<li>每个人都可以添加、删除、改变Sprint Backlog。</li>
+<li>团队成员自发认领任务，而没有人指派。</li>
+<li>任务用小时估计，通常是1-16小时。</li>
+<li>每天估计剩余工作量。</li>
+</ul>
+<h2 id="Burndown_Charts">Burndown Charts</h2><p>Sprint燃尽图：显示Sprint中的剩余工作量。</p>
+<ul>
+<li>以小时计算。</li>
+<li>每日更新</li>
+</ul>
+<h1 id="Scrum_Start">Scrum Start</h1><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/ScrumModel.jpg" alt=""></p>
+<ul>
+<li><p>1、我们首先需要确定一个Product Backlog（按优先顺序排列的一个产品需求列表），这个是由Product Owner 负责的；</p>
+</li>
+<li><p>2、Scrum Team根据Product Backlog列表，做工作量的预估和安排；</p>
+</li>
+<li><p>3、有了Product Backlog列表，我们需要通过 Sprint Planning Meeting（Sprint计划会议） 来从中挑选出一个Story作为本次迭代完成的目标，这个目标的时间周期是1~4个星期，然后把这个Story进行细化，形成一个Sprint Backlog；</p>
+</li>
+<li><p>4、Sprint Backlog是由Scrum Team去完成的，每个成员根据Sprint Backlog再细化成更小的任务（细到每个任务的工作量在2天内能完成）；</p>
+</li>
+<li><p>5、在Scrum Team完成计划会议上选出的Sprint Backlog过程中，需要进行 Daily Scrum Meeting（每日站立会议），每次会议控制在15分钟左右，每个人都必须发言，并且要向所有成员当面汇报你昨天完成了什么，并且向所有成员承诺你今天要完成什么，同时遇到不能解决的问题也可以提出，每个人回答完成后，要走到黑板前更新自己的 Sprint burn down（Sprint燃尽图）；</p>
+</li>
+<li><p>6、做到每日集成，也就是每天都要有一个可以成功编译、并且可以演示的版本；很多人可能还没有用过自动化的每日集成，其实TFS就有这个功能，它可以支持每次有成员进行签入操作的时候，在服务器上自动获取最新版本，然后在服务器中编译，如果通过则马上再执行单元测试代码，如果也全部通过，则将该版本发布，这时一次正式的签入操作才保存到TFS中，中间有任何失败，都会用邮件通知项目管理人员；</p>
+</li>
+<li><p>7、当一个Story完成，也就是Sprint Backlog被完成，也就表示一次Sprint完成，这时，我们要进行 Srpint Review Meeting（演示会议），也称为评审会议，产品负责人和客户都要参加（最好本公司老板也参加），每一个Scrum Team的成员都要向他们演示自己完成的软件产品（这个会议非常重要，一定不能取消）；</p>
+</li>
+<li><p>8、最后就是 Sprint Retrospective Meeting（回顾会议），也称为总结会议，以轮流发言方式进行，每个人都要发言，总结并讨论改进的地方，放入下一轮Sprint的产品需求中；</p>
+</li>
+</ul>
+<h1 id="Scrum场景图">Scrum场景图</h1><h2 id="任务卡片">任务卡片</h2><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/%E4%BB%BB%E5%8A%A1%E5%8D%A1%E7%89%87.png" alt=""></p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/%E4%BB%BB%E5%8A%A1%E5%8D%A1%E7%89%872.png" alt=""><br>eg:Product Backlog示例。</p>
+<h2 id="每日站会">每日站会</h2><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/%E6%AF%8F%E6%97%A5%E7%AB%99%E4%BC%9A.png" alt=""></p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/%E7%AB%99%E4%BC%9A:%E8%AF%84%E5%AE%A1%E4%BC%9A.png" alt=""><br>eg:参会人员可以随意姿势站立，任务看板要保证让每个人看到，当每个人发言完后，要走到任务版前更新自己的燃尽图.</p>
+<h2 id="任务看板">任务看板</h2><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/%E4%BB%BB%E5%8A%A1%E7%9C%8B%E6%9D%BF.png" alt=""></p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/%E4%BB%BB%E5%8A%A1%E7%9C%8B%E6%9D%BF2.png" alt=""><br>eg:任务看版包含 未完成、正在做、已完成 的工作状态，假设你今天把一个未完成的工作已经完成，那么你要把小卡片从未完成区域贴到已完成区域。</p>
+<h2 id="计划纸牌">计划纸牌</h2><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/%E8%AE%A1%E5%88%92%E7%BA%B8%E7%89%8C.png" alt=""><br>eg：它的作用是项目在开发过程中，让成员被能人所领导。怎么用的呢？比如A程序员开发一个功能，需要5个小时，B程序员认为只需要半小时，那他们各自取相应的牌，藏在手中，最后摊牌，如果时间差距很大，那么A和B就可以讨论A为什么要5个小时…</p>
+<h2 id="燃尽图">燃尽图</h2><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/%E7%87%83%E5%B0%BD%E5%9B%BE.png" alt=""><br>eg: 任务看版包含 未完成、正在做、已完成 的工作状态，假设你今天把一个未完成的工作已经完成，那么你要把小卡片从未完成区域贴到已完成区域。</p>
+<h1 id="Intro_Some_Economic_and_Effective_Cases_And_Tools">Intro Some Economic and Effective Cases And Tools</h1><h2 id="In_Baidu">In Baidu</h2><ul>
+<li>icafe：Scrum推动工具</li>
+<li>Agile：持续集成工具</li>
+<li>iCode：版本控制工具</li>
+<li>Cooder：代码评审工具</li>
+<li>BaiduWiki：Wiki/周报工具</li>
+<li>BaiduHi：IM工具</li>
+</ul>
+<h2 id="For_More_Entrepreneurial_Teams_Like_Fundin">For More Entrepreneurial Teams Like <a href="http://www.fundin.cn" target="_blank" rel="external">Fundin</a></h2><p>如果追求分布式开展工作模块：</p>
+<ul>
+<li><a href="https://worktile.com/blog/pro/agile-management?hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io" target="_blank" rel="external">Worktile</a>/<a href="https://easypm.cn/team/2281/filter/-280" target="_blank" rel="external">EasyPM</a>：Scrum推动工具</li>
+<li><a href="https://travis-ci.org/" target="_blank" rel="external">TravisCI</a>：持续集成工具</li>
+<li><a href="">Coding</a>/<a href="https://github.com/" target="_blank" rel="external">Github</a>：版本控制工具</li>
+<li><a href="https://reviewable.io/" target="_blank" rel="external">Reviewable</a>：代码评审工具</li>
+<li><a href="https://tower.im/" target="_blank" rel="external">Tower</a>：Wiki/周报工具</li>
+<li><a href="https://slack.com/" target="_blank" rel="external">Slack</a>：IM工具</li>
+</ul>
+<p>如果追求集中式开展工作模块：<a href="http://git.oschina.net/" target="_blank" rel="external">码云</a></p>
+<h1 id="参考文献">参考文献</h1><ul>
+<li><a href="http://blog.csdn.net/orclight/article/details/8642585" target="_blank" rel="external">瀑布/迭代/敏捷模型对比</a></li>
+<li><a href="http://www.cnblogs.com/taven/archive/2010/10/17/1853386.html" target="_blank" rel="external">Scrum扫盲篇</a></li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>PS：记录之前BIT学院培训后的积累，梳理了敏捷开发之Scrum的知识，并且推荐一些对于初创团队低成本高可用的团队协作工具。</p>
+</blockquote>]]>
+    
+    </summary>
+    
+      <category term="敏捷开发" scheme="http://daijiale.github.io/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+      <category term="Web开发笔记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[【个人】关于百度地图加油业务的切身体验]]></title>
     <link href="http://daijiale.github.io/2016/03/22/%E3%80%90%E4%B8%AA%E4%BA%BA%E3%80%91%E5%85%B3%E4%BA%8E%E7%99%BE%E5%BA%A6%E5%9C%B0%E5%9B%BE%E5%8A%A0%E6%B2%B9%E6%96%B0%E4%B8%9A%E5%8A%A1%E7%9A%84%E5%88%87%E8%BA%AB%E4%BD%93%E9%AA%8C/"/>
     <id>http://daijiale.github.io/2016/03/22/【个人】关于百度地图加油新业务的切身体验/</id>
     <published>2016-03-22T11:12:11.000Z</published>
-    <updated>2016-03-24T07:49:18.000Z</updated>
+    <updated>2016-06-09T01:17:17.000Z</updated>
     <content type="html"><![CDATA[<p>在今年3月入职百度前，因HR的问题，Delay了一周，但同时也得到了一个在北京龙禹加油站兼职的机会，可以提前切身体会一下团队的产品成果，帮助自己以后更好地融入后续产品开发过程，感谢马总和君威的关照，感谢团队提供的机会，这里分享和梳理一下这几天的体会心得。。。<br><a id="more"></a></p>
 <h1 id="3月17日">3月17日</h1><p>第一天驻场，10点前到加油站，正值早高峰末期，认识了君威、销售老白和加油站的众多蓝衣小伙，人都很nice。</p>
 <h2 id="在和用户交流时遇到的问题:">在和用户交流时遇到的问题:</h2><ul>
@@ -82,7 +215,7 @@
     <link href="http://daijiale.github.io/2016/03/08/%E3%80%90PHP%E3%80%91%20Composer%E5%85%A5%E9%97%A8%E5%AE%9E%E8%B7%B5/"/>
     <id>http://daijiale.github.io/2016/03/08/【PHP】 Composer入门实践/</id>
     <published>2016-03-08T10:16:11.000Z</published>
-    <updated>2016-03-24T07:49:18.000Z</updated>
+    <updated>2016-06-09T01:17:17.000Z</updated>
     <content type="html"><![CDATA[<p>这里很有必要和很多初学者提一下，现在Web的开发趋势越来越接近集成化，自动化。Node.js之所以如日中天，npm有很大的功劳，对开发者们起到了十分便捷高效的开发形式。因此，PHP也应运而生了Composer来进行依赖管理。所以无论你以后是要成为专业PHP工程师，还是为了和你未来Team中其他队友“和谐”共事，请掌握之！<br><a id="more"></a></p>
 <h1 id="简介">简介</h1><p>Composer是什么？Composer是PHP的依赖管理工具，什么是依赖管理工具呢？它是新出来的一个标准，通过它来管理一个框架一个项目要加载哪些库哪些插件，你可以在一个名为composer.json的文件中定义需要的资源包，通过composer命令可以自动进行下载部署。</p>
 <p>Composer 可以看成一个 PHP 的包管理器，类似 Python 的 easy_install 和 pip，Ruby 的 gem，Node.js 的 npm，是一个强大的生态系统。</p>
@@ -120,13 +253,14 @@
     <link href="http://daijiale.github.io/2016/03/01/%E3%80%90OCR_%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%91%E5%9F%BA%E4%BA%8E%20Tesseract%E7%9A%84%E5%AD%97%E4%BD%93%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/"/>
     <id>http://daijiale.github.io/2016/03/01/【OCR_机器学习】基于 Tesseract的字体搜索引擎/</id>
     <published>2016-03-01T11:37:09.000Z</published>
-    <updated>2016-05-24T10:33:41.000Z</updated>
+    <updated>2016-06-09T01:17:17.000Z</updated>
     <content type="html"><![CDATA[<h1 id="一、前言：">一、前言：</h1><p>这是一篇图像识别OCR技术、机器学习、以及简易搜索引擎构建相关的技术Blog，是自己在做毕设的同时，每天不断记录研究成果和心得的地方。</p>
 <a id="more"></a>
 <h1 id="二、选题背景">二、选题背景</h1><p>OCR（Optical Character Recognition 光学字符识别）技术，是指电子设备（例如扫描仪或数码相机）检查纸上打印的字符，通过检测暗、亮的模式确定其形状，然后用字符识别方法将形状翻译成计算机文字的过程。 </p>
 <p>Tesseract的OCR引擎最先由HP实验室于1985年开始研发，至1995年时已经成为OCR业内最准确的三款识别引擎之一。然而，HP不久便决定放弃OCR业务，Tesseract也从此尘封。<br>数年以后，HP意识到，与其将Tesseract束之高阁，不如贡献给开源软件业，让其重焕新生－－2005年，Tesseract由美国内华达州信息技术研究所获得，并求诸于Google对Tesseract进行改进、消除Bug、优化工作。 Tesseract目前已作为开源项目发布在Google Project，其最新版本3.0已经支持中文OCR。</p>
 <p>在这样成熟的技术背景下，我很想利用这项OCR技术，再结合当下热门的移动互联网的开发技术和信息检索技术，实现一个能将图片中文字成功识别的移动Web搜索引擎，旨在为更多朋友能更加快捷、准确地从图片中获取想要的信息。</p>
-<h1 id="三、需求分析">三、需求分析</h1><h1 id="四、用例设计">四、用例设计</h1><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/case1.png" alt=""></p>
+<h1 id="三、需求分析">三、需求分析</h1><p>随着互联网的快速发展，大数据的到来，人们对数据和信息依赖程度越来越大。然而，如今的互联网数据十分庞大，数据的准确性，和数据的合理分类一直存在着很大的问题，针对如此现状，越来越多的人们期望在日常工作、生活中能找到更加便捷获取准确数据的方式，能更加具有效率地找到自己所求信息的方式。同时，如今随着智能手机的普及，越来越多的人们更习惯于用拍照这样一种效率极高的方式，代替以前的抄写，打字方式，去记录生活、工作上需要记录的数据。<br>由此启发，想利用当下比较成熟的OCR（光学字符识别）技术，以及结合当下热门的互联网的开发技术和信息检索技术，实现一个能将图片语言字体成功识别的Web搜索引擎，旨在为更多朋友能通过拍照、截图这样便捷的方式，更加快捷、准确地从图片中搜索、获取到想要的信息。</p>
+<h1 id="四、用例设计">四、用例设计</h1><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/case1.png" alt=""></p>
 <h1 id="五、应用领域">五、应用领域</h1><ul>
 <li>海报信息云检索</li>
 <li>广告图信息云检索</li>
@@ -319,8 +453,33 @@
 </ul>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"><span class="comment">//如果是在WAMP等其他集成环境下，需要重新获取环境变量的PATH，不然无法调用Tesseract</span></span><br><span class="line"></span><br><span class="line">$path = getenv(<span class="string">'PATH'</span>);</span><br><span class="line">putenv(<span class="string">"PATH=$path:/usr/local/bin"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="keyword">__DIR__</span>.<span class="string">'/../vendor/autoload.php'</span>; </span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Symfony</span>\<span class="title">Component</span>\<span class="title">HttpFoundation</span>\<span class="title">Request</span>; </span><br><span class="line"></span><br><span class="line">$app = <span class="keyword">new</span> Silex\Application(); </span><br><span class="line"></span><br><span class="line">$app-&gt;register(<span class="keyword">new</span> Silex\Provider\TwigServiceProvider(), [</span><br><span class="line">  <span class="string">'twig.path'</span> =&gt; <span class="keyword">__DIR__</span>.<span class="string">'/../views'</span>,</span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line">$app[<span class="string">'debug'</span>] = <span class="keyword">true</span>; </span><br><span class="line"></span><br><span class="line">$app-&gt;get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> <span class="title">use</span> <span class="params">($app)</span> </span>&#123; </span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> $app[<span class="string">'twig'</span>]-&gt;render(<span class="string">'index.twig'</span>);</span><br><span class="line"></span><br><span class="line">&#125;); </span><br><span class="line"></span><br><span class="line">$app-&gt;post(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span><span class="params">(Request $request)</span> <span class="title">use</span> <span class="params">($app)</span> </span>&#123; </span><br><span class="line"></span><br><span class="line">    <span class="comment">//TODP</span></span><br><span class="line">    </span><br><span class="line">&#125;); </span><br><span class="line"></span><br><span class="line">$app-&gt;run();</span><br></pre></td></tr></table></figure>
 <h6 id="文件上传并唯一标识存放">文件上传并唯一标识存放</h6><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Grab the uploaded file</span></span><br><span class="line">$file = $request-&gt;files-&gt;get(<span class="string">'upload'</span>); </span><br><span class="line"></span><br><span class="line"><span class="comment">// Extract some information about the uploaded file</span></span><br><span class="line">$info = <span class="keyword">new</span> SplFileInfo($file-&gt;getClientOriginalName());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 产生随机文件名来减少文件名冲突</span></span><br><span class="line">$filename = sprintf(<span class="string">'%d.%s'</span>, time(), $info-&gt;getExtension());</span><br><span class="line"></span><br><span class="line"><span class="comment">// Copy the file</span></span><br><span class="line">$file-&gt;move(<span class="keyword">__DIR__</span>.<span class="string">'/../uploads'</span>, $filename);</span><br></pre></td></tr></table></figure>
-<h4 id="Solr-PHP中间件的实现">Solr-PHP中间件的实现</h4><h2 id="前端工程实现">前端工程实现</h2><p>-views<br>    -</p>
-<h2 id="移动端工程实现">移动端工程实现</h2><h1 id="测试数据">测试数据</h1><h1 id="心得体会">心得体会</h1><h1 id="参考文献">参考文献</h1><ul>
+<h6 id="Tesseract-OCR接口类以及调用方法">Tesseract-OCR接口类以及调用方法</h6><h4 id="Solr-PHP中间件的实现">Solr-PHP中间件的实现</h4><h2 id="前端工程实现、测试">前端工程实现、测试</h2><h3 id="交互设计">交互设计</h3><p><strong>交互流程：</strong></p>
+<p>1）用户输入主页网站URL，进入首页，享受服务，了解服务详情。</p>
+<p>2）用户通过搜索框，上传所需要的搜索图片，并进行上传前的预览。</p>
+<p>3）用户确认上传的图片无误后，点击图搜按钮，进行图片上传和识别操作，因为这部分Server端计算量比较大，返回结果需要等待2-5秒钟，所以给用户呈现一个Loading页。</p>
+<p>4）图像识别完成，Loading页消失，进入识别结果预览确认页面。</p>
+<p>5）用户确认识别内容后，可以点击搜索，进入搜索引擎模块，获取检索结果。</p>
+<h3 id="视觉设计">视觉设计</h3><p>视觉设计在产品组成中占了极为重要的成分，它直接影响了使用者对于该产品最初的观感、使用时的体验以及最后留下的印象等等。甚至在许多时候，产品的成败与否，往往就取决于成功的视觉设计经验上。<br>针对这个毕设，我并没有把它当成一个可以应付了事的系统，而是当成一个自己的产品去悉心创作，因此，我很注重这个系统的前端视觉设计，和用户体验。<br>全站选色，我选用了大众比较认可的百度搜索引擎主题色，红色和蓝色，首页背景采用红蓝过渡色，并调整了透明度，通过CSS代码画出，节约加载耗时的同时也给予用户一个良好的视觉冲击，同时对首页的文字说明，增加了底部阴影，并采用微软细黑字体，让视觉感觉更有层次感，图片搜索框以及预览框，也是加重了阴影，对预览字段的重要程度进行了不同的颜色和色度区分。让用户视觉上清爽，简洁，能最快找到自己视觉所需信息，之后会经过一个简单的loading页面，这里做了一个等待的圆圈渐变放大缩小动效，让用户对等待时间不感觉到烦躁，同时告诉用户，系统后台正在进行计算运行，当跳转到识别结果页面时候，依然按照文案重要程度，对所有文字颜色和字号进行了视觉调整，让用户不用花费太多时间，筛选重要信息，两个按钮的排班和选色也更倾向于增加点击欲望和点击感，提示用户可以进行下一步操作。最后的检索结果页面，我将它设计成了类似一本书目的篇章，每个列表根据搜索结果网页标题、网页摘要、收录时间、权重进行了不同的排班和字号颜色调整，增加视觉冲击感以及辨识度。让用户觉得和大众搜索引擎有一些共同点，但其中又透露出一些自己的个性，给用户熟悉又新奇的体验感，而且还保留了清爽无广告和多余干扰信息的特点。并且，所有视觉设计结合了当下的响应式设计理念，同时在PC端和移动端下都具有良好的用户体验和视觉效果。</p>
+<h3 id="模板编写">模板编写</h3><p><strong>采用Twig进行模板编写：</strong></p>
+<ul>
+<li>views<ul>
+<li>index.twig</li>
+<li>search_results.twig</li>
+<li>results.twig</li>
+<li>css</li>
+<li>js</li>
+<li>fonts</li>
+<li>images</li>
+<li>favicon.ico</li>
+</ul>
+</li>
+</ul>
+<p>前端体验如下图所示：<br><img src="http://7xi6qz.com1.z0.glb.clouddn.com/ocrsearch%E5%B0%8F%E6%9E%AB%E5%9B%BE%E6%90%9C_%E8%A7%86%E8%A7%89%E8%AE%BE%E8%AE%A1.jpg" alt=""></p>
+<h2 id="移动端工程实现、测试">移动端工程实现、测试</h2><p>主要基于Bootstrap3.4，可以用XDK/phoneGap打包编译成对应NA App，发布到应用市场。<br>移动端体验如下图所示：</p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/ocrsearchIMG_3244.JPG" alt=""></p>
+<h1 id="心得体会">心得体会</h1><p>感谢大学四年所有的任课老师和所有帮助过我的同学们，是他们教会了我专业知识，通过近四年的学习和科研工作，不仅使我的知识结构和科研能力上了一个新的台阶，更重要的是让我融入了社会，给了我充分的实习经历，让我在大学本科就体验到了很多研究生都无法体验的互联网公司工作经历。弹指一挥间，大学四年已经接近了尾声。当自己怀着忐忑不安的心情完成这篇毕业论文的时候，自己也从当年一个懵懂孩子变成了一个成熟青年，还是那句话——只有汗水不会欺骗你，最后，感谢电子科技大学，感谢大学所遇见的每一个人，也感谢自己四年的努力。</p>
+<h1 id="项目开源地址：">项目开源地址：</h1><p>等我毕设答辩结束后，就开源整个工程。</p>
+<h1 id="参考文献">参考文献</h1><ul>
 <li><a href="http://blog.csdn.net/tuling_research/article/details/41091163" target="_blank" rel="external"> tesseract OCR训练新数据的详细步骤-附大量训练数据</a></li>
 <li><a href="http://blog.csdn.net/viewcode/article/details/7917320" target="_blank" rel="external"> tesseract OCR的多语言，多字体字符识别</a></li>
 <li><a href="http://linusp.github.io/2015/04/17/tesseract-install-usage.html" target="_blank" rel="external">Tesseract:安装与命令行使用</a></li>
@@ -346,6 +505,8 @@
     
     </summary>
     
+      <category term="PHP" scheme="http://daijiale.github.io/tags/PHP/"/>
+    
       <category term="机器学习" scheme="http://daijiale.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="神经网络" scheme="http://daijiale.github.io/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
@@ -360,8 +521,6 @@
     
       <category term="Solr" scheme="http://daijiale.github.io/tags/Solr/"/>
     
-      <category term="PHP" scheme="http://daijiale.github.io/tags/PHP/"/>
-    
       <category term="OCR" scheme="http://daijiale.github.io/tags/OCR/"/>
     
       <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
@@ -375,7 +534,7 @@
     <link href="http://daijiale.github.io/2016/02/19/%E3%80%90%E5%89%8D%E7%AB%AF%E3%80%91%E4%BB%A5%E5%90%8E%E5%89%8D%E7%AB%AF%E5%A6%B9%E5%AD%90%E5%86%8D%E9%97%AE%E4%BD%A0%E9%A1%B5%E9%9D%A2%E4%B8%BA%E4%BD%95%E5%8A%A0%E8%BD%BD%E6%85%A2%EF%BC%8C%E8%AF%B7%E5%91%8A%E8%AF%89%E5%A5%B9%E8%BF%99%E5%87%A0%E4%B8%AA%E5%A5%97%E8%B7%AF/"/>
     <id>http://daijiale.github.io/2016/02/19/【前端】以后前端妹子再问你页面为何加载慢，请告诉她这几个套路/</id>
     <published>2016-02-19T04:10:29.000Z</published>
-    <updated>2016-03-24T07:49:18.000Z</updated>
+    <updated>2016-06-09T01:17:17.000Z</updated>
     <content type="html"><![CDATA[<p>本文记录了一些前端页面访问速度优化的常用套路，结合自身优化过的几个站点实例，给大家一些启发和共鸣！希望能帮助到更多的同学！<br><a id="more"></a></p>
 <h1 id="套路1：合并Js文件和CSS">套路1：合并Js文件和CSS</h1><p>将JS代码和CSS样式分别合并到一个共享的文件，这样不仅能简化代码，而且在执行JS文件的时候，如果JS文件比较多，就需要进行多次“Get”请求，延长加载速度，将JS文件合并在一起后，自然就减少了Get请求次数，提高了加载速度。</p>
 <ul>
@@ -459,7 +618,7 @@
     <link href="http://daijiale.github.io/2016/02/10/%E3%80%90%E5%89%8D%E7%AB%AF%E3%80%91FIS3%E5%BA%94%E7%94%A8%E5%B0%8F%E8%AE%B0/"/>
     <id>http://daijiale.github.io/2016/02/10/【前端】FIS3应用小记/</id>
     <published>2016-02-10T08:30:09.000Z</published>
-    <updated>2016-03-24T07:49:18.000Z</updated>
+    <updated>2016-06-09T01:17:17.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>接触FIS是在2014年11月左右，当时大二，在准备百度实习面试的时候网上迷路了，偶遇了FIS的官网，当时用了一下，觉得是一个基于Node.js的前端自动化解决方案，没太在意…后面在百度遇见了一些前端的小伙伴，才明白FIS的潜能，现在不管是自己的项目，还是以后公司的前端项目，都快离不来TA了，之前听一个学弟说最近他也在使用，并且存在不少问题，所以想写篇博文，给需要的小伙伴们。PS：我自己用的是MacOS系统，博文所述的FIS版本采用最新的FIS3。</p>
 <a id="more"></a>
@@ -557,7 +716,7 @@
     <link href="http://daijiale.github.io/2016/01/30/%E3%80%90%E5%89%8D%E7%AB%AF%E3%80%91%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%9A%84Meta/"/>
     <id>http://daijiale.github.io/2016/01/30/【前端】移动端的Meta/</id>
     <published>2016-01-30T15:02:01.000Z</published>
-    <updated>2016-03-24T07:49:18.000Z</updated>
+    <updated>2016-06-09T01:17:17.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>合理设置 Meta 标签 对PC/手机版网站的搜索引擎优化，PC/手机浏览器的渲染展示都有非常大的帮助。对于桌面平台web布局中大家对meta标签再熟悉不过了，它永远位于 head 元素内部，做SEO的朋友一定对meta有种特殊的感情，这里，博主通过阅读大量博文，结合自身经验，来总结一下列PC端网页和移动端网页中常用的meta标签，并进行逐个分析；meta标签究竟起到哪些神奇的功能呢?</p>
 <a id="more"></a>
@@ -634,7 +793,7 @@
     <link href="http://daijiale.github.io/2016/01/25/%E3%80%90%E8%BD%AC%E8%BD%BD%E3%80%91%E4%BB%80%E4%B9%88%E6%89%8D%E7%AE%97%E7%9C%9F%E6%AD%A3%E7%9A%84%E7%BC%96%E7%A8%8B%E8%83%BD%E5%8A%9B%EF%BC%9F/"/>
     <id>http://daijiale.github.io/2016/01/25/【转载】什么才算真正的编程能力？/</id>
     <published>2016-01-25T11:20:32.000Z</published>
-    <updated>2016-03-24T07:49:18.000Z</updated>
+    <updated>2016-06-09T01:17:17.000Z</updated>
     <content type="html"><![CDATA[<p>靠谷歌和复制别人的轮子，虽然我做出了很多东西，可是我并不觉得自己能力上有提升，倒是利用搜索引擎的能力的确提升了不少。而学校里另外一部分在搞ACM的人，他们每天都在刷题练算法，但单凭我个人的感受感觉他们似乎对工程上有些东西并不了解，或许算法的能力才算是实打实的编程能力？那”胶水”的能力和整合轮子的能力算不算编程能力呢?所以我现在就很困惑，所谓的编程能力到底是什么，我该如何提升自己的编程能力？什么才算真正的编程能力？<br><a id="more"></a></p>
 <blockquote>
 <p>来源：知乎</p>
@@ -686,7 +845,7 @@
     <link href="http://daijiale.github.io/2015/12/31/%E3%80%90%E4%B8%AA%E4%BA%BA%E3%80%912015to2016/"/>
     <id>http://daijiale.github.io/2015/12/31/【个人】2015to2016/</id>
     <published>2015-12-31T13:37:09.000Z</published>
-    <updated>2016-03-24T07:49:18.000Z</updated>
+    <updated>2016-06-09T01:17:17.000Z</updated>
     <content type="html"><![CDATA[<p>2015这一年发生了太多事，自己飞速地成长，也是毕业季的开始，走在又一个十字路口，总有些话想在跨年夜说。<br><a id="more"></a></p>
 <h1 id="2015上半年">2015上半年</h1><p>上半年在经历北漂，真的很感谢当时团队里的导师和同事们，很幸运能遇见你们，让我在百度这样的顶级互联网公司里可以扎根成长。直到现在，仍然很怀念那段<a href="http://daijiale.github.io/2015/06/29/%E3%80%90%E4%B8%AA%E4%BA%BA%E3%80%91%E5%9C%A8%E7%99%BE%E5%BA%A6%E5%AE%9E%E4%B9%A0%E7%9A%84%E9%82%A3%E4%BA%9B%E6%97%A5%E5%AD%90/">在百度实习的日子</a>。</p>
 <h1 id="2015下半年">2015下半年</h1><ul>
@@ -726,7 +885,7 @@
     <link href="http://daijiale.github.io/2015/12/25/%E3%80%90PHP%E3%80%91PHPStorm%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8+Mac%E4%B8%8BPHP%E5%B7%A5%E4%BD%9C%E5%BC%80%E5%8F%91%E6%B5%81%E6%90%AD%E5%BB%BA/"/>
     <id>http://daijiale.github.io/2015/12/25/【PHP】PHPStorm使用入门+Mac下PHP工作开发流搭建/</id>
     <published>2015-12-25T03:56:11.000Z</published>
-    <updated>2016-03-25T10:35:54.000Z</updated>
+    <updated>2016-06-09T01:17:17.000Z</updated>
     <content type="html"><![CDATA[<h1 id="前言">前言</h1><blockquote>
 <p>换了RetineMacPro2015之后，还没怎么做PHP的大型项目，之前很多小的Web后端都使用的MAMP来进行PHP开发，因为项目小，基本都不要太多调试，所以MAMP还挺满足需求的，但是也受够了只能通过<code>echo</code>,<code>print</code>来行调试的窘境。所以有了这篇博客，也为了帮助以后有需要的童鞋们可以少走弯路。<br><a id="more"></a></p>
 </blockquote>
@@ -776,7 +935,7 @@
     <link href="http://daijiale.github.io/2015/12/10/%E3%80%90%E4%B8%AA%E4%BA%BA%E3%80%91Blog%E8%BF%81%E7%A7%BB%E6%97%A5%E8%AE%B0/"/>
     <id>http://daijiale.github.io/2015/12/10/【个人】Blog迁移日记/</id>
     <published>2015-12-10T11:37:09.000Z</published>
-    <updated>2016-03-24T07:49:18.000Z</updated>
+    <updated>2016-06-09T01:17:17.000Z</updated>
     <content type="html"><![CDATA[<p><strong>以下所指“更新”：均为Blog技术更新，非文章更新</strong></p>
 <h1 id="第一次更新_个人Blog">第一次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;说起自己的第一个Blog，要从小学刚开通QQ空间开始，具体几年级已经记不清了，那个时候刚甩掉纸质日记本，然后就迈入网络日志的深坑。以前倒是产出了不少优质日志，不过都是些多愁善感的随便，至今都已经封存进<em>私密日日记</em>中(如下图)：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpic_qqzonesec.PNG" alt=""><br><a id="more"></a></p>
 <h1 id="第二次更新_个人Blog">第二次更新_个人Blog</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后面高中开始玩人人，Blog也顺势搬到人人。。。现在想来这搬迁史也很简单——围绕社交圈，毕竟Blog写出来是给人看的，而QQzone和人人都是一个很好的社交载体。当然，如今的人人，我早已放弃，一个月都不登一次的这种，blog数据也全部清除了，高中写的都是些没营养的东西，个人认为没有存在的价值。<br>最后留张图纪念一下曾经的人人帐号：<img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicrenren.PNG" alt=""></p>
@@ -850,7 +1009,7 @@
     <link href="http://daijiale.github.io/2015/11/19/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%91%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E5%BF%83%E5%BE%97/"/>
     <id>http://daijiale.github.io/2015/11/19/【数据库】数据库设计心得/</id>
     <published>2015-11-19T11:23:01.000Z</published>
-    <updated>2016-03-24T07:49:18.000Z</updated>
+    <updated>2016-06-09T01:17:17.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>PS：从大学课设小项目到外包大型项目，再到实习时候参与过的千万级用户后台架构设计。对后端的数据库设计有了一些自己的心得体会，这里记录一些现在这个阶段的所想所得，后面随着level不断提升，持续更新。</p>
 </blockquote>
@@ -1074,7 +1233,7 @@
     <link href="http://daijiale.github.io/2015/11/08/%E3%80%90%E4%B8%AA%E4%BA%BA%E3%80%91%E4%B8%BA%E4%BD%95%E9%80%89%E6%8B%A9%E5%81%9A%E7%A8%8B%E5%BA%8F%E7%8C%BF%EF%BC%88%E5%AA%9B%EF%BC%89%E4%B9%8B%E5%AE%B6/"/>
     <id>http://daijiale.github.io/2015/11/08/【个人】为何选择做程序猿（媛）之家/</id>
     <published>2015-11-08T03:43:09.000Z</published>
-    <updated>2016-03-24T07:49:18.000Z</updated>
+    <updated>2016-06-09T01:17:17.000Z</updated>
     <content type="html"><![CDATA[<h1 id="为何选择做“程序猿（媛）之家”">为何选择做“程序猿（媛）之家”</h1><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/CXYZJ6666.jpg" alt=""></p>
 <blockquote>
 <p>引言：其实，”程序猿（媛）之家”的前身起源于“小枫特卖”，眼尖的小伙伴们肯定立马就Get到了两个关键点，一是“小枫”，二是“特卖”…….那么问题来了——“小枫是谁？”、“特卖，卖得有什么特别？”<br><a id="more"></a></p>
@@ -1117,7 +1276,7 @@
     <link href="http://daijiale.github.io/2015/10/10/%E3%80%90PHP%E3%80%91PHP%E8%B7%9F%E8%B8%AA%E9%94%99%E8%AF%AF7%E5%A4%A7%E6%AD%A5%E9%AA%A4/"/>
     <id>http://daijiale.github.io/2015/10/10/【PHP】PHP跟踪错误7大步骤/</id>
     <published>2015-10-10T04:34:21.000Z</published>
-    <updated>2016-03-24T07:49:18.000Z</updated>
+    <updated>2016-06-09T01:17:17.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>这个话题老生长谈了，在面试中必然考核的能力中，我个人认为解决问题能力是排第一位的，比学习能力优先级更高。解决问题的能力既能看出程序员的思维能力，应变能力，探索能力等，又可以看出他的经验。如果解决问题能力不佳是无法通过面试的。</p>
 <p>这里举个例子，假如我执行了一个PHP的脚本，如php test.php，预期是可以返回一个字符串。但执行后没有任何信息输出，这时候通过什么方法能知道程序错在哪里？这里可以将解决问题能力分为8个等级，越到后面的表示能力越强。</p>
@@ -1162,7 +1321,7 @@
     <link href="http://daijiale.github.io/2015/09/21/%E3%80%90PHP%E3%80%91PHP%E5%AE%89%E5%85%A8%E6%80%A7%E5%BC%80%E5%8F%91/"/>
     <id>http://daijiale.github.io/2015/09/21/【PHP】PHP安全性开发/</id>
     <published>2015-09-21T13:21:11.000Z</published>
-    <updated>2016-03-24T07:49:18.000Z</updated>
+    <updated>2016-06-09T01:17:17.000Z</updated>
     <content type="html"><![CDATA[<h1 id="前言">前言</h1><blockquote>
 <p>php给了开发者极大的灵活性，但是这也为安全问题带来了潜在的隐患，近期需要总结一下以往的问题，在这里借翻译一篇文章同时加上自己开发的一些感触总结一下。<br><a id="more"></a></p>
 </blockquote>
@@ -1254,7 +1413,7 @@
     <link href="http://daijiale.github.io/2015/09/21/%E3%80%90PHP%E3%80%91PHP_cURL/"/>
     <id>http://daijiale.github.io/2015/09/21/【PHP】PHP_cURL/</id>
     <published>2015-09-21T13:21:11.000Z</published>
-    <updated>2016-03-24T07:49:18.000Z</updated>
+    <updated>2016-06-09T01:17:17.000Z</updated>
     <content type="html"><![CDATA[<h1 id="前言">前言</h1><blockquote>
 <p>cURL(Client URL Library Functions): curl is a command line tool for transferring data with URL syntax,即使用URL语法传输数据的命令行工具。<br><a id="more"></a></p>
 </blockquote>
@@ -1317,7 +1476,7 @@
     <link href="http://daijiale.github.io/2015/07/21/%E3%80%90Android%E3%80%91Android%E6%B1%82%E8%81%8C%E7%9F%A5%E8%AF%86%E7%82%B9Review/"/>
     <id>http://daijiale.github.io/2015/07/21/【Android】Android求职知识点Review/</id>
     <published>2015-07-21T07:13:09.000Z</published>
-    <updated>2016-03-24T07:49:18.000Z</updated>
+    <updated>2016-06-09T01:17:17.000Z</updated>
     <content type="html"><![CDATA[<h1 id="JAVA">JAVA</h1><h2 id="1-_举例说明多态和重载区别">1. 举例说明多态和重载区别</h2><pre><code><span class="keyword">*</span><span class="keyword">*</span> 重载<span class="keyword">*</span><span class="keyword">*</span>
 </code></pre> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;</span><br><span class="line">void Aa(int a )&#123;....&#125;</span><br><span class="line">void Aa (int a,int b)&#123;...&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>虽然Aa定义了2个 但是因为他们注册的参数不同所以 看作为2个不同的方法</p>
@@ -1390,7 +1549,7 @@
     <link href="http://daijiale.github.io/2015/07/10/%E3%80%90Android%E3%80%91Android%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/"/>
     <id>http://daijiale.github.io/2015/07/10/【Android】Android开发常用知识点总结/</id>
     <published>2015-07-10T07:13:09.000Z</published>
-    <updated>2016-03-24T07:49:18.000Z</updated>
+    <updated>2016-06-09T01:17:17.000Z</updated>
     <content type="html"><![CDATA[<h1 id="Android开发常用知识点总结：">Android开发常用知识点总结：</h1><a id="more"></a>
 <h2 id="Android异步加载：">Android异步加载：</h2><p>  用异步的方式去加载数据（主要是图像，不解释），可以让用户在刷新数据时候不用经历太多卡顿，这也是Google官方要求我们去做的一种方式。</p>
 <ul>
@@ -1449,7 +1608,7 @@
     <link href="http://daijiale.github.io/2015/07/06/%E3%80%90Node.js%E3%80%91Node.js%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
     <id>http://daijiale.github.io/2015/07/06/【Node.js】Node.js学习开发笔记/</id>
     <published>2015-07-06T11:21:11.000Z</published>
-    <updated>2016-03-24T07:49:18.000Z</updated>
+    <updated>2016-06-09T01:17:17.000Z</updated>
     <content type="html"><![CDATA[<h1 id="前言">前言</h1><blockquote>
 <p>第一次接触Node.js是大二在四川长虹实习期间，距现在已经1年多了，在自己的一些项目中有用到，积累了一些经验，但是想更加系统的学习一下这门技术（主要这两年发展的太火了。。），同时也想把一些开发过程中的问题和案例分享出来， 特为此撰写一篇博客笔记…<br><a id="more"></a></p>
 </blockquote>
@@ -1488,7 +1647,7 @@
     <link href="http://daijiale.github.io/2015/06/29/%E3%80%90%E4%B8%AA%E4%BA%BA%E3%80%91%E5%9C%A8%E7%99%BE%E5%BA%A6%E5%AE%9E%E4%B9%A0%E7%9A%84%E9%82%A3%E4%BA%9B%E6%97%A5%E5%AD%90/"/>
     <id>http://daijiale.github.io/2015/06/29/【个人】在百度实习的那些日子/</id>
     <published>2015-06-29T11:13:09.000Z</published>
-    <updated>2016-05-23T07:10:02.000Z</updated>
+    <updated>2016-06-09T01:17:17.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>时间：2014.11.19-2015.6.24</p>
 <p>地点：北京海淀区上地东路鹏寰国际大厦</p>
@@ -1585,7 +1744,7 @@
     <link href="http://daijiale.github.io/2015/06/10/%E3%80%90%E5%89%8D%E7%AB%AF%E3%80%91%E5%9F%BA%E4%BA%8E%E7%99%BE%E5%BA%A6ODP%E7%9A%84%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
     <id>http://daijiale.github.io/2015/06/10/【前端】基于百度ODP的前端开发/</id>
     <published>2015-06-10T03:03:09.000Z</published>
-    <updated>2016-03-24T07:49:18.000Z</updated>
+    <updated>2016-06-09T01:17:17.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>ODP，即Online Develop Platform，是为百度Web业务提供完善且高度集成的基础环境、框架、基础库和工具，统一规范模式。</p>
 <p>个人认为，这套PHP开发框架和TP类似，但是安全性和效率性方便远胜于TP</p>
@@ -1736,7 +1895,7 @@
     <link href="http://daijiale.github.io/2015/06/09/%E3%80%90%E5%89%8D%E7%AB%AF%E3%80%91JavaScript%E7%BB%8F%E5%85%B8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93/"/>
     <id>http://daijiale.github.io/2015/06/09/【前端】JavaScript经典设计模式总结/</id>
     <published>2015-06-09T03:29:31.000Z</published>
-    <updated>2016-03-24T07:49:18.000Z</updated>
+    <updated>2016-06-09T01:17:17.000Z</updated>
     <content type="html"><![CDATA[<h1 id="前言">前言</h1><blockquote>
 <p>在百度即将离职的最后一个月里，我被派往新项目担任FE的角色，借此机会也重新review一下大一大二的老本行——Web前端开发。这篇Blog是对自己所学2年JS的一个设计模式总结，也是实际编码中经常用到的很多经典Case，希望能帮助到更多JS开发者，也给那些还活跃在 <code>JS API</code> 层的同学打开一个新的学习思路。<br>PS：本篇Blog侧重点在于JS的设计模式，如果只是期望了解JS语法，请直接戳<a href="http://www.w3school.com.cn/js/index.asp" target="_blank" rel="external">W3C传送门</a>！<br><a id="more"></a></p>
 </blockquote>
@@ -1780,7 +1939,7 @@
     <link href="http://daijiale.github.io/2015/05/28/%E3%80%90Hackathon%E3%80%91%E9%98%BF%E9%87%8C%E7%99%BE%E5%B7%9DHackathon/"/>
     <id>http://daijiale.github.io/2015/05/28/【Hackathon】阿里百川Hackathon/</id>
     <published>2015-05-28T03:43:09.000Z</published>
-    <updated>2016-05-03T08:01:16.000Z</updated>
+    <updated>2016-06-09T01:17:17.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>时间：2015.5.21-2015.5.24</p>
 <p>地点：杭州 阿里百川海创大厦</p>
@@ -1858,7 +2017,7 @@
     <link href="http://daijiale.github.io/2015/05/19/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%91MySQL%E5%85%A5%E9%97%A8/"/>
     <id>http://daijiale.github.io/2015/05/19/【数据库】MySQL入门/</id>
     <published>2015-05-19T07:23:01.000Z</published>
-    <updated>2016-03-24T07:49:18.000Z</updated>
+    <updated>2016-06-09T01:17:17.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>PS：来自一些参考书和视频的MySQL学习笔记，在这里集中整理一下，持续更新中。</p>
 </blockquote>
@@ -1899,7 +2058,7 @@
     <link href="http://daijiale.github.io/2015/05/06/%E3%80%90Android%E3%80%91ADB%E5%B8%B8%E7%94%A8Shell%E5%91%BD%E4%BB%A4/"/>
     <id>http://daijiale.github.io/2015/05/06/【Android】ADB常用Shell命令/</id>
     <published>2015-05-06T08:23:09.000Z</published>
-    <updated>2016-03-24T07:49:18.000Z</updated>
+    <updated>2016-06-09T01:17:17.000Z</updated>
     <content type="html"><![CDATA[<h1 id="实用Adb_Shell命令演示">实用Adb Shell命令演示</h1><blockquote>
 <p>一些灵巧方便的Adb Shell命令笔记</p>
 </blockquote>
@@ -2062,7 +2221,7 @@
     <link href="http://daijiale.github.io/2015/05/04/%E3%80%90Android%E3%80%91%E6%9C%80%E5%85%A8%E7%9A%84AndroidWear%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
     <id>http://daijiale.github.io/2015/05/04/【Android】最全的AndroidWear开发笔记/</id>
     <published>2015-05-04T08:23:09.000Z</published>
-    <updated>2016-03-24T07:49:18.000Z</updated>
+    <updated>2016-06-09T01:17:17.000Z</updated>
     <content type="html"><![CDATA[<h1 id="本文作者">本文作者</h1><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicslrme.jpg" alt=""></p>
 <h2 id="Jiale_Dai"><a href="http://www.daijiale.cn" target="_blank" rel="external">Jiale Dai</a></h2><p>成都 电子科技大学 本科生( 其实还没毕业，目前大三 ）</p>
 <p>从14年开始一直专研于AndroidWear开发</p>
@@ -2212,7 +2371,7 @@
 <p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/androidweargradpagerview.PNG" alt=""></p>
 <p>这里，我想重点讲一下 <code>GridViewPager(网格多面控件)</code> ,ta与主页流类似，大家可以用ta来设计界面，ta与多面控件相似，但是可以水平和垂直同时移动，第一步就是布局的规划，下面这几行代码就是你主行为所需要的全部内容：</p>
 <p><strong>res/layout/pager_example.xml</strong></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version = <span class="string">"1.0"</span> encoding = <span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"><span class="tag">&lt;<span class="name">android.support.wearable.views.GridViewPager</span></span><br><span class="line">	<span class="attr">xmlns:android</span> = "<span class="attr">http:</span>//<span class="attr">schemas.android.com</span>"</span><br><span class="line">	<span class="attr">android:id</span> = "@+<span class="attr">id</span>/<span class="attr">pager</span>"</span><br><span class="line">	<span class="attr">android:layout_width</span> = "<span class="attr">match_parent</span>"</span><br><span class="line">	<span class="attr">android:layout_height</span> = "<span class="attr">match_parent</span>"</span><br><span class="line">/&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version = "1.0" encoding = "utf-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">android.support.wearable.views.GridViewPager</span></span><br><span class="line">	<span class="attr">xmlns:android</span> = "<span class="attr">http:</span>//<span class="attr">schemas.android.com</span>"</span><br><span class="line">	<span class="attr">android:id</span> = "@+<span class="attr">id</span>/<span class="attr">pager</span>"</span><br><span class="line">	<span class="attr">android:layout_width</span> = "<span class="attr">match_parent</span>"</span><br><span class="line">	<span class="attr">android:layout_height</span> = "<span class="attr">match_parent</span>"</span><br><span class="line">/&gt;</span></span><br></pre></td></tr></table></figure>
 <p>在这里，配置多面控件的目的是用于扩展至整个屏幕的，下一步，我们需要一个衔接器（<code>Adapter</code>）</p>
 <p><strong>FragmentGridPagerAdapter</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getRowCount</span><span class="params">()</span></span><br><span class="line"><span class="keyword">int</span> <span class="title">getColumnCount</span><span class="params">(<span class="keyword">int</span> row)</span></span><br><span class="line">Fragment <span class="title">getItem</span><span class="params">(<span class="keyword">int</span> row , <span class="keyword">int</span> column)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> <span class="title">getCurrentColumnForRow</span><span class="params">(</span><br><span class="line">	<span class="keyword">int</span> row,<span class="keyword">int</span> currentColum)</span></span></span><br></pre></td></tr></table></figure>
@@ -2427,7 +2586,7 @@
     <link href="http://daijiale.github.io/2015/04/27/%E3%80%90%E4%B8%AA%E4%BA%BA%E3%80%91%E6%88%91%E7%9A%84%E4%B8%80%E7%82%B9%E7%9C%8B%E6%B3%95%E5%85%B3%E4%BA%8E%E7%9B%AE%E5%89%8D%E5%B8%82%E9%9D%A2%E4%B8%8A%E6%B5%81%E8%A1%8C%E7%9A%84Git%E6%89%98%E7%AE%A1%E6%9C%8D%E5%8A%A1%E7%A4%BE%E5%8C%BA/"/>
     <id>http://daijiale.github.io/2015/04/27/【个人】我的一点看法关于目前市面上流行的Git托管服务社区/</id>
     <published>2015-04-27T03:39:09.000Z</published>
-    <updated>2016-03-24T07:49:18.000Z</updated>
+    <updated>2016-06-09T01:17:17.000Z</updated>
     <content type="html"><![CDATA[<p><code>git</code> 服务社区越来越多，无论是国外的还是国内的，免费公益的还是按需收费的，我们该如何选择呢？</p>
 <p>这里整理了一些我自己接触过的，给大家参考一下：</p>
 <a id="more"></a>
@@ -2468,7 +2627,7 @@
     <link href="http://daijiale.github.io/2015/04/26/%E3%80%90%E6%91%84%E5%BD%B1%E3%80%91%E5%8D%95%E5%8F%8D%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/"/>
     <id>http://daijiale.github.io/2015/04/26/【摄影】单反自学笔记/</id>
     <published>2015-04-26T13:26:09.000Z</published>
-    <updated>2016-03-24T07:49:18.000Z</updated>
+    <updated>2016-06-09T01:17:17.000Z</updated>
     <content type="html"><![CDATA[<p><strong>PS：</strong>2015年4月在<a href="http://mp.weixin.qq.com/s?__biz=MzAxMDM5MTIwMw==&amp;mid=204127766&amp;idx=1&amp;sn=7c6a4b87110f472a1ced270b6daafc10&amp;scene=5#rd" target="_blank" rel="external">胖哥（Axl、隔壁老王）</a>的唆使下，我入手了人身第一台<a href="http://baike.baidu.com/link?url=lUwpC5ksAq3Sh_zqGsNAZ4NmcxmiPul3P6SV-QXO5vdWItnvlm7GjvBreNyqoFYWoj-bbozDnDd0yU6lnqsKy7tsVn5qpNJ7BrEFqh_-k1Ml32XcaLvK0FlHUbbrL_eifzZoMYNglLhc-aX8K1XCd_" target="_blank" rel="external">单反</a>…（迈入继耳机之后的又一深坑）这篇Blog是最近学习新技能时做的笔记：</p>
 <h1 id="单反自学笔记_新人篇">单反自学笔记_新人篇</h1><ul>
 <li><a href="http://note.youdao.com/share/?id=48a8f388b8f5cb21ab3cd50d169a665f&amp;type=note" target="_blank" rel="external">新人第一课：井字构图法</a></li>
@@ -2510,7 +2669,7 @@
     <link href="http://daijiale.github.io/2015/04/15/%E3%80%90Hackathon%E3%80%91%E7%99%BE%E5%BA%A6%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8AHackathon%20Coding%20Party%E5%B0%8F%E8%AE%B0/"/>
     <id>http://daijiale.github.io/2015/04/15/【Hackathon】百度第十二届Hackathon Coding Party小记/</id>
     <published>2015-04-15T12:23:09.000Z</published>
-    <updated>2016-05-03T08:01:32.000Z</updated>
+    <updated>2016-06-09T01:17:17.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>时间：2015.4.11-2015.4.14</p>
 <p>地点：北京 百度大厦</p>
@@ -2581,7 +2740,7 @@
     <link href="http://daijiale.github.io/2015/04/09/%E3%80%90%E5%89%8D%E7%AB%AF%E3%80%91AjaxReview/"/>
     <id>http://daijiale.github.io/2015/04/09/【前端】AjaxReview/</id>
     <published>2015-04-09T10:30:09.000Z</published>
-    <updated>2016-03-24T07:49:18.000Z</updated>
+    <updated>2016-06-09T01:17:17.000Z</updated>
     <content type="html"><![CDATA[<p><strong>PS：</strong>写这篇Blog主要有两个三个动机：</p>
 <ul>
 <li>对以前自己所学知识的一个系统化review</li>
@@ -2827,11 +2986,37 @@
   </entry>
   
   <entry>
+    <title><![CDATA[【个人】记我的高中——南昌二中]]></title>
+    <link href="http://daijiale.github.io/2015/04/03/%E3%80%90%E4%B8%AA%E4%BA%BA%E3%80%91%E8%AE%B0%E5%8D%97%E6%98%8C%E4%BA%8C%E4%B8%AD/"/>
+    <id>http://daijiale.github.io/2015/04/03/【个人】记南昌二中/</id>
+    <published>2015-04-03T05:20:09.000Z</published>
+    <updated>2016-06-09T01:17:17.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="硬件">硬件</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中在硬件上最大的特点就是壕！第一次来二中参加考试时便被壕气外露的红砖绿叶迷住了。还有人造草皮的足球场，三年一遇的游泳馆（三年就上过一次课），堆满了电脑随便用的图书馆。学校里四处都是花花草草，校门的花坛一月一换，班上的一体机切水果什么的信手拈来。就是任性就是壕！<br><a id="more"></a></p>
+<h1 id="师资">师资</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中的老师阵容十分强大，但随着这几年扩招老师资源也变得有些吃紧了。重点班尚能保证豪华阵容，在江西可以说不会逊色于任何学校的重点班，但平行班就会有很多刚进校不久的年轻老师了。当然不是说年轻老师一定不好，但是在高中尤其是高三，老师的经验与鼓舞对班级的提高是很有用的。所以二中这几年也在拼命招揽人才，目前一大批年轻老师已经走上一线，师资整体实力依然很强大。<br>3.理念：二中多年来一直重视综合素质教育，社团和各种活动巨多！学校也给很大的支持，每一届都会产生许多交际花。不过由于近年高考成绩不理想，15届开始进行了一些改革，加大了学业方面的侧重。所以未来二中也许会少一些交际花多一批学霸。</p>
+<h1 id="总结">总结</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中是一个神奇的地方，不论是在晨会上考试中挥斥方遒碾压众人的大神，还是走廊上树林旁对老师阿鲁巴时杀伐果断的凌厉，或是操场边天台上情侣基友看西山日落时的静谧，又抑或是顶楼学霸们在下课铃响时冲下楼梯直奔食堂的气势，它们一起组成了二中独一无二的体验。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;它壕气却又不失秀气，三年中拍的二中风景随便拎出一张都能胜任南昌市旅游明信片。它庄重却又不失亲和，老师们一个个才高八斗学富五车，却又能和学生们打成一片课上开撕。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中就是这样一个地方，简约而不简单，无论你来自哪里，在这里你总会找到最浓重的归属感。</p>
+<p><strong>－－－－－－－－－－－－－－－－－－－－－－－华丽的分割线，多图预警－－－－－－－－－－－－－－－－－－－－</strong></p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicnanchang2zhong.jpg" alt=""></p>
+<p>－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="硬件">硬件</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中在硬件上最大的特点就是壕！第一次来二中参加考试时便被壕气外露的红砖绿叶迷住了。还有人造草皮的足球场，三年一遇的游泳馆（三年就上过一次课），堆满了电脑随便用的图书馆。学校里四处都是花花草草，校门的花坛一月一换，班上的一体机切水果什么的信手拈来。就是任性就是壕！<br>]]>
+    
+    </summary>
+    
+      <category term="个人故事" scheme="http://daijiale.github.io/tags/%E4%B8%AA%E4%BA%BA%E6%95%85%E4%BA%8B/"/>
+    
+      <category term="转载博文" scheme="http://daijiale.github.io/categories/%E8%BD%AC%E8%BD%BD%E5%8D%9A%E6%96%87/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[【舞蹈】关于PoppinDance的一点心得]]></title>
     <link href="http://daijiale.github.io/2015/04/03/%E3%80%90%E8%88%9E%E8%B9%88%E3%80%91poppin%20dance/"/>
     <id>http://daijiale.github.io/2015/04/03/【舞蹈】poppin dance/</id>
     <published>2015-04-03T05:20:09.000Z</published>
-    <updated>2016-03-24T07:49:18.000Z</updated>
+    <updated>2016-06-09T01:17:17.000Z</updated>
     <content type="html"><![CDATA[<p> <strong>Author:</strong> <a href="http://www.daijiale.cn" target="_blank" rel="external">Dancer小枫</a></p>
 <p><strong>舞龄：</strong>2年</p>
 <p><strong>舞种：</strong>poppin</p>
@@ -2910,32 +3095,6 @@
       <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
     
       <category term="关于舞蹈" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/%E5%85%B3%E4%BA%8E%E8%88%9E%E8%B9%88/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[【个人】记我的高中——南昌二中]]></title>
-    <link href="http://daijiale.github.io/2015/04/03/%E3%80%90%E4%B8%AA%E4%BA%BA%E3%80%91%E8%AE%B0%E5%8D%97%E6%98%8C%E4%BA%8C%E4%B8%AD/"/>
-    <id>http://daijiale.github.io/2015/04/03/【个人】记南昌二中/</id>
-    <published>2015-04-03T05:20:09.000Z</published>
-    <updated>2016-03-24T07:49:18.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="硬件">硬件</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中在硬件上最大的特点就是壕！第一次来二中参加考试时便被壕气外露的红砖绿叶迷住了。还有人造草皮的足球场，三年一遇的游泳馆（三年就上过一次课），堆满了电脑随便用的图书馆。学校里四处都是花花草草，校门的花坛一月一换，班上的一体机切水果什么的信手拈来。就是任性就是壕！<br><a id="more"></a></p>
-<h1 id="师资">师资</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中的老师阵容十分强大，但随着这几年扩招老师资源也变得有些吃紧了。重点班尚能保证豪华阵容，在江西可以说不会逊色于任何学校的重点班，但平行班就会有很多刚进校不久的年轻老师了。当然不是说年轻老师一定不好，但是在高中尤其是高三，老师的经验与鼓舞对班级的提高是很有用的。所以二中这几年也在拼命招揽人才，目前一大批年轻老师已经走上一线，师资整体实力依然很强大。<br>3.理念：二中多年来一直重视综合素质教育，社团和各种活动巨多！学校也给很大的支持，每一届都会产生许多交际花。不过由于近年高考成绩不理想，15届开始进行了一些改革，加大了学业方面的侧重。所以未来二中也许会少一些交际花多一批学霸。</p>
-<h1 id="总结">总结</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中是一个神奇的地方，不论是在晨会上考试中挥斥方遒碾压众人的大神，还是走廊上树林旁对老师阿鲁巴时杀伐果断的凌厉，或是操场边天台上情侣基友看西山日落时的静谧，又抑或是顶楼学霸们在下课铃响时冲下楼梯直奔食堂的气势，它们一起组成了二中独一无二的体验。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;它壕气却又不失秀气，三年中拍的二中风景随便拎出一张都能胜任南昌市旅游明信片。它庄重却又不失亲和，老师们一个个才高八斗学富五车，却又能和学生们打成一片课上开撕。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中就是这样一个地方，简约而不简单，无论你来自哪里，在这里你总会找到最浓重的归属感。</p>
-<p><strong>－－－－－－－－－－－－－－－－－－－－－－－华丽的分割线，多图预警－－－－－－－－－－－－－－－－－－－－</strong></p>
-<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicnanchang2zhong.jpg" alt=""></p>
-<p>－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="硬件">硬件</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中在硬件上最大的特点就是壕！第一次来二中参加考试时便被壕气外露的红砖绿叶迷住了。还有人造草皮的足球场，三年一遇的游泳馆（三年就上过一次课），堆满了电脑随便用的图书馆。学校里四处都是花花草草，校门的花坛一月一换，班上的一体机切水果什么的信手拈来。就是任性就是壕！<br>]]>
-    
-    </summary>
-    
-      <category term="个人故事" scheme="http://daijiale.github.io/tags/%E4%B8%AA%E4%BA%BA%E6%95%85%E4%BA%8B/"/>
-    
-      <category term="转载博文" scheme="http://daijiale.github.io/categories/%E8%BD%AC%E8%BD%BD%E5%8D%9A%E6%96%87/"/>
     
   </entry>
   
