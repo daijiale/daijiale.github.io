@@ -50,7 +50,7 @@ Jiale Dai成都 电子科技大学 本科生( 其实还没毕业，目前大三 
 <meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/canvaswatchface.png">
 <meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/githubblogliangzhongMode.png">
 <meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/github_myblogAndroidWear-CN.png">
-<meta property="og:updated_time" content="2016-06-09T01:17:17.000Z">
+<meta property="og:updated_time" content="2016-07-22T05:21:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【Android-持续更新】下次人家问再你怎么入门AndroidWear，你就甩这篇文章给TA">
 <meta name="twitter:description" content="本文作者
@@ -98,13 +98,14 @@ Jiale Dai成都 电子科技大学 本科生( 其实还没毕业，目前大三 
 					
 						<li><a href="/about">关于我</a></li>
 					
+						<li><a href="/cool-sites">酷站分享</a></li>
+					
 					<li>
  					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-						<input type="hidden" name="q" value="site:daijiale.github.io">
-					</form>
+						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						</form>
 					
 					</li>
 				</ul>
@@ -287,7 +288,7 @@ Jiale Dai成都 电子科技大学 本科生( 其实还没毕业，目前大三 
 <p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/androidweargradpagerview.PNG" alt=""></p>
 <p>这里，我想重点讲一下 <code>GridViewPager(网格多面控件)</code> ,ta与主页流类似，大家可以用ta来设计界面，ta与多面控件相似，但是可以水平和垂直同时移动，第一步就是布局的规划，下面这几行代码就是你主行为所需要的全部内容：</p>
 <p><strong>res/layout/pager_example.xml</strong></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version = "1.0" encoding = "utf-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">android.support.wearable.views.GridViewPager</span></span><br><span class="line">	<span class="attr">xmlns:android</span> = "<span class="attr">http:</span>//<span class="attr">schemas.android.com</span>"</span><br><span class="line">	<span class="attr">android:id</span> = "@+<span class="attr">id</span>/<span class="attr">pager</span>"</span><br><span class="line">	<span class="attr">android:layout_width</span> = "<span class="attr">match_parent</span>"</span><br><span class="line">	<span class="attr">android:layout_height</span> = "<span class="attr">match_parent</span>"</span><br><span class="line">/&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version = <span class="string">"1.0"</span> encoding = <span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"><span class="tag">&lt;<span class="name">android.support.wearable.views.GridViewPager</span></span><br><span class="line">	<span class="attr">xmlns:android</span> = "<span class="attr">http:</span>//<span class="attr">schemas.android.com</span>"</span><br><span class="line">	<span class="attr">android:id</span> = "@+<span class="attr">id</span>/<span class="attr">pager</span>"</span><br><span class="line">	<span class="attr">android:layout_width</span> = "<span class="attr">match_parent</span>"</span><br><span class="line">	<span class="attr">android:layout_height</span> = "<span class="attr">match_parent</span>"</span><br><span class="line">/&gt;</span></span><br></pre></td></tr></table></figure>
 <p>在这里，配置多面控件的目的是用于扩展至整个屏幕的，下一步，我们需要一个衔接器（<code>Adapter</code>）</p>
 <p><strong>FragmentGridPagerAdapter</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getRowCount</span><span class="params">()</span></span><br><span class="line"><span class="keyword">int</span> <span class="title">getColumnCount</span><span class="params">(<span class="keyword">int</span> row)</span></span><br><span class="line">Fragment <span class="title">getItem</span><span class="params">(<span class="keyword">int</span> row , <span class="keyword">int</span> column)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> <span class="title">getCurrentColumnForRow</span><span class="params">(</span><br><span class="line">	<span class="keyword">int</span> row,<span class="keyword">int</span> currentColum)</span></span></span><br></pre></td></tr></table></figure>
@@ -563,7 +564,7 @@ Jiale Dai成都 电子科技大学 本科生( 其实还没毕业，目前大三 
 		  
 		
 		  
-			<li><a href="/categories/原创博文/Web开发笔记/" title="Web开发笔记">Web开发笔记<sup>15</sup></a></li>
+			<li><a href="/categories/原创博文/Web开发笔记/" title="Web开发笔记">Web开发笔记<sup>16</sup></a></li>
 		  
 		
 		  
@@ -575,7 +576,7 @@ Jiale Dai成都 电子科技大学 本科生( 其实还没毕业，目前大三 
 		  
 		
 		  
-			<li><a href="/categories/原创博文/" title="原创博文">原创博文<sup>28</sup></a></li>
+			<li><a href="/categories/原创博文/" title="原创博文">原创博文<sup>29</sup></a></li>
 		  
 		
 		  
@@ -600,7 +601,7 @@ Jiale Dai成都 电子科技大学 本科生( 其实还没毕业，目前大三 
 			
 		
 			
-				<li><a href="/tags/PHP/" title="PHP">PHP<sup>7</sup></a></li>
+				<li><a href="/tags/PHP/" title="PHP">PHP<sup>8</sup></a></li>
 			
 		
 			
@@ -625,10 +626,6 @@ Jiale Dai成都 电子科技大学 本科生( 其实还没毕业，目前大三 
 		
 			
 				<li><a href="/tags/数据库/" title="数据库">数据库<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Composer/" title="Composer">Composer<sup>1</sup></a></li>
 			
 		
 			
@@ -668,11 +665,15 @@ Jiale Dai成都 电子科技大学 本科生( 其实还没毕业，目前大三 
 			
 		
 			
-				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+				<li><a href="/tags/智能可穿戴/" title="智能可穿戴">智能可穿戴<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Blog/" title="Blog">Blog<sup>1</sup></a></li>
+				<li><a href="/tags/程序猿素养/" title="程序猿素养">程序猿素养<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -789,7 +790,7 @@ Jiale Dai成都 电子科技大学 本科生( 其实还没毕业，目前大三 
 	
 	
 	<section class="info">
-		<p> Hello ,I&#39;m Jiale Dai in UESTC. <br/>
+		<p> Hello ,I&#39;m Jiale Dai in Baidu. <br/>
 			Welcome To My World.</p>
 	</section>
 	 
@@ -810,7 +811,7 @@ Jiale Dai成都 电子科技大学 本科生( 其实还没毕业，目前大三 
 		
 		
 		
-		<a href="mailto:daijiale6239@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		<a href="mailto:daijiale@daijiale.cn" target="_blank" class="icon-email" title="Email Me"></a>
 		
 	</div>
 			
