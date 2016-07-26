@@ -4,7 +4,7 @@ date: 2016-07-22 13:02:49
 
 # 开发
 
-## SDK+云服务
+###  SDK+云服务
 
  - [Discuz论坛搭建平台](http://open.discuz.net/?ac=index)
  - [语音开放平台](http://open.voicecloud.cn/download.php)
@@ -26,13 +26,17 @@ date: 2016-07-22 13:02:49
  - [多说-评论第三方开发系统](http://duoshuo.com/)
  - [看云kancloud-API文档在线编辑工具](http://www.kancloud.cn/)
 
-## 大牛Github/Blog
+###  大牛Github/Blog
 
 - [Leancloud_demo_github](https://github.com/leancloud/leancloud-demos#javsscript)
 - [阮一峰的网络日志](http://www.ruanyifeng.com/blog/)
 - [Laruence的博客](http://www.laruence.com/)
 - [zouxy09_CSDN专栏](http://blog.csdn.net/zouxy09/article/list/3)
 - [囧克斯的Blog](http://jiongks.name/about/)
+
+### 融资众筹
+- [钛媒体](http://www.tmtpost.com/)
+- [36氪](http://36kr.com/)
 
 
 # Mac相关资源
