@@ -25,7 +25,21 @@ date: 2016-07-22 13:02:49
  - [阿里百川-无线开发平台](http://baichuan.taobao.com/portal/docIndex.htm?spm=a3c0d.7662652.1.4.f1ePDx)
  - [多说-评论第三方开发系统](http://duoshuo.com/)
  - [看云kancloud-API文档在线编辑工具](http://www.kancloud.cn/)
+ 
+###  IT学习
+ - [慕课网](http://www.imooc.com/)
+ - [网易云课堂](http://study.163.com/)
+ - [极客学院](http://www.jikexueyuan.com/)
+ - [汇智网](http://www.hubwiz.com/)
+ - [Mooc学院](http://mooc.guokr.com/)
+ - [云栖社区](https://yq.aliyun.com/articles/57826)
 
+### 设计素材网站
+ - [easelly信息图表](http://www.easel.ly/)
+ 
+###  演示文稿工具
+ - [ipresst](http://www.ipresst.com/#)
+ 
 ###  大牛Github/Blog
 
 - [Leancloud_demo_github](https://github.com/leancloud/leancloud-demos#javsscript)
@@ -38,7 +52,21 @@ date: 2016-07-22 13:02:49
 - [钛媒体](http://www.tmtpost.com/)
 - [36氪](http://36kr.com/)
 
+### 街舞
+ - [街舞爱好者](http://www.dancering.cn/)
+ - [Vhihop](http://www.vhiphop.com/)
+ - [街舞后院](http://dance.hiphop1.com/pin)
+ - [China Funk](http://www.chinafunk.cn/portal.php)
+ - [Dino所有视频-百度贴吧](http://tieba.baidu.com/p/2512386205?see_lz=1)
+ - [环球Funk精选]()
+ - [Legend Da Beatslaya-Bandcamp](http://legend-da-beatslaya.bandcamp.com/)
+ - [Olli-Bandcamp](https://olli.bandcamp.com/track/mouthful-of-dust)
+ - [Bandcamp Dj最新曲子](http://bandcamp.com/)
 
+### 单反摄影
+ - [锐意网](http://www.rayi.cn/)
+ - [单反相机](http://www.dfxiangji.com/)
+ 
 # Mac相关资源
 
 - [Awesome Mac](https://github.com/jaywcjlove/awesome-mac)
