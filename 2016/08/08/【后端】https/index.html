@@ -1,0 +1,741 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>【后端】HTTPS化 | DaiJiale&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Jiale Dai">
+    
+
+    
+    <meta name="description" content="PS：Https学习，业务接口更换。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【后端】HTTPS化">
+<meta property="og:url" content="http://daijiale.github.io/2016/08/08/【后端】https/index.html">
+<meta property="og:site_name" content="DaiJiale's Blog">
+<meta property="og:description" content="PS：Https学习，业务接口更换。">
+<meta property="og:updated_time" content="2016-08-08T07:10:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【后端】HTTPS化">
+<meta name="twitter:description" content="PS：Https学习，业务接口更换。">
+
+    
+    <link rel="alternative" href="/atom.xml" title="DaiJiale&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="DaiJiale&#39;s Blog" title="DaiJiale&#39;s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="DaiJiale&#39;s Blog">DaiJiale&#39;s Blog</a></h1>
+				<h2 class="blog-motto">只有汗水不会欺骗你 || Only sweat will not fail you</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于我</a></li>
+					
+						<li><a href="/cool-sites">酷站分享</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/08/08/【后端】https/" title="【后端】HTTPS化" itemprop="url">【后端】HTTPS化</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Jiale Dai" target="_blank" itemprop="author">Jiale Dai</a>
+		
+  <p class="article-time">
+    <time datetime="2016-08-08T08:27:32.000Z" itemprop="datePublished"> 发表于 2016-08-08</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#正文"><span class="toc-number">1.</span> <span class="toc-text">正文</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是HTTPS？"><span class="toc-number">2.</span> <span class="toc-text">什么是HTTPS？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么要调整业务线为HTTPS"><span class="toc-number">3.</span> <span class="toc-text">为什么要调整业务线为HTTPS</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTPS原理"><span class="toc-number">4.</span> <span class="toc-text">HTTPS原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#对称内容加密"><span class="toc-number">4.1.</span> <span class="toc-text">对称内容加密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#非对称内容加密"><span class="toc-number">4.2.</span> <span class="toc-text">非对称内容加密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#身份认证"><span class="toc-number">4.3.</span> <span class="toc-text">身份认证</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTPS使用成本"><span class="toc-number">5.</span> <span class="toc-text">HTTPS使用成本</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考文献"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li></ol>
+		
+		</div>
+		
+		<blockquote>
+<p>PS：Https学习，业务接口更换。</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="正文">正文</h1><h1 id="什么是HTTPS？">什么是HTTPS？</h1><p>HTTPS的诞生源于HTTP协议传输隐私数据的不安全，为了保证这些隐私数据能加密传输，于是，网景公司设计了SSL协议用于对HTTP协议传输的数据进行加密，从而诞生了HTTPS。SSL最后的一个版本是3.0，现在我们实际使用的HTTPS都是用的TLS协议，今后TLS将会继承SSL优良血统继续为我们进行加密服务。</p>
+<h1 id="为什么要调整业务线为HTTPS">为什么要调整业务线为HTTPS</h1><p>答案是来源于用户对安全，隐私，可用性的需求。对于使用百度众产品的庞大用户群，我们的同事每天都需要处理很多用户反馈：</p>
+<ul>
+<li>页面出现白页or奇怪的东西。</li>
+<li>返回了403的页面，但是webserver并不是我们的服务器。</li>
+<li>搜索总是跳错误页/搜索什么都是 &ldquo;{wd}&rdquo;这个字段/想翻页却回到上一页</li>
+<li>搜索url带了小尾巴,页面总要闪几次</li>
+<li>页面弹窗广告</li>
+<li><p>搜索个汽车就有人给我打电话推销4s店和保险什么的</p>
+<p>各种千奇百怪的情况，查来查去，很大一部分原因是有运营商/劫持商在数据的传输过程中（WIFI热点、路由器、防火墙、反向代理、缓存服务器等）修改百度的页面内容，窃听用户的搜索内容。直到我厂顺利完成全站（baidu.com域名下所有链接和主要功能都是https，而不是只有登录，支付等环节https了）HTTPS的部署后，这一情况才得以好转。总体来说，HTTPS协议提供了三个强大的功能来对抗上述的劫持行为：</p>
+</li>
+<li><p>1.内容加密：浏览器到产品线服务器的内容都是以加密形式传输，中间者无法直接查看原始内容。</p>
+</li>
+<li>2.身份认证：保证用户访问的是产品线服务，即使被DNS劫持到了第三方站点，也会提醒用户没有访问对应产品线服务，有可能被劫持。</li>
+<li>3.数据完整性：防止内容被第三方冒充或者篡改。</li>
+</ul>
+<h1 id="HTTPS原理">HTTPS原理</h1><p>加密算法一般分为两种，对称加密和非对称加密。所谓<strong>对称加密</strong>（也叫密钥加密）就是指加密和解密使用的是相同的密钥。而<strong>非对称加密（也叫公钥加密）</strong>就是指加密和解密使用了不同的密钥。</p>
+<p>对称内容加密强度非常高，一般破解不了。但存在一个很大的问题就是无法安全地生成和保管密钥。假如客户端软件和服务器之间每次会话都使用固定的，相同的密钥加密和解密，肯定存在很大的安全隐患。如果有人从客户端端获取到了对称密钥，整个内容就不存在安全性了，而且管理海量的客户端密钥也是一件很复杂的事情。</p>
+<p>非对称加密主要用于密钥交换（也叫密钥协商），能够很好地解决这个问题。浏览器和服务器每次新建会话时都使用非对称密钥交换算法协商出对称密钥，使用这些对称密钥完成应用数据的加解密和验证，整个会话过程中的密钥只在内存中生成和保存，而且每个会话的对称密钥都不相同（除非会话复用），中间者无法窃取。</p>
+<p>非对称密钥交换很安全，但同时也是 HTTPS 性能和速度严重降低的“罪魁祸首”。想要知道 HTTPS 为什么影响速度，为什么消耗资源，就一定要理解非对称密钥交换的整个过程。</p>
+<h2 id="对称内容加密">对称内容加密</h2><p>非对称密钥交换过程结束之后就得出了本次会话需要使用的对称密钥。对称加密又分为两种模式：流式加密和分组加密。流式加密现在常用的就是 RC4，不过 RC4 已经不再安全，微软也建议网站尽量不要使用 RC4 流式加密。</p>
+<p>一种新的替代 RC4 的流式加密算法叫 ChaCha20，它是 google 推出的速度更快，更安全的加密算法。目前已经被 android 和 chrome 采用，也编译进了 google 的开源 openssl 分支 —boring ssl，并且nginx 1.7.4 也支持编译 boringssl。</p>
+<p>分组加密以前常用的模式是 AES-CBC，但是 CBC 已经被证明容易遭受BEAST和LUCKY13 攻击。目前建议使用的分组加密模式是 AES-GCM，不过它的缺点是计算量大，性能和电量消耗都比较高，不适用于移动电话和平板电脑。</p>
+<h2 id="非对称内容加密">非对称内容加密</h2><p>在非对称密钥交换算法出现以前，对称加密一个很大的问题就是不知道如何安全生成和保管密钥。非对称密钥交换过程主要就是为了解决这个问题，使得对称密钥的生成和使用更加安全。</p>
+<p>密钥交换算法本身非常复杂，密钥交换过程涉及到随机数生成，模指数运算，空白补齐，加密，签名等操作。<br>常见的密钥交换算法有 RSA，ECDHE，DH，DHE 等算法。它们的特性如下：</p>
+<p> RSA：算法实现简单，诞生于 1977 年，历史悠久，经过了长时间的破解测试，安全性高。缺点就是需要比较大的素数（目前常用的是 2048 位）来保证安全强度，很消耗 CPU 运算资源。RSA 是目前唯一一个既能用于密钥交换又能用于证书签名的算法。</p>
+<p>DH：diffie-hellman 密钥交换算法，诞生时间比较早（1977 年），但是 1999 年才公开。缺点是比较消耗 CPU 性能。</p>
+<p>ECDHE：使用椭圆曲线（ECC）的 DH 算法，优点是能用较小的素数（256 位）实现 RSA 相同的安全等级。缺点是算法实现复杂，用于密钥交换的历史不长，没有经过长时间的安全攻击测试。</p>
+<p> ECDH：不支持 PFS，安全性低，同时无法实现 false start。</p>
+<p> DHE：不支持 ECC。非常消耗 CPU 资源。</p>
+<p>建议优先支持 RSA 和 ECDH_RSA 密钥交换算法。原因是：</p>
+<ul>
+<li>1，  ECDHE 支持 ECC 加速，计算速度更快。支持 PFS，更加安全。支持 false start，用户访问速度更快。</li>
+<li>2，  目前还有至少 20% 以上的客户端不支持 ECDHE，我们推荐使用 RSA 而不是 DH 或者 DHE，因为 DH 系列算法非常消耗 CPU（相当于要做两次 RSA 计算）。</li>
+</ul>
+<p>需要注意通常所说的 ECDHE 密钥交换默认都是指 ECDHE_RSA，使用 ECDHE 生成 DH 算法所需的公私钥，然后使用 RSA 算法进行签名最后再计算得出对称密钥。<br>非对称加密相比对称加密更加安全，但也存在两个明显缺点：</p>
+<ul>
+<li>1，  CPU 计算资源消耗非常大。一次完全 TLS 握手，密钥交换时的非对称解密计算量占整个握手过程的 90% 以上。而对称加密的计算量只相当于非对称加密的 0.1%，如果应用层数据也使用非对称加解密，性能开销太大，无法承受。</li>
+<li>2，  非对称加密算法对加密内容的长度有限制，不能超过公钥长度。比如现在常用的公钥长度是 2048 位，意味着待加密内容不能超过 256 个字节。<br>所以公钥加密目前只能用来作密钥交换或者内容签名，不适合用来做应用层传输内容的加解密。<br>非对称密钥交换算法是整个 HTTPS 得以安全的基石，充分理解非对称密钥交换算法是理解 HTTPS 协议和功能的关键。</li>
+</ul>
+<h2 id="身份认证">身份认证</h2><p>身份认证主要涉及到 PKI 和数字证书。通常来讲 PKI（公钥基础设施）包含如下部分：</p>
+<ul>
+<li>End entity：终端实体，可以是一个终端硬件或者网站。</li>
+<li>CA：证书签发机构。</li>
+<li>RA：证书注册及审核机构。比如审查申请网站或者公司的真实性。</li>
+<li>CRL issuer：负责证书撤销列表的发布和维护。</li>
+<li>Repository：负责数字证书及 CRL 内容存储和分发。</li>
+<li>申请一个受信任的数字证书通常有如下流程：<ul>
+<li>1.终端实体生成公私钥和证书请求。</li>
+<li>2.RA 检查实体的合法性。如果个人或者小网站，这一步不是必须的。</li>
+<li>3.CA 签发证书，发送给申请者。</li>
+<li>4.证书更新到 repository，终端后续从 repository 更新证书，查询证书状态等。</li>
+</ul>
+</li>
+</ul>
+<p>数字证书有两个作用：</p>
+<ul>
+<li>1.身份授权。确保浏览器访问的网站是经过 CA 验证的可信任的网站。</li>
+<li>2.分发公钥。每个数字证书都包含了注册者生成的公钥。在 SSL 握手时会通过 certif icate 消息传输给客户端。比如前文提到的 RSA 证书公钥加密及 ECDHE 的签名都是使用的这个公钥。</li>
+</ul>
+<p>申请者拿到 CA 的证书并部署在网站服务器端，那浏览器发起握手接收到证书后，如何确认这个证书就是 CA 签发的呢？怎样避免第三方伪造这个证书？</p>
+<p>答案就是数字签名（digital signature）。数字签名是证书的防伪标签，目前使用最广泛的 SHA-RSA 数字签名的制作和验证过程如下：</p>
+<ul>
+<li>1.数字签名的签发。首先是使用哈希函数对待签名内容进行安全哈希，生成消息摘要，然后使用 CA 自己的私钥对消息摘要进行加密。</li>
+<li>2.数字签名的校验。使用 CA 的公钥解密签名，然后使用相同的签名函数对待签名证书内容进行签名并和服务端数字签名里的签名内容进行比较，如果相同就认为校验成功。</li>
+</ul>
+<h1 id="HTTPS使用成本">HTTPS使用成本</h1><p>   证书费用以及更新维护。大家觉得申请证书很麻烦，证书也很贵，可是证书其实一点都不贵，便宜的一年几十块钱，最多也就几百。而且现在也有了免费的证书机构，比如著名的 mozilla 发起的免费证书项目：<a href="https://letsencrypt.org/" target="_blank" rel="external">Let’s encrypt</a>就支持免费证书安装和自动更新。这个项目将于今年中旬投入正式使用。</p>
+<p>数字证书的费用其实也不高，对于中小网站可以使用便宜甚至免费的数字证书服务（可能存在安全隐患），像著名的 verisign 公司的证书一般也就几千到几万块一年不等。当然如果公司对证书的需求比较大，定制性要求高，可以建立自己的 CA 站点，比如 google，能够随意签发 google 相关证书。</p>
+<p>HTTPS 降低用户访问速度。HTTPS 对速度会有一定程度的降低，但是只要经过合理优化和部署，HTTPS 对速度的影响完全可以接受。在很多场景下，HTTPS 速度完全不逊于 HTTP，如果使用 SPDY，HTTPS 的速度甚至还要比 HTTP 快。</p>
+<p>大家现在使用百度 HTTPS 安全搜索，有感觉到慢吗？</p>
+<p>HTTPS 消耗 CPU 资源，需要增加大量机器。前面介绍过非对称密钥交换，这是消耗 CPU 计算资源的大户，此外，对称加解密，也需要 CPU 的计算。</p>
+<p>同样地，只要合理优化，HTTPS 的机器成本也不会明显增加。对于中小网站，完全不需要增加机器也能满足性能需求。</p>
+<h1 id="参考文献">参考文献</h1><ul>
+<li><a href="http://wiki.baidu.com/pages/viewpage.action?pageId=112554133" target="_blank" rel="external">HTTPS构建大型网站</a></li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/原创博文/">原创博文</a>►<a class="article-category-link" href="/categories/原创博文/Web开发笔记/">Web开发笔记</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/HTTPS/">HTTPS</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://daijiale.github.io/2016/08/08/【后端】https/" data-title="【后端】HTTPS化 | DaiJiale&#39;s Blog" data-tsina="3173290371" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/08/01/【数据库】redis入门/"  title="【数据库-持续更新】Redis入门">
+ <strong>下一篇：</strong><br/> 
+ <span>【数据库-持续更新】Redis入门
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/08/08/【后端】https/" data-title="【后端】HTTPS化" data-url="http://daijiale.github.io/2016/08/08/【后端】https/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#正文"><span class="toc-number">1.</span> <span class="toc-text">正文</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是HTTPS？"><span class="toc-number">2.</span> <span class="toc-text">什么是HTTPS？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么要调整业务线为HTTPS"><span class="toc-number">3.</span> <span class="toc-text">为什么要调整业务线为HTTPS</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTPS原理"><span class="toc-number">4.</span> <span class="toc-text">HTTPS原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#对称内容加密"><span class="toc-number">4.1.</span> <span class="toc-text">对称内容加密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#非对称内容加密"><span class="toc-number">4.2.</span> <span class="toc-text">非对称内容加密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#身份认证"><span class="toc-number">4.3.</span> <span class="toc-text">身份认证</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTPS使用成本"><span class="toc-number">5.</span> <span class="toc-text">HTTPS使用成本</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考文献"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/原创博文/Android开发笔记/" title="Android开发笔记">Android开发笔记<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/转载博文/Web开发分享/" title="Web开发分享">Web开发分享<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/原创博文/Web开发笔记/" title="Web开发笔记">Web开发笔记<sup>19</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/原创博文/关于舞蹈/" title="关于舞蹈">关于舞蹈<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/原创博文/单反自学笔记/" title="单反自学笔记">单反自学笔记<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/原创博文/" title="原创博文">原创博文<sup>32</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/原创博文/自己的开源项目/" title="自己的开源项目">自己的开源项目<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/转载博文/" title="转载博文">转载博文<sup>4</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/个人故事/" title="个人故事">个人故事<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/PHP/" title="PHP">PHP<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html5/" title="html5">html5<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据库/" title="数据库">数据库<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hackathon/" title="Hackathon">Hackathon<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/正则表达式/" title="正则表达式">正则表达式<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SQL/" title="SQL">SQL<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Blog/" title="Blog">Blog<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AndroidWear/" title="AndroidWear">AndroidWear<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/智能可穿戴/" title="智能可穿戴">智能可穿戴<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/机器学习/" title="机器学习">机器学习<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/神经网络/" title="神经网络">神经网络<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/图像识别/" title="图像识别">图像识别<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/搜索引擎/" title="搜索引擎">搜索引擎<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Nutch/" title="Nutch">Nutch<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端性能优化/" title="前端性能优化">前端性能优化<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.daijiale.cn" target="_blank" title="DaiJiale的个人简历页">DaiJiale的个人站点</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://c2pblog.sinaapp.com/" target="_blank" title="Baiduer刘神的Blog">LiuKaiNing的Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.linzhihao.cn" target="_blank" title="我师父的Blog">MasterLin的Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://charles-xiao.github.io/" target="_blank" title="好友肖勇Blog">CharlesXiao的Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://lizhuolun.com/" target="_blank" title="好友卓伦Blog">lizhuolun的Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://leuisken.github.io/index.html" target="_blank" title="学弟嘉讯Blog">leuisken的Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.php-note.com/" target="_blank" title="神一样的PHPer">钱途无梁的PHP-Note</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://stormzhang.com/" target="_blank" title="偶像的Blog（Android_CN OG级人物）">StormZhang的Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me/" target="_blank" title="jacman原创博主">Jark&#39;s Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.developerclub.cn" target="_blank" title="博主自己独立开发的：一个面向电子科技大学开发者的网上社区">电子科技大学开发者俱乐部</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://uestc.xyz" target="_blank" title="一个面向电子科技大学Linux开发者的社区">电子科技大学Linux开源社区</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.newstacksoft.com/" target="_blank" title="2016届百度新人交流社区贡献者">NewBaiduer2016社区</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://tongji.cnzz.com/main.php?c=site&a=show&siteid=1254856612" target="_blank" title=" 站点数据统计">站长统计</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Jiale Dai in Baidu. <br/>
+			Welcome To My World.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/3173290371" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/daijiale" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="https://www.zhihu.com/people/dai-jia-le-35" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:daijiale@daijiale.cn" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by Hexo and Theme Rebuilt From Jacman By</a> © 2016 
+		
+		<a href="http://www.daijiale.cn">Jiale Dai</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"daijiale"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254856612'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1254856612%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

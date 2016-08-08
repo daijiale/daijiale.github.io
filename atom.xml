@@ -4,7 +4,7 @@
   <subtitle><![CDATA[只有汗水不会欺骗你 || Only sweat will not fail you]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://daijiale.github.io/"/>
-  <updated>2016-07-22T05:21:31.000Z</updated>
+  <updated>2016-08-08T07:10:19.000Z</updated>
   <id>http://daijiale.github.io/</id>
   
   <author>
@@ -13,6 +13,197 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[【后端】HTTPS化]]></title>
+    <link href="http://daijiale.github.io/2016/08/08/%E3%80%90%E5%90%8E%E7%AB%AF%E3%80%91https/"/>
+    <id>http://daijiale.github.io/2016/08/08/【后端】https/</id>
+    <published>2016-08-08T08:27:32.000Z</published>
+    <updated>2016-08-08T07:10:19.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>PS：Https学习，业务接口更换。</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="正文">正文</h1><h1 id="什么是HTTPS？">什么是HTTPS？</h1><p>HTTPS的诞生源于HTTP协议传输隐私数据的不安全，为了保证这些隐私数据能加密传输，于是，网景公司设计了SSL协议用于对HTTP协议传输的数据进行加密，从而诞生了HTTPS。SSL最后的一个版本是3.0，现在我们实际使用的HTTPS都是用的TLS协议，今后TLS将会继承SSL优良血统继续为我们进行加密服务。</p>
+<h1 id="为什么要调整业务线为HTTPS">为什么要调整业务线为HTTPS</h1><p>答案是来源于用户对安全，隐私，可用性的需求。对于使用百度众产品的庞大用户群，我们的同事每天都需要处理很多用户反馈：</p>
+<ul>
+<li>页面出现白页or奇怪的东西。</li>
+<li>返回了403的页面，但是webserver并不是我们的服务器。</li>
+<li>搜索总是跳错误页/搜索什么都是 &ldquo;{wd}&rdquo;这个字段/想翻页却回到上一页</li>
+<li>搜索url带了小尾巴,页面总要闪几次</li>
+<li>页面弹窗广告</li>
+<li><p>搜索个汽车就有人给我打电话推销4s店和保险什么的</p>
+<p>各种千奇百怪的情况，查来查去，很大一部分原因是有运营商/劫持商在数据的传输过程中（WIFI热点、路由器、防火墙、反向代理、缓存服务器等）修改百度的页面内容，窃听用户的搜索内容。直到我厂顺利完成全站（baidu.com域名下所有链接和主要功能都是https，而不是只有登录，支付等环节https了）HTTPS的部署后，这一情况才得以好转。总体来说，HTTPS协议提供了三个强大的功能来对抗上述的劫持行为：</p>
+</li>
+<li><p>1.内容加密：浏览器到产品线服务器的内容都是以加密形式传输，中间者无法直接查看原始内容。</p>
+</li>
+<li>2.身份认证：保证用户访问的是产品线服务，即使被DNS劫持到了第三方站点，也会提醒用户没有访问对应产品线服务，有可能被劫持。</li>
+<li>3.数据完整性：防止内容被第三方冒充或者篡改。</li>
+</ul>
+<h1 id="HTTPS原理">HTTPS原理</h1><p>加密算法一般分为两种，对称加密和非对称加密。所谓<strong>对称加密</strong>（也叫密钥加密）就是指加密和解密使用的是相同的密钥。而<strong>非对称加密（也叫公钥加密）</strong>就是指加密和解密使用了不同的密钥。</p>
+<p>对称内容加密强度非常高，一般破解不了。但存在一个很大的问题就是无法安全地生成和保管密钥。假如客户端软件和服务器之间每次会话都使用固定的，相同的密钥加密和解密，肯定存在很大的安全隐患。如果有人从客户端端获取到了对称密钥，整个内容就不存在安全性了，而且管理海量的客户端密钥也是一件很复杂的事情。</p>
+<p>非对称加密主要用于密钥交换（也叫密钥协商），能够很好地解决这个问题。浏览器和服务器每次新建会话时都使用非对称密钥交换算法协商出对称密钥，使用这些对称密钥完成应用数据的加解密和验证，整个会话过程中的密钥只在内存中生成和保存，而且每个会话的对称密钥都不相同（除非会话复用），中间者无法窃取。</p>
+<p>非对称密钥交换很安全，但同时也是 HTTPS 性能和速度严重降低的“罪魁祸首”。想要知道 HTTPS 为什么影响速度，为什么消耗资源，就一定要理解非对称密钥交换的整个过程。</p>
+<h2 id="对称内容加密">对称内容加密</h2><p>非对称密钥交换过程结束之后就得出了本次会话需要使用的对称密钥。对称加密又分为两种模式：流式加密和分组加密。流式加密现在常用的就是 RC4，不过 RC4 已经不再安全，微软也建议网站尽量不要使用 RC4 流式加密。</p>
+<p>一种新的替代 RC4 的流式加密算法叫 ChaCha20，它是 google 推出的速度更快，更安全的加密算法。目前已经被 android 和 chrome 采用，也编译进了 google 的开源 openssl 分支 —boring ssl，并且nginx 1.7.4 也支持编译 boringssl。</p>
+<p>分组加密以前常用的模式是 AES-CBC，但是 CBC 已经被证明容易遭受BEAST和LUCKY13 攻击。目前建议使用的分组加密模式是 AES-GCM，不过它的缺点是计算量大，性能和电量消耗都比较高，不适用于移动电话和平板电脑。</p>
+<h2 id="非对称内容加密">非对称内容加密</h2><p>在非对称密钥交换算法出现以前，对称加密一个很大的问题就是不知道如何安全生成和保管密钥。非对称密钥交换过程主要就是为了解决这个问题，使得对称密钥的生成和使用更加安全。</p>
+<p>密钥交换算法本身非常复杂，密钥交换过程涉及到随机数生成，模指数运算，空白补齐，加密，签名等操作。<br>常见的密钥交换算法有 RSA，ECDHE，DH，DHE 等算法。它们的特性如下：</p>
+<p> RSA：算法实现简单，诞生于 1977 年，历史悠久，经过了长时间的破解测试，安全性高。缺点就是需要比较大的素数（目前常用的是 2048 位）来保证安全强度，很消耗 CPU 运算资源。RSA 是目前唯一一个既能用于密钥交换又能用于证书签名的算法。</p>
+<p>DH：diffie-hellman 密钥交换算法，诞生时间比较早（1977 年），但是 1999 年才公开。缺点是比较消耗 CPU 性能。</p>
+<p>ECDHE：使用椭圆曲线（ECC）的 DH 算法，优点是能用较小的素数（256 位）实现 RSA 相同的安全等级。缺点是算法实现复杂，用于密钥交换的历史不长，没有经过长时间的安全攻击测试。</p>
+<p> ECDH：不支持 PFS，安全性低，同时无法实现 false start。</p>
+<p> DHE：不支持 ECC。非常消耗 CPU 资源。</p>
+<p>建议优先支持 RSA 和 ECDH_RSA 密钥交换算法。原因是：</p>
+<ul>
+<li>1，  ECDHE 支持 ECC 加速，计算速度更快。支持 PFS，更加安全。支持 false start，用户访问速度更快。</li>
+<li>2，  目前还有至少 20% 以上的客户端不支持 ECDHE，我们推荐使用 RSA 而不是 DH 或者 DHE，因为 DH 系列算法非常消耗 CPU（相当于要做两次 RSA 计算）。</li>
+</ul>
+<p>需要注意通常所说的 ECDHE 密钥交换默认都是指 ECDHE_RSA，使用 ECDHE 生成 DH 算法所需的公私钥，然后使用 RSA 算法进行签名最后再计算得出对称密钥。<br>非对称加密相比对称加密更加安全，但也存在两个明显缺点：</p>
+<ul>
+<li>1，  CPU 计算资源消耗非常大。一次完全 TLS 握手，密钥交换时的非对称解密计算量占整个握手过程的 90% 以上。而对称加密的计算量只相当于非对称加密的 0.1%，如果应用层数据也使用非对称加解密，性能开销太大，无法承受。</li>
+<li>2，  非对称加密算法对加密内容的长度有限制，不能超过公钥长度。比如现在常用的公钥长度是 2048 位，意味着待加密内容不能超过 256 个字节。<br>所以公钥加密目前只能用来作密钥交换或者内容签名，不适合用来做应用层传输内容的加解密。<br>非对称密钥交换算法是整个 HTTPS 得以安全的基石，充分理解非对称密钥交换算法是理解 HTTPS 协议和功能的关键。</li>
+</ul>
+<h2 id="身份认证">身份认证</h2><p>身份认证主要涉及到 PKI 和数字证书。通常来讲 PKI（公钥基础设施）包含如下部分：</p>
+<ul>
+<li>End entity：终端实体，可以是一个终端硬件或者网站。</li>
+<li>CA：证书签发机构。</li>
+<li>RA：证书注册及审核机构。比如审查申请网站或者公司的真实性。</li>
+<li>CRL issuer：负责证书撤销列表的发布和维护。</li>
+<li>Repository：负责数字证书及 CRL 内容存储和分发。</li>
+<li>申请一个受信任的数字证书通常有如下流程：<ul>
+<li>1.终端实体生成公私钥和证书请求。</li>
+<li>2.RA 检查实体的合法性。如果个人或者小网站，这一步不是必须的。</li>
+<li>3.CA 签发证书，发送给申请者。</li>
+<li>4.证书更新到 repository，终端后续从 repository 更新证书，查询证书状态等。</li>
+</ul>
+</li>
+</ul>
+<p>数字证书有两个作用：</p>
+<ul>
+<li>1.身份授权。确保浏览器访问的网站是经过 CA 验证的可信任的网站。</li>
+<li>2.分发公钥。每个数字证书都包含了注册者生成的公钥。在 SSL 握手时会通过 certif icate 消息传输给客户端。比如前文提到的 RSA 证书公钥加密及 ECDHE 的签名都是使用的这个公钥。</li>
+</ul>
+<p>申请者拿到 CA 的证书并部署在网站服务器端，那浏览器发起握手接收到证书后，如何确认这个证书就是 CA 签发的呢？怎样避免第三方伪造这个证书？</p>
+<p>答案就是数字签名（digital signature）。数字签名是证书的防伪标签，目前使用最广泛的 SHA-RSA 数字签名的制作和验证过程如下：</p>
+<ul>
+<li>1.数字签名的签发。首先是使用哈希函数对待签名内容进行安全哈希，生成消息摘要，然后使用 CA 自己的私钥对消息摘要进行加密。</li>
+<li>2.数字签名的校验。使用 CA 的公钥解密签名，然后使用相同的签名函数对待签名证书内容进行签名并和服务端数字签名里的签名内容进行比较，如果相同就认为校验成功。</li>
+</ul>
+<h1 id="HTTPS使用成本">HTTPS使用成本</h1><p>   证书费用以及更新维护。大家觉得申请证书很麻烦，证书也很贵，可是证书其实一点都不贵，便宜的一年几十块钱，最多也就几百。而且现在也有了免费的证书机构，比如著名的 mozilla 发起的免费证书项目：<a href="https://letsencrypt.org/" target="_blank" rel="external">Let’s encrypt</a>就支持免费证书安装和自动更新。这个项目将于今年中旬投入正式使用。</p>
+<p>数字证书的费用其实也不高，对于中小网站可以使用便宜甚至免费的数字证书服务（可能存在安全隐患），像著名的 verisign 公司的证书一般也就几千到几万块一年不等。当然如果公司对证书的需求比较大，定制性要求高，可以建立自己的 CA 站点，比如 google，能够随意签发 google 相关证书。</p>
+<p>HTTPS 降低用户访问速度。HTTPS 对速度会有一定程度的降低，但是只要经过合理优化和部署，HTTPS 对速度的影响完全可以接受。在很多场景下，HTTPS 速度完全不逊于 HTTP，如果使用 SPDY，HTTPS 的速度甚至还要比 HTTP 快。</p>
+<p>大家现在使用百度 HTTPS 安全搜索，有感觉到慢吗？</p>
+<p>HTTPS 消耗 CPU 资源，需要增加大量机器。前面介绍过非对称密钥交换，这是消耗 CPU 计算资源的大户，此外，对称加解密，也需要 CPU 的计算。</p>
+<p>同样地，只要合理优化，HTTPS 的机器成本也不会明显增加。对于中小网站，完全不需要增加机器也能满足性能需求。</p>
+<h1 id="参考文献">参考文献</h1><ul>
+<li><a href="http://wiki.baidu.com/pages/viewpage.action?pageId=112554133" target="_blank" rel="external">HTTPS构建大型网站</a></li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>PS：Https学习，业务接口更换。</p>
+</blockquote>]]>
+    
+    </summary>
+    
+      <category term="HTTPS" scheme="http://daijiale.github.io/tags/HTTPS/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+      <category term="Web开发笔记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[【数据库-持续更新】Redis入门]]></title>
+    <link href="http://daijiale.github.io/2016/08/01/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%91redis%E5%85%A5%E9%97%A8/"/>
+    <id>http://daijiale.github.io/2016/08/01/【数据库】redis入门/</id>
+    <published>2016-08-01T03:15:21.000Z</published>
+    <updated>2016-08-08T11:19:31.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>PS：最近公司业务需要使用redis做部分数据的缓存，特此学习一下。</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="概述">概述</h1><p>Redis是一个开源，先进的key-value存储，并用于构建高性能，可扩展的Web应用程序的完美解决方案。</p>
+<p>Redis从它的许多竞争继承来的三个主要特点：</p>
+<ul>
+<li>Redis数据库完全在内存中，使用磁盘仅用于持久性。</li>
+<li>性能极高 – Redis能读的速度是110000次/s,写的速度是81000次/s 。</li>
+<li>相比许多键值数据存储，Redis拥有一套较为丰富的数据类型，因为值（value）可以是 字符串(String), 哈希(Map), 列表(list), 集合(sets) 和 有序集合(sorted sets)等类型。</li>
+<li>Redis可以将数据复制到任意数量的从服务器，即master-slave模式的数据备份。</li>
+</ul>
+<h1 id="Redis安装">Redis安装</h1><p>Ubuntu下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install redis-server</span><br></pre></td></tr></table></figure>
+<p>启动Redis:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server</span><br></pre></td></tr></table></figure>
+<p>通过新进程测试redis是否启动：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli</span><br></pre></td></tr></table></figure>
+<p>127.0.0.1 是本机 IP ，6379 是 redis 服务端口。现在我们输入 PING 命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt;ping</span><br><span class="line">PONG</span><br></pre></td></tr></table></figure>
+<h1 id="Redis数据类型">Redis数据类型</h1><p>Redis支持五种数据类型：string（字符串），hash（哈希），list（列表），set（集合）及zset(sorted set：有序集合)。</p>
+<p><a href="http://www.redis.net.cn/tutorial/3505.html" target="_blank" rel="external">使用方法</a></p>
+<h1 id="Redis命令">Redis命令</h1><p><a href="http://www.redis.net.cn/tutorial/3506.html" target="_blank" rel="external">使用方法</a></p>
+<h1 id="Redis事务">Redis事务</h1><p><a href="http://www.redis.net.cn/tutorial/3515.html" target="_blank" rel="external">使用方法</a></p>
+<h1 id="Redis_数据备份与恢复">Redis 数据备份与恢复</h1><p><a href="http://www.redis.net.cn/tutorial/3519.html" target="_blank" rel="external">使用方法</a></p>
+<h1 id="Redis_PHP扩展">Redis PHP扩展</h1><p><a href="http://www.redis.net.cn/tutorial/3526.html" target="_blank" rel="external">Demo</a></p>
+<h1 id="参考文档">参考文档</h1><ul>
+<li><a href="http://www.cnblogs.com/w58480513/p/4226176.html?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">redis脚本实例讲解</a></li>
+<li><a href="https://github.com/ukko/phpredis-phpdoc" target="_blank" rel="external">redis_php库</a></li>
+<li><a href="http://www.redis.net.cn/tutorial/3501.html" target="_blank" rel="external">redis中文网</a></li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>PS：最近公司业务需要使用redis做部分数据的缓存，特此学习一下。</p>
+</blockquote>]]>
+    
+    </summary>
+    
+      <category term="数据库" scheme="http://daijiale.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="Redis" scheme="http://daijiale.github.io/tags/Redis/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+      <category term="Web开发笔记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[【SQL】复杂条件查询]]></title>
+    <link href="http://daijiale.github.io/2016/07/29/%E3%80%90SQL%E3%80%91SQL%E5%A4%8D%E6%9D%82%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2/"/>
+    <id>http://daijiale.github.io/2016/07/29/【SQL】SQL复杂条件查询/</id>
+    <published>2016-07-29T03:24:32.000Z</published>
+    <updated>2016-08-08T08:21:08.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>PS：SQL进行复杂条件运算，连表，内连，交集，并集等。</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="正文">正文</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//设置查询区间为一天</span></span><br><span class="line">$unix_end_time = $unix_start_time+<span class="number">86400</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//查询当天下单并且已购买的用户</span></span><br><span class="line">$condition1 = <span class="string">"SELECT mobile,total_amount FROM $this-&gt;_order_table  WHERE create_time &gt; $unix_start_time AND create_time &lt;=$unix_end_time AND status = 4"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//查询当天下单并且未购买的用户</span></span><br><span class="line">$condition2 = <span class="string">"SELECT mobile,pid,total_amount FROM $this-&gt;_order_table  WHERE create_time &gt; $unix_start_time AND create_time &lt;=$unix_end_time AND status != 4 "</span> ;</span><br><span class="line"></span><br><span class="line"><span class="comment">//取当天下单并且已购买和当天下单未购买的用户交集,得到同一手机号重复下单用户</span></span><br><span class="line">$condition3 = <span class="string">"SELECT table2.mobile FROM ($condition1) AS table1 INNER JOIN ($condition2)AS table2 ON table1.mobile = table2.mobile"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//取$condition2 和 $condition3 的差集,得到下单未购买的发券精准用户,并取所下单金额的最大值</span></span><br><span class="line">$condition = <span class="string">"SELECT table3.mobile,pid,MAX(table3.total_amount) FROM ($condition2) AS table3 WHERE table3.mobile NOT IN ($condition3) GROUP BY table3.mobile"</span>;</span><br><span class="line"></span><br><span class="line">$result = $this-&gt;_db-&gt;query($condition);</span><br></pre></td></tr></table></figure>
+<h1 id="参考文献">参考文献</h1><ul>
+<li><p><a href="http://www.phpstudy.net/e/sql/" target="_blank" rel="external">w3cSchool_SQL</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/zerocc/archive/2011/08/31/2161383.html" target="_blank" rel="external">实例SQL 简单，复杂查询，基本函数查询</a></p>
+</li>
+<li><p><a href="http://blog.csdn.net/woshisap/article/details/7348676/" target="_blank" rel="external">SQL多表连接查询与集合的并、交、差运算查询</a></p>
+</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>PS：SQL进行复杂条件运算，连表，内连，交集，并集等。</p>
+</blockquote>]]>
+    
+    </summary>
+    
+      <category term="SQL" scheme="http://daijiale.github.io/tags/SQL/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+      <category term="Web开发笔记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[【开发工具】敏捷开发Scrum极其应用工具]]></title>
@@ -595,6 +786,8 @@
     
     </summary>
     
+      <category term="PHP" scheme="http://daijiale.github.io/tags/PHP/"/>
+    
       <category term="机器学习" scheme="http://daijiale.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="神经网络" scheme="http://daijiale.github.io/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
@@ -608,8 +801,6 @@
       <category term="Tesseract" scheme="http://daijiale.github.io/tags/Tesseract/"/>
     
       <category term="Solr" scheme="http://daijiale.github.io/tags/Solr/"/>
-    
-      <category term="PHP" scheme="http://daijiale.github.io/tags/PHP/"/>
     
       <category term="OCR" scheme="http://daijiale.github.io/tags/OCR/"/>
     
@@ -789,9 +980,9 @@
     
     </summary>
     
-      <category term="Node.js" scheme="http://daijiale.github.io/tags/Node-js/"/>
-    
       <category term="Javascript" scheme="http://daijiale.github.io/tags/Javascript/"/>
+    
+      <category term="Node.js" scheme="http://daijiale.github.io/tags/Node-js/"/>
     
       <category term="前端自动化工具" scheme="http://daijiale.github.io/tags/%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E5%B7%A5%E5%85%B7/"/>
     
@@ -1407,6 +1598,69 @@
   </entry>
   
   <entry>
+    <title><![CDATA[【PHP】cURL使用之PHP]]></title>
+    <link href="http://daijiale.github.io/2015/09/21/%E3%80%90PHP%E3%80%91PHP_cURL/"/>
+    <id>http://daijiale.github.io/2015/09/21/【PHP】PHP_cURL/</id>
+    <published>2015-09-21T13:21:11.000Z</published>
+    <updated>2016-07-22T05:21:31.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="前言">前言</h1><blockquote>
+<p>cURL(Client URL Library Functions): curl is a command line tool for transferring data with URL syntax,即使用URL语法传输数据的命令行工具。<br><a id="more"></a></p>
+</blockquote>
+<h1 id="学习篇">学习篇</h1><ul>
+<li>1、初始化cURL：curl_init()</li>
+<li>2、发送请求到server：curl_exec()</li>
+<li>3、接收server数据：curl_exec()</li>
+<li>4、关闭cURL：curl_close()</li>
+</ul>
+<h1 id="开发篇">开发篇</h1><p>php -f xxx.php &gt; xxx.html</p>
+<ul>
+<li>1、利用cURL直接抓取“百度”首页</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$curl=curl_init(<span class="string">'http://www.baidu.com'</span>);</span><br><span class="line">curl_exec($curl);</span><br><span class="line">curl_close($curl);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>2、网络上下载一个网页并把内容中的“百度”替换为“屌丝”之后输出</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$curlobj = curl_init();			<span class="comment">// 初始化</span></span><br><span class="line">curl_setopt($curlobj, CURLOPT_URL, <span class="string">"http://www.baidu.com"</span>);		<span class="comment">// 设置访问网页的URL</span></span><br><span class="line">curl_setopt($curlobj, CURLOPT_RETURNTRANSFER, <span class="keyword">true</span>);			<span class="comment">// 执行之后不直接打印出来</span></span><br><span class="line">$output=curl_exec($curlobj);	<span class="comment">// 执行</span></span><br><span class="line">curl_close($curlobj);			<span class="comment">// 关闭cURL</span></span><br><span class="line"><span class="keyword">echo</span> str_replace(<span class="string">"百度"</span>,<span class="string">"屌丝"</span>,$output);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>3、登录慕课网并下载个人空间页面</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 自定义实现页面链接跳转抓取</span><br><span class="line"> * </span><br><span class="line"> */</span></span><br><span class="line">$data=<span class="string">'username=demo_peter@126.com&amp;password=123qwe&amp;remember=1'</span>;</span><br><span class="line">$curlobj = curl_init();			<span class="comment">// 初始化</span></span><br><span class="line">curl_setopt($curlobj, CURLOPT_URL, <span class="string">"http://www.imooc.com/user/login"</span>);		<span class="comment">// 设置访问网页的URL</span></span><br><span class="line">curl_setopt($curlobj, CURLOPT_RETURNTRANSFER, <span class="keyword">true</span>);			<span class="comment">// 执行之后不直接打印出来</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Cookie相关设置，这部分设置需要在所有会话开始之前设置</span></span><br><span class="line">date_default_timezone_set(<span class="string">'PRC'</span>); <span class="comment">// 使用Cookie时，必须先设置时区</span></span><br><span class="line">curl_setopt($curlobj, CURLOPT_COOKIESESSION, <span class="keyword">TRUE</span>); </span><br><span class="line">curl_setopt($curlobj, CURLOPT_HEADER, <span class="number">0</span>); </span><br><span class="line"><span class="comment">// 注释掉这行，因为这个设置必须关闭安全模式 以及关闭open_basedir，对服务器安全不利</span></span><br><span class="line"><span class="comment">//curl_setopt($curlobj, CURLOPT_FOLLOWLOCATION, 1);  </span></span><br><span class="line"></span><br><span class="line">curl_setopt($curlobj, CURLOPT_POST, <span class="number">1</span>);  </span><br><span class="line">curl_setopt($curlobj, CURLOPT_POSTFIELDS, $data);  </span><br><span class="line">curl_setopt($curlobj, CURLOPT_HTTPHEADER, <span class="keyword">array</span>(<span class="string">"application/x-www-form-urlencoded; charset=utf-8"</span>, </span><br><span class="line">	<span class="string">"Content-length: "</span>.strlen($data)</span><br><span class="line">	)); </span><br><span class="line">curl_exec($curlobj);	<span class="comment">// 执行</span></span><br><span class="line">curl_setopt($curlobj, CURLOPT_URL, <span class="string">"http://www.imooc.com/space/index"</span>);</span><br><span class="line">curl_setopt($curlobj, CURLOPT_POST, <span class="number">0</span>);  </span><br><span class="line">curl_setopt($curlobj, CURLOPT_HTTPHEADER, <span class="keyword">array</span>(<span class="string">"Content-type: text/xml"</span></span><br><span class="line">	)); </span><br><span class="line">$output=curl_redir_exec($curlobj);	<span class="comment">// 执行</span></span><br><span class="line">curl_close($curlobj);			<span class="comment">// 关闭cURL</span></span><br><span class="line"><span class="keyword">echo</span> $output;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 自定义实现页面链接跳转抓取</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">curl_redir_exec</span><span class="params">($ch,$debug=<span class="string">""</span>)</span> </span><br><span class="line"></span>&#123; </span><br><span class="line">    <span class="keyword">static</span> $curl_loops = <span class="number">0</span>; </span><br><span class="line">    <span class="keyword">static</span> $curl_max_loops = <span class="number">20</span>; </span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ($curl_loops++ &gt;= $curl_max_loops) </span><br><span class="line">    &#123; </span><br><span class="line">        $curl_loops = <span class="number">0</span>; </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">FALSE</span>; </span><br><span class="line">    &#125; </span><br><span class="line">    curl_setopt($ch, CURLOPT_HEADER, <span class="keyword">true</span>); <span class="comment">// 开启header才能够抓取到重定向到的新URL</span></span><br><span class="line">    curl_setopt($ch, CURLOPT_RETURNTRANSFER, <span class="keyword">true</span>); </span><br><span class="line">    $data = curl_exec($ch); </span><br><span class="line">    <span class="comment">// 分割返回的内容</span></span><br><span class="line">    $h_len = curl_getinfo($ch, CURLINFO_HEADER_SIZE); </span><br><span class="line">    $header = substr($data,<span class="number">0</span>,$h_len);</span><br><span class="line">    $data = substr($data,$h_len - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE); </span><br><span class="line">    <span class="keyword">if</span> ($http_code == <span class="number">301</span> || $http_code == <span class="number">302</span>) &#123; </span><br><span class="line">        $matches = <span class="keyword">array</span>(); </span><br><span class="line">        preg_match(<span class="string">'/Location:(.*?)\n/'</span>, $header, $matches); </span><br><span class="line">        $url = @parse_url(trim(array_pop($matches))); </span><br><span class="line">        <span class="comment">// print_r($url); </span></span><br><span class="line">        <span class="keyword">if</span> (!$url) </span><br><span class="line">        &#123; </span><br><span class="line">            <span class="comment">//couldn't process the url to redirect to </span></span><br><span class="line">            $curl_loops = <span class="number">0</span>; </span><br><span class="line">            <span class="keyword">return</span> $data; </span><br><span class="line">        &#125; </span><br><span class="line">        $last_url = parse_url(curl_getinfo($ch, CURLINFO_EFFECTIVE_URL)); </span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">isset</span>($url[<span class="string">'scheme'</span>])) </span><br><span class="line">            $url[<span class="string">'scheme'</span>] = $last_url[<span class="string">'scheme'</span>]; </span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">isset</span>($url[<span class="string">'host'</span>])) </span><br><span class="line">            $url[<span class="string">'host'</span>] = $last_url[<span class="string">'host'</span>]; </span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">isset</span>($url[<span class="string">'path'</span>])) </span><br><span class="line">            $url[<span class="string">'path'</span>] = $last_url[<span class="string">'path'</span>];</span><br><span class="line"></span><br><span class="line">        $new_url = $url[<span class="string">'scheme'</span>] . <span class="string">'://'</span> . $url[<span class="string">'host'</span>] . $url[<span class="string">'path'</span>] . (<span class="keyword">isset</span>($url[<span class="string">'query'</span>])?<span class="string">'?'</span>.$url[<span class="string">'query'</span>]:<span class="string">''</span>); </span><br><span class="line">        curl_setopt($ch, CURLOPT_URL, $new_url); </span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> curl_redir_exec($ch); </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123; </span><br><span class="line">        $curl_loops=<span class="number">0</span>; </span><br><span class="line">        <span class="keyword">return</span> $data; </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>4、获取webservice天气数据</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$data = <span class="string">'theCityName=北京'</span>;</span><br><span class="line">$curlobj = curl_init();	</span><br><span class="line">curl_setopt($curlobj, CURLOPT_URL, <span class="string">"http://www.webxml.com.cn/WebServices/WeatherWebService.asmx/getWeatherbyCityName"</span>);  </span><br><span class="line">curl_setopt($curlobj, CURLOPT_HEADER, <span class="number">0</span>); </span><br><span class="line">curl_setopt($curlobj, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);  </span><br><span class="line">curl_setopt($curlobj, CURLOPT_POST, <span class="number">1</span>);  </span><br><span class="line">curl_setopt($curlobj, CURLOPT_POSTFIELDS, $data);  </span><br><span class="line">curl_setopt($curlobj, CURLOPT_HTTPHEADER, <span class="keyword">array</span>(<span class="string">"application/x-www-form-urlencoded; charset=utf-8"</span>, </span><br><span class="line">	<span class="string">"Content-length: "</span>.strlen($data)</span><br><span class="line">	)); </span><br><span class="line">$rtn = curl_exec($curlobj);   </span><br><span class="line"><span class="keyword">if</span>(!curl_errno($curlobj))&#123;</span><br><span class="line">	<span class="comment">// $info = curl_getinfo($curlobj); </span></span><br><span class="line">	<span class="comment">// print_r($info);</span></span><br><span class="line">	<span class="keyword">echo</span> $rtn;  </span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">'Curl error: '</span> . curl_error($curlobj);</span><br><span class="line">&#125;</span><br><span class="line">curl_close($curlobj);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>5、从FTP上下载数据</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$curlobj = curl_init();	</span><br><span class="line">curl_setopt($curlobj, CURLOPT_URL, <span class="string">"ftp://192.168.1.100/downloaddemo.txt"</span>);  </span><br><span class="line">curl_setopt($curlobj, CURLOPT_HEADER, <span class="number">0</span>); </span><br><span class="line">curl_setopt($curlobj, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);  </span><br><span class="line">curl_setopt($curlobj, CURLOPT_TIMEOUT, <span class="number">300</span>); <span class="comment">// times out after 300s</span></span><br><span class="line">curl_setopt($curlobj, CURLOPT_USERPWD, <span class="string">"peter.zhou:123456"</span>);<span class="comment">//FTP用户名：密码</span></span><br><span class="line"><span class="comment">// Sets up the output file</span></span><br><span class="line">$outfile = fopen(<span class="string">'dest.txt'</span>, <span class="string">'wb'</span>);<span class="comment">//保存到本地的文件名</span></span><br><span class="line">curl_setopt($curlobj, CURLOPT_FILE, $outfile);</span><br><span class="line"></span><br><span class="line">$rtn = curl_exec($curlobj);  </span><br><span class="line">fclose($outfile); </span><br><span class="line"><span class="keyword">if</span>(!curl_errno($curlobj))&#123;</span><br><span class="line">	<span class="comment">// $info = curl_getinfo($curlobj); </span></span><br><span class="line">	<span class="comment">// print_r($info);</span></span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"RETURN: "</span> . $rtn;  </span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">'Curl error: '</span> . curl_error($curlobj);</span><br><span class="line">&#125;</span><br><span class="line">curl_close($curlobj);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>6、上传数据到FTP </li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">$curlobj = curl_init();	</span><br><span class="line">$localfile = <span class="string">'ftp01.php'</span>;</span><br><span class="line">$fp = fopen($localfile, <span class="string">'r'</span>);</span><br><span class="line"></span><br><span class="line">curl_setopt($curlobj, CURLOPT_URL, <span class="string">"ftp://192.168.1.100/ftp01_uploaded.php"</span>);  </span><br><span class="line">curl_setopt($curlobj, CURLOPT_HEADER, <span class="number">0</span>); </span><br><span class="line">curl_setopt($curlobj, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);  </span><br><span class="line">curl_setopt($curlobj, CURLOPT_TIMEOUT, <span class="number">300</span>); <span class="comment">// times out after 300s</span></span><br><span class="line">curl_setopt($curlobj, CURLOPT_USERPWD, <span class="string">"peter.zhou:123456"</span>);<span class="comment">//FTP用户名：密码</span></span><br><span class="line"></span><br><span class="line">curl_setopt($curlobj, CURLOPT_UPLOAD, <span class="number">1</span>);</span><br><span class="line">curl_setopt($curlobj, CURLOPT_INFILE, $fp);</span><br><span class="line">curl_setopt($curlobj, CURLOPT_INFILESIZE, filesize($localfile));</span><br><span class="line">$rtn = curl_exec($curlobj);  </span><br><span class="line">fclose($fp); </span><br><span class="line"><span class="keyword">if</span>(!curl_errno($curlobj))&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"Uploaded successfully."</span>;  </span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">'Curl error: '</span> . curl_error($curlobj);</span><br><span class="line">&#125;</span><br><span class="line">curl_close($curlobj);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>7、下载网络上面的一个HTTPS的资源</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$curlobj = curl_init();			<span class="comment">// 初始化</span></span><br><span class="line">curl_setopt($curlobj, CURLOPT_URL, <span class="string">"https://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.js"</span>);		<span class="comment">// 设置访问网页的URL</span></span><br><span class="line">curl_setopt($curlobj, CURLOPT_RETURNTRANSFER, <span class="keyword">true</span>);			<span class="comment">// 执行之后不直接打印出来</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置HTTPS支持</span></span><br><span class="line">date_default_timezone_set(<span class="string">'PRC'</span>); <span class="comment">// 使用Cookie时，必须先设置时区</span></span><br><span class="line">curl_setopt($curlobj, CURLOPT_SSL_VERIFYPEER, <span class="number">0</span>); <span class="comment">// 对认证证书来源的检查从证书中检查SSL加密算法是否存在</span></span><br><span class="line">curl_setopt($curlobj, CURLOPT_SSL_VERIFYHOST, <span class="number">2</span>); <span class="comment">// </span></span><br><span class="line"></span><br><span class="line">$output=curl_exec($curlobj);	<span class="comment">// 执行</span></span><br><span class="line">curl_close($curlobj);			<span class="comment">// 关闭cURL</span></span><br><span class="line"><span class="keyword">echo</span> $output;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="更多参考">更多参考</h1><ul>
+<li><a href="http://www.php.net/manual/zh/book.curl.php" target="_blank" rel="external">官方手册</a></li>
+<li><a href="http://php.net/manual/zh/" target="_blank" rel="external">PHP中文手册</a></li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="前言">前言</h1><blockquote>
+<p>cURL(Client URL Library Functions): curl is a command line tool for transferring data with URL syntax,即使用URL语法传输数据的命令行工具。<br>]]>
+    
+    </summary>
+    
+      <category term="PHP" scheme="http://daijiale.github.io/tags/PHP/"/>
+    
+      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
+    
+      <category term="Web开发笔记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[【PHP】PHP安全性开发]]></title>
     <link href="http://daijiale.github.io/2015/09/21/%E3%80%90PHP%E3%80%91PHP%E5%AE%89%E5%85%A8%E6%80%A7%E5%BC%80%E5%8F%91/"/>
     <id>http://daijiale.github.io/2015/09/21/【PHP】PHP安全性开发/</id>
@@ -1495,69 +1749,6 @@
       <category term="转载博文" scheme="http://daijiale.github.io/categories/%E8%BD%AC%E8%BD%BD%E5%8D%9A%E6%96%87/"/>
     
       <category term="Web开发分享" scheme="http://daijiale.github.io/categories/%E8%BD%AC%E8%BD%BD%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E5%88%86%E4%BA%AB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[【PHP】cURL使用之PHP]]></title>
-    <link href="http://daijiale.github.io/2015/09/21/%E3%80%90PHP%E3%80%91PHP_cURL/"/>
-    <id>http://daijiale.github.io/2015/09/21/【PHP】PHP_cURL/</id>
-    <published>2015-09-21T13:21:11.000Z</published>
-    <updated>2016-07-22T05:21:31.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="前言">前言</h1><blockquote>
-<p>cURL(Client URL Library Functions): curl is a command line tool for transferring data with URL syntax,即使用URL语法传输数据的命令行工具。<br><a id="more"></a></p>
-</blockquote>
-<h1 id="学习篇">学习篇</h1><ul>
-<li>1、初始化cURL：curl_init()</li>
-<li>2、发送请求到server：curl_exec()</li>
-<li>3、接收server数据：curl_exec()</li>
-<li>4、关闭cURL：curl_close()</li>
-</ul>
-<h1 id="开发篇">开发篇</h1><p>php -f xxx.php &gt; xxx.html</p>
-<ul>
-<li>1、利用cURL直接抓取“百度”首页</li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$curl=curl_init(<span class="string">'http://www.baidu.com'</span>);</span><br><span class="line">curl_exec($curl);</span><br><span class="line">curl_close($curl);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>2、网络上下载一个网页并把内容中的“百度”替换为“屌丝”之后输出</li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$curlobj = curl_init();			<span class="comment">// 初始化</span></span><br><span class="line">curl_setopt($curlobj, CURLOPT_URL, <span class="string">"http://www.baidu.com"</span>);		<span class="comment">// 设置访问网页的URL</span></span><br><span class="line">curl_setopt($curlobj, CURLOPT_RETURNTRANSFER, <span class="keyword">true</span>);			<span class="comment">// 执行之后不直接打印出来</span></span><br><span class="line">$output=curl_exec($curlobj);	<span class="comment">// 执行</span></span><br><span class="line">curl_close($curlobj);			<span class="comment">// 关闭cURL</span></span><br><span class="line"><span class="keyword">echo</span> str_replace(<span class="string">"百度"</span>,<span class="string">"屌丝"</span>,$output);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>3、登录慕课网并下载个人空间页面</li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 自定义实现页面链接跳转抓取</span><br><span class="line"> * </span><br><span class="line"> */</span></span><br><span class="line">$data=<span class="string">'username=demo_peter@126.com&amp;password=123qwe&amp;remember=1'</span>;</span><br><span class="line">$curlobj = curl_init();			<span class="comment">// 初始化</span></span><br><span class="line">curl_setopt($curlobj, CURLOPT_URL, <span class="string">"http://www.imooc.com/user/login"</span>);		<span class="comment">// 设置访问网页的URL</span></span><br><span class="line">curl_setopt($curlobj, CURLOPT_RETURNTRANSFER, <span class="keyword">true</span>);			<span class="comment">// 执行之后不直接打印出来</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Cookie相关设置，这部分设置需要在所有会话开始之前设置</span></span><br><span class="line">date_default_timezone_set(<span class="string">'PRC'</span>); <span class="comment">// 使用Cookie时，必须先设置时区</span></span><br><span class="line">curl_setopt($curlobj, CURLOPT_COOKIESESSION, <span class="keyword">TRUE</span>); </span><br><span class="line">curl_setopt($curlobj, CURLOPT_HEADER, <span class="number">0</span>); </span><br><span class="line"><span class="comment">// 注释掉这行，因为这个设置必须关闭安全模式 以及关闭open_basedir，对服务器安全不利</span></span><br><span class="line"><span class="comment">//curl_setopt($curlobj, CURLOPT_FOLLOWLOCATION, 1);  </span></span><br><span class="line"></span><br><span class="line">curl_setopt($curlobj, CURLOPT_POST, <span class="number">1</span>);  </span><br><span class="line">curl_setopt($curlobj, CURLOPT_POSTFIELDS, $data);  </span><br><span class="line">curl_setopt($curlobj, CURLOPT_HTTPHEADER, <span class="keyword">array</span>(<span class="string">"application/x-www-form-urlencoded; charset=utf-8"</span>, </span><br><span class="line">	<span class="string">"Content-length: "</span>.strlen($data)</span><br><span class="line">	)); </span><br><span class="line">curl_exec($curlobj);	<span class="comment">// 执行</span></span><br><span class="line">curl_setopt($curlobj, CURLOPT_URL, <span class="string">"http://www.imooc.com/space/index"</span>);</span><br><span class="line">curl_setopt($curlobj, CURLOPT_POST, <span class="number">0</span>);  </span><br><span class="line">curl_setopt($curlobj, CURLOPT_HTTPHEADER, <span class="keyword">array</span>(<span class="string">"Content-type: text/xml"</span></span><br><span class="line">	)); </span><br><span class="line">$output=curl_redir_exec($curlobj);	<span class="comment">// 执行</span></span><br><span class="line">curl_close($curlobj);			<span class="comment">// 关闭cURL</span></span><br><span class="line"><span class="keyword">echo</span> $output;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 自定义实现页面链接跳转抓取</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">curl_redir_exec</span><span class="params">($ch,$debug=<span class="string">""</span>)</span> </span><br><span class="line"></span>&#123; </span><br><span class="line">    <span class="keyword">static</span> $curl_loops = <span class="number">0</span>; </span><br><span class="line">    <span class="keyword">static</span> $curl_max_loops = <span class="number">20</span>; </span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ($curl_loops++ &gt;= $curl_max_loops) </span><br><span class="line">    &#123; </span><br><span class="line">        $curl_loops = <span class="number">0</span>; </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">FALSE</span>; </span><br><span class="line">    &#125; </span><br><span class="line">    curl_setopt($ch, CURLOPT_HEADER, <span class="keyword">true</span>); <span class="comment">// 开启header才能够抓取到重定向到的新URL</span></span><br><span class="line">    curl_setopt($ch, CURLOPT_RETURNTRANSFER, <span class="keyword">true</span>); </span><br><span class="line">    $data = curl_exec($ch); </span><br><span class="line">    <span class="comment">// 分割返回的内容</span></span><br><span class="line">    $h_len = curl_getinfo($ch, CURLINFO_HEADER_SIZE); </span><br><span class="line">    $header = substr($data,<span class="number">0</span>,$h_len);</span><br><span class="line">    $data = substr($data,$h_len - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE); </span><br><span class="line">    <span class="keyword">if</span> ($http_code == <span class="number">301</span> || $http_code == <span class="number">302</span>) &#123; </span><br><span class="line">        $matches = <span class="keyword">array</span>(); </span><br><span class="line">        preg_match(<span class="string">'/Location:(.*?)\n/'</span>, $header, $matches); </span><br><span class="line">        $url = @parse_url(trim(array_pop($matches))); </span><br><span class="line">        <span class="comment">// print_r($url); </span></span><br><span class="line">        <span class="keyword">if</span> (!$url) </span><br><span class="line">        &#123; </span><br><span class="line">            <span class="comment">//couldn't process the url to redirect to </span></span><br><span class="line">            $curl_loops = <span class="number">0</span>; </span><br><span class="line">            <span class="keyword">return</span> $data; </span><br><span class="line">        &#125; </span><br><span class="line">        $last_url = parse_url(curl_getinfo($ch, CURLINFO_EFFECTIVE_URL)); </span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">isset</span>($url[<span class="string">'scheme'</span>])) </span><br><span class="line">            $url[<span class="string">'scheme'</span>] = $last_url[<span class="string">'scheme'</span>]; </span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">isset</span>($url[<span class="string">'host'</span>])) </span><br><span class="line">            $url[<span class="string">'host'</span>] = $last_url[<span class="string">'host'</span>]; </span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">isset</span>($url[<span class="string">'path'</span>])) </span><br><span class="line">            $url[<span class="string">'path'</span>] = $last_url[<span class="string">'path'</span>];</span><br><span class="line"></span><br><span class="line">        $new_url = $url[<span class="string">'scheme'</span>] . <span class="string">'://'</span> . $url[<span class="string">'host'</span>] . $url[<span class="string">'path'</span>] . (<span class="keyword">isset</span>($url[<span class="string">'query'</span>])?<span class="string">'?'</span>.$url[<span class="string">'query'</span>]:<span class="string">''</span>); </span><br><span class="line">        curl_setopt($ch, CURLOPT_URL, $new_url); </span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> curl_redir_exec($ch); </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123; </span><br><span class="line">        $curl_loops=<span class="number">0</span>; </span><br><span class="line">        <span class="keyword">return</span> $data; </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>4、获取webservice天气数据</li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$data = <span class="string">'theCityName=北京'</span>;</span><br><span class="line">$curlobj = curl_init();	</span><br><span class="line">curl_setopt($curlobj, CURLOPT_URL, <span class="string">"http://www.webxml.com.cn/WebServices/WeatherWebService.asmx/getWeatherbyCityName"</span>);  </span><br><span class="line">curl_setopt($curlobj, CURLOPT_HEADER, <span class="number">0</span>); </span><br><span class="line">curl_setopt($curlobj, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);  </span><br><span class="line">curl_setopt($curlobj, CURLOPT_POST, <span class="number">1</span>);  </span><br><span class="line">curl_setopt($curlobj, CURLOPT_POSTFIELDS, $data);  </span><br><span class="line">curl_setopt($curlobj, CURLOPT_HTTPHEADER, <span class="keyword">array</span>(<span class="string">"application/x-www-form-urlencoded; charset=utf-8"</span>, </span><br><span class="line">	<span class="string">"Content-length: "</span>.strlen($data)</span><br><span class="line">	)); </span><br><span class="line">$rtn = curl_exec($curlobj);   </span><br><span class="line"><span class="keyword">if</span>(!curl_errno($curlobj))&#123;</span><br><span class="line">	<span class="comment">// $info = curl_getinfo($curlobj); </span></span><br><span class="line">	<span class="comment">// print_r($info);</span></span><br><span class="line">	<span class="keyword">echo</span> $rtn;  </span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">'Curl error: '</span> . curl_error($curlobj);</span><br><span class="line">&#125;</span><br><span class="line">curl_close($curlobj);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>5、从FTP上下载数据</li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$curlobj = curl_init();	</span><br><span class="line">curl_setopt($curlobj, CURLOPT_URL, <span class="string">"ftp://192.168.1.100/downloaddemo.txt"</span>);  </span><br><span class="line">curl_setopt($curlobj, CURLOPT_HEADER, <span class="number">0</span>); </span><br><span class="line">curl_setopt($curlobj, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);  </span><br><span class="line">curl_setopt($curlobj, CURLOPT_TIMEOUT, <span class="number">300</span>); <span class="comment">// times out after 300s</span></span><br><span class="line">curl_setopt($curlobj, CURLOPT_USERPWD, <span class="string">"peter.zhou:123456"</span>);<span class="comment">//FTP用户名：密码</span></span><br><span class="line"><span class="comment">// Sets up the output file</span></span><br><span class="line">$outfile = fopen(<span class="string">'dest.txt'</span>, <span class="string">'wb'</span>);<span class="comment">//保存到本地的文件名</span></span><br><span class="line">curl_setopt($curlobj, CURLOPT_FILE, $outfile);</span><br><span class="line"></span><br><span class="line">$rtn = curl_exec($curlobj);  </span><br><span class="line">fclose($outfile); </span><br><span class="line"><span class="keyword">if</span>(!curl_errno($curlobj))&#123;</span><br><span class="line">	<span class="comment">// $info = curl_getinfo($curlobj); </span></span><br><span class="line">	<span class="comment">// print_r($info);</span></span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"RETURN: "</span> . $rtn;  </span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">'Curl error: '</span> . curl_error($curlobj);</span><br><span class="line">&#125;</span><br><span class="line">curl_close($curlobj);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>6、上传数据到FTP </li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">$curlobj = curl_init();	</span><br><span class="line">$localfile = <span class="string">'ftp01.php'</span>;</span><br><span class="line">$fp = fopen($localfile, <span class="string">'r'</span>);</span><br><span class="line"></span><br><span class="line">curl_setopt($curlobj, CURLOPT_URL, <span class="string">"ftp://192.168.1.100/ftp01_uploaded.php"</span>);  </span><br><span class="line">curl_setopt($curlobj, CURLOPT_HEADER, <span class="number">0</span>); </span><br><span class="line">curl_setopt($curlobj, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);  </span><br><span class="line">curl_setopt($curlobj, CURLOPT_TIMEOUT, <span class="number">300</span>); <span class="comment">// times out after 300s</span></span><br><span class="line">curl_setopt($curlobj, CURLOPT_USERPWD, <span class="string">"peter.zhou:123456"</span>);<span class="comment">//FTP用户名：密码</span></span><br><span class="line"></span><br><span class="line">curl_setopt($curlobj, CURLOPT_UPLOAD, <span class="number">1</span>);</span><br><span class="line">curl_setopt($curlobj, CURLOPT_INFILE, $fp);</span><br><span class="line">curl_setopt($curlobj, CURLOPT_INFILESIZE, filesize($localfile));</span><br><span class="line">$rtn = curl_exec($curlobj);  </span><br><span class="line">fclose($fp); </span><br><span class="line"><span class="keyword">if</span>(!curl_errno($curlobj))&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"Uploaded successfully."</span>;  </span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">'Curl error: '</span> . curl_error($curlobj);</span><br><span class="line">&#125;</span><br><span class="line">curl_close($curlobj);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>7、下载网络上面的一个HTTPS的资源</li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$curlobj = curl_init();			<span class="comment">// 初始化</span></span><br><span class="line">curl_setopt($curlobj, CURLOPT_URL, <span class="string">"https://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.js"</span>);		<span class="comment">// 设置访问网页的URL</span></span><br><span class="line">curl_setopt($curlobj, CURLOPT_RETURNTRANSFER, <span class="keyword">true</span>);			<span class="comment">// 执行之后不直接打印出来</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置HTTPS支持</span></span><br><span class="line">date_default_timezone_set(<span class="string">'PRC'</span>); <span class="comment">// 使用Cookie时，必须先设置时区</span></span><br><span class="line">curl_setopt($curlobj, CURLOPT_SSL_VERIFYPEER, <span class="number">0</span>); <span class="comment">// 对认证证书来源的检查从证书中检查SSL加密算法是否存在</span></span><br><span class="line">curl_setopt($curlobj, CURLOPT_SSL_VERIFYHOST, <span class="number">2</span>); <span class="comment">// </span></span><br><span class="line"></span><br><span class="line">$output=curl_exec($curlobj);	<span class="comment">// 执行</span></span><br><span class="line">curl_close($curlobj);			<span class="comment">// 关闭cURL</span></span><br><span class="line"><span class="keyword">echo</span> $output;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<h1 id="更多参考">更多参考</h1><ul>
-<li><a href="http://www.php.net/manual/zh/book.curl.php" target="_blank" rel="external">官方手册</a></li>
-<li><a href="http://php.net/manual/zh/" target="_blank" rel="external">PHP中文手册</a></li>
-</ul>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="前言">前言</h1><blockquote>
-<p>cURL(Client URL Library Functions): curl is a command line tool for transferring data with URL syntax,即使用URL语法传输数据的命令行工具。<br>]]>
-    
-    </summary>
-    
-      <category term="PHP" scheme="http://daijiale.github.io/tags/PHP/"/>
-    
-      <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
-    
-      <category term="Web开发笔记" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/Web%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
@@ -1722,9 +1913,9 @@
     
     </summary>
     
-      <category term="Node.js" scheme="http://daijiale.github.io/tags/Node-js/"/>
-    
       <category term="Javascript" scheme="http://daijiale.github.io/tags/Javascript/"/>
+    
+      <category term="Node.js" scheme="http://daijiale.github.io/tags/Node-js/"/>
     
       <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
     
@@ -2092,9 +2283,9 @@
     
       <category term="Android" scheme="http://daijiale.github.io/tags/Android/"/>
     
-      <category term="个人故事" scheme="http://daijiale.github.io/tags/%E4%B8%AA%E4%BA%BA%E6%95%85%E4%BA%8B/"/>
-    
       <category term="Hackathon" scheme="http://daijiale.github.io/tags/Hackathon/"/>
+    
+      <category term="个人故事" scheme="http://daijiale.github.io/tags/%E4%B8%AA%E4%BA%BA%E6%95%85%E4%BA%8B/"/>
     
       <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
     
@@ -2815,9 +3006,9 @@
     
       <category term="Android" scheme="http://daijiale.github.io/tags/Android/"/>
     
-      <category term="个人故事" scheme="http://daijiale.github.io/tags/%E4%B8%AA%E4%BA%BA%E6%95%85%E4%BA%8B/"/>
-    
       <category term="Hackathon" scheme="http://daijiale.github.io/tags/Hackathon/"/>
+    
+      <category term="个人故事" scheme="http://daijiale.github.io/tags/%E4%B8%AA%E4%BA%BA%E6%95%85%E4%BA%8B/"/>
     
       <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
     
@@ -3076,6 +3267,32 @@
   </entry>
   
   <entry>
+    <title><![CDATA[【个人】记我的高中——南昌二中]]></title>
+    <link href="http://daijiale.github.io/2015/04/03/%E3%80%90%E4%B8%AA%E4%BA%BA%E3%80%91%E8%AE%B0%E5%8D%97%E6%98%8C%E4%BA%8C%E4%B8%AD/"/>
+    <id>http://daijiale.github.io/2015/04/03/【个人】记南昌二中/</id>
+    <published>2015-04-03T05:20:09.000Z</published>
+    <updated>2016-07-22T05:21:31.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="硬件">硬件</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中在硬件上最大的特点就是壕！第一次来二中参加考试时便被壕气外露的红砖绿叶迷住了。还有人造草皮的足球场，三年一遇的游泳馆（三年就上过一次课），堆满了电脑随便用的图书馆。学校里四处都是花花草草，校门的花坛一月一换，班上的一体机切水果什么的信手拈来。就是任性就是壕！<br><a id="more"></a></p>
+<h1 id="师资">师资</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中的老师阵容十分强大，但随着这几年扩招老师资源也变得有些吃紧了。重点班尚能保证豪华阵容，在江西可以说不会逊色于任何学校的重点班，但平行班就会有很多刚进校不久的年轻老师了。当然不是说年轻老师一定不好，但是在高中尤其是高三，老师的经验与鼓舞对班级的提高是很有用的。所以二中这几年也在拼命招揽人才，目前一大批年轻老师已经走上一线，师资整体实力依然很强大。<br>3.理念：二中多年来一直重视综合素质教育，社团和各种活动巨多！学校也给很大的支持，每一届都会产生许多交际花。不过由于近年高考成绩不理想，15届开始进行了一些改革，加大了学业方面的侧重。所以未来二中也许会少一些交际花多一批学霸。</p>
+<h1 id="总结">总结</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中是一个神奇的地方，不论是在晨会上考试中挥斥方遒碾压众人的大神，还是走廊上树林旁对老师阿鲁巴时杀伐果断的凌厉，或是操场边天台上情侣基友看西山日落时的静谧，又抑或是顶楼学霸们在下课铃响时冲下楼梯直奔食堂的气势，它们一起组成了二中独一无二的体验。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;它壕气却又不失秀气，三年中拍的二中风景随便拎出一张都能胜任南昌市旅游明信片。它庄重却又不失亲和，老师们一个个才高八斗学富五车，却又能和学生们打成一片课上开撕。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中就是这样一个地方，简约而不简单，无论你来自哪里，在这里你总会找到最浓重的归属感。</p>
+<p><strong>－－－－－－－－－－－－－－－－－－－－－－－华丽的分割线，多图预警－－－－－－－－－－－－－－－－－－－－</strong></p>
+<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicnanchang2zhong.jpg" alt=""></p>
+<p>－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="硬件">硬件</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中在硬件上最大的特点就是壕！第一次来二中参加考试时便被壕气外露的红砖绿叶迷住了。还有人造草皮的足球场，三年一遇的游泳馆（三年就上过一次课），堆满了电脑随便用的图书馆。学校里四处都是花花草草，校门的花坛一月一换，班上的一体机切水果什么的信手拈来。就是任性就是壕！<br>]]>
+    
+    </summary>
+    
+      <category term="个人故事" scheme="http://daijiale.github.io/tags/%E4%B8%AA%E4%BA%BA%E6%95%85%E4%BA%8B/"/>
+    
+      <category term="转载博文" scheme="http://daijiale.github.io/categories/%E8%BD%AC%E8%BD%BD%E5%8D%9A%E6%96%87/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[【舞蹈】关于PoppinDance的一点心得]]></title>
     <link href="http://daijiale.github.io/2015/04/03/%E3%80%90%E8%88%9E%E8%B9%88%E3%80%91poppin%20dance/"/>
     <id>http://daijiale.github.io/2015/04/03/【舞蹈】poppin dance/</id>
@@ -3159,32 +3376,6 @@
       <category term="原创博文" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/"/>
     
       <category term="关于舞蹈" scheme="http://daijiale.github.io/categories/%E5%8E%9F%E5%88%9B%E5%8D%9A%E6%96%87/%E5%85%B3%E4%BA%8E%E8%88%9E%E8%B9%88/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[【个人】记我的高中——南昌二中]]></title>
-    <link href="http://daijiale.github.io/2015/04/03/%E3%80%90%E4%B8%AA%E4%BA%BA%E3%80%91%E8%AE%B0%E5%8D%97%E6%98%8C%E4%BA%8C%E4%B8%AD/"/>
-    <id>http://daijiale.github.io/2015/04/03/【个人】记南昌二中/</id>
-    <published>2015-04-03T05:20:09.000Z</published>
-    <updated>2016-07-22T05:21:31.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="硬件">硬件</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中在硬件上最大的特点就是壕！第一次来二中参加考试时便被壕气外露的红砖绿叶迷住了。还有人造草皮的足球场，三年一遇的游泳馆（三年就上过一次课），堆满了电脑随便用的图书馆。学校里四处都是花花草草，校门的花坛一月一换，班上的一体机切水果什么的信手拈来。就是任性就是壕！<br><a id="more"></a></p>
-<h1 id="师资">师资</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中的老师阵容十分强大，但随着这几年扩招老师资源也变得有些吃紧了。重点班尚能保证豪华阵容，在江西可以说不会逊色于任何学校的重点班，但平行班就会有很多刚进校不久的年轻老师了。当然不是说年轻老师一定不好，但是在高中尤其是高三，老师的经验与鼓舞对班级的提高是很有用的。所以二中这几年也在拼命招揽人才，目前一大批年轻老师已经走上一线，师资整体实力依然很强大。<br>3.理念：二中多年来一直重视综合素质教育，社团和各种活动巨多！学校也给很大的支持，每一届都会产生许多交际花。不过由于近年高考成绩不理想，15届开始进行了一些改革，加大了学业方面的侧重。所以未来二中也许会少一些交际花多一批学霸。</p>
-<h1 id="总结">总结</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中是一个神奇的地方，不论是在晨会上考试中挥斥方遒碾压众人的大神，还是走廊上树林旁对老师阿鲁巴时杀伐果断的凌厉，或是操场边天台上情侣基友看西山日落时的静谧，又抑或是顶楼学霸们在下课铃响时冲下楼梯直奔食堂的气势，它们一起组成了二中独一无二的体验。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;它壕气却又不失秀气，三年中拍的二中风景随便拎出一张都能胜任南昌市旅游明信片。它庄重却又不失亲和，老师们一个个才高八斗学富五车，却又能和学生们打成一片课上开撕。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中就是这样一个地方，简约而不简单，无论你来自哪里，在这里你总会找到最浓重的归属感。</p>
-<p><strong>－－－－－－－－－－－－－－－－－－－－－－－华丽的分割线，多图预警－－－－－－－－－－－－－－－－－－－－</strong></p>
-<p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/djlblogpicnanchang2zhong.jpg" alt=""></p>
-<p>－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="硬件">硬件</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二中在硬件上最大的特点就是壕！第一次来二中参加考试时便被壕气外露的红砖绿叶迷住了。还有人造草皮的足球场，三年一遇的游泳馆（三年就上过一次课），堆满了电脑随便用的图书馆。学校里四处都是花花草草，校门的花坛一月一换，班上的一体机切水果什么的信手拈来。就是任性就是壕！<br>]]>
-    
-    </summary>
-    
-      <category term="个人故事" scheme="http://daijiale.github.io/tags/%E4%B8%AA%E4%BA%BA%E6%95%85%E4%BA%8B/"/>
-    
-      <category term="转载博文" scheme="http://daijiale.github.io/categories/%E8%BD%AC%E8%BD%BD%E5%8D%9A%E6%96%87/"/>
     
   </entry>
   
