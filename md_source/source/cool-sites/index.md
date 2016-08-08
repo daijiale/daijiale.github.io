@@ -8,6 +8,7 @@ date: 2016-07-22 13:02:49
 
  - [Discuz论坛搭建平台](http://open.discuz.net/?ac=index)
  - [语音开放平台](http://open.voicecloud.cn/download.php)
+ - [衣+人工智能识别引擎](http://www.dress-plus.com/)
  - [Face++人脸识别开放平台](http://www.faceplusplus.com.cn/)
  - [Ping++移动支付接口](https://pingxx.com/?features)
  - [ThinkPHP框架](http://www.thinkphp.cn/)
@@ -26,6 +27,12 @@ date: 2016-07-22 13:02:49
  - [多说-评论第三方开发系统](http://duoshuo.com/)
  - [看云kancloud-API文档在线编辑工具](http://www.kancloud.cn/)
  
+###  Web前端
+
+ - [字蛛中文字体压缩器](http://font-spider.org/)
+ - [阿里前端font/icon素材cdn服务](http://www.iconfont.cn/)
+ - [占位图工具-FakeImages](http://fakeimg.pl/)
+ 
 ###  IT学习
  - [慕课网](http://www.imooc.com/)
  - [网易云课堂](http://study.163.com/)
@@ -36,6 +43,10 @@ date: 2016-07-22 13:02:49
 
 ### 设计素材网站
  - [easelly信息图表](http://www.easel.ly/)
+ - [免费WEB字体图标制造器_icomoon](https://icomoon.io/)
+ - [类似GoogleFont的中文Web字体社区JustFont](http://www.justfont.com/)
+ - [有字库 同上](http://www.youziku.com/onlinefont/index)
+ 
  
 ###  演示文稿工具
  - [ipresst](http://www.ipresst.com/#)
@@ -47,6 +58,7 @@ date: 2016-07-22 13:02:49
 - [Laruence的博客](http://www.laruence.com/)
 - [zouxy09_CSDN专栏](http://blog.csdn.net/zouxy09/article/list/3)
 - [囧克斯的Blog](http://jiongks.name/about/)
+- [Andrew Ng](http://www.andrewng.org/)
 
 ### 融资众筹
 - [钛媒体](http://www.tmtpost.com/)
