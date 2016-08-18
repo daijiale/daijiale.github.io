@@ -18,6 +18,7 @@ date: 2016-07-22 13:02:49
  - [LeanCloud移动开发云服务平台](https://leancloud.cn/)
  - [APICloud移动开发云服务平台](http://www.apicloud.com/)
  - [AppCan移动开发云服务平台](http://www.appcan.cn/)
+ - [MaxLeap_BaaS平台](https://maxleap.cn/s/web/zh_cn/index.html)
  - [Mob短信验证开发平台](http://mob.com/#/index)
  - [AmazonCloud](https://www.amazon.cn/clouddrive?_encoding=UTF8&mgh=1&ref_=nav_Photos_Files&sf=1)
  - [DaoCloud企业级容器云平台](https://www.daocloud.io/)
