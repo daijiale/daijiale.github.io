@@ -33,6 +33,8 @@ date: 2016-07-22 13:02:49
  - [字蛛中文字体压缩器](http://font-spider.org/)
  - [阿里前端font/icon素材cdn服务](http://www.iconfont.cn/)
  - [占位图工具-FakeImages](http://fakeimg.pl/)
+ - [占位图工具2-FakeImages](http://fakeimg.pl/)
+ - [图片压缩](https://tinypng.com/)
  
 ###  IT学习
  - [慕课网](http://www.imooc.com/)
@@ -60,12 +62,14 @@ date: 2016-07-22 13:02:49
 - [zouxy09_CSDN专栏](http://blog.csdn.net/zouxy09/article/list/3)
 - [囧克斯的Blog](http://jiongks.name/about/)
 - [Andrew Ng](http://www.andrewng.org/)
+- [进击的马斯特](http://pinkyjie.com/)
 
 ### 融资众筹
 - [钛媒体](http://www.tmtpost.com/)
 - [36氪](http://36kr.com/)
 
 ### 街舞
+ - [太嘻哈](http://www.toohiphop.com/news-9286.html)
  - [街舞爱好者](http://www.dancering.cn/)
  - [Vhihop](http://www.vhiphop.com/)
  - [街舞后院](http://dance.hiphop1.com/pin)
