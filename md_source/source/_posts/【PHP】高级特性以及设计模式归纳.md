@@ -59,6 +59,35 @@ FIG制定的PHP规范，简称PSR，是PHP开发的事实标准，现在主流�
 - ArrayIterator、AppendIterator、Countable、ArrayObject。
 - SPL提供的函数。
 
+### Eg
+
+![](http://7xi6qz.com1.z0.glb.clouddn.com/YIIsudu.jpg)
+
+`YII`之所以能成为最快的PHP框架，源于使用了`SPL`提供的`LazyLoading`技术，即：vendor/yiisoft/yii2/Yii.php中`sql_autoload_register`的使用，例如：
+
+```php
+
+<?php
+	
+function my_loader($class){
+	require('class\\'.$class.'.php');//对象new时候发现未定义，会自动到指定目录下加载对应对象
+}
+
+spl_autoload_register('my_loader');
+
+$is_girl = $_GET['sex'] == 0 ? true : false;
+
+if($is_girl){
+	echo 'this is a girl';
+	$class1 = new Class1;//未定义对象，不会报错，会反向调用my_loader去加载对象
+}else{
+	echo 'not a girl';
+	$class2 = new Class2;
+}
+?>
+
+```
+
 想深入了解SPL标准库的话，这里有一篇[一峰](http://www.ruanyifeng.com/blog/)前辈的博文：[SPL笔记](http://www.ruanyifeng.com/blog/2008/07/php_spl_notes.html)，国内应该找不到比这更好的中文参考文献了。
 
 # PHP链式操作
@@ -146,7 +175,8 @@ FIG制定的PHP规范，简称PSR，是PHP开发的事实标准，现在主流�
 
 3. 在一次页面请求中, 便于进行调试, 因为所有的代码(例如数据库操作类db)都集中在一个类中, 我们可以在类中设置钩子, 输出日志，从而避免到处var_dump, echo。
 
-```
+```php
+
 <?php
 class EasyFramework_Easy_Mysql{
     protected static $_instance = null;
@@ -227,7 +257,7 @@ var_dump($x);
 
 单例模式解决的是如何在整个项目中创建唯一对象实例的问题，工厂模式解决的是如何不通过new建立实例对象的方法。 那么注册树模式想解决什么问题呢？ 在考虑这个问题前，我们还是有必要考虑下前两种模式目前面临的局限。 首先，单例模式创建唯一对象的过程本身还有一种判断，即判断对象是否存在。存在则返回对象，不存在则创建对象并返回。 每次创建实例对象都要存在这么一层判断。 工厂模式更多考虑的是扩展维护的问题。 总的来说，单例模式和工厂模式可以产生更加合理的对象。怎么方便调用这些对象呢？而且在项目内如此建立的对象好像散兵游勇一样，不便统筹管理安排埃因而，注册树模式应运而生。不管你是通过单例模式还是工厂模式还是二者结合生成的对象，都统统给我“插到”注册树上。我用某个对象的时候，直接从注册树上取一下就好。这和我们使用全局变量一样的方便实用。 而且注册树模式还为其他模式提供了一种非常好的想法。
 
-```
+```php
 class Register{
 
 	protected static $objects;
@@ -263,7 +293,7 @@ $object=Register::get('rand');
  - 可以将截然不同的函数接口封装成统一的API。
  - 实际应用举例，PHP的数据库操作有mysql、mysqli、pdo3种、可以用适配器模式统一成一致。类似的场景还有cache适配器，将memcache、redis、file、apc等不同的缓存函数，统一成一致。 
  
- ```
+ ```php
  //目标角色  
 interface Target {  
     public function simpleMethod1();  
@@ -321,7 +351,7 @@ Client::main();
 - 实际应用举例，假如一个电商网站系统，针对男性女性用户要各自跳转到不同的商品类目，并且所有广告位展示不同的广告。
 - 实现Ioc，依赖倒置，控制反转。
 
-```
+```php
 <?php  
 /** 
 * 策略模式 
@@ -424,7 +454,7 @@ eg：[谈谈PHP实现依赖注入(控制反转)](https://my.oschina.net/cxz001/b
 - 场景：一个事件发生后，要执行一连串更新操作。传统的编程方法，就是在事件的代码之后直接加入处理逻辑。当更新的逻辑增多之后，代码会变得难以维护。这种方式是耦合的，侵入式的，增加新的逻辑需要修改事件主体的代码。
 - 观察者模式实现了低耦合，非侵入式的通知与更新机制。
 
-```
+```php
 <?php
 /**
  * 观察者模式
@@ -489,7 +519,7 @@ $paper->trigger();
 - 一个类提供了一项功能，如果要在修改并增加额外的功能，传统的编程模式，需要写一个子类继承它，并重新实现类的方法。
 - 使用装饰器模式，仅仅需在运行时添加一个装饰器对象即可实现，可以实现最大的灵活性。
 
-```
+```php
 <?php
 abstract class Beverage{
     public $_name;
@@ -562,7 +592,7 @@ printf("Coffee Total:%0.2f元\n",$coffee->Cost());
 - 迭代器模式，在不需要了解内部实现的前提下，遍历一个聚合对象的内部元素。
 - 相比于传统的编程模式，迭代器模式可以隐藏遍历元素的所需的操作。
 
-```
+```php
 <?php  
 /** 
  * Created by PhpStorm. 
@@ -642,7 +672,7 @@ while(!$iterator->IsDone())
 
 - Proxy还可以与业务代码分离，部署到另外的服务器，业务代码中通过RPC来委派任务。
 
-```
+```php
 <?php
 class Printer {   //代理对象,一台打印机
     public function printSth() {
