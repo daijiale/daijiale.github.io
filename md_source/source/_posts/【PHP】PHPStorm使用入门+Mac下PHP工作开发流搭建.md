@@ -39,6 +39,8 @@ categories:
 注意：因为Phpstorm执行调试程序需要指定Php版本，而Mac系统自带安装的PHP是5.5.x版本，位于usr/bin/php目录下，此目录并无php.ini以及更多php扩展库文件，所以需要我们用到之前安装的`Brew`来进行自定义的PHP版本下载，默认下载路径到usr/local/etc/php/下。
 
 
+- [PhpStorms10.0.4 license在线激活](http://keys4free.com/jetbrains-phpstorm-10-license-key/)
+   - license server address：http://us.idea.lanyus.com
 # Brew 安装PHP和PHP扩展库
 
 
