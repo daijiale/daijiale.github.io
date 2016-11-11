@@ -50,6 +50,9 @@ date: 2016-07-22 13:02:49
  - [类似GoogleFont的中文Web字体社区JustFont](http://www.justfont.com/)
  - [有字库 同上](http://www.youziku.com/onlinefont/index)
  
+###  开发工具整理
+ - [Git简易教程](http://www.bootcss.com/p/git-guide/)
+ - [Cloc代码统计工具](http://www.jianshu.com/p/c83306e18b37)
  
 ###  演示文稿工具
  - [ipresst](http://www.ipresst.com/#)
