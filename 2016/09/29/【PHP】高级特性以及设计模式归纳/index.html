@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="DaiJiale's Blog">
 <meta property="og:description" content="PS：之前在和Mentor一起开发新项目时候，接触到了一些很经典的PHP设计模式和高级特性，通过项目沉淀和业余时间的学习，想对常用设计模式进行一个归纳，进行新知识的梳理，方便服务于未来更大型的后端项目，以及帮助更多的PHPer上路。">
 <meta property="og:image" content="http://7xi6qz.com1.z0.glb.clouddn.com/YIIsudu.jpg">
-<meta property="og:updated_time" content="2016-10-13T08:00:27.000Z">
+<meta property="og:updated_time" content="2016-12-05T10:39:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【PHP】高级特性以及设计模式归纳">
 <meta name="twitter:description" content="PS：之前在和Mentor一起开发新项目时候，接触到了一些很经典的PHP设计模式和高级特性，通过项目沉淀和业余时间的学习，想对常用设计模式进行一个归纳，进行新知识的梳理，方便服务于未来更大型的后端项目，以及帮助更多的PHPer上路。">
@@ -118,7 +118,7 @@
 <li>所有PHP文件必须自动载入，不能有include/require。</li>
 <li>单一入口。</li>
 </ul>
-<h2 id="PSR-1_基本代码规范">PSR-1 基本代码规范</h2><p> <a href="https://segmentfault.com/a/1190000002521577" target="_blank" rel="external">PSR-1规范详细介绍</a></p>
+<h2 id="PSR-1_基本代码规范">PSR-1 基本代码规范</h2><p><a href="https://segmentfault.com/a/1190000002521577" target="_blank" rel="external">PSR-1规范详细介绍</a></p>
 <h2 id="PSR-2_代码样式">PSR-2 代码样式</h2><p><a href="https://my.oschina.net/u/1420250/blog/193971" target="_blank" rel="external">PSR-2代码样式详细介绍</a></p>
 <h2 id="PSR-3_日志接口">PSR-3 日志接口</h2><p><a href="https://segmentfault.com/a/1190000002521644" target="_blank" rel="external">PSR-3日志接口详细介绍</a></p>
 <h2 id="PSR-4_自动加载升级版">PSR-4 自动加载升级版</h2><p><a href="https://segmentfault.com/a/1190000000380008" target="_blank" rel="external">PSR-4 PHP规范</a></p>
@@ -130,7 +130,7 @@
 <h3 id="Eg">Eg</h3><p><img src="http://7xi6qz.com1.z0.glb.clouddn.com/YIIsudu.jpg" alt=""></p>
 <p><code>YII</code>之所以能成为最快的PHP框架，源于使用了<code>SPL</code>提供的<code>LazyLoading</code>技术，即：vendor/yiisoft/yii2/Yii.php中<code>sql_autoload_register</code>的使用，例如：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">my_loader</span><span class="params">($class)</span></span>&#123;</span><br><span class="line">	<span class="keyword">require</span>(<span class="string">'class\\'</span>.$class.<span class="string">'.php'</span>);<span class="comment">//对象new时候发现未定义，会自动到指定目录下加载对应对象</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">spl_autoload_register(<span class="string">'my_loader'</span>);</span><br><span class="line"></span><br><span class="line">$is_girl = $_GET[<span class="string">'sex'</span>] == <span class="number">0</span> ? <span class="keyword">true</span> : <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>($is_girl)&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">'this is a girl'</span>;</span><br><span class="line">	$class1 = <span class="keyword">new</span> Class1;<span class="comment">//未定义对象，不会报错，会反向调用my_loader去加载对象</span></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">'not a girl'</span>;</span><br><span class="line">	$class2 = <span class="keyword">new</span> Class2;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p>想深入了解SPL标准库的话，这里有一篇<a href="http://www.ruanyifeng.com/blog/" target="_blank" rel="external">一峰</a>前辈的博文：<a href="http://www.ruanyifeng.com/blog/2008/07/php_spl_notes.html" target="_blank" rel="external">SPL笔记</a>，国内应该找不到比这更好的中文参考文献了。</p>
+<p>PS：想深入了解SPL标准库的话，这里有一篇<a href="http://www.ruanyifeng.com/blog/" target="_blank" rel="external">一峰</a>前辈的博文<a href="http://www.ruanyifeng.com/blog/2008/07/php_spl_notes.html" target="_blank" rel="external">SPL笔记</a>，国内应该找不到比这更好的中文参考文献了，同时我自己也整理了一篇关于SPL的博文，有兴趣的同学也可以看一看：<a href="">传送门</a>。</p>
 <h1 id="PHP链式操作">PHP链式操作</h1><p><strong>eg:</strong> $db -&gt;where()-&gt;limit()-&gt;order();</p>
 <p>不过多解释了，天天用的。</p>
 <h1 id="PHP魔术方法">PHP魔术方法</h1><h2 id="__get/__set"><code>__get/__set</code></h2><p> 常用于类的构造方法，当对象的属性不存在时，将自动调用<code>__set</code>初始化属性，<code>__get</code>返回对象初始化属性。</p>
@@ -303,7 +303,7 @@
 		  
 		
 		  
-			<li><a href="/categories/原创博文/Web开发笔记/" title="Web开发笔记">Web开发笔记<sup>20</sup></a></li>
+			<li><a href="/categories/原创博文/Web开发笔记/" title="Web开发笔记">Web开发笔记<sup>21</sup></a></li>
 		  
 		
 		  
@@ -315,7 +315,7 @@
 		  
 		
 		  
-			<li><a href="/categories/原创博文/" title="原创博文">原创博文<sup>33</sup></a></li>
+			<li><a href="/categories/原创博文/" title="原创博文">原创博文<sup>34</sup></a></li>
 		  
 		
 		  
@@ -336,7 +336,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/PHP/" title="PHP">PHP<sup>8</sup></a></li>
+				<li><a href="/tags/PHP/" title="PHP">PHP<sup>9</sup></a></li>
 			
 		
 			
@@ -364,19 +364,11 @@
 			
 		
 			
+				<li><a href="/tags/Redis/" title="Redis">Redis<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/html5/" title="html5">html5<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/PhpStorm/" title="PhpStorm">PhpStorm<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Composer/" title="Composer">Composer<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/机器学习/" title="机器学习">机器学习<sup>1</sup></a></li>
 			
 		
 			
@@ -408,11 +400,19 @@
 			
 		
 			
-				<li><a href="/tags/SQL/" title="SQL">SQL<sup>1</sup></a></li>
+				<li><a href="/tags/AndroidWear/" title="AndroidWear">AndroidWear<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/智能可穿戴/" title="智能可穿戴">智能可穿戴<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/正则表达式/" title="正则表达式">正则表达式<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/程序猿素养/" title="程序猿素养">程序猿素养<sup>1</sup></a></li>
 			
 		
 		</ul>

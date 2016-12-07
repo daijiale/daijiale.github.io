@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>【数据库-持续更新】Redis入门 | DaiJiale&#39;s Blog</title>
+    <title>【Redis】Redis入门 | DaiJiale&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Jiale Dai">
@@ -13,13 +13,13 @@
     
     <meta name="description" content="PS：最近公司业务需要使用redis做部分数据的缓存，特此学习一下。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【数据库-持续更新】Redis入门">
-<meta property="og:url" content="http://daijiale.github.io/2016/08/01/【数据库】redis入门/index.html">
+<meta property="og:title" content="【Redis】Redis入门">
+<meta property="og:url" content="http://daijiale.github.io/2016/08/01/【Redis】redis入门/index.html">
 <meta property="og:site_name" content="DaiJiale's Blog">
 <meta property="og:description" content="PS：最近公司业务需要使用redis做部分数据的缓存，特此学习一下。">
-<meta property="og:updated_time" content="2016-10-13T08:00:27.000Z">
+<meta property="og:updated_time" content="2016-11-23T03:44:39.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【数据库-持续更新】Redis入门">
+<meta name="twitter:title" content="【Redis】Redis入门">
 <meta name="twitter:description" content="PS：最近公司业务需要使用redis做部分数据的缓存，特此学习一下。">
 
     
@@ -81,7 +81,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/08/01/【数据库】redis入门/" title="【数据库-持续更新】Redis入门" itemprop="url">【数据库-持续更新】Redis入门</a>
+      <a href="/2016/08/01/【Redis】redis入门/" title="【Redis】Redis入门" itemprop="url">【Redis】Redis入门</a>
   </h1>
   <p class="article-author">By
        
@@ -97,7 +97,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis安装"><span class="toc-number">2.</span> <span class="toc-text">Redis安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis数据类型"><span class="toc-number">3.</span> <span class="toc-text">Redis数据类型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis命令"><span class="toc-number">4.</span> <span class="toc-text">Redis命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis事务"><span class="toc-number">5.</span> <span class="toc-text">Redis事务</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis_数据备份与恢复"><span class="toc-number">6.</span> <span class="toc-text">Redis 数据备份与恢复</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis_PHP扩展"><span class="toc-number">7.</span> <span class="toc-text">Redis PHP扩展</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考文档"><span class="toc-number">8.</span> <span class="toc-text">参考文档</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis安装"><span class="toc-number">2.</span> <span class="toc-text">Redis安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Ubuntu下："><span class="toc-number">2.1.</span> <span class="toc-text">Ubuntu下：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#两种方式测试redis是否启动成功，选择任意一种即可"><span class="toc-number">2.2.</span> <span class="toc-text">两种方式测试redis是否启动成功，选择任意一种即可</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#（1）检测6379端口是否在监听"><span class="toc-number">2.2.1.</span> <span class="toc-text">（1）检测6379端口是否在监听</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（2）检测后台进程是否存在"><span class="toc-number">2.2.2.</span> <span class="toc-text">（2）检测后台进程是否存在</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动Redis:"><span class="toc-number">2.3.</span> <span class="toc-text">启动Redis:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过新进程测试redis是否启动："><span class="toc-number">2.4.</span> <span class="toc-text">通过新进程测试redis是否启动：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#现在我们输入_PING_命令来测试一下："><span class="toc-number">2.5.</span> <span class="toc-text">现在我们输入 PING 命令来测试一下：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis数据类型"><span class="toc-number">3.</span> <span class="toc-text">Redis数据类型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis命令"><span class="toc-number">4.</span> <span class="toc-text">Redis命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis事务"><span class="toc-number">5.</span> <span class="toc-text">Redis事务</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis_数据备份与恢复"><span class="toc-number">6.</span> <span class="toc-text">Redis 数据备份与恢复</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis_PHP扩展"><span class="toc-number">7.</span> <span class="toc-text">Redis PHP扩展</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考文档"><span class="toc-number">8.</span> <span class="toc-text">参考文档</span></a></li></ol>
 		
 		</div>
 		
@@ -113,14 +113,13 @@
 <li>相比许多键值数据存储，Redis拥有一套较为丰富的数据类型，因为值（value）可以是 字符串(String), 哈希(Map), 列表(list), 集合(sets) 和 有序集合(sorted sets)等类型。</li>
 <li>Redis可以将数据复制到任意数量的从服务器，即master-slave模式的数据备份。</li>
 </ul>
-<h1 id="Redis安装">Redis安装</h1><p>Ubuntu下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install redis-server</span><br></pre></td></tr></table></figure>
-<p>启动Redis:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server</span><br></pre></td></tr></table></figure>
-<p>通过新进程测试redis是否启动：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli</span><br></pre></td></tr></table></figure>
-<p>127.0.0.1 是本机 IP ，6379 是 redis 服务端口。现在我们输入 PING 命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt;ping</span><br><span class="line">PONG</span><br></pre></td></tr></table></figure>
+<h1 id="Redis安装">Redis安装</h1><h2 id="Ubuntu下：">Ubuntu下：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install redis-server</span><br></pre></td></tr></table></figure>
+<h2 id="两种方式测试redis是否启动成功，选择任意一种即可">两种方式测试redis是否启动成功，选择任意一种即可</h2><h3 id="（1）检测6379端口是否在监听">（1）检测6379端口是否在监听</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -lntp | grep 6379</span><br></pre></td></tr></table></figure>
+<h3 id="（2）检测后台进程是否存在">（2）检测后台进程是否存在</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef|grep redis</span><br></pre></td></tr></table></figure>
+<h2 id="启动Redis:">启动Redis:</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server</span><br></pre></td></tr></table></figure>
+<h2 id="通过新进程测试redis是否启动：">通过新进程测试redis是否启动：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli</span><br></pre></td></tr></table></figure>
+<p>127.0.0.1 是本机 IP ，6379 是 redis 服务端口。</p>
+<h2 id="现在我们输入_PING_命令来测试一下：">现在我们输入 PING 命令来测试一下：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt;ping</span><br><span class="line">PONG</span><br></pre></td></tr></table></figure>
 <h1 id="Redis数据类型">Redis数据类型</h1><p>Redis支持五种数据类型：string（字符串），hash（哈希），list（列表），set（集合）及zset(sorted set：有序集合)。</p>
 <p><a href="http://www.redis.net.cn/tutorial/3505.html" target="_blank" rel="external">使用方法</a></p>
 <h1 id="Redis命令">Redis命令</h1><p><a href="http://www.redis.net.cn/tutorial/3506.html" target="_blank" rel="external">使用方法</a></p>
@@ -131,6 +130,7 @@
 <li><a href="http://www.cnblogs.com/w58480513/p/4226176.html?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">redis脚本实例讲解</a></li>
 <li><a href="https://github.com/ukko/phpredis-phpdoc" target="_blank" rel="external">redis_php库</a></li>
 <li><a href="http://www.redis.net.cn/tutorial/3501.html" target="_blank" rel="external">redis中文网</a></li>
+<li><a href="https://yq.aliyun.com/articles/61759?spm=5176.100239.blogcont55729.12.JviAMl" target="_blank" rel="external">redis mongoDB阿里云上的部署</a></li>
 </ul>
   
 	</div>
@@ -154,7 +154,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://daijiale.github.io/2016/08/01/【数据库】redis入门/" data-title="【数据库-持续更新】Redis入门 | DaiJiale&#39;s Blog" data-tsina="3173290371" class="share clearfix">
+	  <div data-url="http://daijiale.github.io/2016/08/01/【Redis】redis入门/" data-title="【Redis】Redis入门 | DaiJiale&#39;s Blog" data-tsina="3173290371" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -188,7 +188,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/08/01/【数据库】redis入门/" data-title="【数据库-持续更新】Redis入门" data-url="http://daijiale.github.io/2016/08/01/【数据库】redis入门/"></div>
+	<div class="ds-thread" data-thread-key="2016/08/01/【Redis】redis入门/" data-title="【Redis】Redis入门" data-url="http://daijiale.github.io/2016/08/01/【Redis】redis入门/"></div>
 </section>
 
 
@@ -198,7 +198,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis安装"><span class="toc-number">2.</span> <span class="toc-text">Redis安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis数据类型"><span class="toc-number">3.</span> <span class="toc-text">Redis数据类型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis命令"><span class="toc-number">4.</span> <span class="toc-text">Redis命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis事务"><span class="toc-number">5.</span> <span class="toc-text">Redis事务</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis_数据备份与恢复"><span class="toc-number">6.</span> <span class="toc-text">Redis 数据备份与恢复</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis_PHP扩展"><span class="toc-number">7.</span> <span class="toc-text">Redis PHP扩展</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考文档"><span class="toc-number">8.</span> <span class="toc-text">参考文档</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis安装"><span class="toc-number">2.</span> <span class="toc-text">Redis安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Ubuntu下："><span class="toc-number">2.1.</span> <span class="toc-text">Ubuntu下：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#两种方式测试redis是否启动成功，选择任意一种即可"><span class="toc-number">2.2.</span> <span class="toc-text">两种方式测试redis是否启动成功，选择任意一种即可</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#（1）检测6379端口是否在监听"><span class="toc-number">2.2.1.</span> <span class="toc-text">（1）检测6379端口是否在监听</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（2）检测后台进程是否存在"><span class="toc-number">2.2.2.</span> <span class="toc-text">（2）检测后台进程是否存在</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动Redis:"><span class="toc-number">2.3.</span> <span class="toc-text">启动Redis:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过新进程测试redis是否启动："><span class="toc-number">2.4.</span> <span class="toc-text">通过新进程测试redis是否启动：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#现在我们输入_PING_命令来测试一下："><span class="toc-number">2.5.</span> <span class="toc-text">现在我们输入 PING 命令来测试一下：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis数据类型"><span class="toc-number">3.</span> <span class="toc-text">Redis数据类型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis命令"><span class="toc-number">4.</span> <span class="toc-text">Redis命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis事务"><span class="toc-number">5.</span> <span class="toc-text">Redis事务</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis_数据备份与恢复"><span class="toc-number">6.</span> <span class="toc-text">Redis 数据备份与恢复</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis_PHP扩展"><span class="toc-number">7.</span> <span class="toc-text">Redis PHP扩展</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考文档"><span class="toc-number">8.</span> <span class="toc-text">参考文档</span></a></li></ol>
  
   </div>
 
@@ -220,7 +220,7 @@
 		  
 		
 		  
-			<li><a href="/categories/原创博文/Web开发笔记/" title="Web开发笔记">Web开发笔记<sup>20</sup></a></li>
+			<li><a href="/categories/原创博文/Web开发笔记/" title="Web开发笔记">Web开发笔记<sup>21</sup></a></li>
 		  
 		
 		  
@@ -232,7 +232,7 @@
 		  
 		
 		  
-			<li><a href="/categories/原创博文/" title="原创博文">原创博文<sup>33</sup></a></li>
+			<li><a href="/categories/原创博文/" title="原创博文">原创博文<sup>34</sup></a></li>
 		  
 		
 		  
@@ -253,7 +253,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/PHP/" title="PHP">PHP<sup>8</sup></a></li>
+				<li><a href="/tags/PHP/" title="PHP">PHP<sup>9</sup></a></li>
 			
 		
 			
@@ -281,19 +281,11 @@
 			
 		
 			
+				<li><a href="/tags/Redis/" title="Redis">Redis<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/html5/" title="html5">html5<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/PhpStorm/" title="PhpStorm">PhpStorm<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Composer/" title="Composer">Composer<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/机器学习/" title="机器学习">机器学习<sup>1</sup></a></li>
 			
 		
 			
@@ -325,11 +317,19 @@
 			
 		
 			
-				<li><a href="/tags/SQL/" title="SQL">SQL<sup>1</sup></a></li>
+				<li><a href="/tags/AndroidWear/" title="AndroidWear">AndroidWear<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/智能可穿戴/" title="智能可穿戴">智能可穿戴<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/正则表达式/" title="正则表达式">正则表达式<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/程序猿素养/" title="程序猿素养">程序猿素养<sup>1</sup></a></li>
 			
 		
 		</ul>
