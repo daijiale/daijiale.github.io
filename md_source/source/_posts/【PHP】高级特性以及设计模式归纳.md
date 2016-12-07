@@ -3,8 +3,6 @@ date: 2016-09-29 15:33:11
 tags:
 
  - PHP
-
-
  
 categories:
 
@@ -37,7 +35,7 @@ FIG制定的PHP规范，简称PSR，是PHP开发的事实标准，现在主流�
 
 ## PSR-1 基本代码规范
 
- [PSR-1规范详细介绍](https://segmentfault.com/a/1190000002521577)
+[PSR-1规范详细介绍](https://segmentfault.com/a/1190000002521577)
  
 ## PSR-2 代码样式
 
@@ -88,7 +86,8 @@ if($is_girl){
 
 ```
 
-想深入了解SPL标准库的话，这里有一篇[一峰](http://www.ruanyifeng.com/blog/)前辈的博文：[SPL笔记](http://www.ruanyifeng.com/blog/2008/07/php_spl_notes.html)，国内应该找不到比这更好的中文参考文献了。
+PS：想深入了解SPL标准库的话，这里有一篇[一峰](http://www.ruanyifeng.com/blog/)前辈的博文[SPL笔记](http://www.ruanyifeng.com/blog/2008/07/php_spl_notes.html)，国内应该找不到比这更好的中文参考文献了，同时我自己也整理了一篇关于SPL的博文，有兴趣的同学也可以看一看：[传送门]()。
+
 
 # PHP链式操作
 

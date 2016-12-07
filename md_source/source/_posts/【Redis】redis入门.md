@@ -1,4 +1,4 @@
-title: 【数据库-持续更新】Redis入门
+title: 【Redis】Redis入门
 date: 2016-08-01 11:15:21
 tags:
 
@@ -34,28 +34,42 @@ Redis从它的许多竞争继承来的三个主要特点：
 # Redis安装
 
 
-Ubuntu下：
+## Ubuntu下：
 
-```shell
+```
 sudo apt-get update
 sudo apt-get install redis-server
 ```
+## 两种方式测试redis是否启动成功，选择任意一种即可
 
-启动Redis:
+### （1）检测6379端口是否在监听
 
-```shell
+```
+netstat -lntp | grep 6379
+```
+### （2）检测后台进程是否存在
+
+```
+ps -ef|grep redis
+```
+
+## 启动Redis:
+
+```
 redis-server
 ```
 
-通过新进程测试redis是否启动：
+## 通过新进程测试redis是否启动：
 
-```shell
+```
 redis-cli
 ```
 
-127.0.0.1 是本机 IP ，6379 是 redis 服务端口。现在我们输入 PING 命令：
+127.0.0.1 是本机 IP ，6379 是 redis 服务端口。
 
-```shell
+## 现在我们输入 PING 命令来测试一下：
+
+```
 redis 127.0.0.1:6379>ping
 PONG
 ```
@@ -92,3 +106,4 @@ Redis支持五种数据类型：string（字符串），hash（哈希），list�
 - [redis脚本实例讲解](http://www.cnblogs.com/w58480513/p/4226176.html?utm_source=tuicool&utm_medium=referral)
 - [redis_php库](https://github.com/ukko/phpredis-phpdoc)
 - [redis中文网](http://www.redis.net.cn/tutorial/3501.html)
+- [redis mongoDB阿里云上的部署](https://yq.aliyun.com/articles/61759?spm=5176.100239.blogcont55729.12.JviAMl)

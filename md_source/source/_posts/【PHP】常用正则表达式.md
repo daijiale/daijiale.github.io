@@ -71,9 +71,53 @@ PS：通过在 *、+ 或 ? 限定符之后放置 ?，该表达式从"贪心"表�
   - `b`:匹配一个字边界，即字与空格间的位置。
   - `B`:非字边界匹配。
 
-# 正则表达式的常用元字符
 
-# 正则表达式的语法
+
+# 正则表达式实践
+
+##提取<>（）[]{}括号内的字符串
+
+```
+$str="你好<我>(爱)[北京]{天安门}";
+echo f1($str); //返回你好 
+echo f2($str); //返回我 
+echo f3($str); //返回爱 
+echo f4($str); //返回北京 
+echo f5($str); //返回天安门
+function f1($str) 
+{ 
+$result = array(); 
+preg_match_all("/^(.*)(?:<)/i",$str, $result); 
+return $result[1][0]; 
+} 
+ 
+function f2($str) 
+{ 
+$result = array(); 
+preg_match_all("/(?:<)(.*)(?:>)/i",$str, $result); 
+return $result[1][0]; 
+}
+function f3($str) 
+{ 
+$result = array(); 
+preg_match_all("/(?:\()(.*)(?:\))/i",$str, $result); 
+return $result[1][0]; 
+}
+function f4($str) 
+{ 
+$result = array(); 
+preg_match_all("/(?:\[)(.*)(?:\])/i",$str, $result); 
+return $result[1][0]; 
+}
+function f5($str) 
+{ 
+$result = array(); 
+preg_match_all("/(?:\{)(.*)(?:\})/i",$str, $result); 
+return $result[1][0]; 
+}
+
+
+```
 
 # 参考文献
 
