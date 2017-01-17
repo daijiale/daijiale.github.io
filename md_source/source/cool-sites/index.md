@@ -34,7 +34,8 @@ date: 2016-07-22 13:02:49
  - [阿里前端font/icon素材cdn服务](http://www.iconfont.cn/)
  - [占位图工具-FakeImages](http://fakeimg.pl/)
  - [占位图工具2-FakeImages](http://fakeimg.pl/)
- - [图片压缩](https://tinypng.com/)
+ - [TingPng图片压缩](https://tinypng.com/)
+ - [图好快在线压缩](http://www.tuhaokuai.com/)
  
 ###  IT学习
  - [慕课网](http://www.imooc.com/)
@@ -49,6 +50,7 @@ date: 2016-07-22 13:02:49
  - [免费WEB字体图标制造器_icomoon](https://icomoon.io/)
  - [类似GoogleFont的中文Web字体社区JustFont](http://www.justfont.com/)
  - [有字库 同上](http://www.youziku.com/onlinefont/index)
+ - [创客贴 - 平面设计工具](https://www.chuangkit.com/)
  
 ###  开发工具整理
  - [Git简易教程](http://www.bootcss.com/p/git-guide/)
