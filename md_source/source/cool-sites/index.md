@@ -51,6 +51,7 @@ date: 2016-07-22 13:02:49
  - [类似GoogleFont的中文Web字体社区JustFont](http://www.justfont.com/)
  - [有字库 同上](http://www.youziku.com/onlinefont/index)
  - [创客贴 - 平面设计工具](https://www.chuangkit.com/)
+ - [爱美刻-在线视频制作网站](http://meikevideo.com/)
  
 ###  开发工具整理
  - [Git简易教程](http://www.bootcss.com/p/git-guide/)
