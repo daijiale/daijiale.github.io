@@ -27,7 +27,13 @@ date: 2016-07-22 13:02:49
  - [阿里百川-无线开发平台](http://baichuan.taobao.com/portal/docIndex.htm?spm=a3c0d.7662652.1.4.f1ePDx)
  - [多说-评论第三方开发系统](http://duoshuo.com/)
  - [看云kancloud-API文档在线编辑工具](http://www.kancloud.cn/)
+ - [HaoService专业数据平台](http://www.haoservice.com/)
  
+ 
+###  数据挖掘
+
+- [集搜客-数据挖掘工具](http://www.gooseeker.com/index.html)
+
 ###  Web前端
 
  - [字蛛中文字体压缩器](http://font-spider.org/)
@@ -44,6 +50,7 @@ date: 2016-07-22 13:02:49
  - [汇智网](http://www.hubwiz.com/)
  - [Mooc学院](http://mooc.guokr.com/)
  - [云栖社区](https://yq.aliyun.com/articles/57826)
+ - [Laravist 最好的Laravel视频学习社区](https://www.laravist.com/)
 
 ### 设计素材网站
  - [easelly信息图表](http://www.easel.ly/)
@@ -52,7 +59,8 @@ date: 2016-07-22 13:02:49
  - [有字库 同上](http://www.youziku.com/onlinefont/index)
  - [创客贴 - 平面设计工具](https://www.chuangkit.com/)
  - [爱美刻-在线视频制作网站](http://meikevideo.com/)
- 
+ - [自动化标注工具](http://www.biaonimeia.com/)
+ - [Sketch标注插件](http://sketch.im/plugins/1)
 ###  开发工具整理
  - [Git简易教程](http://www.bootcss.com/p/git-guide/)
  - [Cloc代码统计工具](http://www.jianshu.com/p/c83306e18b37)
@@ -70,11 +78,16 @@ date: 2016-07-22 13:02:49
 - [Andrew Ng](http://www.andrewng.org/)
 - [进击的马斯特](http://pinkyjie.com/)
 
-### 融资众筹
+### 开发者大会
+ - [QCon全球软件开发大会](http://2017.qconbeijing.com/volunteers)
+ - [ArchSummit架构师峰会](http://sz2017.archsummit.com/content/3034)
+ 
+
+# 融资众筹
 - [钛媒体](http://www.tmtpost.com/)
 - [36氪](http://36kr.com/)
 
-### 街舞
+# 街舞
  - [太嘻哈](http://www.toohiphop.com/news-9286.html)
  - [街舞爱好者](http://www.dancering.cn/)
  - [Vhihop](http://www.vhiphop.com/)
@@ -86,10 +99,11 @@ date: 2016-07-22 13:02:49
  - [Olli-Bandcamp](https://olli.bandcamp.com/track/mouthful-of-dust)
  - [Bandcamp Dj最新曲子](http://bandcamp.com/)
 
-### 单反摄影
+# 单反摄影
  - [锐意网](http://www.rayi.cn/)
  - [单反相机](http://www.dfxiangji.com/)
  
 # Mac相关资源
 
 - [Awesome Mac](https://github.com/jaywcjlove/awesome-mac)
+
