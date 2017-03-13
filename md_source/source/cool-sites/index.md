@@ -61,6 +61,9 @@ date: 2016-07-22 13:02:49
  - [爱美刻-在线视频制作网站](http://meikevideo.com/)
  - [自动化标注工具](http://www.biaonimeia.com/)
  - [Sketch标注插件](http://sketch.im/plugins/1)
+ - [逼哥PPT](http://www.tretars.com/)
+ - [免费高清素材库（用CC0授权可商用）Librestock](http://librestock.com/)
+ 
 ###  开发工具整理
  - [Git简易教程](http://www.bootcss.com/p/git-guide/)
  - [Cloc代码统计工具](http://www.jianshu.com/p/c83306e18b37)
