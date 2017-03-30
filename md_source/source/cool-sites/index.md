@@ -42,6 +42,7 @@ date: 2016-07-22 13:02:49
  - [占位图工具2-FakeImages](http://fakeimg.pl/)
  - [TingPng图片压缩](https://tinypng.com/)
  - [图好快在线压缩](http://www.tuhaokuai.com/)
+ - [前端导航网](http://jsdig.com/)
  
 ###  IT学习
  - [慕课网](http://www.imooc.com/)
@@ -80,6 +81,8 @@ date: 2016-07-22 13:02:49
 - [囧克斯的Blog](http://jiongks.name/about/)
 - [Andrew Ng](http://www.andrewng.org/)
 - [进击的马斯特](http://pinkyjie.com/)
+- [Terry_YII2.0大师](http://www.fancyecommerce.com/)
+- [淮城一只猫](https://iiong.com/)
 
 ### 开发者大会
  - [QCon全球软件开发大会](http://2017.qconbeijing.com/volunteers)
