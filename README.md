@@ -48,4 +48,4 @@ git checkout bf_master_resource branch
 
 ### 【项目截图】
 
-! [](http://7xnopc.com1.z0.glb.clouddn.com/DaiJiale%27s%20Blog.png)
+![](http://7xnopc.com1.z0.glb.clouddn.com/DaiJiale%27s%20Blog.png)
