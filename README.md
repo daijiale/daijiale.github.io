@@ -3,8 +3,7 @@
 >【服役时间】2015.3-2017.4.25
 
 
-
-###【通告】
+### 【通告】
 
 此博客是[daijiale.cn](http://www.daijiale.cn)的第二个大版本，尝试了不同的技术栈，即`Hexo+Node.js+Git+Markdown`的形式构建新型伪静态博客系统。
 从2015年开始一直在线上运营、迭代，两年的时间里，
@@ -22,7 +21,7 @@
 
 **第二个大版本虽然已经不投入生产环境中，但所用的`Hexo+Node.js+Git+Markdown`的伪静态博客系统技术将伴随此仓库，开源在Github上，下面是仓库项目使用说明**
 
-###【项目说明】
+### 【项目说明】
 
 - [hexo下载](https://github.com/hexojs/hexo)
 - [npm安装](http://www.runoob.com/nodejs/nodejs-npm.html)
@@ -41,10 +40,12 @@ git checkout bf_master_resource branch
 
 建议使用者也可利用github的仓库特性来进行博客源码、以及文章的管理和集成，当然，我上述的方式只是个人使用习惯，你也可以结合自己的习惯进行项目管理。
 
-###【搭建教程】
+### 【搭建教程】
 
 可以参考如下两篇
 -[http://opiece.me/2015/04/09/hexo-guide/](http://opiece.me/2015/04/09/hexo-guide/)
 -[基于github pages与hexo搭建一个独立博客](https://segmentfault.com/a/1190000003967256)
 
-###【项目截图】
+### 【项目截图】
+
+! [](http://7xnopc.com1.z0.glb.clouddn.com/DaiJiale%27s%20Blog.png)
