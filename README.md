@@ -43,7 +43,9 @@ git checkout bf_master_resource branch
 ### 【搭建教程】
 
 可以参考如下两篇
+
 -[http://opiece.me/2015/04/09/hexo-guide/](http://opiece.me/2015/04/09/hexo-guide/)
+
 -[基于github pages与hexo搭建一个独立博客](https://segmentfault.com/a/1190000003967256)
 
 ### 【项目截图】
